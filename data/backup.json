@@ -227,11 +227,13 @@
         "1405-2": 90505.9225,
         "1405-3": 92091.3129,
         "1405-1": 83805.5077,
-        "1404-1": 49594
+        "1404-1": 49594,
+        "1405-4": 123253
       },
       "manual": {
-        "marketCap": 491691,
-        "currentPrice": 1200,
+        "marketCap": 521000,
+        "sharesOutstanding": 409269442262,
+        "currentPrice": 1273,
         "dividendIncome": 2283,
         "bankInterest": 155,
         "otherOperatingIncome": 4784,
@@ -718,8 +720,8 @@
         }
       ],
       "manual": {
-        "marketCap": 665495,
-        "currentPrice": 1061,
+        "marketCap": 705000,
+        "currentPrice": 11240,
         "dividendIncome": 853,
         "bankInterest": 1019,
         "otherOperatingIncome": 3,
@@ -1921,13 +1923,13 @@
         }
       ],
       "manual": {
-        "marketCap": 13078,
-        "sharesOutstanding": null,
+        "marketCap": 13861,
+        "sharesOutstanding": 9533012380,
         "currentPrice": 1454,
         "dividendIncome": 6,
-        "bankInterest": 251,
+        "bankInterest": 16,
         "otherOperatingIncome": null,
-        "otherNonOperatingIncome": 280,
+        "otherNonOperatingIncome": -10,
         "estimatedAnnualSalesOverride": null
       },
       "rawSheets": {
