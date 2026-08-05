@@ -245,7 +245,9 @@ function uid(){ return Math.random().toString(36).slice(2,10); }
 function defaultState(){
   return {
     industries: ['پالایش','مس'],
-    stocks: {}
+    stocks: {},
+    goldFunds: {},
+    goldMarket: {}
   };
 }
 function loadState(){
@@ -777,6 +779,7 @@ const NAV_ITEMS = [
   {id:'data', label:'ورود اطلاعات'},
   {id:'industry', label:'مقایسه صنعت'},
   {id:'portfolio', label:'سبد سرمایه‌گذاری من'},
+  {id:'gold', label:'طلا و نقره'},
   {id:'formulas', label:'تنظیمات فرمول‌ها'},
   {id:'manage', label:'مدیریت سهم‌ها'},
   {id:'backup', label:'پشتیبان‌گیری'},
@@ -820,6 +823,7 @@ function renderAll(){
   else if(activeTab==='data') main.innerHTML = renderDataTab();
   else if(activeTab==='industry') main.innerHTML = renderIndustryTab();
   else if(activeTab==='portfolio') main.innerHTML = renderPortfolioTab();
+  else if(activeTab==='gold') main.innerHTML = renderGoldTab();
   else if(activeTab==='formulas') main.innerHTML = renderFormulasTab();
   else if(activeTab==='manage') main.innerHTML = renderManageTab();
   else if(activeTab==='backup') main.innerHTML = renderBackupTab();
@@ -2078,6 +2082,145 @@ function renderManageTab(){
 
 /* ========================= تب سبد سرمایه‌گذاری من ========================= */
 let editingHoldingId = null;
+/* ========================= طلا و نقره — کاملاً جدا از بخش سهام ========================= */
+const OUNCE_TO_GRAM = 31.1034768;
+function getGoldMarket(){ state.goldMarket = state.goldMarket || {}; return state.goldMarket; }
+function getGoldFunds(){ state.goldFunds = state.goldFunds || {}; return state.goldFunds; }
+// دلار «تئوریک» در نقطه‌ای از سال = دلار ابتدای سال، مرکب‌شده با میانگین تورم ماهانه به تعداد ماه‌های گذشته
+function theoreticalDollar(gm, months){
+  const base = gm.dollarStartOfYear!=null && gm.dollarStartOfYear!=='' ? Number(gm.dollarStartOfYear) : null;
+  const infl = gm.avgMonthlyInflation!=null && gm.avgMonthlyInflation!=='' ? Number(gm.avgMonthlyInflation) : null;
+  if(base==null || infl==null || months==null) return null;
+  return base * Math.pow(1 + infl/100, months);
+}
+function computeGoldMarketMetrics(){
+  const gm = getGoldMarket();
+  const monthsElapsed = gm.monthsElapsed!=null && gm.monthsElapsed!=='' ? Number(gm.monthsElapsed) : null;
+  const theoDollarToday = monthsElapsed!=null ? theoreticalDollar(gm, monthsElapsed) : null;
+  const theoDollarYearEnd = theoreticalDollar(gm, 12);
+  const dollarToday = gm.dollarToday!=null && gm.dollarToday!=='' ? Number(gm.dollarToday) : null;
+  // حباب دلار: طبق تورم اعلامی و دلار اول سال، دلار امروز باید چه عددی باشه — چقدر پایین‌تر/بالاتر از اون واقعیه
+  const dollarBubble = (theoDollarToday && dollarToday!=null) ? (dollarToday - theoDollarToday)/theoDollarToday : null;
+
+  const goldOunceToday = gm.goldOunceToday!=null && gm.goldOunceToday!=='' ? Number(gm.goldOunceToday) : null;
+  const silverOunceToday = gm.silverOunceToday!=null && gm.silverOunceToday!=='' ? Number(gm.silverOunceToday) : null;
+  const goldOunceYearEnd = gm.goldOunceYearEnd!=null && gm.goldOunceYearEnd!=='' ? Number(gm.goldOunceYearEnd) : null;
+  const silverOunceYearEnd = gm.silverOunceYearEnd!=null && gm.silverOunceYearEnd!=='' ? Number(gm.silverOunceYearEnd) : null;
+
+  const goldGramTomanToday = (goldOunceToday!=null && dollarToday!=null) ? (goldOunceToday/OUNCE_TO_GRAM)*dollarToday : null;
+  const silverGramTomanToday = (silverOunceToday!=null && dollarToday!=null) ? (silverOunceToday/OUNCE_TO_GRAM)*dollarToday : null;
+  const goldGramTomanYearEnd = (goldOunceYearEnd!=null && theoDollarYearEnd!=null) ? (goldOunceYearEnd/OUNCE_TO_GRAM)*theoDollarYearEnd : null;
+  const silverGramTomanYearEnd = (silverOunceYearEnd!=null && theoDollarYearEnd!=null) ? (silverOunceYearEnd/OUNCE_TO_GRAM)*theoDollarYearEnd : null;
+  const goldYearEndChangeFrac = (goldGramTomanToday && goldGramTomanYearEnd!=null) ? (goldGramTomanYearEnd/goldGramTomanToday - 1) : null;
+  const silverYearEndChangeFrac = (silverGramTomanToday && silverGramTomanYearEnd!=null) ? (silverGramTomanYearEnd/silverGramTomanToday - 1) : null;
+
+  return { theoDollarToday, theoDollarYearEnd, dollarBubble, goldGramTomanToday, silverGramTomanToday, goldGramTomanYearEnd, silverGramTomanYearEnd, goldYearEndChangeFrac, silverYearEndChangeFrac };
+}
+// معیارهای هر صندوق: حباب خود صندوق (قیمت تابلو در برابر NAV اعلامی)، حباب دلار (سراسری)، حباب محاسباتی (قیمت تابلو در برابر ارزش ذاتی بر پایه‌ی انس+دلار روز — فقط اگه وزن پشتوانه‌ی هر واحد وارد شده باشه)
+function computeFundMetrics(fund, gmm){
+  const manual = fund.manual || {};
+  const marketPrice = manual.marketPrice!=null && manual.marketPrice!=='' ? Number(manual.marketPrice) : null;
+  const nav = manual.nav!=null && manual.nav!=='' ? Number(manual.nav) : null;
+  const weightPerUnit = manual.weightPerUnit!=null && manual.weightPerUnit!=='' ? Number(manual.weightPerUnit) : null;
+
+  const fundBubble = (marketPrice!=null && nav) ? (marketPrice-nav)/nav : null;
+  const dollarBubble = gmm.dollarBubble;
+
+  const gramTomanToday = fund.type==='silver' ? gmm.silverGramTomanToday : gmm.goldGramTomanToday;
+  const fairValueByOunce = (weightPerUnit!=null && gramTomanToday!=null) ? weightPerUnit*gramTomanToday : null;
+  const calcBubble = (marketPrice!=null && fairValueByOunce) ? (marketPrice-fairValueByOunce)/fairValueByOunce : null;
+
+  const parts = [fundBubble, dollarBubble, calcBubble].filter(v=>v!=null);
+  const totalBubble = parts.length ? parts.reduce((a,b)=>a+b,0) : null;
+
+  const yearEndChangeFrac = fund.type==='silver' ? gmm.silverYearEndChangeFrac : gmm.goldYearEndChangeFrac;
+  // سقف احتمالی پایان سال: با فرض این‌که روند جهانی انس + تورم دلار طبق پیش‌بینی پیش بره
+  const ceilingPrice = (marketPrice!=null && yearEndChangeFrac!=null) ? marketPrice*(1+yearEndChangeFrac) : null;
+  // کف احتمالی: اگه حباب فعلی صندوق (نسبت به NAV) به‌طور کامل تخلیه بشه و برگرده به NAV
+  const floorPrice = (marketPrice!=null && nav!=null) ? nav : null;
+  const floorChangeFrac = (marketPrice!=null && floorPrice!=null && marketPrice) ? (floorPrice/marketPrice - 1) : null;
+
+  return { marketPrice, nav, weightPerUnit, fundBubble, dollarBubble, calcBubble, totalBubble, yearEndChangeFrac, ceilingPrice, floorPrice, floorChangeFrac };
+}
+let editingGoldFundId = null;
+function renderGoldTab(){
+  const gm = getGoldMarket();
+  const gmm = computeGoldMarketMetrics();
+  const funds = getGoldFunds();
+  const fundIds = Object.keys(funds);
+  const editing = editingGoldFundId ? funds[editingGoldFundId] : null;
+
+  const rows = fundIds.map(id=>{
+    const fund = funds[id];
+    const fm = computeFundMetrics(fund, gmm);
+    const colorFor = v => v==null?'inherit':(v>=0?'var(--good)':'var(--bad)');
+    return `<tr>
+      <td>${fund.symbol||'—'}</td>
+      <td>${fund.name||'—'}</td>
+      <td>${fund.type==='silver'?'نقره':'طلا'}</td>
+      <td>${fm.marketPrice!=null?fmt(fm.marketPrice):'—'}</td>
+      <td>${fm.nav!=null?fmt(fm.nav):'—'}</td>
+      <td style="color:${colorFor(fm.fundBubble)}">${fm.fundBubble!=null?fmtPct(fm.fundBubble):'—'}</td>
+      <td style="color:${colorFor(fm.dollarBubble)}">${fm.dollarBubble!=null?fmtPct(fm.dollarBubble):'—'}</td>
+      <td style="color:${colorFor(fm.calcBubble)}">${fm.calcBubble!=null?fmtPct(fm.calcBubble):'—'}</td>
+      <td style="color:${colorFor(fm.totalBubble)}; font-weight:800">${fm.totalBubble!=null?fmtPct(fm.totalBubble):'—'}</td>
+      <td>${fm.ceilingPrice!=null?fmt(fm.ceilingPrice):'—'} ${fm.yearEndChangeFrac!=null?`<span style="color:${colorFor(fm.yearEndChangeFrac)}">(${fmtPct(fm.yearEndChangeFrac)})</span>`:''}</td>
+      <td>${fm.floorPrice!=null?fmt(fm.floorPrice):'—'} ${fm.floorChangeFrac!=null?`<span style="color:${colorFor(fm.floorChangeFrac)}">(${fmtPct(fm.floorChangeFrac)})</span>`:''}</td>
+      <td><span class="delete-row-btn" data-editgoldfund="${id}" style="color:var(--navy); margin-left:8px">ویرایش</span><span class="delete-row-btn" data-delgoldfund="${id}">حذف</span></td>
+    </tr>`;
+  }).join('');
+
+  return `
+  <h1 class="page-title">طلا و نقره</h1>
+  <div class="page-sub">تحلیل صندوق‌های طلا و نقره — کاملاً جدا از بخش سهام. اول مفروضات بازار رو زیر پر کن، بعد صندوق‌ها رو اضافه کن.</div>
+
+  <div class="card" style="margin-bottom:18px">
+    <h3>مفروضات بازار (مشترک بین همه‌ی صندوق‌ها)</h3>
+    <div class="grid cols-4">
+      <div class="field"><label>دلار ابتدای سال (تومان)</label><input id="gmDollarStart" type="number" value="${gm.dollarStartOfYear??''}"></div>
+      <div class="field"><label>میانگین تورم ماهانه (٪)</label><input id="gmInflation" type="number" step="0.1" value="${gm.avgMonthlyInflation??''}"></div>
+      <div class="field"><label>چند ماه از سال گذشته (برای حباب دلار امروز)</label><input id="gmMonthsElapsed" type="number" min="0" max="12" value="${gm.monthsElapsed??''}"></div>
+      <div class="field"><label>دلار روز (تومان)</label><input id="gmDollarToday" type="number" value="${gm.dollarToday??''}"></div>
+      <div class="field"><label>قیمت انس طلا روز (دلار)</label><input id="gmGoldOunce" type="number" value="${gm.goldOunceToday??''}"></div>
+      <div class="field"><label>قیمت انس نقره روز (دلار)</label><input id="gmSilverOunce" type="number" value="${gm.silverOunceToday??''}"></div>
+      <div class="field"><label>تخمین انس طلا پایان سال (دلار)</label><input id="gmGoldOunceYE" type="number" value="${gm.goldOunceYearEnd??''}"></div>
+      <div class="field"><label>تخمین انس نقره پایان سال (دلار)</label><input id="gmSilverOunceYE" type="number" value="${gm.silverOunceYearEnd??''}"></div>
+    </div>
+    <div class="row" style="margin-top:10px"><button class="btn tan" id="saveGoldMarketBtn">ذخیره مفروضات</button></div>
+    <div class="grid cols-4" style="margin-top:16px">
+      ${kpi('دلار تئوریک امروز (طبق تورم)', gmm.theoDollarToday!=null?fmt(gmm.theoDollarToday):'—', 'دلار اول سال × (۱+تورم ماهانه)^ماه‌های گذشته')}
+      ${kpi('حباب دلار', gmm.dollarBubble!=null?fmtPct(gmm.dollarBubble):'—', 'فاصله‌ی دلار امروز از دلار تئوریک طبق تورم')}
+      ${kpi('% تغییر طلا (تومانی) تا پایان سال', gmm.goldYearEndChangeFrac!=null?fmtPct(gmm.goldYearEndChangeFrac):'—')}
+      ${kpi('% تغییر نقره (تومانی) تا پایان سال', gmm.silverYearEndChangeFrac!=null?fmtPct(gmm.silverYearEndChangeFrac):'—')}
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3>${editing?'ویرایش صندوق':'افزودن صندوق طلا/نقره'}</h3>
+    <div class="row" style="flex-wrap:wrap">
+      <div class="field" style="width:140px"><label>نماد</label><input id="gfSymbol" value="${editing?editing.symbol||'':''}" placeholder="مثلاً عیار"></div>
+      <div class="field" style="width:200px"><label>نام صندوق</label><input id="gfName" value="${editing?editing.name||'':''}"></div>
+      <div class="field" style="width:120px"><label>نوع</label><select id="gfType"><option value="gold" ${editing&&editing.type==='gold'?'selected':''}>طلا</option><option value="silver" ${editing&&editing.type==='silver'?'selected':''}>نقره</option></select></div>
+      <div class="field" style="width:160px"><label>قیمت تابلو (تومان)</label><input id="gfMarketPrice" type="number" value="${editing?editing.manual?.marketPrice??'':''}"></div>
+      <div class="field" style="width:160px"><label>NAV اعلامی (تومان)</label><input id="gfNav" type="number" value="${editing?editing.manual?.nav??'':''}"></div>
+      <div class="field" style="width:200px"><label>وزن پشتوانه هر واحد (گرم، اختیاری)</label><input id="gfWeight" type="number" step="0.001" value="${editing?editing.manual?.weightPerUnit??'':''}"></div>
+      <div style="align-self:flex-end" class="row">
+        ${editing? `<button class="btn secondary" id="cancelGoldFundEditBtn">انصراف</button>`:''}
+        <button class="btn tan" id="saveGoldFundBtn">${editing?'ذخیره ویرایش':'افزودن صندوق'}</button>
+      </div>
+    </div>
+    <div class="hint">وزن پشتوانه‌ی هر واحد اختیاریه — فقط اگه پرش کنی، ستون «حباب محاسباتی» (بر پایه‌ی انس جهانی + دلار روز، مستقل از NAV اعلامی خود صندوق) هم محاسبه می‌شه.</div>
+  </div>
+
+  ${fundIds.length? `
+  <div class="table-wrap"><table class="sortable-table" id="goldFundsTable">
+    <thead><tr><th>نماد</th><th>نام</th><th>نوع</th><th>قیمت تابلو</th><th>NAV</th><th>حباب خود صندوق</th><th>حباب دلار</th><th>حباب محاسباتی</th><th>جمع حباب‌ها</th><th>سقف پایان سال</th><th>کف (تخلیه حباب)</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>
+  <div class="hint">«حباب خود صندوق» = (قیمت تابلو − NAV) ÷ NAV. «حباب دلار» مقدار سراسریه (بالای صفحه). «حباب محاسباتی» = (قیمت تابلو − ارزش ذاتی بر پایه‌ی انس+دلار روز) ÷ ارزش ذاتی. «سقف پایان سال» با فرض تحقق پیش‌بینی انس+تورم؛ «کف» با فرض تخلیه‌ی کامل حباب فعلی تا NAV.</div>
+  ` : `<div class="hint">هنوز صندوقی اضافه نشده.</div>`}
+  `;
+}
 function renderPortfolioTab(){
   const holdings = state.portfolio || [];
   const symbols = Object.keys(state.stocks);
@@ -2090,6 +2233,7 @@ function renderPortfolioTab(){
     const lp = latestPeriod(stock);
     const m = lp ? computeMetricsForPeriod(stock, lp) : {};
     const pe = peF(stock);
+    const targetPct = (pe!=null && pe>0) ? (7/pe - 1) : null; // درصد فاصله تا رسیدن به P/E هدف = ۷ (فرض: EPS/سود برآوردی ثابت می‌مونه)
     const marketCap = stock.manual && stock.manual.marketCap!=null ? Number(stock.manual.marketCap) : null;
     const currentPrice = stock.manual && stock.manual.currentPrice!=null ? Number(stock.manual.currentPrice) : null;
     const qty = Number(h.quantity)||0;
@@ -2113,6 +2257,7 @@ function renderPortfolioTab(){
       <td style="color:${plAmount==null?'inherit':(plAmount>=0?'var(--good)':'var(--bad)')}">${plAmount!=null? fmt(plAmount):'—'}</td>
       <td style="color:${plPercent==null?'inherit':(plPercent>=0?'var(--good)':'var(--bad)')}">${plPercent!=null? fmtPct(plPercent):'—'}</td>
       <td>${formatByDef(getFormulaByKey('peF'), pe)}</td>
+      <td style="color:${targetPct==null?'inherit':(targetPct>=0?'var(--good)':'var(--bad)')}">${targetPct!=null? fmtPct(targetPct):'—'}</td>
       <td>${formatByDef(getFormulaByKey('pdRatio'), m.pdRatio)}</td>
       <td>${formatByDef(getFormulaByKey('psRatio'), m.psRatio)}</td>
       <td>${formatByDef(getFormulaByKey('paRatio'), m.paRatio)}</td>
@@ -2143,11 +2288,12 @@ function renderPortfolioTab(){
   ${!symbols.length? `<div class="hint">اول از تب «مدیریت سهم‌ها» یه سهم اضافه کن.</div>` : ''}
   ${holdings.length? `<div class="field" style="max-width:280px; margin-bottom:10px"><input id="portfolioSearchInput" type="text" placeholder="🔎 جستجو در سبد (نماد، نام...)"></div>`:''}
   <div class="table-wrap"><table class="sortable-table" id="portfolioTable">
-    <thead><tr><th>نماد</th><th>نام</th><th>ارزش بازار (م.ت)</th><th>تعداد</th><th>قیمت سربه‌سر</th><th>قیمت روز</th><th>ارزش سربه‌سر</th><th>ارزش روز</th><th>سود/زیان</th><th>درصد</th><th>P/E F</th><th>P/D F</th><th>P/S F</th><th>P/A</th><th>P/B</th><th>حاشیه سود FIS</th><th>نسبت مطالبات</th><th></th></tr></thead>
-    <tbody>${rows || `<tr><td colspan="18" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
-    ${holdings.length? `<tfoot><tr><td colspan="6">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="7"></td></tr></tfoot>`:''}
+    <thead><tr><th>نماد</th><th>نام</th><th>ارزش بازار (م.ت)</th><th>تعداد</th><th>قیمت سربه‌سر</th><th>قیمت روز</th><th>ارزش سربه‌سر</th><th>ارزش روز</th><th>سود/زیان</th><th>درصد</th><th>P/E F</th><th>هدف (تا P/E=۷)</th><th>P/D F</th><th>P/S F</th><th>P/A</th><th>P/B</th><th>حاشیه سود FIS</th><th>نسبت مطالبات</th><th></th></tr></thead>
+    <tbody>${rows || `<tr><td colspan="19" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
+    ${holdings.length? `<tfoot><tr><td colspan="6">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="8"></td></tr></tfoot>`:''}
   </table></div>
   <div class="hint">روی سرستون هر ستون کلیک کن تا بر اساس همون ستون مرتب بشه (دوباره کلیک = برعکس).</div>
+  <div class="hint">ستون «هدف (تا P/E=۷)» یعنی: با فرض ثابت موندن سود برآوردی شرکت، قیمت سهم چند درصد باید رشد کنه (یا چند درصد باید افت کنه، اگه عدد منفیه) تا P/E فوروارد سهم به ۷ برسه — از رابطه‌ی (۷ ÷ P/E امروز) − ۱ محاسبه می‌شه.</div>
   <div class="hint">«قیمت روز» از فیلد «قیمت روز هر سهم» در تب «ورود اطلاعات → ورودی سایر اطلاعات» میاد. برای هر سهمی که توی سبدته، اون فیلد رو به‌روز نگه دار تا ارزش و سود/زیان سبد درست محاسبه بشه.</div>
   ${anyMissingPrice? `<div class="hint">برای بعضی از سهم‌های سبد، «قیمت روز هر سهم» هنوز ثبت نشده — ارزش روز و سود/زیانشون فعلاً «—» نشون داده می‌شه.</div>`:''}
   `;
@@ -3519,6 +3665,52 @@ function attachHandlers(){
   if(ghPushBtn) ghPushBtn.onclick = ghPush;
   const ghPullBtn = document.getElementById('ghPullBtn');
   if(ghPullBtn) ghPullBtn.onclick = ghPull;
+
+  const saveGoldMarketBtn = document.getElementById('saveGoldMarketBtn');
+  if(saveGoldMarketBtn) saveGoldMarketBtn.onclick = ()=>{
+    const gm = getGoldMarket();
+    const setNum = (id, key)=>{ const v = document.getElementById(id).value; gm[key] = v===''?null:v; };
+    setNum('gmDollarStart','dollarStartOfYear');
+    setNum('gmInflation','avgMonthlyInflation');
+    setNum('gmMonthsElapsed','monthsElapsed');
+    setNum('gmDollarToday','dollarToday');
+    setNum('gmGoldOunce','goldOunceToday');
+    setNum('gmSilverOunce','silverOunceToday');
+    setNum('gmGoldOunceYE','goldOunceYearEnd');
+    setNum('gmSilverOunceYE','silverOunceYearEnd');
+    saveState(); showToast('مفروضات بازار ذخیره شد'); renderAll();
+  };
+  const saveGoldFundBtn = document.getElementById('saveGoldFundBtn');
+  if(saveGoldFundBtn) saveGoldFundBtn.onclick = ()=>{
+    const symbol = document.getElementById('gfSymbol').value.trim();
+    if(!symbol) return showToast('نماد صندوق رو وارد کن');
+    const funds = getGoldFunds();
+    const id = editingGoldFundId || uid();
+    const val = (elId)=>{ const v = document.getElementById(elId).value; return v===''?null:v; };
+    funds[id] = {
+      id, symbol,
+      name: document.getElementById('gfName').value.trim(),
+      type: document.getElementById('gfType').value,
+      manual: {
+        marketPrice: val('gfMarketPrice'),
+        nav: val('gfNav'),
+        weightPerUnit: val('gfWeight'),
+      }
+    };
+    editingGoldFundId = null;
+    saveState(); showToast('ذخیره شد'); renderAll();
+  };
+  document.querySelectorAll('[data-editgoldfund]').forEach(el=>el.onclick=()=>{
+    editingGoldFundId = el.dataset.editgoldfund; renderAll();
+  });
+  const cancelGoldFundEditBtn = document.getElementById('cancelGoldFundEditBtn');
+  if(cancelGoldFundEditBtn) cancelGoldFundEditBtn.onclick = ()=>{ editingGoldFundId = null; renderAll(); };
+  document.querySelectorAll('[data-delgoldfund]').forEach(el=>el.onclick=()=>{
+    if(!confirm('این صندوق حذف بشه؟')) return;
+    delete getGoldFunds()[el.dataset.delgoldfund];
+    if(editingGoldFundId===el.dataset.delgoldfund) editingGoldFundId = null;
+    saveState(); renderAll();
+  });
 
   enhanceSortableTables();
   wireTableSearch('portfolioSearchInput');
