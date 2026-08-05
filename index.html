@@ -195,6 +195,16 @@ table tfoot td{background:var(--navy-dark); color:#fff; font-weight:700}
 .subtabs button{background:none; border:none; font-family:inherit; padding:9px 14px; font-size:13px; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent}
 .subtabs button.active{color:var(--navy); border-bottom-color:var(--tan); font-weight:700}
 .file-hidden{display:none}
+/* ===== جابجایی با موس (Drag & Drop) ===== */
+.drag-handle{cursor:grab; color:var(--muted); font-size:13px; padding:0 4px; user-select:none; line-height:1}
+.drag-handle:active{cursor:grabbing}
+[data-dragkey]{transition:opacity .15s}
+[data-dragkey].dragging{opacity:.35; outline:2px dashed var(--tan)}
+.nav [data-dragkey]{display:flex; align-items:center; gap:6px}
+.nav [data-dragkey] .drag-handle{order:2; margin-right:auto}
+.dash-widget{position:relative}
+.dash-widget .drag-handle{position:absolute; top:2px; left:6px; z-index:2}
+.accordion-header .drag-handle{margin-left:auto}
 </style>
 </head>
 <body>
@@ -209,6 +219,7 @@ table tfoot td{background:var(--navy-dark); color:#fff; font-weight:700}
   <aside class="sidebar" id="sidebarEl">
     <div class="brand">تحلیل بنیادی سهام<small>نسخه آزمایشی — فاز اول (پالایش و مس)</small></div>
     <nav class="nav" id="navMenu"></nav>
+    <button id="resetLayoutBtn" class="btn secondary" style="width:100%; font-size:11px; margin:2px 0 10px; padding:6px">↺ بازنشانی چیدمان</button>
     <div class="stock-picker">
       <label>سهم فعال <span style="font-weight:400; color:var(--muted); font-size:11px">(کلیک کن یا تایپ کن)</span></label>
       <div style="position:relative">
@@ -773,6 +784,52 @@ function formatByDef(def, value){
   return fmt(value, def.decimals ?? 0) + (def.unit||'');
 }
 
+/* ========================= چیدمان قابل جابجایی (Drag & Drop) =========================
+   کاربر می‌تونه ترتیب منوی کناری، کارت‌های داشبورد، و بخش‌های اکاردئونی تب «ورود اطلاعات» رو
+   با موس جابجا کنه. ترتیب دلخواه در state.layout ذخیره و با بقیه‌ی state پرسیست می‌شه. */
+function ensureLayoutState(){
+  if(!state.layout) state.layout = {};
+  return state.layout;
+}
+// آرایه‌ی «ترتیب پیش‌فرض» رو با ترتیب ذخیره‌شده‌ی کاربر ترکیب می‌کنه:
+// کلیدهای جدیدی که کاربر قبلاً ندیده (مثلاً بعد از آپدیت برنامه) به انتهای لیست اضافه می‌شن،
+// کلیدهای منسوخ‌شده (که دیگه در defaultKeys نیستن) از ترتیب ذخیره‌شده حذف می‌شن.
+function applySavedOrder(defaultKeys, savedOrder){
+  if(!Array.isArray(savedOrder) || !savedOrder.length) return defaultKeys.slice();
+  const known = new Set(defaultKeys);
+  const ordered = savedOrder.filter(k=>known.has(k));
+  defaultKeys.forEach(k=>{ if(!ordered.includes(k)) ordered.push(k); });
+  return ordered;
+}
+// فعال‌سازی جابجایی با موس روی مجموعه‌ای از عناصر هم‌سطح داخل یک container.
+// هر آیتم باید attribute «data-dragkey» یکتا داشته باشه. بعد از رها شدن، onReorder(newKeyOrderArray) صدا زده می‌شه.
+function enableDragReorder(container, itemSelector, onReorder){
+  if(!container) return;
+  container.querySelectorAll(itemSelector).forEach(item=>{
+    item.setAttribute('draggable','true');
+    item.addEventListener('dragstart', e=>{
+      item.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      try{ e.dataTransfer.setData('text/plain', item.dataset.dragkey||''); }catch(err){}
+    });
+    item.addEventListener('dragend', ()=>{
+      item.classList.remove('dragging');
+      const order = Array.from(container.querySelectorAll(itemSelector)).map(el=>el.dataset.dragkey);
+      onReorder(order);
+    });
+    item.addEventListener('dragover', e=>{
+      e.preventDefault();
+      const dragging = container.querySelector(itemSelector+'.dragging');
+      if(!dragging || dragging===item) return;
+      const box = item.getBoundingClientRect();
+      // اگه عنصر پهن‌تر از بلندیشه (کنار هم قرار می‌گیرن)، مبنا محور افقیه؛ وگرنه عمودی
+      const horizontal = box.width > box.height;
+      const after = horizontal ? (e.clientX > box.left + box.width/2) : (e.clientY > box.top + box.height/2);
+      item.parentNode.insertBefore(dragging, after ? item.nextSibling : item);
+    });
+  });
+}
+
 /* ========================= رندر کلی ========================= */
 const NAV_ITEMS = [
   {id:'dashboard', label:'داشبورد سهم'},
@@ -786,8 +843,21 @@ const NAV_ITEMS = [
 ];
 function renderNav(){
   const nav = document.getElementById('navMenu');
-  nav.innerHTML = NAV_ITEMS.map(it=>`<button data-tab="${it.id}" class="${activeTab===it.id?'active':''}">${it.label}</button>`).join('');
-  nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{ activeTab=b.dataset.tab; closeSidebar(); renderAll(); });
+  const layout = ensureLayoutState();
+  const order = applySavedOrder(NAV_ITEMS.map(it=>it.id), layout.navOrder);
+  const byId = Object.fromEntries(NAV_ITEMS.map(it=>[it.id, it]));
+  nav.innerHTML = order.map(id=>{
+    const it = byId[id];
+    return `<button data-tab="${it.id}" data-dragkey="${it.id}" class="${activeTab===it.id?'active':''}"><span>${it.label}</span><span class="drag-handle" title="برای جابجایی بکش">⠿</span></button>`;
+  }).join('');
+  nav.querySelectorAll('button').forEach(b=>b.onclick=(e)=>{
+    if(e.target.classList.contains('drag-handle')) return; // کلیک روی دستگیره باعث تعویض تب نشه
+    activeTab=b.dataset.tab; closeSidebar(); renderAll();
+  });
+  enableDragReorder(nav, 'button', (newOrder)=>{
+    layout.navOrder = newOrder;
+    saveState();
+  });
 }
 function renderStockPicker(){
   const sel = document.getElementById('activeStockSelect');
@@ -945,6 +1015,22 @@ function computeIndustryAvgDividendPayout(stock){
   if(!vals.length) return null;
   return vals.reduce((a,b)=>a+b,0)/vals.length;
 }
+// گیج‌های داشبورد به‌صورت آیتم‌های قابل جابجایی؛ ترتیب نمایش از state.layout.dashboardGaugeOrder میاد
+function renderDashboardGauges(ctx){
+  const {exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD} = ctx;
+  const widgets = {
+    exportRatio: renderGaugeSVG(exportRatio? exportRatio.ratio*100 : null, 'نسبت فروش صادراتی'),
+    divAvg: renderGaugeSVG(divAvg!=null? divAvg*100 : null, 'میانگین تقسیم سود', {maxScale: (industryDivAvg!=null? industryDivAvg*100 : 100), benchmarkLabel: industryDivAvg!=null? `میانگین صنعت: ${toFa((industryDivAvg*100).toFixed(0))}٪` : 'بدون داده صنعت'}),
+    receivables: renderGaugeSVG(m.receivablesRatio!=null? m.receivablesRatio*100 : null, 'نسبت مطالبات', {reverse:true}),
+    margin: renderGaugeSVG(m.qMargin!=null? m.qMargin*100 : null, 'حاشیه سود FIS'),
+    quickRatio: renderGaugeSVG(m.quickRatio, 'نسبت آنی', {maxScale:2, suffix:'', decimals:2}),
+    peF: renderGaugeSVG(pe, 'P/E F', {maxScale: peScale, suffix:'', decimals:1, benchmarkLabel: industryPE!=null? `میانگین صنعت: ${toFa(industryPE.toFixed(1))}` : 'بدون داده صنعت'}),
+    pdF: renderGaugeSVG(m.pdRatio, 'P/D F', {maxScale: pdScale, suffix:'', decimals:1, benchmarkLabel: industryPD!=null? `میانگین صنعت: ${toFa(industryPD.toFixed(1))}` : 'بدون داده صنعت'}),
+  };
+  const layout = ensureLayoutState();
+  const order = applySavedOrder(Object.keys(widgets), layout.dashboardGaugeOrder);
+  return order.map(key=>`<div class="dash-widget" data-dragkey="${key}"><span class="drag-handle" title="برای جابجایی بکش">⠿</span>${widgets[key]}</div>`).join('');
+}
 function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estFinal, pe, exportRatio){
   const growth = computeSalesGrowthCum(stock);
   const divAvg = estimateAvgDividendPayout(stock);
@@ -963,15 +1049,7 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
     <div class="card" style="text-align:center; display:flex; align-items:center; justify-content:center"><div style="font-size:20px; font-weight:800; color:var(--navy)">${stock.name||stock.symbol}</div></div>
   </div>
   <div class="card" style="margin-bottom:14px">
-    <div class="grid cols-4">
-      <div>${renderGaugeSVG(exportRatio? exportRatio.ratio*100 : null, 'نسبت فروش صادراتی')}</div>
-      <div>${renderGaugeSVG(divAvg!=null? divAvg*100 : null, 'میانگین تقسیم سود', {maxScale: (industryDivAvg!=null? industryDivAvg*100 : 100), benchmarkLabel: industryDivAvg!=null? `میانگین صنعت: ${toFa((industryDivAvg*100).toFixed(0))}٪` : 'بدون داده صنعت'})}</div>
-      <div>${renderGaugeSVG(m.receivablesRatio!=null? m.receivablesRatio*100 : null, 'نسبت مطالبات', {reverse:true})}</div>
-      <div>${renderGaugeSVG(m.qMargin!=null? m.qMargin*100 : null, 'حاشیه سود FIS')}</div>
-      <div>${renderGaugeSVG(m.quickRatio, 'نسبت آنی', {maxScale:2, suffix:'', decimals:2})}</div>
-      <div>${renderGaugeSVG(pe, 'P/E F', {maxScale: peScale, suffix:'', decimals:1, benchmarkLabel: industryPE!=null? `میانگین صنعت: ${toFa(industryPE.toFixed(1))}` : 'بدون داده صنعت'})}</div>
-      <div>${renderGaugeSVG(m.pdRatio, 'P/D F', {maxScale: pdScale, suffix:'', decimals:1, benchmarkLabel: industryPD!=null? `میانگین صنعت: ${toFa(industryPD.toFixed(1))}` : 'بدون داده صنعت'})}</div>
-    </div>
+    <div class="grid cols-4" id="dashGaugesGrid">${renderDashboardGauges({exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD})}</div>
   </div>
   <div class="table-wrap">
     <table>
@@ -1519,8 +1597,9 @@ let dataAccordionOpen = {monthly:true, pl:true, bs:true, raw:false, dividend:fal
 function accordionSection(key, title, meta, bodyHtml){
   const isOpen = !!dataAccordionOpen[key];
   return `
-  <div class="accordion-section">
+  <div class="accordion-section" data-dragkey="${key}">
     <button class="accordion-header" data-accordiontoggle="${key}" data-open="${isOpen}">
+      <span class="drag-handle" title="برای جابجایی بکش">⠿</span>
       <span class="accordion-title">${title}</span>
       <span class="row" style="gap:10px">
         ${meta?`<span class="accordion-meta">${meta}</span>`:''}
@@ -1722,14 +1801,23 @@ function renderDataTab(){
   <h1 class="page-title">ورود اطلاعات — ${stock.symbol}</h1>
   <div class="page-sub">سال مالی جاری این سهم: <b>${stock.fiscalYear?toFa(stock.fiscalYear):'تعریف‌نشده (از تب مدیریت سهم‌ها تعریفش کن)'}</b> — همه‌ی محاسبات نسبت به همین سال مالی انجام می‌شه.</div>
 
-  ${accordionSection('monthly', 'فروش ماهانه', '', monthlyBody)}
-  ${accordionSection('pl', 'صورت سود و زیان', '', plBody)}
-  ${accordionSection('bs', 'صورت وضعیت مالی', '', bsBody)}
-  ${accordionSection('raw', 'برگه خام کدال (کپی مستقیم از اکسل)', 'روش جایگزین برای صورت‌های مالی', rawBody)}
-  ${accordionSection('dividend', 'مجمع عمومی (تقسیم سود سالیانه)', '', dividendBody)}
-  ${accordionSection('other', 'ورودی سایر اطلاعات', 'ارزش بازار، سود سهام، سود بانکی', otherBody)}
+  <div id="dataAccordionContainer">${renderDataAccordions({monthlyBody, plBody, bsBody, rawBody, dividendBody, otherBody})}</div>
   <input type="file" id="excelFileInput" class="file-hidden" accept=".xlsx,.xls">
   `;
+}
+// بخش‌های اکاردئونی تب «ورود اطلاعات» به ترتیب ذخیره‌شده‌ی کاربر (قابل جابجایی با موس)
+function renderDataAccordions(bodies){
+  const defs = {
+    monthly:   ()=>accordionSection('monthly', 'فروش ماهانه', '', bodies.monthlyBody),
+    pl:        ()=>accordionSection('pl', 'صورت سود و زیان', '', bodies.plBody),
+    bs:        ()=>accordionSection('bs', 'صورت وضعیت مالی', '', bodies.bsBody),
+    raw:       ()=>accordionSection('raw', 'برگه خام کدال (کپی مستقیم از اکسل)', 'روش جایگزین برای صورت‌های مالی', bodies.rawBody),
+    dividend:  ()=>accordionSection('dividend', 'مجمع عمومی (تقسیم سود سالیانه)', '', bodies.dividendBody),
+    other:     ()=>accordionSection('other', 'ورودی سایر اطلاعات', 'ارزش بازار، سود سهام، سود بانکی', bodies.otherBody),
+  };
+  const layout = ensureLayoutState();
+  const order = applySavedOrder(Object.keys(defs), layout.dataAccordionOrder);
+  return order.map(key=>defs[key]()).join('');
 }
 function renderMonthlySalesTable(stock){
   const keys = Object.keys(stock.monthlySales||{}).sort().reverse(); // جدیدترین اول
@@ -3374,11 +3462,34 @@ function attachHandlers(){
   document.querySelectorAll('[data-sub]').forEach(b=>b.onclick=()=>{ dashSubtab=b.dataset.sub; renderAll(); });
 
   // آکاردئون بخش‌های ورود اطلاعات
-  document.querySelectorAll('[data-accordiontoggle]').forEach(btn=>btn.onclick=()=>{
+  document.querySelectorAll('[data-accordiontoggle]').forEach(btn=>btn.onclick=(e)=>{
+    if(e.target.classList.contains('drag-handle')) return; // کلیک روی دستگیره فقط برای جابجاییه، نباید آکاردئون رو باز/بسته کنه
     const key = btn.dataset.accordiontoggle;
     dataAccordionOpen[key] = !dataAccordionOpen[key];
     renderAll();
   });
+  // جابجایی بخش‌های اکاردئونی تب «ورود اطلاعات» با موس
+  const dataAccordionContainer = document.getElementById('dataAccordionContainer');
+  if(dataAccordionContainer) enableDragReorder(dataAccordionContainer, '.accordion-section', (newOrder)=>{
+    const layout = ensureLayoutState();
+    layout.dataAccordionOrder = newOrder;
+    saveState();
+  });
+  // جابجایی گیج‌های داشبورد با موس
+  const dashGaugesGrid = document.getElementById('dashGaugesGrid');
+  if(dashGaugesGrid) enableDragReorder(dashGaugesGrid, '.dash-widget', (newOrder)=>{
+    const layout = ensureLayoutState();
+    layout.dashboardGaugeOrder = newOrder;
+    saveState();
+  });
+  const resetLayoutBtn = document.getElementById('resetLayoutBtn');
+  if(resetLayoutBtn) resetLayoutBtn.onclick = ()=>{
+    if(!confirm('چیدمان منو، کارت‌های داشبورد و بخش‌های ورود اطلاعات به حالت پیش‌فرض برگرده؟')) return;
+    state.layout = {};
+    saveState();
+    showToast('چیدمان به حالت پیش‌فرض برگشت');
+    renderAll();
+  };
 
   // فیلتر جدول مقایسه صنعت
   const addFilterBtn = document.getElementById('addIndustryFilterBtn');
