@@ -2558,5 +2558,16 @@
       "quantity": 374,
       "avgBuyPrice": 18164
     }
-  ]
+  ],
+  "goldMarket": {
+    "dollarStartOfYear": "150000",
+    "avgMonthlyInflation": "6.5",
+    "monthsElapsed": "5",
+    "dollarToday": "187700",
+    "goldOunceToday": "4165",
+    "silverOunceToday": "61.59",
+    "goldOunceYearEnd": "5250",
+    "silverOunceYearEnd": "100"
+  },
+  "goldFunds": {}
 }
