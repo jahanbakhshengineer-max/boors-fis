@@ -117,7 +117,9 @@ main{flex:1; padding:26px 30px 60px; max-width:1400px; min-width:0}
 @media(max-width:480px){
   .grid.cols-4, .grid.cols-3, .grid.cols-2{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr !important}
-  .chart-box{height:220px !important}
+  .chart-box{height:230px !important} /* نمودارهای ساده (تک/دو سری) */
+  .chart-box.chart-md{height:260px !important} /* نمودارهای متوسط (چند سری یا لجند بزرگ) */
+  .chart-box.chart-tall{height:320px !important} /* نمودارهای ترکیبی پیچیده (دو محور، چند سری، برچسب مقدار) */
 }
 h1.page-title{font-size:20px; margin:0 0 4px; font-weight:800; color:var(--navy)}
 .page-sub{color:var(--muted); font-size:13px; margin-bottom:22px}
@@ -1133,7 +1135,7 @@ function renderSalesSubtab(stock, exportRatio){
   const p2p = computePointToPointSales(stock);
   const vsAvg = computeSalesVsAverage(stock);
   return `
-  <div class="card"><h3>روند فروش ماهانه (سال جاری در مقابل سال قبل)</h3><div class="chart-box"><canvas id="chartMonthlySales"></canvas></div></div>
+  <div class="card"><h3>روند فروش ماهانه (سال جاری در مقابل سال قبل)</h3><div class="chart-box chart-md"><canvas id="chartMonthlySales"></canvas></div></div>
   <div class="grid cols-3" style="margin-top:14px">
     <div class="card">
       <h3>فروش نقطه‌به‌نقطه</h3>
@@ -1169,13 +1171,13 @@ function renderDividendSubtab(stock){
   </div>
   <div class="card">
     <h3>روند سالانه درصد تقسیم سود</h3>
-    <div class="chart-box" style="height:460px">
+    <div class="chart-box chart-tall" style="height:460px">
       <canvas id="chartDividendTrend"></canvas>
     </div>
   </div>
   <div class="card" style="margin-top:14px">
     <h3>روند رشد سود سهام مصوب نسبت به سال قبل</h3>
-    <div class="chart-box" style="height:280px">
+    <div class="chart-box chart-md" style="height:280px">
       <canvas id="chartDividendGrowth"></canvas>
     </div>
   </div>
@@ -1301,7 +1303,7 @@ function renderQuarterlySubtab(){
   return `
   <div class="card">
     <h3>روند فصلی فروش، سود عملیاتی و حاشیه سود (FIS)</h3>
-    <div class="chart-box" style="height:320px"><canvas id="chartQuarterlyCombo"></canvas></div>
+    <div class="chart-box chart-tall" style="height:320px"><canvas id="chartQuarterlyCombo"></canvas></div>
     <div class="hint">ستون‌ها = فروش فصلی و سود عملیاتی فصلی (هر فصل سه‌ماهه، محاسبه‌شده با تفریق از دوره‌ی تجمیعی قبل). خط = حاشیه سود عملیاتی همون فصل (سود عملیاتی ÷ فروش فصلی). برای دوره‌های شش/نه/۱۲ماهه که وارد می‌کنی، خود نرم‌افزار مقدار سه‌ماهه‌ی گسسته رو با کم‌کردن از دوره‌ی قبلیِ همون سال مالی حساب می‌کنه.</div>
   </div>
   <div class="grid cols-3" style="margin-top:14px">
@@ -1365,7 +1367,8 @@ const marginValueLabelPlugin = {
         if(val==null || point==null) return;
         ctx.save();
         ctx.fillStyle = ds.labelColor || ds.borderColor || '#444';
-        ctx.font = "600 11px Vazirmatn, Tahoma, sans-serif";
+        const vlFontSize = window.innerWidth <= 640 ? 9 : 11; // هماهنگ با فونت موبایل بقیه‌ی نمودار
+        ctx.font = `600 ${vlFontSize}px Vazirmatn, Tahoma, sans-serif`;
         ctx.textAlign = 'center';
         const suffix = ds.valueLabelSuffix ?? '';
         const overrideVal = ds.valueLabelsOverride ? ds.valueLabelsOverride[i] : null;
@@ -1383,14 +1386,38 @@ const marginValueLabelPlugin = {
   }
 };
 if(window.Chart) Chart.register(marginValueLabelPlugin);
+// ادغام عمیق تنظیمات نمودار: برخلاف Object.assign که کل یک کلید (مثلاً scales) رو کامل جایگزین می‌کنه،
+// اینجا فقط برگ‌های مشخص‌شده در extra بازنویسی می‌شن و بقیه‌ی تنظیمات پیش‌فرض (مثل فونت موبایل) دست‌نخورده می‌مونن
+function deepMergeOptions(base, extra){
+  if(!extra || typeof extra!=='object') return base;
+  const out = Object.assign({}, base);
+  Object.keys(extra).forEach(k=>{
+    const ev = extra[k];
+    const bv = base[k];
+    const bothPlainObjects = ev && typeof ev==='object' && !Array.isArray(ev) && bv && typeof bv==='object' && !Array.isArray(bv);
+    out[k] = bothPlainObjects ? deepMergeOptions(bv, ev) : ev;
+  });
+  return out;
+}
 const MONTH_LABELS = ['۱','۲','۳','۴','۵','۶','۷','۸','۹','۱۰','۱۱','۱۲'];
 const PERSIAN_MONTH_NAMES = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
 function baseChartOptions(extra={}){
-  return Object.assign({
+  // روی گوشی: فونت ریزتر، لِجند پایین (جا بیشتر برای خود نمودار)، برچسب محور بدون چرخش و با auto-skip تا رو هم نیفتن
+  const isMobile = window.innerWidth <= 640;
+  const fontSize = isMobile ? 10 : 12;
+  const defaults = {
     responsive:true, maintainAspectRatio:false,
-    plugins:{legend:{labels:{font:{family:'Vazirmatn'}}}},
-    scales:{ x:{ticks:{font:{family:'Vazirmatn'}}}, y:{ticks:{font:{family:'Vazirmatn'}}} }
-  }, extra);
+    interaction:{mode:'index', intersect:false}, // لمس با انگشت روی گوشی راحت‌تر می‌شه، نیازی به دقت پیکسلی نیست
+    plugins:{legend:{
+      position: isMobile? 'bottom':'top',
+      labels:{font:{family:'Vazirmatn', size:fontSize}, boxWidth:11, padding:isMobile?6:10, usePointStyle:true}
+    }},
+    scales:{
+      x:{ticks:{font:{family:'Vazirmatn', size:fontSize}, autoSkip:true, maxRotation:0, minRotation:0}},
+      y:{ticks:{font:{family:'Vazirmatn', size:fontSize}}}
+    }
+  };
+  return deepMergeOptions(defaults, extra);
 }
 function drawMonthlySalesChart(stock){
   const fy = currentFiscalYearForSales(stock);
@@ -2356,6 +2383,8 @@ function renderPortfolioTab(){
     return `<tr class="clickable-row" data-symbol="${h.symbol}" title="دوبار کلیک برای رفتن به داشبورد این سهم">
       <td>${h.symbol}</td>
       <td>${stock.name||'—'}</td>
+      <td>${stock.industry||'—'}</td>
+      <td>${lp ? (lp.reportDate || faPeriodLabel(lp)) : '—'}</td>
       <td><input type="number" class="portfolio-marketcap-input" data-symbol="${h.symbol}" value="${marketCap!=null?marketCap:''}" placeholder="—" style="width:110px; text-align:center"></td>
       <td>${fmt(qty)}</td>
       <td>${fmt(avgPrice)}</td>
@@ -2396,9 +2425,9 @@ function renderPortfolioTab(){
   ${!symbols.length? `<div class="hint">اول از تب «مدیریت سهم‌ها» یه سهم اضافه کن.</div>` : ''}
   ${holdings.length? `<div class="field" style="max-width:280px; margin-bottom:10px"><input id="portfolioSearchInput" type="text" placeholder="🔎 جستجو در سبد (نماد، نام...)"></div>`:''}
   <div class="table-wrap"><table class="sortable-table" id="portfolioTable">
-    <thead><tr><th>نماد</th><th>نام</th><th>ارزش بازار (م.ت)</th><th>تعداد</th><th>قیمت سربه‌سر</th><th>قیمت روز</th><th>ارزش سربه‌سر</th><th>ارزش روز</th><th>سود/زیان</th><th>درصد</th><th>P/E F</th><th>هدف (تا P/E=۷)</th><th>P/D F</th><th>P/S F</th><th>P/A</th><th>P/B</th><th>حاشیه سود FIS</th><th>نسبت مطالبات</th><th></th></tr></thead>
-    <tbody>${rows || `<tr><td colspan="19" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
-    ${holdings.length? `<tfoot><tr><td colspan="6">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="8"></td></tr></tfoot>`:''}
+    <thead><tr><th>نماد</th><th>نام</th><th>صنعت</th><th>تاریخ آخرین صورت مالی</th><th>ارزش بازار (م.ت)</th><th>تعداد</th><th>قیمت سربه‌سر</th><th>قیمت روز</th><th>ارزش سربه‌سر</th><th>ارزش روز</th><th>سود/زیان</th><th>درصد</th><th>P/E F</th><th>هدف (تا P/E=۷)</th><th>P/D F</th><th>P/S F</th><th>P/A</th><th>P/B</th><th>حاشیه سود FIS</th><th>نسبت مطالبات</th><th></th></tr></thead>
+    <tbody>${rows || `<tr><td colspan="21" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
+    ${holdings.length? `<tfoot><tr><td colspan="8">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="8"></td></tr></tfoot>`:''}
   </table></div>
   <div class="hint">روی سرستون هر ستون کلیک کن تا بر اساس همون ستون مرتب بشه (دوباره کلیک = برعکس).</div>
   <div class="hint">ستون «هدف (تا P/E=۷)» یعنی: با فرض ثابت موندن سود برآوردی شرکت، قیمت سهم چند درصد باید رشد کنه (یا چند درصد باید افت کنه، اگه عدد منفیه) تا P/E فوروارد سهم به ۷ برسه — از رابطه‌ی (۷ ÷ P/E امروز) − ۱ محاسبه می‌شه.</div>
@@ -4176,6 +4205,14 @@ document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
   document.getElementById('sidebarBackdrop').classList.add('open');
 });
 document.getElementById('sidebarBackdrop').addEventListener('click', closeSidebar);
+
+// روی گوشی، چرخش صفحه (پرتره↔افقی) می‌تونه عرض رو از مرز موبایل (۶۴۰px) رد کنه؛ چون تنظیمات فونت/لجند
+// نمودارها موقع ساختشون تعیین می‌شه، بعد از تغییر اندازه‌ی صفحه دوباره رندر می‌کنیم تا هماهنگ بمونن
+let resizeRerenderTimer = null;
+window.addEventListener('resize', ()=>{
+  clearTimeout(resizeRerenderTimer);
+  resizeRerenderTimer = setTimeout(()=>{ renderAll(); }, 300);
+});
 
 renderAll();
 tryAutoReconnectLocalFile();
