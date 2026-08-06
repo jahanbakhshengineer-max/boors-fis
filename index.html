@@ -205,6 +205,8 @@ table tfoot td{background:var(--navy-dark); color:#fff; font-weight:700}
 .dash-widget{position:relative}
 .dash-widget .drag-handle{position:absolute; top:2px; left:6px; z-index:2}
 .accordion-header .drag-handle{margin-left:auto}
+.clickable-row{cursor:pointer}
+.clickable-row:hover{background:rgba(0,0,0,.035)}
 </style>
 </head>
 <body>
@@ -2032,7 +2034,7 @@ function renderIndustryTab(){
         const v = m[f.key];
         if(v!=null){ colSums[f.key] = (colSums[f.key]||0)+v; colCounts[f.key] = (colCounts[f.key]||0)+1; }
       });
-      html += `<tr>
+      html += `<tr class="clickable-row" data-symbol="${s.symbol}" title="دوبار کلیک برای رفتن به داشبورد این سهم">
         <td><b>${s.symbol}</b></td>
         <td>${lp?toFa(lp.fiscalYear):'—'}</td>
         <td>${lp?toFa(lp.months)+' ماهه':'—'}</td>
@@ -2173,7 +2175,7 @@ function renderManageTab(){
     symbols.forEach(sym=>{
       const s = state.stocks[sym];
       const subCount = (s.subsidiaries||[]).length;
-      html += `<tr><td><b>${s.symbol}</b></td><td>${s.name||'—'}</td><td>${s.industry||'—'}</td><td>${toFa((s.periods||[]).length)}</td>
+      html += `<tr class="clickable-row" data-symbol="${sym}" title="دوبار کلیک برای رفتن به داشبورد این سهم"><td><b>${s.symbol}</b></td><td>${s.name||'—'}</td><td>${s.industry||'—'}</td><td>${toFa((s.periods||[]).length)}</td>
         <td><span class="delete-row-btn" data-managesub="${sym}" style="color:var(--teal)">${subCount? `${toFa(subCount)} سهم زیرمجموعه`:'+ افزودن زیرمجموعه'}</span></td>
         <td>
           <span class="delete-row-btn" data-editstock="${sym}" style="color:var(--navy); margin-left:8px">ویرایش</span>
@@ -2351,7 +2353,7 @@ function renderPortfolioTab(){
     if(currentPrice==null) anyMissingPrice = true;
     totalCost += costValue;
     if(curValue!=null) totalValue += curValue;
-    return `<tr>
+    return `<tr class="clickable-row" data-symbol="${h.symbol}" title="دوبار کلیک برای رفتن به داشبورد این سهم">
       <td>${h.symbol}</td>
       <td>${stock.name||'—'}</td>
       <td><input type="number" class="portfolio-marketcap-input" data-symbol="${h.symbol}" value="${marketCap!=null?marketCap:''}" placeholder="—" style="width:110px; text-align:center"></td>
@@ -3508,6 +3510,18 @@ function attachHandlers(){
     showToast('چیدمان به حالت پیش‌فرض برگشت');
     renderAll();
   };
+  // دوبار کلیک روی ردیف یک سهم (تب مدیریت سهم‌ها، مقایسه صنعت، سبد سرمایه‌گذاری) → رفتن به داشبورد همون سهم
+  document.querySelectorAll('tr.clickable-row[data-symbol]').forEach(tr=>{
+    tr.ondblclick = (e)=>{
+      if(e.target.closest('input, select, button, .delete-row-btn')) return; // روی دکمه/ورودی دوبار کلیک شد، ناوبری نشه
+      const sym = tr.dataset.symbol;
+      if(!state.stocks[sym]) return;
+      activeSymbol = sym;
+      activeTab = 'dashboard';
+      closeSidebar();
+      renderAll();
+    };
+  });
 
   // فیلتر جدول مقایسه صنعت
   const addFilterBtn = document.getElementById('addIndustryFilterBtn');
