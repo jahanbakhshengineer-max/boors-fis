@@ -964,12 +964,13 @@ function faPeriodLabel(p){ return `${toFa(p.months)} ماهه ${toFa(p.fiscalYea
 // opts.reverse: اگه true باشه، رنگ‌ها برعکس می‌شه (پایین=سبز، بالا=قرمز) — برای نسبت‌هایی که کمترشون بهتره
 // opts.suffix: پسوند نمایش عدد (پیش‌فرض ٪)، opts.decimals: تعداد رقم اعشار نمایش
 function renderGaugeSVG(value, label, opts={}){
+  const minScale = opts.minScale!=null ? opts.minScale : 0; // پیش‌فرض صفر، دقیقاً مثل قبل — برای گیج‌های رشد/افت می‌شه منفی هم گذاشت
   const maxScale = (opts.maxScale!=null && opts.maxScale>0) ? opts.maxScale : 100;
   const reverse = !!opts.reverse;
   const suffix = opts.suffix!=null ? opts.suffix : '٪';
   const has = value!=null && !isNaN(value);
-  const rawClamped = has ? Math.max(0, value) : 0;
-  const posPct = has ? Math.max(0, Math.min(100, (rawClamped/maxScale)*100)) : 0; // موقعیت روی قوس (۰ تا ۱۰۰)
+  const rawClamped = has ? Math.max(minScale, value) : 0;
+  const posPct = has ? Math.max(0, Math.min(100, ((rawClamped-minScale)/(maxScale-minScale))*100)) : 0; // موقعیت روی قوس (۰ تا ۱۰۰)
   const cx=100, cy=98, r=76;
   function pt(p, rad){ const a = (180 - (p/100)*180) * Math.PI/180; return [cx + rad*Math.cos(a), cy - rad*Math.sin(a)]; }
   function arcPath(p0, p1, rad){
@@ -1017,7 +1018,7 @@ function computeIndustryAvgDividendPayout(stock){
 }
 // گیج‌های داشبورد به‌صورت آیتم‌های قابل جابجایی؛ ترتیب نمایش از state.layout.dashboardGaugeOrder میاد
 function renderDashboardGauges(ctx){
-  const {exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD} = ctx;
+  const {exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth} = ctx;
   const widgets = {
     exportRatio: renderGaugeSVG(exportRatio? exportRatio.ratio*100 : null, 'نسبت فروش صادراتی'),
     divAvg: renderGaugeSVG(divAvg!=null? divAvg*100 : null, 'میانگین تقسیم سود', {maxScale: (industryDivAvg!=null? industryDivAvg*100 : 100), benchmarkLabel: industryDivAvg!=null? `میانگین صنعت: ${toFa((industryDivAvg*100).toFixed(0))}٪` : 'بدون داده صنعت'}),
@@ -1026,6 +1027,9 @@ function renderDashboardGauges(ctx){
     quickRatio: renderGaugeSVG(m.quickRatio, 'نسبت آنی', {maxScale:2, suffix:'', decimals:2}),
     peF: renderGaugeSVG(pe, 'P/E F', {maxScale: peScale, suffix:'', decimals:1, benchmarkLabel: industryPE!=null? `میانگین صنعت: ${toFa(industryPE.toFixed(1))}` : 'بدون داده صنعت'}),
     pdF: renderGaugeSVG(m.pdRatio, 'P/D F', {maxScale: pdScale, suffix:'', decimals:1, benchmarkLabel: industryPD!=null? `میانگین صنعت: ${toFa(industryPD.toFixed(1))}` : 'بدون داده صنعت'}),
+    // رشد فروش دلاری نسبت به بازه‌ی مشابه سال قبل (فروش‌تجمعی امسال ÷ دلار روز) نسبت به (فروش‌تجمعی سال قبل ÷ دلار روز)
+    // چون دلار روز در صورت و مخرج یکسانه، از نظر عددی برابر رشد تجمیعی تومانیه؛ فقط این‌جا به‌صورت گیج نشون داده می‌شه
+    dollarGrowth: renderGaugeSVG(growth && growth.growth!=null ? growth.growth*100 : null, 'رشد دلاری فروش (سال قبل)', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel: growth && !growth.priorComplete && growth.priorSum!=null ? '⚠️ سال قبل ناقصه' : ''}),
   };
   const layout = ensureLayoutState();
   const order = applySavedOrder(Object.keys(widgets), layout.dashboardGaugeOrder);
@@ -1049,7 +1053,7 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
     <div class="card" style="text-align:center; display:flex; align-items:center; justify-content:center"><div style="font-size:20px; font-weight:800; color:var(--navy)">${stock.name||stock.symbol}</div></div>
   </div>
   <div class="card" style="margin-bottom:14px">
-    <div class="grid cols-4" id="dashGaugesGrid">${renderDashboardGauges({exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD})}</div>
+    <div class="grid cols-4" id="dashGaugesGrid">${renderDashboardGauges({exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth})}</div>
   </div>
   <div class="table-wrap">
     <table>
