@@ -1018,7 +1018,10 @@ function computeIndustryAvgDividendPayout(stock){
 }
 // گیج‌های داشبورد به‌صورت آیتم‌های قابل جابجایی؛ ترتیب نمایش از state.layout.dashboardGaugeOrder میاد
 function renderDashboardGauges(ctx){
-  const {exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth} = ctx;
+  const {exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth, dollarGrowth} = ctx;
+  const dollarGrowthHint = dollarGrowth!=null ? ''
+    : (growth && !growth.priorComplete && growth.priorSum!=null) ? '⚠️ سال قبل ناقصه'
+    : '⚠️ دلار روز/سال قبل رو در تب «طلا و نقره» وارد کن';
   const widgets = {
     exportRatio: renderGaugeSVG(exportRatio? exportRatio.ratio*100 : null, 'نسبت فروش صادراتی'),
     divAvg: renderGaugeSVG(divAvg!=null? divAvg*100 : null, 'میانگین تقسیم سود', {maxScale: (industryDivAvg!=null? industryDivAvg*100 : 100), benchmarkLabel: industryDivAvg!=null? `میانگین صنعت: ${toFa((industryDivAvg*100).toFixed(0))}٪` : 'بدون داده صنعت'}),
@@ -1027,9 +1030,8 @@ function renderDashboardGauges(ctx){
     quickRatio: renderGaugeSVG(m.quickRatio, 'نسبت آنی', {maxScale:2, suffix:'', decimals:2}),
     peF: renderGaugeSVG(pe, 'P/E F', {maxScale: peScale, suffix:'', decimals:1, benchmarkLabel: industryPE!=null? `میانگین صنعت: ${toFa(industryPE.toFixed(1))}` : 'بدون داده صنعت'}),
     pdF: renderGaugeSVG(m.pdRatio, 'P/D F', {maxScale: pdScale, suffix:'', decimals:1, benchmarkLabel: industryPD!=null? `میانگین صنعت: ${toFa(industryPD.toFixed(1))}` : 'بدون داده صنعت'}),
-    // رشد فروش دلاری نسبت به بازه‌ی مشابه سال قبل (فروش‌تجمعی امسال ÷ دلار روز) نسبت به (فروش‌تجمعی سال قبل ÷ دلار روز)
-    // چون دلار روز در صورت و مخرج یکسانه، از نظر عددی برابر رشد تجمیعی تومانیه؛ فقط این‌جا به‌صورت گیج نشون داده می‌شه
-    dollarGrowth: renderGaugeSVG(growth && growth.growth!=null ? growth.growth*100 : null, 'رشد دلاری فروش (سال قبل)', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel: growth && !growth.priorComplete && growth.priorSum!=null ? '⚠️ سال قبل ناقصه' : ''}),
+    // رشد فروش دلاری نسبت به بازه‌ی مشابه سال قبل: هر سال به دلار خودش تبدیل شده، این دو عدد دلاری مقایسه می‌شن
+    dollarGrowth: renderGaugeSVG(dollarGrowth!=null ? dollarGrowth*100 : null, 'رشد دلاری فروش (سال قبل)', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel: dollarGrowthHint}),
   };
   const layout = ensureLayoutState();
   const order = applySavedOrder(Object.keys(widgets), layout.dashboardGaugeOrder);
@@ -1037,6 +1039,17 @@ function renderDashboardGauges(ctx){
 }
 function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estFinal, pe, exportRatio){
   const growth = computeSalesGrowthCum(stock);
+  // رشد دلاری فروش: هر سال به دلار خودش تبدیل می‌شه، بعد این دو عدد دلاری با هم مقایسه می‌شن
+  // (فروش‌تجمعی امسال ÷ دلار روز) نسبت به (فروش‌تجمعی سال قبل ÷ دلار مشابه سال قبل)
+  const gmForGrowth = getGoldMarket();
+  const dollarToday = gmForGrowth.dollarToday!=null && gmForGrowth.dollarToday!=='' ? Number(gmForGrowth.dollarToday) : null;
+  const dollarSamePriorYear = gmForGrowth.dollarSamePriorYear!=null && gmForGrowth.dollarSamePriorYear!=='' ? Number(gmForGrowth.dollarSamePriorYear) : null;
+  let dollarGrowth = null;
+  if(growth && growth.priorComplete && growth.priorSum>0 && dollarToday>0 && dollarSamePriorYear>0){
+    const curUsd = growth.curSum/dollarToday;
+    const priorUsd = growth.priorSum/dollarSamePriorYear;
+    dollarGrowth = priorUsd>0 ? (curUsd-priorUsd)/priorUsd : null;
+  }
   const divAvg = estimateAvgDividendPayout(stock);
   const marketCap = stock.manual && stock.manual.marketCap ? Number(stock.manual.marketCap) : null;
   // مقیاس گیج‌های P/E، P/D و میانگین تقسیم سود بر اساس میانگین صنعت همین سهم — اگه داده‌ی صنعت نبود، مقیاس تقریبی از خود عدد ساخته می‌شه
@@ -1053,7 +1066,7 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
     <div class="card" style="text-align:center; display:flex; align-items:center; justify-content:center"><div style="font-size:20px; font-weight:800; color:var(--navy)">${stock.name||stock.symbol}</div></div>
   </div>
   <div class="card" style="margin-bottom:14px">
-    <div class="grid cols-4" id="dashGaugesGrid">${renderDashboardGauges({exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth})}</div>
+    <div class="grid cols-4" id="dashGaugesGrid">${renderDashboardGauges({exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth, dollarGrowth})}</div>
   </div>
   <div class="table-wrap">
     <table>
@@ -2273,6 +2286,7 @@ function renderGoldTab(){
       <div class="field"><label>میانگین تورم ماهانه (٪)</label><input id="gmInflation" type="number" step="0.1" value="${gm.avgMonthlyInflation??''}"></div>
       <div class="field"><label>چند ماه از سال گذشته (برای حباب دلار امروز)</label><input id="gmMonthsElapsed" type="number" min="0" max="12" value="${gm.monthsElapsed??''}"></div>
       <div class="field"><label>دلار روز (تومان)</label><input id="gmDollarToday" type="number" value="${gm.dollarToday??''}"></div>
+      <div class="field"><label>دلار مشابه سال قبل (تومان) <span style="color:var(--teal); font-size:10.5px">برای گیج رشد دلاری فروش</span></label><input id="gmDollarSamePriorYear" type="number" value="${gm.dollarSamePriorYear??''}"></div>
       <div class="field"><label>قیمت انس طلا روز (دلار)</label><input id="gmGoldOunce" type="number" value="${gm.goldOunceToday??''}"></div>
       <div class="field"><label>قیمت انس نقره روز (دلار)</label><input id="gmSilverOunce" type="number" value="${gm.silverOunceToday??''}"></div>
       <div class="field"><label>تخمین انس طلا پایان سال (دلار)</label><input id="gmGoldOunceYE" type="number" value="${gm.goldOunceYearEnd??''}"></div>
@@ -3789,6 +3803,7 @@ function attachHandlers(){
     setNum('gmInflation','avgMonthlyInflation');
     setNum('gmMonthsElapsed','monthsElapsed');
     setNum('gmDollarToday','dollarToday');
+    setNum('gmDollarSamePriorYear','dollarSamePriorYear');
     setNum('gmGoldOunce','goldOunceToday');
     setNum('gmSilverOunce','silverOunceToday');
     setNum('gmGoldOunceYE','goldOunceYearEnd');
