@@ -435,7 +435,7 @@ function showToast(msg){
 
 /* ========================= موتور محاسبات ========================= */
 /* ---- رجیستری فرمول‌های قابل‌ویرایش (متغیرها تک‌حرفی‌اند تا نوشتن فرمول راحت باشه) ---- */
-const FORMULA_SCHEMA_VERSION = 6; // هر بار که حروف متغیرها یا فرمول‌های پیش‌فرض عوض شه، این عدد رو بالا می‌بریم تا فرمول‌های پیش‌فرض بازنشانی شن (۶: افزوده‌شدن نسبت آنی/quickRatio)
+const FORMULA_SCHEMA_VERSION = 7; // هر بار که حروف متغیرها یا فرمول‌های پیش‌فرض عوض شه، این عدد رو بالا می‌بریم تا فرمول‌های پیش‌فرض بازنشانی شن (۷: افزوده‌شدن P/E محقق‌شده بر مبنای سود خالص TTM)
 const DEFAULT_FORMULAS = [
   {key:'qMargin', name:'حاشیه سود فصلی (FIS)', expression:'(p-j-k)/q', format:'percent', decimals:1, showInKpi:true, showInIndustry:true, builtin:true},
   {key:'roa', name:'ROA (بازده دارایی، ۱۲ماهه)', expression:'n/A', format:'percent', decimals:1, showInKpi:true, showInIndustry:false, builtin:true},
@@ -447,6 +447,8 @@ const DEFAULT_FORMULAS = [
   {key:'inventoryDays', name:'دوره گردش کالا', expression:'360/(Math.abs(c)/i)', format:'number', decimals:0, unit:' روز', showInKpi:true, showInIndustry:true, builtin:true},
   {key:'receivableDays', name:'دوره وصول مطالبات', expression:'360/(s/r)', format:'number', decimals:0, unit:' روز', showInKpi:true, showInIndustry:true, builtin:true},
   {key:'peF', name:'P/E F', expression:'K/(F*M+H)', format:'ratio', decimals:1, showInKpi:true, showInIndustry:true, builtin:true},
+  // P/E محقق‌شده: مبنایش سود خالص واقعی و محقق‌شده‌ی ۱۲ماهه (n)، نه سود برآوردی — طبق توضیح: «سود خالص مبنای محاسبه P/E محقق‌شده است»
+  {key:'peRealized', name:'P/E محقق‌شده (TTM)', expression:'K/n', format:'ratio', decimals:1, showInKpi:false, showInIndustry:true, builtin:true},
   {key:'pdRatio', name:'P/D F', expression:'K/(D*(F*M+H))', format:'ratio', decimals:1, showInKpi:false, showInIndustry:true, builtin:true},
   {key:'psRatio', name:'P/S F', expression:'K/F', format:'ratio', decimals:1, showInKpi:false, showInIndustry:true, builtin:true},
   {key:'paRatio', name:'P/A', expression:'K/A', format:'ratio', decimals:1, showInKpi:false, showInIndustry:true, builtin:true},
@@ -1086,6 +1088,7 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
         <th>نسبت صادراتی</th>
         <th>ارزش بازار روز</th>
         <th>P/E F</th>
+        <th>P/E محقق‌شده (TTM)</th>
         <th>P/D F</th>
         <th>P/S F</th>
         <th>P/A</th>
@@ -1107,6 +1110,7 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
           <td>${exportRatio? fmtPct(exportRatio.ratio):'—'}</td>
           <td>${marketCap!=null? fmt(marketCap):'—'}</td>
           <td>${formatByDef(getFormulaByKey('peF'), pe)}</td>
+          <td>${formatByDef(getFormulaByKey('peRealized'), m.peRealized)}</td>
           <td>${formatByDef(getFormulaByKey('pdRatio'), m.pdRatio)}</td>
           <td>${formatByDef(getFormulaByKey('psRatio'), m.psRatio)}</td>
           <td>${formatByDef(getFormulaByKey('paRatio'), m.paRatio)}</td>
