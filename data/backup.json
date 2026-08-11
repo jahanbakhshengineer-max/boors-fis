@@ -8,7 +8,8 @@
     "حمل و نقل",
     "سنگ آهن",
     "فلزات اساسی",
-    "زراعت و دامی"
+    "زراعت و دامی",
+    "هلدینگ و شرکت‌های سرمایه‌گذاری"
   ],
   "stocks": {
     "شبندر": {
@@ -233,7 +234,7 @@
         "1405-4": 123253
       },
       "manual": {
-        "marketCap": 521602,
+        "marketCap": 525290,
         "sharesOutstanding": null,
         "currentPrice": 1200,
         "dividendIncome": 2283,
@@ -700,9 +701,15 @@
         "1404-12": 103795,
         "1405-1": 108560,
         "1405-2": 134238,
-        "1405-3": 175566
+        "1405-3": 175566,
+        "1405-4": 176043
       },
-      "monthlySalesSplit": {},
+      "monthlySalesSplit": {
+        "1405-4": {
+          "domestic": 176043,
+          "export": 0
+        }
+      },
       "dividendHistory": [
         {
           "fiscalYear": 1400,
@@ -726,7 +733,7 @@
         }
       ],
       "manual": {
-        "marketCap": 725709,
+        "marketCap": 720692,
         "currentPrice": 1061,
         "dividendIncome": 853,
         "bankInterest": 1019,
@@ -794,14 +801,14 @@
           "equity": 25594.5399
         }
       ],
-      "monthlySales": {},
+      "monthlySales": {
+        "1405-04": 7414,
+        "1405-3": 7233,
+        "1405-02": 6736,
+        "1405-01": 3158
+      },
       "monthlySalesSplit": {},
       "dividendHistory": [
-        {
-          "fiscalYear": 1404,
-          "profitEndOfPeriod": 16944,
-          "dividendApproved": 4451
-        },
         {
           "fiscalYear": 1403,
           "profitEndOfPeriod": 7056,
@@ -811,11 +818,16 @@
           "fiscalYear": 1402,
           "profitEndOfPeriod": 5067,
           "dividendApproved": 3344
+        },
+        {
+          "fiscalYear": 1404,
+          "profitEndOfPeriod": 19550,
+          "dividendApproved": 11200
         }
       ],
       "manual": {
-        "marketCap": 93296,
-        "currentPrice": 1666,
+        "marketCap": 106792,
+        "currentPrice": 1875,
         "dividendIncome": 2583,
         "bankInterest": 4,
         "otherOperatingIncome": 80,
@@ -1023,8 +1035,8 @@
         }
       ],
       "manual": {
-        "marketCap": 8782,
-        "currentPrice": 5330,
+        "marketCap": 8625,
+        "currentPrice": 5355,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
@@ -1314,7 +1326,7 @@
         }
       ],
       "manual": {
-        "marketCap": 78199,
+        "marketCap": 78243,
         "currentPrice": 6148,
         "dividendIncome": 0,
         "bankInterest": 914,
@@ -1524,7 +1536,7 @@
         }
       ],
       "manual": {
-        "marketCap": 27336,
+        "marketCap": 27262,
         "currentPrice": 1112,
         "dividendIncome": 2,
         "bankInterest": 29,
@@ -1731,9 +1743,9 @@
         }
       ],
       "manual": {
-        "marketCap": 130470,
+        "marketCap": 127590,
         "sharesOutstanding": 29119196989,
-        "currentPrice": 4481,
+        "currentPrice": 4382,
         "dividendIncome": 1200,
         "bankInterest": 242,
         "otherOperatingIncome": 10,
@@ -1929,7 +1941,7 @@
         }
       ],
       "manual": {
-        "marketCap": 14275,
+        "marketCap": 14662,
         "sharesOutstanding": null,
         "currentPrice": 1454,
         "dividendIncome": 6,
@@ -2100,7 +2112,7 @@
         }
       ],
       "manual": {
-        "marketCap": 175540,
+        "marketCap": 180583,
         "sharesOutstanding": null,
         "currentPrice": 260,
         "dividendIncome": null,
@@ -2306,7 +2318,7 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 21140,
+        "marketCap": 21940,
         "sharesOutstanding": null,
         "currentPrice": 19940,
         "dividendIncome": 15,
@@ -2488,7 +2500,7 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 493231,
+        "marketCap": 448146,
         "sharesOutstanding": null,
         "currentPrice": 254,
         "dividendIncome": 31354,
@@ -2677,9 +2689,9 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3965,
-        "sharesOutstanding": 4.994,
-        "currentPrice": 794,
+        "marketCap": 4055,
+        "sharesOutstanding": 4963280294,
+        "currentPrice": 817,
         "dividendIncome": null,
         "bankInterest": 18,
         "otherOperatingIncome": null,
@@ -2829,9 +2841,9 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 38464,
-        "sharesOutstanding": 33.8,
-        "currentPrice": 1172,
+        "marketCap": 42013,
+        "sharesOutstanding": 33799502900,
+        "currentPrice": 1243,
         "dividendIncome": 2000,
         "bankInterest": 2,
         "otherOperatingIncome": 15,
@@ -2963,9 +2975,9 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 2404800,
+        "marketCap": 2476800,
         "sharesOutstanding": 1440000000000,
-        "currentPrice": 1670,
+        "currentPrice": 1720,
         "dividendIncome": 33,
         "bankInterest": 843,
         "otherOperatingIncome": -12922,
@@ -2980,6 +2992,31 @@
           "raw": "شرح\tبه تاريخ ۱۴۰۴/۱۲/۲۹\tتجديد ارائه شده به تاريخ ۱۴۰۳/۱۲/۳۰\tتجديد ارائه شده به تاريخ ۱۴۰۳/۰۱/۰۱\tدرصد تغيير\n\tحسابرسی شده\tحسابرسی شده\tحسابرسی شده\t\nدارايي‌ها\t\t\t\t\nدارايي‌هاي غيرجاري\t\t\t\t\nدارايي‌هاي ثابت مشهود\t۲,۳۴۵,۳۷۰,۷۲۳\t۱,۳۰۳,۹۹۶,۴۹۳\t۸۰۲,۸۱۸,۷۵۹\t۸۰\nسرمايه‌گذاري در املاک\t۰\t۰\t۰\t۰\nدارايي‌هاي نامشهود\t۱,۶۸۸,۲۱۶\t۱,۷۸۲,۹۸۹\t۱,۵۲۵,۷۷۸\t-۵\nسرمايه‌گذاري‌هاي بلندمدت\t۳۸۹,۷۱۴,۵۶۰\t۳۰۱,۶۴۴,۰۶۴\t۲۴۰,۲۱۲,۷۴۶\t۲۹\nدريافتني‌هاي بلندمدت\t۷۳,۹۳۷,۸۳۹\t۷۹,۷۵۳,۶۵۰\t۵۲,۴۷۸,۰۹۰\t-۷\nدارايي ماليات انتقالي\t۰\t۰\t۰\t۰\nساير دارايي‌ها\t۶۹,۸۵۹,۰۹۶\t۲۹,۳۳۵,۷۸۶\t۱۳,۳۸۹,۰۲۰\t۱۳۸\nجمع دارايي‌هاي غيرجاري\t۲,۸۸۰,۵۷۰,۴۳۴\t۱,۷۱۶,۵۱۲,۹۸۲\t۱,۱۱۰,۴۲۴,۳۹۳\t۶۸\nدارايي‌هاي جاري\t\t\t\t\nسفارشات و پيش‌پرداخت‌ها\t۲۱۷,۸۸۱,۲۰۴\t۱۰۸,۴۸۸,۹۱۰\t۷۰,۲۸۲,۴۹۲\t۱۰۱\nموجودي مواد و کالا\t۶۸۵,۶۶۰,۴۶۶\t۳۰۵,۲۰۵,۴۹۴\t۲۰۰,۷۱۷,۰۰۸\t۱۲۵\nدريافتني‌هاي تجاري و ساير دريافتني‌ها\t۱,۰۴۳,۷۱۷,۷۳۵\t۶۰۰,۹۸۳,۷۵۵\t۴۵۶,۵۰۳,۹۹۱\t۷۴\nسرمايه‌گذاري‌هاي کوتاه‌مدت\t۲۶,۹۰۱,۳۳۲\t۲۴,۹۴۷,۳۹۷\t۲۸,۶۹۴,۰۷۶\t۸\nموجودي نقد\t۱۱۹,۹۷۸,۹۵۲\t۵۸,۸۴۰,۲۵۷\t۵۳,۷۱۴,۷۰۹\t۱۰۴\n\t۲,۰۹۴,۱۳۹,۶۸۹\t۱,۰۹۸,۴۶۵,۸۱۳\t۸۰۹,۹۱۲,۲۷۶\t۹۱\nدارايي‌هاي نگهداري شده براي فروش\t۰\t۰\t۰\t۰\nجمع دارايي‌هاي جاري\t۲,۰۹۴,۱۳۹,۶۸۹\t۱,۰۹۸,۴۶۵,۸۱۳\t۸۰۹,۹۱۲,۲۷۶\t۹۱\nجمع دارايي‌ها\t۴,۹۷۴,۷۱۰,۱۲۳\t۲,۸۱۴,۹۷۸,۷۹۵\t۱,۹۲۰,۳۳۶,۶۶۹\t۷۷\nحقوق مالکانه و بدهي‌ها\t\t\t\t\nحقوق مالکانه\t\t\t\t\nسرمايه\t۱,۰۵۰,۰۰۰,۰۰۰\t۷۸۰,۰۰۰,۰۰۰\t۷۸۰,۰۰۰,۰۰۰\t۳۵\nافزايش سرمايه در جريان\t۰\t۰\t۰\t۰\nصرف سهام\t۰\t۰\t۰\t۰\nصرف سهام خزانه\t۰\t۰\t۰\t۰\nاندوخته قانوني\t۱۰۵,۰۰۰,۰۰۰\t۷۸,۰۰۰,۰۰۰\t۷۸,۰۰۰,۰۰۰\t۳۵\nساير اندوخته‌ها\t۲,۶۳۵,۰۹۷\t۲,۶۳۵,۰۹۷\t۲,۶۳۵,۰۹۷\t۰\nمازاد تجديدارزيابي دارايي‌ها\t۰\t۰\t۰\t۰\nتفاوت تسعير ارز عمليات خارجي\t۰\t۰\t۰\t۰\nسود(زيان) انباشته\t۱,۹۱۱,۹۸۱,۴۱۷\t۱,۰۹۱,۴۶۹,۴۵۲\t۵۹۴,۲۰۰,۸۸۸\t۷۵\nسهام خزانه\t۰\t۰\t۰\t۰\nجمع حقوق مالکانه\t۳,۰۶۹,۶۱۶,۵۱۴\t۱,۹۵۲,۱۰۴,۵۴۹\t۱,۴۵۴,۸۳۵,۹۸۵\t۵۷\nبدهي‌ها\t\t\t\t\nبدهي‌هاي غيرجاري\t\t\t\t\nپرداختني‌هاي بلندمدت\t۲۰,۵۷۹,۶۴۳\t۱۳,۷۳۲,۴۴۹\t۰\t۵۰\nتسهيلات مالي بلندمدت\t۰\t۵,۱۰۹,۰۲۳\t۰\t--\nبدهي ماليات انتقالي\t۰\t۰\t۰\t۰\nذخيره مزاياي پايان خدمت کارکنان\t۴۳,۴۶۶,۱۸۶\t۳۱,۰۳۲,۴۱۸\t۲۰,۸۸۲,۴۸۹\t۴۰\nجمع بدهي‌هاي غيرجاري\t۶۴,۰۴۵,۸۲۹\t۴۹,۸۷۳,۸۹۰\t۲۰,۸۸۲,۴۸۹\t۲۸\nبدهي‌هاي جاري\t\t\t\t\nپرداختني‌هاي تجاري و ساير پرداختني‌ها\t۱,۱۸۴,۹۱۸,۷۰۴\t۵۳۸,۹۸۷,۰۰۳\t۲۷۲,۲۸۵,۴۵۲\t۱۲۰\nماليات پرداختني\t۲۸۸,۸۳۹,۰۵۵\t۱۰۹,۰۸۱,۶۵۳\t۸۲,۱۶۵,۷۴۶\t۱۶۵\nسود سهام پرداختني\t۳۱,۱۷۹,۰۹۰\t۳,۵۴۰,۷۲۴\t۱,۷۱۹,۰۹۰\t۷۸۱\nتسهيلات مالي\t۵۱,۹۹۴,۴۵۰\t۵۰,۰۹۸,۳۶۰\t۰\t۴\nذخاير\t۲۶۷,۵۱۲,۱۴۶\t۹۶,۲۷۷,۵۱۷\t۷۴,۲۲۲,۴۳۲\t۱۷۸\nپيش‌دريافت‌ها\t۱۶,۶۰۴,۳۳۵\t۱۵,۰۱۵,۰۹۹\t۱۴,۲۲۵,۴۷۵\t۱۱\n\t۱,۸۴۱,۰۴۷,۷۸۰\t۸۱۳,۰۰۰,۳۵۶\t۴۴۴,۶۱۸,۱۹۵\t۱۲۶\nبدهي‌هاي ‌مرتبط ‌با دارايي‌هاي نگهداري‌‌شده براي ‌فروش\t۰\t۰\t۰\t۰\nجمع بدهي‌هاي جاري\t۱,۸۴۱,۰۴۷,۷۸۰\t۸۱۳,۰۰۰,۳۵۶\t۴۴۴,۶۱۸,۱۹۵\t۱۲۶\nجمع بدهي‌ها\t۱,۹۰۵,۰۹۳,۶۰۹\t۸۶۲,۸۷۴,۲۴۶\t۴۶۵,۵۰۰,۶۸۴\t۱۲۱\nجمع حقوق مالکانه و بدهي‌ها\t۴,۹۷۴,۷۱۰,۱۲۳\t۲,۸۱۴,۹۷۸,۷۹۵\t۱,۹۲۰,۳۳۶,۶۶۹\t۷۷\n"
         }
       }
+    },
+    "ومعادن": {
+      "symbol": "ومعادن",
+      "name": "",
+      "industry": "هلدینگ و شرکت‌های سرمایه‌گذاری",
+      "isHolding": true,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [
+        {
+          "symbol": "فملی",
+          "percent": 3.5
+        },
+        {
+          "symbol": "کگل",
+          "percent": 49
+        }
+      ],
+      "unlistedHoldings": [],
+      "manual": {}
     }
   },
   "formulas": [
@@ -3086,6 +3123,16 @@
       "builtin": true
     },
     {
+      "key": "peRealized",
+      "name": "P/E محقق‌شده (TTM)",
+      "expression": "K/n",
+      "format": "ratio",
+      "decimals": 1,
+      "showInKpi": false,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
       "key": "pdRatio",
       "name": "P/D F",
       "expression": "K/(D*(F*M+H))",
@@ -3146,7 +3193,7 @@
       "builtin": true
     }
   ],
-  "formulaSchemaVersion": 6,
+  "formulaSchemaVersion": 7,
   "rawMapping": {
     "pl": {
       "sales": "درآمدهای عملیاتی",
@@ -3230,7 +3277,7 @@
       "id": "qf1e2q9g",
       "symbol": "شنفت",
       "quantity": 3700,
-      "avgBuyPrice": 1137.8
+      "avgBuyPrice": 875
     },
     {
       "id": "z5ob0fvv",
