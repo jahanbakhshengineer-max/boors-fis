@@ -160,6 +160,15 @@ table td{padding:8px; border-bottom:1px solid var(--line); text-align:center; wh
 table tbody tr:nth-child(even){background:#faf8f4}
 table tbody tr:hover{background:#f0ece1}
 table tfoot td{background:var(--navy-dark); color:#fff; font-weight:700}
+/* فریز ستون اول (نماد) هنگام اسکرول افقی — دقیقاً مثل «Freeze Panes» اکسل */
+.table-wrap table th:first-child, .table-wrap table td:first-child{
+  position:sticky; right:0; z-index:3; box-shadow:2px 0 4px rgba(0,0,0,.10);
+}
+.table-wrap table th:first-child{ z-index:6; background:var(--navy); }
+.table-wrap table td:first-child{ background:#fff; }
+.table-wrap table tbody tr:nth-child(even) td:first-child{ background:#faf8f4; }
+.table-wrap table tbody tr:hover td:first-child{ background:#f0ece1; }
+.table-wrap table tfoot td:first-child{ background:var(--navy-dark); }
 .table-wrap{overflow-x:auto; border-radius:var(--radius); border:1px solid var(--line)}
 .btn{
   background:var(--navy); color:#fff; border:none; border-radius:8px; padding:9px 16px;
@@ -250,6 +259,15 @@ function fmt(n, decimals=0){
   if(n===null || n===undefined || isNaN(n)) return '—';
   const s = Number(n).toLocaleString('en-US', {maximumFractionDigits:decimals, minimumFractionDigits:decimals});
   return toFa(s);
+}
+// نمایش تاریخ/ساعت آخرین به‌روزرسانی (مثلاً ارزش بازار) به تقویم شمسی و اعداد فارسی
+function formatUpdateTimestamp(ts){
+  if(!ts) return null;
+  try{
+    return new Intl.DateTimeFormat('fa-IR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}).format(new Date(ts));
+  }catch(e){
+    return new Date(ts).toLocaleString('fa-IR');
+  }
 }
 function fmtPct(n, decimals=1){
   if(n===null || n===undefined || isNaN(n)) return '—';
@@ -1292,12 +1310,12 @@ function renderSubsidiariesSubtab(stock){
     <div class="row" style="align-items:flex-end">
       <div class="field" style="width:220px"><label>نام شرکت غیربورسی</label><input id="unlistedNameInput" placeholder="مثلاً شرکت فرعی الف"></div>
       <div class="field" style="width:140px"><label>درصد مالکیت (٪)</label><input id="unlistedPercentInput" type="number" step="0.01"></div>
-      <div class="field" style="width:200px"><label>ارزش روز تخمینی (میلیارد تومان)</label><input id="unlistedValueInput" type="number"></div>
+      <div class="field" style="width:200px"><label>بهای تمام‌شده (میلیارد تومان)</label><input id="unlistedValueInput" type="number"></div>
       <button class="btn tan" id="addUnlistedBtn">افزودن</button>
     </div>
   </div>
   ${unlisted.length ? `<div class="table-wrap"><table>
-    <thead><tr><th>نام</th><th>درصد مالکیت</th><th>ارزش روز تخمینی</th><th>سهم از ارزش</th><th></th></tr></thead>
+    <thead><tr><th>نام</th><th>درصد مالکیت</th><th>بهای تمام‌شده</th><th>سهم از ارزش</th><th></th></tr></thead>
     <tbody>${unlistedRowsHtml}</tbody>
   </table></div>` : `<div class="hint">هنوز سهم غیربورسی‌ای ثبت نشده.</div>`}
   ` : ''}
@@ -1685,39 +1703,87 @@ function renderHoldingDataTab(stock){
     <tr><td>${toFa(p.fiscalYear)}</td><td>${toFa(p.months)} ماهه</td><td>${fmt(p.equity)}</td>
       <td><span class="delete-row-btn" data-delholdingequity="${p.id}">حذف</span></td></tr>
   `).join('') : `<tr><td colspan="4" style="color:var(--muted)">هنوز حقوق مالکانه‌ای ثبت نشده</td></tr>`;
+
+  const subs = stock.subsidiaries || [];
+  const otherSymbols = Object.keys(state.stocks).filter(s=>s!==stock.symbol);
+  const listedOptionsHtml = otherSymbols.length
+    ? otherSymbols.map(s=>`<option value="${s}">${s} — ${state.stocks[s].name||''}</option>`).join('')
+    : `<option value="">— ابتدا یه سهم دیگه توی برنامه اضافه کن —</option>`;
+  const listedRowsHtml = subs.length ? subs.map((sub,idx)=>{
+    const subStock = state.stocks[sub.symbol];
+    return `<tr>
+      <td>${sub.symbol}</td><td>${subStock?(subStock.name||'—'):'<span style="color:var(--bad)">حذف‌شده</span>'}</td>
+      <td>${toFa(sub.percent)}٪</td>
+      <td><span class="delete-row-btn" data-delholdingsub="${idx}">حذف</span></td>
+    </tr>`;
+  }).join('') : `<tr><td colspan="4" style="color:var(--muted)">هنوز سهم بورسی زیرمجموعه‌ای ثبت نشده</td></tr>`;
+
+  const unlisted = stock.unlistedHoldings || [];
+  const unlistedRowsHtml = unlisted.length ? unlisted.map(u=>`<tr>
+      <td>${u.name}</td><td>${toFa(u.percent)}٪</td><td>${u.estimatedValue!=null?fmt(u.estimatedValue):'—'}</td>
+      <td><span class="delete-row-btn" data-delunlisted="${u.id}">حذف</span></td>
+    </tr>`).join('') : `<tr><td colspan="4" style="color:var(--muted)">هنوز سهم غیربورسی‌ای ثبت نشده</td></tr>`;
+
   return `
   <div class="page-sub">سال مالی جاری این هلدینگ: <b>${stock.fiscalYear? fiscalYearEndDateStr(stock, stock.fiscalYear) : 'تعریف‌نشده (از تب مدیریت سهم‌ها تعریفش کن)'}</b></div>
-  <div class="hint" style="margin-bottom:16px">📊 چون این سهم به‌عنوان «هلدینگ/شرکت سرمایه‌گذاری» علامت‌گذاری شده، فرم ورود اطلاعاتش ساده شده و فقط همون چیزهایی که برای محاسبه‌ی NAV لازمه رو می‌خواد — نه صورت سود و زیان کامل، نه فروش ماهانه. برای مدیریت سهم‌های زیرمجموعه (بورسی و غیربورسی) هم از داشبورد این سهم → زیرتب «سهم‌های زیرمجموعه» استفاده کن.</div>
+  <div class="hint" style="margin-bottom:16px">📊 چون این سهم به‌عنوان «هلدینگ/شرکت سرمایه‌گذاری» علامت‌گذاری شده، فرم ورود اطلاعاتش ساده شده و فقط همون چیزهایی که برای محاسبه‌ی NAV لازمه رو می‌خواد — نه صورت سود و زیان کامل، نه فروش ماهانه.</div>
 
   <div class="section-title">ارزش بازار و پرتفوی (برای محاسبه NAV)</div>
   <div class="card" style="margin-bottom:16px">
     <div class="grid cols-4">
       <div class="field" style="margin:0"><label>ارزش بازار (میلیارد تومان)</label><input id="holdingMarketCapInput" type="number" value="${stock.manual?.marketCap ?? ''}"></div>
-      <div class="field" style="margin:0"><label>ارزش روز پرتفوی سهام بورسی <span style="color:var(--teal)">(از صورت وضعیت پرتفوی)</span></label><input id="holdingPortfolioMarketInput" type="number" value="${stock.manual?.portfolioMarketValue ?? ''}"></div>
-      <div class="field" style="margin:0"><label>بهای تمام‌شده (کتابی) همون پرتفوی</label><input id="holdingPortfolioBookInput" type="number" value="${stock.manual?.portfolioBookValue ?? ''}"></div>
+      <div class="field" style="margin:0"><label>ارزش روز سبد بورسی <span style="color:var(--teal)">(از گزارش ماهانه)</span></label><input id="holdingPortfolioMarketInput" type="number" value="${stock.manual?.portfolioMarketValue ?? ''}"></div>
+      <div class="field" style="margin:0"><label>بهای تمام‌شده سبد بورسی <span style="color:var(--teal)">(از یادداشت سرمایه‌گذاری‌ها)</span></label><input id="holdingPortfolioBookInput" type="number" value="${stock.manual?.portfolioBookValue ?? ''}"></div>
       <div style="align-self:flex-end"><button class="btn tan" id="saveHoldingInputsBtn">ذخیره</button></div>
     </div>
+    <div class="hint">NAV = حقوق صاحبان سهام + (ارزش روز سبد بورسی − بهای تمام‌شده سبد بورسی). سرمایه‌گذاری‌های غیربورسی (بدون برنامه‌ی قطعی ورود به بازار) به بهای تمام‌شده‌شون توی حقوق صاحبان سهام لحاظ می‌مونن — نیازی نیست جدا به NAV اضافه بشن.</div>
   </div>
 
-  <div class="section-title">حقوق مالکانه (از صورت وضعیت مالی)</div>
+  <div class="section-title">حقوق صاحبان سهام (از ترازنامه)</div>
   <div class="card" style="margin-bottom:16px">
     <div class="row">
       <div class="field" style="width:140px"><label>سال مالی</label><input id="holdingEqYear" type="number" value="${stock.fiscalYear||''}"></div>
       <div class="field" style="width:140px"><label>دوره (۳/۶/۹/۱۲ ماهه)</label><input id="holdingEqMonths" type="number" placeholder="مثلاً 12"></div>
-      <div class="field" style="width:200px"><label>جمع حقوق مالکانه (میلیارد تومان)</label><input id="holdingEqValue" type="number"></div>
+      <div class="field" style="width:200px"><label>جمع حقوق صاحبان سهام (میلیارد تومان)</label><input id="holdingEqValue" type="number"></div>
       <div style="align-self:flex-end"><button class="btn tan" id="saveHoldingEquityBtn">ثبت / به‌روزرسانی</button></div>
     </div>
     <div class="table-wrap" style="margin-top:14px"><table>
-      <thead><tr><th>سال مالی</th><th>دوره</th><th>حقوق مالکانه</th><th></th></tr></thead>
+      <thead><tr><th>سال مالی</th><th>دوره</th><th>حقوق صاحبان سهام</th><th></th></tr></thead>
       <tbody>${rowsHtml}</tbody>
     </table></div>
-    <div class="hint">فقط همین یه عدد (حقوق مالکانه) لازمه — NAV = حقوق مالکانه + (ارزش روز پرتفوی − بهای تمام‌شده پرتفوی).</div>
   </div>
 
-  <div class="section-title">سهم‌های زیرمجموعه (بورسی و غیربورسی)</div>
+  <div class="section-title">سهم‌های بورسی زیرمجموعه</div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="hint" style="margin-bottom:10px">یا از بین سهم‌هایی که همین‌جا توی برنامه تعریف کردی انتخاب کن، یا (توی بخش پایین) اگه یه سرمایه‌گذاری بورسی داری که هنوز جداگانه توی برنامه ثبتش نکردی، به‌عنوان غیربورسی/بدون‌ردیابی وارد کن.</div>
+    <div class="row" style="align-items:flex-end">
+      <div class="field" style="width:220px"><label>سهم (از بین سهم‌های ثبت‌شده در برنامه)</label><select id="holdingSubSymbolSelect">${listedOptionsHtml}</select></div>
+      <div class="field" style="width:140px"><label>درصد مالکیت (٪)</label><input id="holdingSubPercentInput" type="number" step="0.01" placeholder="مثلاً 3"></div>
+      <button class="btn tan" id="addHoldingSubBtn">افزودن</button>
+    </div>
+    <div class="table-wrap" style="margin-top:14px"><table>
+      <thead><tr><th>نماد</th><th>نام</th><th>درصد مالکیت</th><th></th></tr></thead>
+      <tbody>${listedRowsHtml}</tbody>
+    </table></div>
+  </div>
+
+  <div class="section-title">سهم‌های غیربورسی زیرمجموعه</div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="hint" style="margin-bottom:10px">برای سرمایه‌گذاری‌هایی که نه توی برنامه ثبت‌ان و نه برنامه/خبر قطعی برای ورودشون به بورس هست — بر اساس متدولوژی، این‌ها به «بهای تمام‌شده» پذیرفته می‌شن، نه ارزش روز تخمینی.</div>
+    <div class="row" style="align-items:flex-end">
+      <div class="field" style="width:220px"><label>نام شرکت غیربورسی</label><input id="unlistedNameInput" placeholder="مثلاً شرکت فرعی الف"></div>
+      <div class="field" style="width:140px"><label>درصد مالکیت (٪)</label><input id="unlistedPercentInput" type="number" step="0.01"></div>
+      <div class="field" style="width:200px"><label>بهای تمام‌شده (میلیارد تومان)</label><input id="unlistedValueInput" type="number"></div>
+      <button class="btn tan" id="addUnlistedBtn">افزودن</button>
+    </div>
+    <div class="table-wrap" style="margin-top:14px"><table>
+      <thead><tr><th>نام</th><th>درصد مالکیت</th><th>بهای تمام‌شده</th><th></th></tr></thead>
+      <tbody>${unlistedRowsHtml}</tbody>
+    </table></div>
+  </div>
+
   <div class="card">
-    <p style="font-size:13px; color:var(--muted); margin-bottom:10px">مدیریت سهم‌های زیرمجموعه (بورسی با درصد مالکیت، و غیربورسی با نام/درصد/ارزش تخمینی) از داشبورد همین سهم انجام می‌شه.</p>
-    <button class="btn secondary" id="goToSubsidiariesBtn">برو به زیرتب «سهم‌های زیرمجموعه» ›</button>
+    <button class="btn secondary" id="goToSubsidiariesBtn">مشاهده‌ی نسبت‌های کامل و NAV در داشبورد ›</button>
   </div>
   `;
 }
@@ -2394,12 +2460,14 @@ function renderPortfolioTab(){
     if(currentPrice==null) anyMissingPrice = true;
     totalCost += costValue;
     if(curValue!=null) totalValue += curValue;
+    const mcUpdatedAt = stock.manual && stock.manual.marketCapUpdatedAt;
     return `<tr class="clickable-row" data-symbol="${h.symbol}" title="دوبار کلیک برای رفتن به داشبورد این سهم">
       <td>${h.symbol}</td>
       <td>${stock.name||'—'}</td>
       <td>${stock.industry||'—'}</td>
       <td>${lp ? (lp.reportDate || faPeriodLabel(lp)) : '—'}</td>
       <td><input type="number" class="portfolio-marketcap-input" data-symbol="${h.symbol}" value="${marketCap!=null?marketCap:''}" placeholder="—" style="width:110px; text-align:center"></td>
+      <td style="font-size:11px; color:var(--muted)">${formatUpdateTimestamp(mcUpdatedAt) || '—'}</td>
       <td>${fmt(qty)}</td>
       <td>${fmt(avgPrice)}</td>
       <td>${currentPrice!=null? fmt(currentPrice):'—'}</td>
@@ -2439,9 +2507,9 @@ function renderPortfolioTab(){
   ${!symbols.length? `<div class="hint">اول از تب «مدیریت سهم‌ها» یه سهم اضافه کن.</div>` : ''}
   ${holdings.length? `<div class="field" style="max-width:280px; margin-bottom:10px"><input id="portfolioSearchInput" type="text" placeholder="🔎 جستجو در سبد (نماد، نام...)"></div>`:''}
   <div class="table-wrap"><table class="sortable-table" id="portfolioTable">
-    <thead><tr><th>نماد</th><th>نام</th><th>صنعت</th><th>تاریخ آخرین صورت مالی</th><th>ارزش بازار (م.ت)</th><th>تعداد</th><th>قیمت سربه‌سر</th><th>قیمت روز</th><th>ارزش سربه‌سر</th><th>ارزش روز</th><th>سود/زیان</th><th>درصد</th><th>P/E F</th><th>هدف (تا P/E=۷)</th><th>P/D F</th><th>P/S F</th><th>P/A</th><th>P/B</th><th>حاشیه سود FIS</th><th>نسبت مطالبات</th><th></th></tr></thead>
-    <tbody>${rows || `<tr><td colspan="21" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
-    ${holdings.length? `<tfoot><tr><td colspan="8">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="8"></td></tr></tfoot>`:''}
+    <thead><tr><th>نماد</th><th>نام</th><th>صنعت</th><th>تاریخ آخرین صورت مالی</th><th>ارزش بازار (م.ت)</th><th>آخرین به‌روزرسانی ارزش بازار</th><th>تعداد</th><th>قیمت سربه‌سر</th><th>قیمت روز</th><th>ارزش سربه‌سر</th><th>ارزش روز</th><th>سود/زیان</th><th>درصد</th><th>P/E F</th><th>هدف (تا P/E=۷)</th><th>P/D F</th><th>P/S F</th><th>P/A</th><th>P/B</th><th>حاشیه سود FIS</th><th>نسبت مطالبات</th><th></th></tr></thead>
+    <tbody>${rows || `<tr><td colspan="22" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
+    ${holdings.length? `<tfoot><tr><td colspan="9">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="8"></td></tr></tfoot>`:''}
   </table></div>
   <div class="hint">روی سرستون هر ستون کلیک کن تا بر اساس همون ستون مرتب بشه (دوباره کلیک = برعکس).</div>
   <div class="hint">ستون «هدف (تا P/E=۷)» یعنی: با فرض ثابت موندن سود برآوردی شرکت، قیمت سهم چند درصد باید رشد کنه (یا چند درصد باید افت کنه، اگه عدد منفیه) تا P/E فوروارد سهم به ۷ برسه — از رابطه‌ی (۷ ÷ P/E امروز) − ۱ محاسبه می‌شه.</div>
@@ -3431,6 +3499,7 @@ function attachHandlers(){
     const mc = mcEl.value===''? null : Number(mcEl.value);
     const pr = prEl.value===''? null : Number(prEl.value);
     stock.manual.marketCap = mc;
+    stock.manual.marketCapUpdatedAt = Date.now();
     stock.manual.currentPrice = pr;
     // اگه تعداد سهام از قبل ثبت شده و اینجا فقط ارزش بازار رو دادی، قیمت رو از روش محاسبه کن
     if(pr==null && mc!=null && stock.manual.sharesOutstanding){
@@ -3453,6 +3522,7 @@ function attachHandlers(){
       stock.manual = stock.manual || {};
       const newMarketCap = input.value===''? null : Number(input.value);
       stock.manual.marketCap = newMarketCap;
+      stock.manual.marketCapUpdatedAt = Date.now();
       // اگه تعداد سهام این شرکت قبلاً ثبت شده، قیمت روز رو با ارزش بازار جدید هماهنگ کن
       if(newMarketCap!=null && stock.manual.sharesOutstanding){
         stock.manual.currentPrice = Math.round((newMarketCap*1e9)/stock.manual.sharesOutstanding);
@@ -3468,6 +3538,7 @@ function attachHandlers(){
     if(!stock) return;
     stock.manual = stock.manual || {};
     stock.manual.marketCap = numOrNullField('holdingMarketCapInput');
+    stock.manual.marketCapUpdatedAt = Date.now();
     stock.manual.portfolioMarketValue = numOrNullField('holdingPortfolioMarketInput');
     stock.manual.portfolioBookValue = numOrNullField('holdingPortfolioBookInput');
     saveState(); showToast('اطلاعات هلدینگ ذخیره شد'); renderAll();
@@ -3518,6 +3589,26 @@ function attachHandlers(){
     const stock = state.stocks[activeSymbol];
     if(!stock) return;
     stock.unlistedHoldings = (stock.unlistedHoldings||[]).filter(u=>u.id!==el.dataset.delunlisted);
+    saveState(); renderAll();
+  });
+  // افزودن سهم بورسی زیرمجموعه از خودِ تب ورود اطلاعات هلدینگ
+  const addHoldingSubBtn = document.getElementById('addHoldingSubBtn');
+  if(addHoldingSubBtn) addHoldingSubBtn.onclick = ()=>{
+    const stock = state.stocks[activeSymbol];
+    if(!stock) return;
+    const subSymbol = document.getElementById('holdingSubSymbolSelect').value;
+    const percent = parseFloat(document.getElementById('holdingSubPercentInput').value);
+    if(!subSymbol) return showToast('یه سهم انتخاب کن');
+    if(isNaN(percent) || percent<=0 || percent>100) return showToast('درصد باید بین ۰ تا ۱۰۰ باشه');
+    stock.subsidiaries = stock.subsidiaries || [];
+    stock.subsidiaries = stock.subsidiaries.filter(s=>s.symbol!==subSymbol);
+    stock.subsidiaries.push({symbol:subSymbol, percent});
+    saveState(); showToast('اضافه شد'); renderAll();
+  };
+  document.querySelectorAll('[data-delholdingsub]').forEach(el=>el.onclick=()=>{
+    const stock = state.stocks[activeSymbol];
+    if(!stock) return;
+    stock.subsidiaries = (stock.subsidiaries||[]).filter((s,idx)=> idx!==Number(el.dataset.delholdingsub));
     saveState(); renderAll();
   });
 
@@ -3728,8 +3819,10 @@ function attachHandlers(){
   const saveManualBtn = document.getElementById('saveManualBtn');
   if(saveManualBtn) saveManualBtn.onclick = ()=>{
     const stock = state.stocks[activeSymbol];
-    stock.manual = {
-      marketCap: numOrNullField('manualMarketCap'),
+    const prevMarketCap = stock.manual ? stock.manual.marketCap : undefined;
+    const newMarketCap = numOrNullField('manualMarketCap');
+    stock.manual = Object.assign({}, stock.manual, {
+      marketCap: newMarketCap,
       sharesOutstanding: numOrNullField('manualSharesOutstanding'),
       currentPrice: numOrNullField('manualCurrentPrice'),
       dividendIncome: numOrNullField('manualDividend'),
@@ -3737,7 +3830,8 @@ function attachHandlers(){
       otherOperatingIncome: numOrNullField('manualOtherOp'),
       otherNonOperatingIncome: numOrNullField('manualOtherNonOp'),
       estimatedAnnualSalesOverride: numOrNullField('manualEstSales'),
-    };
+    });
+    if(newMarketCap !== prevMarketCap) stock.manual.marketCapUpdatedAt = Date.now();
     saveState(); showToast('ذخیره شد'); renderAll();
   };
   const addHoldingBtn = document.getElementById('addHoldingBtn');
