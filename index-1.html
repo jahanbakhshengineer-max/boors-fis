@@ -702,23 +702,17 @@ function estimateAnnualSales(stock){
     const avg = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
     return avg*12;
   }
-  // برگشت به روش قبلی: بر مبنای آخرین دوره‌ی صورت سود و زیان ثبت‌شده
+  // برگشت به روش قبلی: صرفاً بر مبنای آخرین دوره‌ی صورت سود و زیان ثبت‌شده (فروش دوره ÷ ماه‌های دوره × ۱۲)
+  // عمداً اینجا از فروش ماهانه استفاده نمی‌شه، چون اگه به این برانچ رسیدیم یعنی داده‌ی ماهانه به‌قدر کافی پیوسته/قابل‌اعتماد نبوده
   if(!lp || lp.sales==null || !lp.months){
-    const fy = currentFiscalYearForSales(stock);
-    if(!fy) return null;
-    const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy);
+    // اگه هیچ دوره‌ی پی‌ان‌الی هم ثبت نشده، به‌عنوان آخرین راه‌حل از میانگین همون فروش‌های ماهانه‌ی پراکنده استفاده کن
+    const fy = currentFiscalYearForSales(stock) || todayFY;
+    const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy && e.value!=null && e.value!=='');
     if(!entries.length) return null;
     const avg = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
     return avg*12;
   }
-  const fy = lp.fiscalYear;
-  const extraEntries = getMonthlySalesFiscalEntries(stock).filter(e=> e.fiscalYear===fy && e.monthInFY>lp.months);
-  if(!extraEntries.length){
-    return (lp.sales/lp.months)*12;
-  }
-  const extra = extraEntries.reduce((s,e)=> s + (Number(e.value)||0), 0);
-  const totalMonths = lp.months + extraEntries.length;
-  return ((lp.sales + extra)/totalMonths)*12;
+  return (lp.sales/lp.months)*12;
 }
 // آخرین حاشیه سود به‌دست‌آمده (فصل اخیر) - نه میانگین چند فصل
 function estimateLatestMargin(stock){
@@ -3419,18 +3413,27 @@ function extractRowLabel(row){
 // ۱۴۰۳/۰۳/۳۱ یا ۱۴۰۳/۳/۳۱ یا ۱۴۰۳-۰۳-۳۱ یا «۱۴۰۳ - ۳ ماهه» یا «۳ ماهه منتهی به ۱۴۰۳»
 const RAW_DATE_RE = /(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/;
 const RAW_YEAR_MONTHS_RE = /(\d{4}).{0,12}?(\d{1,2})\s*ماهه|(\d{1,2})\s*ماهه.{0,12}?(\d{4})/;
-function monthsBucket(mm){ mm=parseInt(mm); if(mm<=3) return 3; if(mm<=6) return 6; if(mm<=9) return 9; return 12; }
-function detectDateColumns(grid){
-  // بین چند ردیف اول دنبال سلول‌هایی با الگوی تاریخ یا «سال+دوره» بگرد، چون بعضی برگه‌ها هدر رو در دو ردیف پخش می‌کنن
+function monthsBucket(monthInFY){ monthInFY=parseInt(monthInFY); if(monthInFY<=3) return 3; if(monthInFY<=6) return 6; if(monthInFY<=9) return 9; return 12; }
+// تشخیص ستون‌های تاریخ از برگه‌ی پیست‌شده — endMonth = ماه پایان سال مالیِ همین سهم (نه لزوماً اسفند/۱۲)
+// یه تاریخ تقویمی مثل ۱۴۰۳/۰۳/۳۱ برای سهمی با پایان سال مالی مثلاً آذر (۹)، در واقع ماه ششم سال مالیشه، نه سوم —
+// این تابع اول تاریخ تقویمی رو به «چندمین ماه از سال مالیِ همین شرکت» تبدیل می‌کنه، بعد به نزدیک‌ترین ۳/۶/۹/۱۲ گرد می‌کنه
+function detectDateColumns(grid, endMonth){
+  endMonth = endMonth || 12;
   const cols = {};
   for(let r=0; r<Math.min(grid.length,4); r++){
     grid[r].forEach((cell, colIdx)=>{
       if(cell==null || cols[colIdx]) return;
       const str = String(cell);
       const m = RAW_DATE_RE.exec(str);
-      if(m){ cols[colIdx] = {fiscalYear: parseInt(m[1]), months: monthsBucket(m[2])}; return; }
+      if(m){
+        const calYear = parseInt(m[1]), calMonth = parseInt(m[2]);
+        const {fiscalYear, monthInFY} = calendarToFiscalMonth(calYear, calMonth, endMonth);
+        cols[colIdx] = {fiscalYear, months: monthsBucket(monthInFY)};
+        return;
+      }
       const my = RAW_YEAR_MONTHS_RE.exec(str);
       if(my){
+        // این حالت («۳ ماهه ۱۴۰۳») صراحتاً تعداد ماه از ابتدای سال مالی رو می‌گه، نیازی به تبدیل تقویمی نداره
         const year = parseInt(my[1] || my[4]);
         const months = parseInt(my[2] || my[3]);
         if(year && months) cols[colIdx] = {fiscalYear: year, months: [3,6,9,12].includes(months)?months:monthsBucket(months)};
@@ -3451,12 +3454,14 @@ function openRawMappingModal(sheetType){
   const textareaId = sheetType==='pl' ? 'rawPlInput' : 'rawBsInput';
   const raw = document.getElementById(textareaId).value.trim();
   if(!raw) return showToast('اول متن رو پیست کن');
+  const activeStock = state.stocks[activeSymbol];
+  const endMonth = activeStock ? stockFYEndMonth(activeStock) : 12;
   let grid = parseRawGrid(raw);
-  let dateCols = detectDateColumns(grid);
+  let dateCols = detectDateColumns(grid, endMonth);
   // اگه توی جهت عادی (ردیف=قلم مالی، ستون=تاریخ) چیزی پیدا نشد، شاید کاربر برعکس پیست کرده — جدول رو می‌چرخونیم و دوباره امتحان می‌کنیم
   if(!Object.keys(dateCols).length){
     const transposed = transposeGrid(grid);
-    const transposedCols = detectDateColumns(transposed);
+    const transposedCols = detectDateColumns(transposed, endMonth);
     if(Object.keys(transposedCols).length){
       grid = transposed;
       dateCols = transposedCols;
