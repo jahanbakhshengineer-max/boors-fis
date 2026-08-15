@@ -714,12 +714,33 @@ function estimateAnnualSales(stock){
   }
   return (lp.sales/lp.months)*12;
 }
+// حاشیه سود فصلی یک دوره‌ی مشخص (با همون فرمول qMargin) — تابع کمکی برای استفاده در چند دوره
+function computeQuarterMarginForPeriod(stock, periods, period){
+  if(!period) return null;
+  const ctx = buildBaseContext(stock, periods, period);
+  return evalFormulaByKey('qMargin', ctx);
+}
 // آخرین حاشیه سود به‌دست‌آمده (فصل اخیر) - نه میانگین چند فصل
+// استثنا: اگه حاشیه سود فصل اخیر منفی بشه، به‌جاش میانگین سه عدد زیر رو برای برآورد سود برمی‌گردونیم:
+// حاشیه سود دو دوره‌ی قبل (دوره‌ی ماقبل آخر و دوره‌ی قبل از اون) + حاشیه سود دوره‌ی مشابه سال قبل — جمع سه عدد تقسیم بر سه
+// (اگه حتی یکی از این سه دوره در سابقه‌ی سهم ثبت نشده/محاسبه‌پذیر نباشه، میانگین‌گیری انجام نمی‌شه و همون حاشیه سود خام فصل اخیر برگردونده می‌شه)
 function estimateLatestMargin(stock){
   const lp = latestPeriod(stock);
   if(!lp) return null;
-  const ctx = buildBaseContext(stock, stock.periods, lp);
-  return evalFormulaByKey('qMargin', ctx);
+  const periods = stock.periods || [];
+  const margin = computeQuarterMarginForPeriod(stock, periods, lp);
+  if(margin!=null && margin<0){
+    const sorted = sortPeriods(periods);
+    const idx = sorted.findIndex(p=>p.fiscalYear===lp.fiscalYear && p.months===lp.months);
+    const prev1 = idx>0 ? sorted[idx-1] : null;
+    const prev2 = idx>1 ? sorted[idx-2] : null;
+    const samePriorYear = findPeriod(periods, lp.fiscalYear-1, lp.months);
+    const fallbackVals = [prev1, prev2, samePriorYear]
+      .map(p=> computeQuarterMarginForPeriod(stock, periods, p));
+    // فقط وقتی هر سه دوره در دسترس و محاسبه‌پذیر باشن میانگین می‌گیریم؛ وگرنه همون margin خام (آخرین دوره) رو نگه می‌داریم
+    if(fallbackVals.every(v=>v!=null)) return fallbackVals.reduce((a,b)=>a+b,0)/3;
+  }
+  return margin;
 }
 function estimateNetIncomeByMargin(stock){
   const sales = estimateAnnualSales(stock);
