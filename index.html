@@ -170,6 +170,12 @@ table tfoot td{background:var(--navy-dark); color:#fff; font-weight:700}
 .table-wrap table tbody tr:hover td:first-child{ background:#f0ece1; }
 .table-wrap table tfoot td:first-child{ background:var(--navy-dark); }
 .table-wrap{overflow-x:auto; border-radius:var(--radius); border:1px solid var(--line)}
+/* ردیف فیلتر ستونی زیر سرستون جدول‌ها (مثل فیلتر اکسل) */
+table thead tr.col-filter-row th{position:sticky; top:34px; background:var(--paper); padding:4px 6px; z-index:5; box-shadow:0 1px 0 var(--line)}
+.table-wrap table thead tr.col-filter-row th:first-child{z-index:7}
+.col-filter-input{width:100%; min-width:64px; box-sizing:border-box; font-size:11px; padding:4px 6px; border:1px solid var(--line); border-radius:6px; text-align:center; background:#fff; color:var(--navy-dark); font-family:inherit}
+.col-filter-input:focus{outline:2px solid var(--teal); border-color:var(--teal)}
+.col-filter-input::placeholder{color:var(--muted); font-size:10.5px}
 .btn{
   background:var(--navy); color:#fff; border:none; border-radius:8px; padding:9px 16px;
   font-family:inherit; font-size:13px; cursor:pointer; font-weight:600; transition:.15s;
@@ -2589,13 +2595,17 @@ function renderPortfolioTab(){
     </div>
   </div>
   ${!symbols.length? `<div class="hint">اول از تب «مدیریت سهم‌ها» یه سهم اضافه کن.</div>` : ''}
-  ${holdings.length? `<div class="field" style="max-width:280px; margin-bottom:10px"><input id="portfolioSearchInput" type="text" placeholder="🔎 جستجو در سبد (نماد، نام...)"></div>`:''}
-  <div class="table-wrap"><table class="sortable-table" id="portfolioTable">
+  ${holdings.length? `<div class="row" style="gap:10px; margin-bottom:10px; flex-wrap:wrap">
+    <div class="field" style="max-width:280px; margin:0"><input id="portfolioSearchInput" type="text" placeholder="🔎 جستجو در سبد (نماد، نام...)"></div>
+    <button class="btn secondary" id="clearPortfolioFiltersBtn" style="align-self:center">پاک‌کردن فیلترها</button>
+  </div>`:''}
+  <div class="table-wrap"><table class="sortable-table" data-filterable="true" id="portfolioTable">
     <thead><tr><th>نماد</th><th>نام</th><th>صنعت</th><th>تاریخ آخرین صورت مالی</th><th>ارزش بازار (م.ت)</th><th>آخرین به‌روزرسانی ارزش بازار</th><th>تعداد</th><th>قیمت سربه‌سر</th><th>قیمت روز</th><th>ارزش سربه‌سر</th><th>ارزش روز</th><th>سود/زیان</th><th>درصد</th><th>P/E F</th><th>هدف (تا P/E=۷)</th><th>P/D F</th><th>P/S F</th><th>P/A</th><th>P/B</th><th>حاشیه سود FIS</th><th>نسبت مطالبات</th><th></th></tr></thead>
     <tbody>${rows || `<tr><td colspan="22" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
     ${holdings.length? `<tfoot><tr><td colspan="9">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="8"></td></tr></tfoot>`:''}
   </table></div>
   <div class="hint">روی سرستون هر ستون کلیک کن تا بر اساس همون ستون مرتب بشه (دوباره کلیک = برعکس).</div>
+  <div class="hint">زیر هر سرستون یه کادر فیلتر هست — هرچی توش بنویسی، فقط ردیف‌هایی که توی همون ستون شامل اون مقدار باشن نشون داده می‌شن. می‌تونی هم‌زمان روی چند ستون فیلتر بذاری (مثلاً هم توی «صنعت» بنویسی «فولاد» هم توی «P/E F» یه بازه‌ی عددی که توی متنش هست) و نتیجه ترکیبی از همه‌شون می‌شه.</div>
   <div class="hint">ستون «هدف (تا P/E=۷)» یعنی: با فرض ثابت موندن سود برآوردی شرکت، قیمت سهم چند درصد باید رشد کنه (یا چند درصد باید افت کنه، اگه عدد منفیه) تا P/E فوروارد سهم به ۷ برسه — از رابطه‌ی (۷ ÷ P/E امروز) − ۱ محاسبه می‌شه.</div>
   <div class="hint">«قیمت روز» از فیلد «قیمت روز هر سهم» در تب «ورود اطلاعات → ورودی سایر اطلاعات» میاد. برای هر سهمی که توی سبدته، اون فیلد رو به‌روز نگه دار تا ارزش و سود/زیان سبد درست محاسبه بشه.</div>
   ${anyMissingPrice? `<div class="hint">برای بعضی از سهم‌های سبد، «قیمت روز هر سهم» هنوز ثبت نشده — ارزش روز و سود/زیانشون فعلاً «—» نشون داده می‌شه.</div>`:''}
@@ -4092,6 +4102,9 @@ function attachHandlers(){
   wireTableSearch('portfolioSearchInput');
   wireTableSearch('industrySearchInput');
   wireTableSearch('manageSearchInput');
+  wireColumnFilters('portfolioTable');
+  const clearPortfolioFiltersBtn = document.getElementById('clearPortfolioFiltersBtn');
+  if(clearPortfolioFiltersBtn) clearPortfolioFiltersBtn.onclick = ()=> clearTableFilters('portfolioTable','portfolioSearchInput');
   drawCharts();
 }
 /* ========================= همگام‌سازی با گیت‌هاب ========================= */
@@ -4333,23 +4346,98 @@ function sortTableByColumn(tableId, colIdx){
   applyTableSort(tableId, colIdx, dir);
   enhanceSortableTables(); // برای به‌روزرسانی نشانه‌ی فلش روی سرستون
 }
-// جستجوی متنی ساده: هر ردیفی که شامل عبارت جستجو نباشه مخفی می‌شه (روی یک یا چند جدول با کلاس sortable-table)
+// جست‌وجو + فیلتر ستونی جدول‌ها: هر جدول یه وضعیت مشترک داره {search, cols:{colIdx:value}}
+// و applyRowVisibility هر دو رو با هم (AND) اعمال می‌کنه تا با جعبه‌ی جست‌وجوی کلی تداخل نداشته باشه
+const tableFilterState = {}; // {tableId: {search, cols:{colIdx:value}}}
+function applyRowVisibility(tableId){
+  const table = document.getElementById(tableId);
+  if(!table) return;
+  const tbody = table.querySelector('tbody');
+  if(!tbody) return;
+  const st = tableFilterState[tableId] || {};
+  const search = (st.search||'').trim().toLowerCase();
+  const cols = st.cols || {};
+  const activeColIdx = Object.keys(cols).filter(k=> (cols[k]||'').trim()!=='');
+  Array.from(tbody.querySelectorAll('tr')).forEach(row=>{
+    // ردیف‌های پیام «هنوز چیزی ثبت نشده» (یک سلول با colspan) رو فیلتر نکن
+    if(row.children.length===1 && row.children[0].hasAttribute('colspan')) return;
+    let visible = true;
+    if(search && !row.textContent.toLowerCase().includes(search)) visible = false;
+    if(visible){
+      for(const idxStr of activeColIdx){
+        const idx = Number(idxStr);
+        const filterVal = cols[idx].trim().toLowerCase();
+        const cell = row.children[idx];
+        const cellText = cell ? cell.textContent.trim().toLowerCase() : '';
+        if(!cellText.includes(filterVal)){ visible = false; break; }
+      }
+    }
+    row.style.display = visible ? '' : 'none';
+  });
+}
+// جست‌وجوی متنی کلی (روی کل متن ردیف) — می‌تونه هم‌زمان با فیلترهای ستونی زیر هر سرستون فعال باشه
 function wireTableSearch(inputId, tableIds){
   const input = document.getElementById(inputId);
   if(!input) return;
   const ids = tableIds || Array.from(document.querySelectorAll('table.sortable-table')).map(t=>t.id).filter(Boolean);
+  ids.forEach(tid=>{ tableFilterState[tid] = tableFilterState[tid] || {cols:{}}; });
+  input.value = (tableFilterState[ids[0]] && tableFilterState[ids[0]].search) || '';
   input.oninput = ()=>{
-    const q = input.value.trim().toLowerCase();
     ids.forEach(tid=>{
-      const table = document.getElementById(tid);
-      if(!table) return;
-      const tbody = table.querySelector('tbody');
-      if(!tbody) return;
-      Array.from(tbody.querySelectorAll('tr')).forEach(row=>{
-        row.style.display = (!q || row.textContent.toLowerCase().includes(q)) ? '' : 'none';
-      });
+      tableFilterState[tid] = tableFilterState[tid] || {cols:{}};
+      tableFilterState[tid].search = input.value;
+      applyRowVisibility(tid);
     });
   };
+}
+// فیلتر ستونی: زیر هر سرستون (به‌جز ستون‌های بدون عنوان مثل ستون اقدامات) یه کادر ورودی اضافه می‌کنه؛
+// نوشتن توی هرکدوم، ردیف‌هایی که همون ستون شامل اون مقدار نباشه رو مخفی می‌کنه (قابل ترکیب روی چند ستون هم‌زمان)
+function wireColumnFilters(tableId){
+  const table = document.getElementById(tableId);
+  if(!table || table.dataset.filterable!=='true') return;
+  const tbody = table.querySelector('tbody');
+  const dataRows = tbody ? Array.from(tbody.querySelectorAll('tr')).filter(r=> !(r.children.length===1 && r.children[0].hasAttribute('colspan'))) : [];
+  if(!dataRows.length) return; // جدول هنوز داده‌ای نداره؛ نیازی به ردیف فیلتر نیست
+  const thead = table.querySelector('thead');
+  if(!thead) return;
+  const headerRow = thead.querySelector('tr');
+  if(!headerRow) return;
+  const ths = Array.from(headerRow.querySelectorAll('th'));
+  tableFilterState[tableId] = tableFilterState[tableId] || {cols:{}};
+  let filterRow = thead.querySelector('tr.col-filter-row');
+  if(!filterRow){
+    filterRow = document.createElement('tr');
+    filterRow.className = 'col-filter-row';
+    ths.forEach((th, idx)=>{
+      const cell = document.createElement('th');
+      const label = (th.dataset.origText!=null ? th.dataset.origText : th.textContent).trim();
+      if(label){
+        cell.innerHTML = `<input type="text" class="col-filter-input" data-col-idx="${idx}" placeholder="${label}">`;
+      }
+      filterRow.appendChild(cell);
+    });
+    headerRow.after(filterRow);
+  }
+  filterRow.querySelectorAll('.col-filter-input').forEach(input=>{
+    const idx = Number(input.dataset.colIdx);
+    const st = tableFilterState[tableId];
+    input.value = (st.cols && st.cols[idx]) || '';
+    input.oninput = ()=>{
+      st.cols = st.cols || {};
+      st.cols[idx] = input.value;
+      applyRowVisibility(tableId);
+    };
+  });
+}
+function clearTableFilters(tableId, searchInputId){
+  tableFilterState[tableId] = {cols:{}, search:''};
+  const searchInput = searchInputId ? document.getElementById(searchInputId) : null;
+  if(searchInput) searchInput.value = '';
+  const table = document.getElementById(tableId);
+  if(table){
+    table.querySelectorAll('.col-filter-input').forEach(inp=> inp.value='');
+  }
+  applyRowVisibility(tableId);
 }
 // وقتی یکی از این سه فیلد (ارزش بازار / تعداد سهام / قیمت روز) تغییر کنه، با داشتن ارزش بازار،
 // هرکدوم از دوتای دیگه که خالی مونده باشه از روی اون یکی خودکار محاسبه و پر می‌شه.
