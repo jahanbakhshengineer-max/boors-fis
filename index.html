@@ -2529,8 +2529,8 @@ function renderGoldTab(){
 function renderPortfolioTab(){
   const holdings = state.portfolio || [];
   const symbols = Object.keys(state.stocks);
-  const stockOptions = symbols.map(s=>`<option value="${s}">${s} — ${state.stocks[s].name||''}</option>`).join('');
   const editing = editingHoldingId ? holdings.find(h=>h.id===editingHoldingId) : null;
+  const stockOptions = symbols.map(s=>`<option value="${s}" ${editing && editing.symbol===s?'selected':''}>${s} — ${state.stocks[s].name||''}</option>`).join('');
   let totalCost=0, totalValue=0, anyMissingPrice=false;
   const rows = holdings.map(h=>{
     const stock = state.stocks[h.symbol];
