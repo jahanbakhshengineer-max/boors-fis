@@ -224,6 +224,12 @@ table thead tr.col-filter-row th{position:sticky; top:34px; background:var(--pap
 .accordion-header .drag-handle{margin-left:auto}
 .clickable-row{cursor:pointer}
 .clickable-row:hover{background:rgba(0,0,0,.035)}
+/* سطر انتخاب‌شده توی جدول سبد سرمایه‌گذاری — پس‌زمینه پررنگ + قاب بالا/پایین تا گم نشه */
+tr.selected-row td, .table-wrap table tr.selected-row td:first-child{
+  background:var(--tan) !important; color:var(--navy-dark); font-weight:700;
+  border-top:2px solid var(--navy); border-bottom:2px solid var(--navy);
+}
+tr.selected-row:hover td, .table-wrap table tr.selected-row:hover td:first-child{background:#e3cd9a !important}
 </style>
 </head>
 <body>
@@ -2386,6 +2392,8 @@ function renderManageTab(){
 
 /* ========================= تب سبد سرمایه‌گذاری من ========================= */
 let editingHoldingId = null;
+// نماد سطری که توی جدول سبد سرمایه‌گذاری کلیک شده و باید هایلایت (پررنگ) بمونه — حتی بعد از رندر مجدد صفحه
+let selectedHoldingId = null;
 /* ========================= طلا و نقره — کاملاً جدا از بخش سهام ========================= */
 const OUNCE_TO_GRAM = 31.1034768;
 function getGoldMarket(){ state.goldMarket = state.goldMarket || {}; return state.goldMarket; }
@@ -2551,7 +2559,7 @@ function renderPortfolioTab(){
     totalCost += costValue;
     if(curValue!=null) totalValue += curValue;
     const mcUpdatedAt = stock.manual && stock.manual.marketCapUpdatedAt;
-    return `<tr class="clickable-row" data-symbol="${h.symbol}" title="دوبار کلیک برای رفتن به داشبورد این سهم">
+    return `<tr class="clickable-row${h.id===selectedHoldingId?' selected-row':''}" data-symbol="${h.symbol}" data-holdingrow="${h.id}" title="کلیک برای هایلایت‌کردن ردیف؛ دوبار کلیک برای رفتن به داشبورد این سهم">
       <td>${h.symbol}</td>
       <td>${stock.name||'—'}</td>
       <td>${stock.industry||'—'}</td>
@@ -2604,6 +2612,7 @@ function renderPortfolioTab(){
     <tbody>${rows || `<tr><td colspan="22" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
     ${holdings.length? `<tfoot><tr><td colspan="9">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="8"></td></tr></tfoot>`:''}
   </table></div>
+  <div class="hint">روی هر سطر یک‌بار کلیک کن تا همون سطر پررنگ/هایلایت بشه (برای اینکه گمش نکنی)؛ کلیک دوباره روی همون سطر هایلایتش رو برمی‌داره. دوبار کلیک روی سطر هم می‌بره به داشبورد همون سهم.</div>
   <div class="hint">روی سرستون هر ستون کلیک کن تا بر اساس همون ستون مرتب بشه (دوباره کلیک = برعکس).</div>
   <div class="hint">زیر هر سرستون یه کادر فیلتر هست — هرچی توش بنویسی، فقط ردیف‌هایی که توی همون ستون شامل اون مقدار باشن نشون داده می‌شن. می‌تونی هم‌زمان روی چند ستون فیلتر بذاری (مثلاً هم توی «صنعت» بنویسی «فولاد» هم توی «P/E F» یه بازه‌ی عددی که توی متنش هست) و نتیجه ترکیبی از همه‌شون می‌شه.</div>
   <div class="hint">ستون «هدف (تا P/E=۷)» یعنی: با فرض ثابت موندن سود برآوردی شرکت، قیمت سهم چند درصد باید رشد کنه (یا چند درصد باید افت کنه، اگه عدد منفیه) تا P/E فوروارد سهم به ۷ برسه — از رابطه‌ی (۷ ÷ P/E امروز) − ۱ محاسبه می‌شه.</div>
@@ -3780,6 +3789,21 @@ function attachHandlers(){
       activeTab = 'dashboard';
       closeSidebar();
       renderAll();
+    };
+  });
+  // تک‌کلیک روی سطر جدول سبد سرمایه‌گذاری → هایلایت (پررنگ) شدن همون سطر تا گم نشه؛ کلیک دوباره = برداشتن هایلایت.
+  // این کار بدون رندر مجدد کل صفحه انجام می‌شه تا سریع باشه و اسکرول/فوکوس فعلی به‌هم نخوره؛
+  // ولی چون selectedHoldingId ذخیره می‌شه، با هر رندر مجدد بعدی (مثلاً بعد از ویرایش یه فیلد) هایلایت دوباره اعمال می‌شه.
+  document.querySelectorAll('tr.clickable-row[data-holdingrow]').forEach(tr=>{
+    tr.onclick = (e)=>{
+      if(e.target.closest('input, select, button, .delete-row-btn')) return; // کلیک روی دکمه/ورودی، هایلایت عوض نشه
+      const id = tr.dataset.holdingrow;
+      const table = tr.closest('table');
+      selectedHoldingId = (selectedHoldingId===id) ? null : id;
+      if(table){
+        table.querySelectorAll('tr.selected-row').forEach(r=> r.classList.remove('selected-row'));
+        if(selectedHoldingId===id) tr.classList.add('selected-row');
+      }
     };
   });
 
