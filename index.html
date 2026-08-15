@@ -2558,8 +2558,8 @@ function renderPortfolioTab(){
       <td>${lp ? (lp.reportDate || faPeriodLabel(lp)) : '—'}</td>
       <td><input type="number" class="portfolio-marketcap-input" data-symbol="${h.symbol}" value="${marketCap!=null?marketCap:''}" placeholder="—" style="width:110px; text-align:center"></td>
       <td style="font-size:11px; color:var(--muted)">${formatUpdateTimestamp(mcUpdatedAt) || '—'}</td>
-      <td>${fmt(qty)}</td>
-      <td>${fmt(avgPrice)}</td>
+      <td><input type="number" class="portfolio-qty-input" data-holding-id="${h.id}" value="${qty||''}" style="width:90px; text-align:center"></td>
+      <td><input type="number" class="portfolio-avgprice-input" data-holding-id="${h.id}" value="${avgPrice||''}" style="width:100px; text-align:center"></td>
       <td>${currentPrice!=null? fmt(currentPrice):'—'}</td>
       <td>${fmt(costValue)}</td>
       <td>${curValue!=null? fmt(curValue):'—'}</td>
@@ -3617,6 +3617,27 @@ function attachHandlers(){
     saveState(); showToast('ارزش بازار و قیمت روز به‌روزرسانی شد'); renderAll();
   };
 
+  // ستون‌های «تعداد» و «قیمت سربه‌سر» قابل‌ویرایش توی جدول سبد سرمایه‌گذاری — دیگه لازم نیست برای این دو مقدار
+  // روی «ویرایش» کلیک کنی و فرم بالای صفحه رو باز کنی؛ مستقیم توی همون سطر تغییرشون بده
+  document.querySelectorAll('.portfolio-qty-input').forEach(input=>{
+    input.onchange = ()=>{
+      const h = (state.portfolio||[]).find(x=>x.id===input.dataset.holdingId);
+      if(!h) return;
+      if(input.value===''){ showToast('تعداد سهام نمی‌تونه خالی باشه'); input.value = h.quantity; return; }
+      h.quantity = Number(input.value);
+      saveState(); showToast('تعداد سهام به‌روزرسانی شد'); renderAll();
+    };
+  });
+  document.querySelectorAll('.portfolio-avgprice-input').forEach(input=>{
+    input.onchange = ()=>{
+      const h = (state.portfolio||[]).find(x=>x.id===input.dataset.holdingId);
+      if(!h) return;
+      if(input.value===''){ showToast('قیمت سربه‌سر نمی‌تونه خالی باشه'); input.value = h.avgBuyPrice; return; }
+      h.avgBuyPrice = Number(input.value);
+      saveState(); showToast('قیمت سربه‌سر به‌روزرسانی شد'); renderAll();
+    };
+  });
+
   // ستون «ارزش بازار» قابل‌ویرایش توی جدول سبد سرمایه‌گذاری — تغییرش همون فیلد مشترک stock.manual.marketCap رو
   // به‌روز می‌کنه، پس همه‌جای برنامه (نمای کلی، گیج‌ها، مقایسه صنعت، جعبه به‌روزرسانی سریع) هم‌زمان هماهنگ می‌مونن
   document.querySelectorAll('.portfolio-marketcap-input').forEach(input=>{
@@ -4323,7 +4344,7 @@ function applyTableSort(tableId, colIdx, dir){
   const tbody = table.querySelector('tbody');
   if(!tbody) return;
   const rows = Array.from(tbody.querySelectorAll('tr'));
-  const getCellText = (row)=>{ const cell = row.children[colIdx]; return cell ? cell.textContent.trim() : ''; };
+  const getCellText = (row)=>{ const cell = row.children[colIdx]; return getCellSearchText(cell).trim(); };
   const cleanNum = (t)=> parseFlexibleNumber(toEnDigits(t).replace(/[٪%,،]/g,''));
   const allNumeric = rows.length>0 && rows.every(r=>{ const t=getCellText(r); return t===''||t==='—'|| cleanNum(t)!=null; });
   rows.sort((a,b)=>{
@@ -4349,6 +4370,17 @@ function sortTableByColumn(tableId, colIdx){
 // جست‌وجو + فیلتر ستونی جدول‌ها: هر جدول یه وضعیت مشترک داره {search, cols:{colIdx:value}}
 // و applyRowVisibility هر دو رو با هم (AND) اعمال می‌کنه تا با جعبه‌ی جست‌وجوی کلی تداخل نداشته باشه
 const tableFilterState = {}; // {tableId: {search, cols:{colIdx:value}}}
+// متن قابل‌جست‌وجوی یه سلول: اگه سلول خودش input/select داره (مثل ستون‌های قابل‌ویرایش توی جدول)، مقدار همون
+// input رو برمی‌گردونه؛ وگرنه متن معمولی سلول. چون textContent روی سلولی که فقط یه <input> داخلشه خالیه.
+function getCellSearchText(cell){
+  if(!cell) return '';
+  const field = cell.querySelector('input,select');
+  if(field) return String(field.value ?? '');
+  return cell.textContent || '';
+}
+function getRowSearchText(row){
+  return Array.from(row.children).map(getCellSearchText).join(' ');
+}
 function applyRowVisibility(tableId){
   const table = document.getElementById(tableId);
   if(!table) return;
@@ -4362,13 +4394,13 @@ function applyRowVisibility(tableId){
     // ردیف‌های پیام «هنوز چیزی ثبت نشده» (یک سلول با colspan) رو فیلتر نکن
     if(row.children.length===1 && row.children[0].hasAttribute('colspan')) return;
     let visible = true;
-    if(search && !row.textContent.toLowerCase().includes(search)) visible = false;
+    if(search && !getRowSearchText(row).toLowerCase().includes(search)) visible = false;
     if(visible){
       for(const idxStr of activeColIdx){
         const idx = Number(idxStr);
         const filterVal = cols[idx].trim().toLowerCase();
         const cell = row.children[idx];
-        const cellText = cell ? cell.textContent.trim().toLowerCase() : '';
+        const cellText = getCellSearchText(cell).trim().toLowerCase();
         if(!cellText.includes(filterVal)){ visible = false; break; }
       }
     }
