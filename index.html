@@ -4411,10 +4411,22 @@ document.getElementById('sidebarBackdrop').addEventListener('click', closeSideba
 
 // روی گوشی، چرخش صفحه (پرتره↔افقی) می‌تونه عرض رو از مرز موبایل (۶۴۰px) رد کنه؛ چون تنظیمات فونت/لجند
 // نمودارها موقع ساختشون تعیین می‌شه، بعد از تغییر اندازه‌ی صفحه دوباره رندر می‌کنیم تا هماهنگ بمونن
+// نکته‌ی مهم: باز/بسته‌شدن کیبورد مجازی گوشی هم رویداد resize رو صدا می‌زنه (چون فقط ارتفاع صفحه عوض می‌شه)،
+// و اگه دقیقاً همون لحظه رندر مجدد کامل انجام بشه، فیلدی که کاربر داره توش تایپ می‌کنه از بین می‌ره و از فوکوس خارج می‌شه (کیبورد بسته می‌شه).
+// برای جلوگیری از این مشکل: ۱) وقتی یه input/textarea/select فوکوس داره، رندر مجدد رو انجام نمی‌دیم؛
+// ۲) فقط وقتی «عرض» صفحه واقعاً عوض شده باشه (نه صرفاً ارتفاع، که علامت کیبورده) رندر مجدد می‌کنیم.
 let resizeRerenderTimer = null;
+let lastResizeWidth = window.innerWidth;
 window.addEventListener('resize', ()=>{
   clearTimeout(resizeRerenderTimer);
-  resizeRerenderTimer = setTimeout(()=>{ renderAll(); }, 300);
+  resizeRerenderTimer = setTimeout(()=>{
+    const active = document.activeElement;
+    const isEditing = active && ['INPUT','TEXTAREA','SELECT'].includes(active.tagName);
+    const widthChanged = window.innerWidth !== lastResizeWidth;
+    lastResizeWidth = window.innerWidth;
+    if(isEditing || !widthChanged) return;
+    renderAll();
+  }, 300);
 });
 
 renderAll();
