@@ -1939,14 +1939,15 @@
         }
       ],
       "manual": {
-        "marketCap": 14662,
+        "marketCap": 14985,
         "sharesOutstanding": null,
         "currentPrice": 1454,
         "dividendIncome": 6,
-        "bankInterest": 251,
+        "bankInterest": 0,
         "otherOperatingIncome": null,
-        "otherNonOperatingIncome": 280,
-        "estimatedAnnualSalesOverride": null
+        "otherNonOperatingIncome": -10,
+        "estimatedAnnualSalesOverride": null,
+        "marketCapUpdatedAt": 1786776740288
       },
       "rawSheets": {
         "monthlyActivity": {
