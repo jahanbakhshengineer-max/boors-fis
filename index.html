@@ -552,7 +552,9 @@ function discreteQuarter(periods, target, field){
   if(target.months===3) return target[field];
   const prev = findPeriod(periods, target.fiscalYear, target.months-3);
   if(prev && prev[field]!=null) return target[field] - prev[field];
-  return null;
+  // دوره‌ی ماقبل (فصل قبلی همون سال مالی) هنوز ثبت نشده — به‌جای null (که نسبت‌های وابسته رو تا ثبت همه‌ی دوره‌ها خالی نگه می‌داشت)،
+  // مقدار تجمیعی خودِ همین دوره‌ی واردشده رو بدون تعدیل به‌عنوان بهترین برآورد موجود برمی‌گردونیم (هم‌راستا با رفتار ttmFlowSelfContained)
+  return target[field];
 }
 // TTM سود خالص = جمع سود خالص فصلیِ گسسته (محاسبه‌شده با تفریق از دوره تجمیعی قبل) برای ۴ دورهٔ اخیر به ترتیب زمانی
 function ttmNetIncomeSelfContained(periods, target){
