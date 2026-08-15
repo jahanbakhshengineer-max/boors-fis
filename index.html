@@ -1881,6 +1881,7 @@ function renderDataTab(){
       <thead><tr><th>سال مالی</th><th>دوره</th><th>سود خالص تجمیعی</th><th>سود خالص فصلی (محاسبه‌شده)</th><th>حاشیه سود فصلی</th><th>فروش دوره</th><th>بهای تمام‌شده دوره</th><th>TTM فروش</th><th>TTM بهای تمام‌شده</th><th></th></tr></thead>
       <tbody>${renderPLRows(stock)}</tbody>
     </table></div>
+    ${findInconsistentPeriods(stock).map(w=>`<div class="hint" style="background:#fdf0ec; border-color:#e8b8a8; color:#8a3f2f">⚠️ ${w}</div>`).join('')}
     ${renderPLPager(stock)}
     <div class="hint">«سود خالص در حال تداوم»، «سایر درآمدها» و «سایر درآمد غیرعملیاتی» حالا مثل فروش/بهای‌تمام‌شده <b>تجمیعی از ابتدای سال مالی</b> وارد می‌شن (دقیقاً مطابق صورت‌های مالی کدال)؛ عدد فصلی سه‌ماهه‌ی هرکدوم با تفریق از دوره‌ی تجمیعی قبلِ همون سال مالی، خودکار محاسبه می‌شه. فیلدهای «دوره مشابه سال قبل» و «آخرین سال مالی کامل» هم اگه در سابقه‌ی این سهم ثبت شده باشن، خودکار پیشنهاد داده می‌شن (قابل ویرایش دستی)؛ حتی اگه این فیلدها رو خالی بگذاری، محاسبه‌ی TTM باز هم خودش دنبال دوره‌ی مشابه در سابقه می‌گرده.</div>`;
 
@@ -2034,6 +2035,23 @@ function renderDividendRows(stock){
 function renderDividendPager(stock){
   const totalPages = Math.ceil((stock.dividendHistory||[]).length/DATA_TABLE_PAGE_SIZE);
   return renderTablePager('dividendRows', dividendRowsPage, totalPages);
+}
+// دوره‌های ناسازگار رو پیدا می‌کنه — مثلاً وقتی فروش تجمیعیِ یه دوره از دوره‌ی قبلی (با ماه کمتر) کمتره،
+// که چون فروش تجمیعیه غیرممکنه، مگر اینکه یکی از دو دوره اشتباه دسته‌بندی شده باشه (باقی‌مونده از قبل از رفع باگ سال مالی غیراستاندارد)
+function findInconsistentPeriods(stock){
+  const periods = sortPeriods(stock.periods||[]);
+  const warnings = [];
+  const byYear = {};
+  periods.forEach(p=>{ (byYear[p.fiscalYear] = byYear[p.fiscalYear]||[]).push(p); });
+  Object.entries(byYear).forEach(([fy, list])=>{
+    for(let i=1;i<list.length;i++){
+      const prev = list[i-1], cur = list[i];
+      if(prev.sales!=null && cur.sales!=null && cur.sales < prev.sales){
+        warnings.push(`سال مالی ${toFa(fy)}: فروش دوره‌ی «${toFa(cur.months)} ماهه» (${fmt(cur.sales)}) کمتر از دوره‌ی «${toFa(prev.months)} ماهه» (${fmt(prev.sales)}) است — چون فروش باید تجمیعی و صعودی باشه، احتمالاً یکی از این دو دوره قبلاً با دسته‌بندی اشتباه (قبل از تعمیر سال مالی سفارشی) ثبت شده. توصیه می‌شه ردیفش رو حذف و از برگه خام دوباره پیست کنی.`);
+      }
+    }
+  });
+  return warnings;
 }
 function renderPLRows(stock){
   const periods = sortPeriods(stock.periods||[]).slice().reverse(); // جدیدترین اول
