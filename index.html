@@ -3443,6 +3443,46 @@ function parseFlexibleNumber(v){
   return n;
 }
 // تشخیص جداکننده و شکستن متن پیست‌شده به جدول — تب (حالت معمول کپی از اکسل)، در نبود تب: چند فاصله‌ی پشت‌سرهم یا کاما (کپی از PDF/سایت)
+// وقتی از یه صفحه‌ی وب (مثل جدول کدال) کپی می‌کنیم، مرورگر معمولاً دو نسخه توی کلیپ‌بورد می‌ذاره: «متن ساده» (که کدال هر سلول رو
+// جدا جدا و بدون هیچ جداکننده‌ای پشت سر هم می‌فرسته، برای همینه که توی textarea همه‌چی عمودی می‌افته) و «HTML» (که ساختار واقعی
+// جدول یعنی <table>/<tr>/<td> رو نگه می‌داره). وقتی توی اکسل پیست می‌کنی، اکسل از همون نسخه‌ی HTML برای بازسازی جدول استفاده
+// می‌کنه — نه از متن ساده. اینجا هم دقیقاً همون کار رو انجام می‌دیم تا نیازی به رفت‌وبرگشت از اکسل نباشه.
+function htmlTableToTSV(html){
+  try{
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const table = doc.querySelector('table');
+    if(!table) return null;
+    const lines = Array.from(table.querySelectorAll('tr')).map(tr=>{
+      const rowCells = [];
+      Array.from(tr.querySelectorAll('td,th')).forEach(td=>{
+        const text = (td.innerText!=null ? td.innerText : (td.textContent||'')).replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').trim();
+        const span = parseInt(td.getAttribute('colspan')||'1',10) || 1; // سرستون‌های ادغام‌شده رو تکرار می‌کنیم تا ستون‌ها هم‌تراز بمونن
+        for(let i=0;i<span;i++) rowCells.push(text);
+      });
+      return rowCells.join('\t');
+    }).filter(l=> l.replace(/\t/g,'').trim()!=='');
+    return lines.length ? lines.join('\n') : null;
+  } catch(e){ return null; }
+}
+// روی فیلدهای پیستِ جدول خام (کدال)، رفتار پیش‌فرض paste رو با نسخه‌ی هوشمند جایگزین می‌کنیم:
+// اگه کلیپ‌بورد یه <table> واقعی داشته باشه (مثلاً از کدال یا هر سایت دیگه)، ساختار سطر/ستونش رو با تب بازسازی می‌کنیم؛
+// وگرنه (مثلاً پیست از خود اکسل که خودش tab-separated می‌فرسته) رفتار عادی مرورگر دست‌نخورده می‌مونه.
+function wireSmartTablePaste(textareaId){
+  const el = document.getElementById(textareaId);
+  if(!el) return;
+  el.onpaste = (e)=>{
+    const html = e.clipboardData && e.clipboardData.getData('text/html');
+    if(!html) return;
+    const tsv = htmlTableToTSV(html);
+    if(!tsv) return; // جدولی توی HTML پیدا نشد؛ بذار پیست معمولی (متن ساده) انجام بشه
+    e.preventDefault();
+    const start = el.selectionStart, end = el.selectionEnd;
+    el.value = el.value.slice(0,start) + tsv + el.value.slice(end);
+    const pos = start + tsv.length;
+    el.selectionStart = el.selectionEnd = pos;
+    showToast('جدول با ساختار سطر/ستون درست پیست شد ✅');
+  };
+}
 function detectDelimiter(text){
   if(text.includes('\t')) return '\t';
   const lines = text.split(/\r?\n/).filter(l=>l.trim());
@@ -3847,6 +3887,8 @@ function attachHandlers(){
   const excelFileInput = document.getElementById('excelFileInput');
   if(excelFileInput) excelFileInput.onchange = handleExcelFile;
   document.querySelectorAll('[data-rawprocess]').forEach(btn=>btn.onclick=()=>openRawMappingModal(btn.dataset.rawprocess));
+  // پیست هوشمند جدول از صفحات وب (مثل کدال) روی هر ۴ فیلد پیستِ داده‌ی خام
+  ['rawPlInput','rawBsInput','monthlyActivityPasteInput','dividendPasteInput'].forEach(wireSmartTablePaste);
   const addMonthBtn = document.getElementById('addMonthlySaleBtn');
   if(addMonthBtn) addMonthBtn.onclick = ()=>{
     const y = document.getElementById('salesYearInput').value;
