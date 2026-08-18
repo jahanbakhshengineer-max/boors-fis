@@ -3225,11 +3225,25 @@ function openMonthlyActivityModal(){
   const groupOpts = groups.map((g,idx)=>`<option value="${idx}" ${idx===(guessGroupIdx>-1?guessGroupIdx:0)?'selected':''}>${g.label}</option>`).join('');
   // شماره‌ی سطر رو جلوی هر گزینه نشون می‌دیم تا اگه عنوان تکراری بود (چند «جمع فروش داخلی»)، بتونی دقیقاً همونی که می‌خوای رو پیدا کنی
   const rowOpts = (guessIdx)=> `<option value="">— انتخاب نشده —</option>` + rowEntries.map(e=>`<option value="${e.idx}" ${e.idx===guessIdx?'selected':''}>سطر ${toFa(e.idx+1)}: ${e.label}</option>`).join('');
+  // ستون‌های زیرمجموعه‌ی یه سرفصل (مثلاً زیر «یک ماهه منتهی به ...»: مقدار تولید | مقدار فروش | مبلغ فروش | نرخ فروش...)
+  // رو برای انتخاب دستی می‌سازیم؛ چون تشخیص خودکار («مبلغ فروش» توی متن ستون) همیشه با عبارت دقیق کدال یکی نیست
+  const buildColOptions = (groupIdx)=>{
+    const group = groups[groupIdx];
+    if(!group) return '';
+    const autoCol = findAmountColInGroup(subHeaderRow, group);
+    const opts = [];
+    for(let c=group.startCol; c<=group.endCol; c++){
+      const headerText = (subHeaderRow[c]!=null && String(subHeaderRow[c]).trim()!=='') ? subHeaderRow[c] : `(بدون عنوان)`;
+      opts.push(`<option value="${c}" ${c===autoCol?'selected':''}>ستون ${toFa(c+1)}: ${headerText}</option>`);
+    }
+    return opts.join('');
+  };
 
   openModal(`
     <h3 style="margin-bottom:4px">تطبیق گزارش فعالیت ماهانه خام کدال</h3>
     <div style="font-size:12px; color:var(--muted); margin-bottom:10px">${toFa(groups.length)} سرفصل شناسایی شد. سرفصل «یک ماهه» برای ثبت یک ماه گزینه‌ی درستیه؛ سرفصل‌های تجمیعی («از ابتدای سال مالی...») مناسب فروش ماهانه نیستن.</div>
     <div class="field" style="margin-bottom:9px"><label>سرفصل (دوره مورد نظر)</label><select id="matGroupSelect">${groupOpts}</select></div>
+    <div class="field" style="margin-bottom:9px"><label>ستون «مبلغ فروش» زیر همین سرفصل <span style="color:var(--teal)">(اگه تشخیص خودکار غلط بود، دستی عوضش کن)</span></label><select id="matAmountCol">${buildColOptions(guessGroupIdx>-1?guessGroupIdx:0)}</select></div>
     <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش داخلی» <span style="color:var(--teal)">(اگه چند بار تکرار شده، شماره سطرِ جمع کل رو انتخاب کن)</span></label><select id="matDomesticRow">${rowOpts(guessDomesticIdx)}</select></div>
     <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش صادراتی»</label><select id="matExportRow">${rowOpts(guessExportIdx)}</select></div>
     <div class="row">
@@ -3246,49 +3260,54 @@ function openMonthlyActivityModal(){
     </div>
   `);
   const updatePreview = ()=>{
-    const groupIdx = parseInt(document.getElementById('matGroupSelect').value);
-    const group = groups[groupIdx];
     const domesticIdx = document.getElementById('matDomesticRow').value;
     const exportIdx = document.getElementById('matExportRow').value;
-    const amountCol = findAmountColInGroup(subHeaderRow, group);
+    const amountColVal = document.getElementById('matAmountCol').value;
+    const amountCol = amountColVal!=='' ? parseInt(amountColVal) : null;
     const box = document.getElementById('matPreview');
-    if(amountCol==null){ box.innerHTML = '⚠️ ستون «مبلغ فروش» توی این سرفصل پیدا نشد.'; return; }
+    if(amountCol==null){ box.innerHTML = '⚠️ اول ستون «مبلغ فروش» رو انتخاب کن.'; return; }
     const domesticVal = domesticIdx!=='' ? parseFloatSafe(grid[parseInt(domesticIdx)]?.[amountCol]) : null;
     const exportVal = exportIdx!=='' ? parseFloatSafe(grid[parseInt(exportIdx)]?.[amountCol]) : null;
     const multiplier = parseFloatSafe(document.getElementById('matMultiplier').value) || 1;
     const total = (domesticVal||0) + (exportVal||0);
-    box.innerHTML = `ستون شناسایی‌شده برای «مبلغ فروش»: <b>${subHeaderRow[amountCol]??''}</b><br>
+    box.innerHTML = `ستون انتخاب‌شده برای «مبلغ فروش»: <b>${subHeaderRow[amountCol]??`ستون ${toFa(amountCol+1)}`}</b><br>
       فروش داخلی: <b>${domesticVal!=null?fmt(domesticVal*multiplier):'—'}</b> میلیارد تومان (خام: ${domesticVal!=null?fmt(domesticVal):'—'})<br>
       فروش صادراتی: <b>${exportVal!=null?fmt(exportVal*multiplier):'—'}</b> میلیارد تومان (خام: ${exportVal!=null?fmt(exportVal):'—'})<br>
       <b>جمع کل: ${fmt(total*multiplier)} میلیارد تومان</b> — این عدد رو با گزارش کدال مقایسه کن، اگه درست بود «وارد کردن این ماه» رو بزن.`;
   };
-  ['matGroupSelect','matDomesticRow','matExportRow','matMultiplier'].forEach(id=>{
+  // با تغییر سرفصل، لیست ستون‌ها هم باید دوباره ساخته بشه (چون هر سرفصل ستون‌های زیرمجموعه‌ی خودش رو داره)
+  document.getElementById('matGroupSelect').onchange = ()=>{
+    document.getElementById('matAmountCol').innerHTML = buildColOptions(parseInt(document.getElementById('matGroupSelect').value));
+    updatePreview();
+  };
+  ['matAmountCol','matDomesticRow','matExportRow','matMultiplier'].forEach(id=>{
     document.getElementById(id).onchange = updatePreview;
   });
   updatePreview();
   document.getElementById('cancelModalBtn').onclick = closeModal;
-  document.getElementById('confirmMonthlyActivityBtn').onclick = ()=>runMonthlyActivityImport(grid, groups, subHeaderRow);
+  document.getElementById('confirmMonthlyActivityBtn').onclick = ()=>runMonthlyActivityImport(grid, groups);
 }
-function runMonthlyActivityImport(grid, groups, subHeaderRow){
+function runMonthlyActivityImport(grid, groups){
   const stock = state.stocks[activeSymbol];
   if(!stock) return showToast('اول یک سهم انتخاب کن');
   const groupIdx = parseInt(document.getElementById('matGroupSelect').value);
   const group = groups[groupIdx];
   const domesticIdxVal = document.getElementById('matDomesticRow').value;
   const exportIdxVal = document.getElementById('matExportRow').value;
+  const amountColVal = document.getElementById('matAmountCol').value;
   const fallbackYear = parseIntSafe(document.getElementById('matFallbackYear').value);
   const fallbackMonth = parseIntSafe(document.getElementById('matFallbackMonth').value);
   const multiplier = parseFloatSafe(document.getElementById('matMultiplier').value) || 1;
 
-  const amountCol = findAmountColInGroup(subHeaderRow, group);
-  if(amountCol==null) return showToast('ستون «مبلغ فروش» توی این سرفصل پیدا نشد');
+  if(amountColVal==='') return showToast('ستون «مبلغ فروش» رو انتخاب کن');
+  const amountCol = parseInt(amountColVal);
   if(!domesticIdxVal && !exportIdxVal) return showToast('حداقل یکی از ردیف‌های داخلی/صادراتی رو انتخاب کن');
 
   const domesticRow = domesticIdxVal ? grid[parseInt(domesticIdxVal)] : null;
   const exportRow = exportIdxVal ? grid[parseInt(exportIdxVal)] : null;
   const domesticVal = domesticRow ? parseFloatSafe(domesticRow[amountCol]) : null;
   const exportVal = exportRow ? parseFloatSafe(exportRow[amountCol]) : null;
-  if(domesticVal==null && exportVal==null) return showToast('مقداری در ردیف‌های انتخابی، زیر این سرفصل پیدا نشد');
+  if(domesticVal==null && exportVal==null) return showToast('مقداری در ردیف‌های انتخابی، زیر این ستون پیدا نشد');
   const total = (domesticVal||0) + (exportVal||0);
 
   const parsed = parseMonthFromGroupLabel(group.label);
