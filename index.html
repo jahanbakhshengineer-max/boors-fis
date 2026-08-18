@@ -3493,20 +3493,51 @@ function parseFlexibleNumber(v){
 // جدا جدا و بدون هیچ جداکننده‌ای پشت سر هم می‌فرسته، برای همینه که توی textarea همه‌چی عمودی می‌افته) و «HTML» (که ساختار واقعی
 // جدول یعنی <table>/<tr>/<td> رو نگه می‌داره). وقتی توی اکسل پیست می‌کنی، اکسل از همون نسخه‌ی HTML برای بازسازی جدول استفاده
 // می‌کنه — نه از متن ساده. اینجا هم دقیقاً همون کار رو انجام می‌دیم تا نیازی به رفت‌وبرگشت از اکسل نباشه.
+// تبدیل کامل یه <table> به grid دوبعدی با پشتیبانی از colspan (ادغام افقی) و rowspan (ادغام عمودی).
+// بدون rowspan، سرستونی که روی دو ردیف کشیده شده (مثلاً «ردیف»/«شرح») باعث می‌شد ردیف زیرستون یک یا چند خونه
+// نسبت به سرستون اصلی و ردیف‌های داده جابه‌جا (shift) بشه — و همین دقیقاً چیزی بود که باعث می‌شد انتخاب یک سرفصل،
+// عدد سرفصل کناری رو بخونه. الگوریتم زیر همون کاری رو می‌کنه که اکسل موقع پیست از کلیپ‌بورد HTML انجام می‌ده.
+function htmlTableToGrid(table){
+  const rows = Array.from(table.querySelectorAll('tr'));
+  const grid = [];
+  const pending = {}; // colIdx -> {text, rowsLeft} برای سلول‌هایی که rowspan دارن و باید توی ردیف‌های بعدی هم تکرار بشن
+  rows.forEach(tr=>{
+    const cellsEls = Array.from(tr.children).filter(el=>/^(TD|TH)$/i.test(el.tagName));
+    const rowArr = [];
+    let col = 0, ci = 0;
+    while(ci < cellsEls.length || (pending[col] && pending[col].rowsLeft > 0)){
+      if(pending[col] && pending[col].rowsLeft > 0){
+        rowArr[col] = pending[col].text;
+        pending[col].rowsLeft--;
+        if(pending[col].rowsLeft<=0) delete pending[col];
+        col++;
+        continue;
+      }
+      if(ci < cellsEls.length){
+        const td = cellsEls[ci++];
+        const text = (td.innerText!=null ? td.innerText : (td.textContent||'')).replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').trim();
+        const colspan = parseInt(td.getAttribute('colspan')||'1',10) || 1;
+        const rowspan = parseInt(td.getAttribute('rowspan')||'1',10) || 1;
+        for(let s=0;s<colspan;s++){
+          rowArr[col] = text;
+          if(rowspan>1) pending[col] = {text, rowsLeft: rowspan-1};
+          col++;
+        }
+      } else break;
+    }
+    grid.push(rowArr);
+  });
+  // مطمئن می‌شیم همه‌ی سطرها به یه تعداد ستون برسن (سلول‌های خالی انتهایی رو با رشته‌ی خالی پر می‌کنیم)
+  const maxCols = Math.max(0, ...grid.map(r=>r.length));
+  return grid.map(r=>{ const out=r.slice(); for(let c=0;c<maxCols;c++) if(out[c]===undefined) out[c]=''; return out; });
+}
 function htmlTableToTSV(html){
   try{
     const doc = new DOMParser().parseFromString(html, 'text/html');
     const table = doc.querySelector('table');
     if(!table) return null;
-    const lines = Array.from(table.querySelectorAll('tr')).map(tr=>{
-      const rowCells = [];
-      Array.from(tr.querySelectorAll('td,th')).forEach(td=>{
-        const text = (td.innerText!=null ? td.innerText : (td.textContent||'')).replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').trim();
-        const span = parseInt(td.getAttribute('colspan')||'1',10) || 1; // سرستون‌های ادغام‌شده رو تکرار می‌کنیم تا ستون‌ها هم‌تراز بمونن
-        for(let i=0;i<span;i++) rowCells.push(text);
-      });
-      return rowCells.join('\t');
-    }).filter(l=> l.replace(/\t/g,'').trim()!=='');
+    const grid = htmlTableToGrid(table);
+    const lines = grid.map(r=>r.join('\t')).filter(l=> l.replace(/\t/g,'').trim()!=='');
     return lines.length ? lines.join('\n') : null;
   } catch(e){ return null; }
 }
