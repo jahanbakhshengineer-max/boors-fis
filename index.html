@@ -3213,32 +3213,59 @@ function openMonthlyActivityModal(){
   const groups = parseGroupedHeaderRow(grid[0]);
   if(!groups.length) return showToast('سرستونی پیدا نشد — مطمئن شو کل جدول با سرستون‌های بالا رو کپی کردی');
   const subHeaderRow = grid[1];
-  const labels = [...new Set(grid.map(extractRowLabel).filter(Boolean))];
-  const guessDomestic = labels.find(l=>l.includes('جمع فروش داخلی')) || labels.find(l=>l.includes('داخلی'));
-  const guessExport = labels.find(l=>l.includes('جمع فروش صادراتی')) || labels.find(l=>l.includes('صادراتی'));
+  // به‌جای برچسب متنی، شماره‌ی دقیق سطر رو نگه می‌داریم — چون عنوان «جمع فروش داخلی/صادراتی» توی گزارش‌های چندمحصولی
+  // معمولاً چندبار تکرار می‌شه (یه‌بار زیرمجموعه‌ی هر محصول + یه‌بار جمع کل شرکت در پایین جدول)؛ انتخاب فقط با متن
+  // باعث می‌شد همیشه اولین (و اغلب اشتباه، یعنی یه جمع جزئی نه جمع کل) پیدا بشه
+  const rowEntries = grid.map((r,idx)=>({idx, label: extractRowLabel(r)})).filter(e=>e.label);
+  const lastMatchIdx = (matchFn)=>{ let found=null; rowEntries.forEach(e=>{ if(matchFn(e.label)) found=e.idx; }); return found; }; // آخرین match = معمولاً جمع کل که پایین جدوله
+  const guessDomesticIdx = lastMatchIdx(l=>l.includes('جمع فروش داخلی')) ?? lastMatchIdx(l=>l.includes('داخلی'));
+  const guessExportIdx = lastMatchIdx(l=>l.includes('جمع فروش صادراتی')) ?? lastMatchIdx(l=>l.includes('صادراتی'));
   const guessGroupIdx = groups.findIndex(g=>g.label.includes('یک ماهه'));
 
   const groupOpts = groups.map((g,idx)=>`<option value="${idx}" ${idx===(guessGroupIdx>-1?guessGroupIdx:0)?'selected':''}>${g.label}</option>`).join('');
-  const rowOpts = (guess)=> `<option value="">— انتخاب نشده —</option>` + labels.map(l=>`<option value="${l}" ${l===guess?'selected':''}>${l}</option>`).join('');
+  // شماره‌ی سطر رو جلوی هر گزینه نشون می‌دیم تا اگه عنوان تکراری بود (چند «جمع فروش داخلی»)، بتونی دقیقاً همونی که می‌خوای رو پیدا کنی
+  const rowOpts = (guessIdx)=> `<option value="">— انتخاب نشده —</option>` + rowEntries.map(e=>`<option value="${e.idx}" ${e.idx===guessIdx?'selected':''}>سطر ${toFa(e.idx+1)}: ${e.label}</option>`).join('');
 
   openModal(`
     <h3 style="margin-bottom:4px">تطبیق گزارش فعالیت ماهانه خام کدال</h3>
     <div style="font-size:12px; color:var(--muted); margin-bottom:10px">${toFa(groups.length)} سرفصل شناسایی شد. سرفصل «یک ماهه» برای ثبت یک ماه گزینه‌ی درستیه؛ سرفصل‌های تجمیعی («از ابتدای سال مالی...») مناسب فروش ماهانه نیستن.</div>
     <div class="field" style="margin-bottom:9px"><label>سرفصل (دوره مورد نظر)</label><select id="matGroupSelect">${groupOpts}</select></div>
-    <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش داخلی»</label><select id="matDomesticRow">${rowOpts(guessDomestic)}</select></div>
-    <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش صادراتی»</label><select id="matExportRow">${rowOpts(guessExport)}</select></div>
+    <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش داخلی» <span style="color:var(--teal)">(اگه چند بار تکرار شده، شماره سطرِ جمع کل رو انتخاب کن)</span></label><select id="matDomesticRow">${rowOpts(guessDomesticIdx)}</select></div>
+    <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش صادراتی»</label><select id="matExportRow">${rowOpts(guessExportIdx)}</select></div>
     <div class="row">
       <div class="field" style="flex:1"><label>سال مالی (اگه از سرفصل قابل تشخیص نبود)</label><input id="matFallbackYear" type="number" placeholder="مثلاً 1404"></div>
       <div class="field" style="flex:1"><label>ماه (اگه از سرفصل قابل تشخیص نبود)</label><input id="matFallbackMonth" type="number" min="1" max="12"></div>
     </div>
     <div class="field" style="margin-bottom:9px"><label>ضریب تبدیل واحد (پیش‌فرض میلیون‌ریال→میلیاردتومان = 0.0001)</label><input id="matMultiplier" type="number" value="0.0001" step="0.0001"></div>
-    <div style="font-size:11.5px; color:var(--muted); margin-bottom:6px">پیش‌نمایش چند ردیف اول:</div>
-    <div class="table-wrap" style="max-height:120px; overflow:auto"><table style="font-size:11px"><tbody>${grid.slice(0,4).map(r=>`<tr>${r.slice(0,8).map(c=>`<td>${c??''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <div style="font-size:11.5px; color:var(--muted); margin-bottom:6px">پیش‌نمایش چند ردیف اول (شماره‌ی سطر توی ستون اول):</div>
+    <div class="table-wrap" style="max-height:120px; overflow:auto"><table style="font-size:11px"><tbody>${grid.slice(0,4).map((r,idx)=>`<tr><td style="color:var(--muted)">${toFa(idx+1)}</td>${r.slice(0,8).map(c=>`<td>${c??''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <div id="matPreview" style="margin-top:10px; padding:10px; border-radius:8px; background:#f6f2e8; border:1px solid var(--line); font-size:12.5px"></div>
     <div class="row" style="justify-content:flex-end; margin-top:14px">
       <button class="btn secondary" id="cancelModalBtn">انصراف</button>
       <button class="btn tan" id="confirmMonthlyActivityBtn">وارد کردن این ماه</button>
     </div>
   `);
+  const updatePreview = ()=>{
+    const groupIdx = parseInt(document.getElementById('matGroupSelect').value);
+    const group = groups[groupIdx];
+    const domesticIdx = document.getElementById('matDomesticRow').value;
+    const exportIdx = document.getElementById('matExportRow').value;
+    const amountCol = findAmountColInGroup(subHeaderRow, group);
+    const box = document.getElementById('matPreview');
+    if(amountCol==null){ box.innerHTML = '⚠️ ستون «مبلغ فروش» توی این سرفصل پیدا نشد.'; return; }
+    const domesticVal = domesticIdx!=='' ? parseFloatSafe(grid[parseInt(domesticIdx)]?.[amountCol]) : null;
+    const exportVal = exportIdx!=='' ? parseFloatSafe(grid[parseInt(exportIdx)]?.[amountCol]) : null;
+    const multiplier = parseFloatSafe(document.getElementById('matMultiplier').value) || 1;
+    const total = (domesticVal||0) + (exportVal||0);
+    box.innerHTML = `ستون شناسایی‌شده برای «مبلغ فروش»: <b>${subHeaderRow[amountCol]??''}</b><br>
+      فروش داخلی: <b>${domesticVal!=null?fmt(domesticVal*multiplier):'—'}</b> میلیارد تومان (خام: ${domesticVal!=null?fmt(domesticVal):'—'})<br>
+      فروش صادراتی: <b>${exportVal!=null?fmt(exportVal*multiplier):'—'}</b> میلیارد تومان (خام: ${exportVal!=null?fmt(exportVal):'—'})<br>
+      <b>جمع کل: ${fmt(total*multiplier)} میلیارد تومان</b> — این عدد رو با گزارش کدال مقایسه کن، اگه درست بود «وارد کردن این ماه» رو بزن.`;
+  };
+  ['matGroupSelect','matDomesticRow','matExportRow','matMultiplier'].forEach(id=>{
+    document.getElementById(id).onchange = updatePreview;
+  });
+  updatePreview();
   document.getElementById('cancelModalBtn').onclick = closeModal;
   document.getElementById('confirmMonthlyActivityBtn').onclick = ()=>runMonthlyActivityImport(grid, groups, subHeaderRow);
 }
@@ -3247,18 +3274,18 @@ function runMonthlyActivityImport(grid, groups, subHeaderRow){
   if(!stock) return showToast('اول یک سهم انتخاب کن');
   const groupIdx = parseInt(document.getElementById('matGroupSelect').value);
   const group = groups[groupIdx];
-  const domesticLabel = document.getElementById('matDomesticRow').value;
-  const exportLabel = document.getElementById('matExportRow').value;
+  const domesticIdxVal = document.getElementById('matDomesticRow').value;
+  const exportIdxVal = document.getElementById('matExportRow').value;
   const fallbackYear = parseIntSafe(document.getElementById('matFallbackYear').value);
   const fallbackMonth = parseIntSafe(document.getElementById('matFallbackMonth').value);
   const multiplier = parseFloatSafe(document.getElementById('matMultiplier').value) || 1;
 
   const amountCol = findAmountColInGroup(subHeaderRow, group);
   if(amountCol==null) return showToast('ستون «مبلغ فروش» توی این سرفصل پیدا نشد');
-  if(!domesticLabel && !exportLabel) return showToast('حداقل یکی از ردیف‌های داخلی/صادراتی رو انتخاب کن');
+  if(!domesticIdxVal && !exportIdxVal) return showToast('حداقل یکی از ردیف‌های داخلی/صادراتی رو انتخاب کن');
 
-  const domesticRow = domesticLabel ? grid.find(r=>extractRowLabel(r)===domesticLabel) : null;
-  const exportRow = exportLabel ? grid.find(r=>extractRowLabel(r)===exportLabel) : null;
+  const domesticRow = domesticIdxVal ? grid[parseInt(domesticIdxVal)] : null;
+  const exportRow = exportIdxVal ? grid[parseInt(exportIdxVal)] : null;
   const domesticVal = domesticRow ? parseFloatSafe(domesticRow[amountCol]) : null;
   const exportVal = exportRow ? parseFloatSafe(exportRow[amountCol]) : null;
   if(domesticVal==null && exportVal==null) return showToast('مقداری در ردیف‌های انتخابی، زیر این سرفصل پیدا نشد');
