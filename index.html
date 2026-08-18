@@ -3190,12 +3190,28 @@ function parseGroupedHeaderRow(row){
   });
   return groups;
 }
-function findAmountColInGroup(subHeaderRow, group){
+function findAmountColInGroup(group, subHeaderLabel){
   for(let c=group.startCol; c<=group.endCol; c++){
-    const h = subHeaderRow[c];
-    if(h && String(h).includes('مبلغ فروش')) return c;
+    const h = subHeaderLabel(c);
+    // به‌جای عبارت دقیق «مبلغ فروش»، وجود همزمان دو کلمه‌ی «مبلغ» و «فروش» رو چک می‌کنیم (حتی اگه بین دو ردیف سرستون جدا افتاده باشن)
+    // چون «مبلغ» به‌تنهایی، ستون مبلغ رو از «مقدار فروش» (تعداد/وزن) و «نرخ فروش» به‌وضوح متمایز می‌کنه
+    if(h && h.includes('مبلغ') && h.includes('فروش')) return c;
+  }
+  // اگه با هر دو کلمه پیدا نشد، فقط دنبال «مبلغ» بگرد (بعضی جدول‌ها ستون رو فقط «مبلغ» صدا می‌زنن، بدون تکرار «فروش»)
+  for(let c=group.startCol; c<=group.endCol; c++){
+    const h = subHeaderLabel(c);
+    if(h && h.includes('مبلغ')) return c;
   }
   return null;
+}
+// تعداد ردیف‌های سرستون (قبل از اولین ردیف داده‌ی واقعی) رو با شمارش سلول‌های عددی هر ردیف تشخیص می‌ده؛
+// ردیف‌های سرستون تقریباً هیچ عدد خامی ندارن (فقط عنوان/تاریخ)، در حالی که ردیف‌های داده حداقل ۲ تا سلول عددی دارن
+function detectHeaderRowCount(grid){
+  for(let r=0; r<grid.length; r++){
+    const numericCount = grid[r].filter(c=>c!=null && c!=='' && isNumericCell(c)).length;
+    if(numericCount>=2) return r; // اولین ردیف داده‌ی واقعی؛ همه‌ی ردیف‌های قبلش سرستونن
+  }
+  return Math.min(2, grid.length); // fallback: حداقل دو ردیف سرستون فرض کن
 }
 function parseMonthFromGroupLabel(label){
   const m = RAW_DATE_RE.exec(toEnDigits(label));
@@ -3206,17 +3222,28 @@ function openMonthlyActivityModal(){
   const raw = document.getElementById('monthlyActivityPasteInput').value.trim();
   if(!raw) return showToast('اول متن رو پیست کن');
   const grid = parseRawGrid(raw);
-  if(grid.length < 3) return showToast('ساختار جدول ناقصه — باید حداقل ردیف سرستون، زیرستون و چند ردیف داده داشته باشه');
+  if(grid.length < 4) return showToast('ساختار جدول ناقصه — باید حداقل ردیف‌های سرستون و چند ردیف داده داشته باشه');
   const stock = state.stocks[activeSymbol];
   if(stock){ stock.rawSheets = stock.rawSheets || {}; stock.rawSheets.monthlyActivity = {raw}; saveState(); }
 
   const groups = parseGroupedHeaderRow(grid[0]);
   if(!groups.length) return showToast('سرستونی پیدا نشد — مطمئن شو کل جدول با سرستون‌های بالا رو کپی کردی');
-  const subHeaderRow = grid[1];
+  // بعضی جدول‌های کدال سرستون رو توی بیش از یک ردیف می‌شکنن (مثلاً ردیف۱: «فروش»/«تولید»، ردیف۲: «مقدار»/«مبلغ»/«نرخ»)؛
+  // قبلاً فقط ردیف دوم (grid[1]) به‌عنوان زیرستون در نظر گرفته می‌شد که باعث می‌شد اگه «مبلغ» توی ردیف سوم بود، اصلاً پیدا نشه
+  // یا به‌جاش یه ستون کناری (مثل «مقدار») به‌اشتباه انتخاب بشه. الان تمام ردیف‌های سرستون (قبل از اولین ردیف داده‌ی واقعی) رو با هم ترکیب می‌کنیم.
+  const headerRowCount = detectHeaderRowCount(grid);
+  const subHeaderLabel = (col)=>{
+    const parts = [];
+    for(let r=1; r<headerRowCount; r++){
+      const t = (grid[r][col]!=null ? String(grid[r][col]) : '').trim();
+      if(t && parts[parts.length-1]!==t) parts.push(t);
+    }
+    return parts.join(' / ');
+  };
   // به‌جای برچسب متنی، شماره‌ی دقیق سطر رو نگه می‌داریم — چون عنوان «جمع فروش داخلی/صادراتی» توی گزارش‌های چندمحصولی
   // معمولاً چندبار تکرار می‌شه (یه‌بار زیرمجموعه‌ی هر محصول + یه‌بار جمع کل شرکت در پایین جدول)؛ انتخاب فقط با متن
-  // باعث می‌شد همیشه اولین (و اغلب اشتباه، یعنی یه جمع جزئی نه جمع کل) پیدا بشه
-  const rowEntries = grid.map((r,idx)=>({idx, label: extractRowLabel(r)})).filter(e=>e.label);
+  // باعث می‌شد همیشه اولین (و اغلب اشتباه، یعنی یه جمع جزئی نه جمع کل) پیدا بشه. ردیف‌های سرستون از این لیست کنار گذاشته می‌شن.
+  const rowEntries = grid.map((r,idx)=>({idx, label: extractRowLabel(r)})).filter(e=>e.label && e.idx>=headerRowCount);
   const lastMatchIdx = (matchFn)=>{ let found=null; rowEntries.forEach(e=>{ if(matchFn(e.label)) found=e.idx; }); return found; }; // آخرین match = معمولاً جمع کل که پایین جدوله
   const guessDomesticIdx = lastMatchIdx(l=>l.includes('جمع فروش داخلی')) ?? lastMatchIdx(l=>l.includes('داخلی'));
   const guessExportIdx = lastMatchIdx(l=>l.includes('جمع فروش صادراتی')) ?? lastMatchIdx(l=>l.includes('صادراتی'));
@@ -3230,10 +3257,10 @@ function openMonthlyActivityModal(){
   const buildColOptions = (groupIdx)=>{
     const group = groups[groupIdx];
     if(!group) return '';
-    const autoCol = findAmountColInGroup(subHeaderRow, group);
+    const autoCol = findAmountColInGroup(group, subHeaderLabel);
     const opts = [];
     for(let c=group.startCol; c<=group.endCol; c++){
-      const headerText = (subHeaderRow[c]!=null && String(subHeaderRow[c]).trim()!=='') ? subHeaderRow[c] : `(بدون عنوان)`;
+      const headerText = subHeaderLabel(c) || `(بدون عنوان)`;
       opts.push(`<option value="${c}" ${c===autoCol?'selected':''}>ستون ${toFa(c+1)}: ${headerText}</option>`);
     }
     return opts.join('');
@@ -3251,8 +3278,8 @@ function openMonthlyActivityModal(){
       <div class="field" style="flex:1"><label>ماه (اگه از سرفصل قابل تشخیص نبود)</label><input id="matFallbackMonth" type="number" min="1" max="12"></div>
     </div>
     <div class="field" style="margin-bottom:9px"><label>ضریب تبدیل واحد (پیش‌فرض میلیون‌ریال→میلیاردتومان = 0.0001)</label><input id="matMultiplier" type="number" value="0.0001" step="0.0001"></div>
-    <div style="font-size:11.5px; color:var(--muted); margin-bottom:6px">پیش‌نمایش چند ردیف اول (شماره‌ی سطر توی ستون اول):</div>
-    <div class="table-wrap" style="max-height:120px; overflow:auto"><table style="font-size:11px"><tbody>${grid.slice(0,4).map((r,idx)=>`<tr><td style="color:var(--muted)">${toFa(idx+1)}</td>${r.slice(0,8).map(c=>`<td>${c??''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <div style="font-size:11.5px; color:var(--muted); margin-bottom:6px">پیش‌نمایش چند ردیف اول (شماره‌ی سطر توی ستون اول) — ${toFa(headerRowCount)} ردیف اول به‌عنوان سرستون تشخیص داده شد:</div>
+    <div class="table-wrap" style="max-height:150px; overflow:auto"><table style="font-size:11px"><tbody>${grid.slice(0,Math.max(4,headerRowCount+2)).map((r,idx)=>`<tr style="${idx<headerRowCount?'background:#f6f2e8; font-weight:700':''}"><td style="color:var(--muted)">${toFa(idx+1)}</td>${r.slice(0,8).map(c=>`<td>${c??''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
     <div id="matPreview" style="margin-top:10px; padding:10px; border-radius:8px; background:#f6f2e8; border:1px solid var(--line); font-size:12.5px"></div>
     <div class="row" style="justify-content:flex-end; margin-top:14px">
       <button class="btn secondary" id="cancelModalBtn">انصراف</button>
@@ -3270,7 +3297,7 @@ function openMonthlyActivityModal(){
     const exportVal = exportIdx!=='' ? parseFloatSafe(grid[parseInt(exportIdx)]?.[amountCol]) : null;
     const multiplier = parseFloatSafe(document.getElementById('matMultiplier').value) || 1;
     const total = (domesticVal||0) + (exportVal||0);
-    box.innerHTML = `ستون انتخاب‌شده برای «مبلغ فروش»: <b>${subHeaderRow[amountCol]??`ستون ${toFa(amountCol+1)}`}</b><br>
+    box.innerHTML = `ستون انتخاب‌شده برای «مبلغ فروش»: <b>${subHeaderLabel(amountCol) || `ستون ${toFa(amountCol+1)}`}</b><br>
       فروش داخلی: <b>${domesticVal!=null?fmt(domesticVal*multiplier):'—'}</b> میلیارد تومان (خام: ${domesticVal!=null?fmt(domesticVal):'—'})<br>
       فروش صادراتی: <b>${exportVal!=null?fmt(exportVal*multiplier):'—'}</b> میلیارد تومان (خام: ${exportVal!=null?fmt(exportVal):'—'})<br>
       <b>جمع کل: ${fmt(total*multiplier)} میلیارد تومان</b> — این عدد رو با گزارش کدال مقایسه کن، اگه درست بود «وارد کردن این ماه» رو بزن.`;
