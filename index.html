@@ -3607,7 +3607,17 @@ function detectDelimiter(text){
 }
 function parseRawGrid(text){
   const delim = detectDelimiter(text);
-  return text.split(/\r?\n/).filter(l=>l.length).map(line=> line.split(delim).map(c=>toEnDigits(c.trim())).filter((c,i,arr)=> !(c==='' && arr.length>1)));
+  return text.split(/\r?\n/).filter(l=>l.length).map(line=>{
+    const cells = line.split(delim).map(c=>toEnDigits(c.trim()));
+    // فقط وقتی جداکننده تب/کاما نیست (یعنی رجکسِ «چند فاصله پشت‌سرهم» به‌کار رفته، حالت کمتر مطمئنِ کپی از PDF/سایت)،
+    // ممکنه split یه سلول خالیِ مصنوعی درست ابتدا/انتهای خط بسازه که باید حذف بشه. سلول‌های خالیِ وسط جدول رو دست نمی‌زنیم،
+    // چون توی جدول‌های واقعی (خصوصاً ردیف‌های «جمع» که نرخ/واحد ندارن) کاملاً معنادارن و حذفشون هم‌ترازی ستون‌ها با سرستون رو خراب می‌کنه.
+    if(delim!=='\t' && delim!==','){
+      while(cells.length>1 && cells[0]==='') cells.shift();
+      while(cells.length>1 && cells[cells.length-1]==='') cells.pop();
+    }
+    return cells;
+  });
 }
 function transposeGrid(grid){
   const maxCols = Math.max(...grid.map(r=>r.length), 0);
