@@ -3206,9 +3206,20 @@ function findAmountColInGroup(group, subHeaderLabel){
 }
 // تعداد ردیف‌های سرستون (قبل از اولین ردیف داده‌ی واقعی) رو با شمارش سلول‌های عددی هر ردیف تشخیص می‌ده؛
 // ردیف‌های سرستون تقریباً هیچ عدد خامی ندارن (فقط عنوان/تاریخ)، در حالی که ردیف‌های داده حداقل ۲ تا سلول عددی دارن
+// یه سلول رو فقط وقتی «واقعاً عددی» در نظر می‌گیریم که هیچ حرف فارسی/عربی توش نباشه.
+// isNumericCell/parseFlexibleNumber به‌عمد سخت‌گیر نیستن (چون باید بتونن اعداد با واحد/کاما رو هم بخونن)، برای همین
+// یه متنی مثل «از ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۳/۳۱» که تاریخ توشه، بعد از حذف حروف و اسلش، به «۱۴۰۵۰۳۳۱» تبدیل و
+// اشتباهاً «عددی» تشخیص داده می‌شد — و همین باعث می‌شد ردیف سرستون اصلی به‌اشتباه به‌عنوان اولین ردیف داده شناسایی بشه.
+function looksLikePureNumber(v){
+  if(v==null) return false;
+  const s = toEnDigits(String(v)).trim();
+  if(s==='') return false;
+  if(/[\u0600-\u06FF\u0750-\u077Fa-zA-Z]/.test(s)) return false; // حرف فارسی/عربی/لاتین = برچسب متنیه، نه عدد خام
+  return parseFlexibleNumber(s)!=null;
+}
 function detectHeaderRowCount(grid){
   for(let r=0; r<grid.length; r++){
-    const numericCount = grid[r].filter(c=>c!=null && c!=='' && isNumericCell(c)).length;
+    const numericCount = grid[r].filter(c=>c!=null && c!=='' && looksLikePureNumber(c)).length;
     if(numericCount>=2) return r; // اولین ردیف داده‌ی واقعی؛ همه‌ی ردیف‌های قبلش سرستونن
   }
   return Math.min(2, grid.length); // fallback: حداقل دو ردیف سرستون فرض کن
