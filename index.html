@@ -1133,15 +1133,18 @@ function computeIndustryAvgDividendPayout(stock){
 }
 // گیج‌های داشبورد به‌صورت آیتم‌های قابل جابجایی؛ ترتیب نمایش از state.layout.dashboardGaugeOrder میاد
 function renderDashboardGauges(ctx){
-  const {exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth, dollarGrowth} = ctx;
+  const {stock, exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth, dollarGrowth} = ctx;
   const dollarGrowthHint = dollarGrowth!=null ? ''
     : (growth && !growth.priorComplete && growth.priorSum!=null) ? '⚠️ سال قبل ناقصه'
     : '⚠️ دلار روز/سال قبل رو در تب «طلا و نقره» وارد کن';
+  // اگه حالت «میانگین TTM» برای این سهم روشن باشه، گیج حاشیه سود هم همون میانگین محاسبه‌شده رو نشون بده (نه فقط فصل اخیر)
+  const marginValue = stock && stock.useTTMMargin ? computeTTMAverageMargin(stock) : m.qMargin;
+  const marginLabel = stock && stock.useTTMMargin ? 'حاشیه سود (میانگین TTM)' : 'حاشیه سود FIS';
   const widgets = {
     exportRatio: renderGaugeSVG(exportRatio? exportRatio.ratio*100 : null, 'نسبت فروش صادراتی'),
     divAvg: renderGaugeSVG(divAvg!=null? divAvg*100 : null, 'میانگین تقسیم سود', {maxScale: (industryDivAvg!=null? industryDivAvg*100 : 100), benchmarkLabel: industryDivAvg!=null? `میانگین صنعت: ${toFa((industryDivAvg*100).toFixed(0))}٪` : 'بدون داده صنعت'}),
     receivables: renderGaugeSVG(m.receivablesRatio!=null? m.receivablesRatio*100 : null, 'نسبت مطالبات', {reverse:true}),
-    margin: renderGaugeSVG(m.qMargin!=null? m.qMargin*100 : null, 'حاشیه سود FIS'),
+    margin: renderGaugeSVG(marginValue!=null? marginValue*100 : null, marginLabel),
     quickRatio: renderGaugeSVG(m.quickRatio, 'نسبت آنی', {maxScale:2, suffix:'', decimals:2}),
     peF: renderGaugeSVG(pe, 'P/E F', {maxScale: peScale, suffix:'', decimals:1, benchmarkLabel: industryPE!=null? `میانگین صنعت: ${toFa(industryPE.toFixed(1))}` : 'بدون داده صنعت'}),
     pdF: renderGaugeSVG(m.pdRatio, 'P/D F', {maxScale: pdScale, suffix:'', decimals:1, benchmarkLabel: industryPD!=null? `میانگین صنعت: ${toFa(industryPD.toFixed(1))}` : 'بدون داده صنعت'}),
@@ -1181,10 +1184,10 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
     <div class="card" style="text-align:center; display:flex; align-items:center; justify-content:center"><div style="font-size:20px; font-weight:800; color:var(--navy)">${stock.name||stock.symbol}</div></div>
   </div>
   <div class="card" style="margin-bottom:14px">
-    <div class="grid cols-4" id="dashGaugesGrid">${renderDashboardGauges({exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth, dollarGrowth})}</div>
+    <div class="grid cols-4" id="dashGaugesGrid">${renderDashboardGauges({stock, exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth, dollarGrowth})}</div>
     <label style="display:flex; align-items:center; gap:8px; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); font-size:12.5px; cursor:pointer">
       <input type="checkbox" id="useTTMMarginToggle" ${stock.useTTMMargin?'checked':''}>
-      محاسبه حاشیه سود (برای برآورد سود، P/E F، P/D F، P/S F) بر اساس میانگین ساده‌ی ۴ فصل اخیر (TTM) — به‌جای فصل اخیر
+      محاسبه حاشیه سود (گیج بالا، برآورد سود، P/E F، P/D F، P/S F) بر اساس میانگین ساده‌ی ۴ فصل اخیر (TTM) — به‌جای فصل اخیر
     </label>
   </div>
   <div class="table-wrap">
@@ -2018,7 +2021,7 @@ function renderDataTab(){
     <button class="btn" id="saveManualBtn" style="margin-top:14px">ذخیره ورودی‌های دستی</button>
     <label style="display:flex; align-items:center; gap:8px; margin-top:16px; padding-top:14px; border-top:1px solid var(--line); font-size:12.5px; cursor:pointer">
       <input type="checkbox" id="useTTMMarginToggleData" ${stock.useTTMMargin?'checked':''}>
-      محاسبه حاشیه سود (برای برآورد سود، P/E F، P/D F، P/S F) بر اساس میانگین ساده‌ی ۴ فصل اخیر (TTM) — به‌جای فصل اخیر
+      محاسبه حاشیه سود (گیج داشبورد، برآورد سود، P/E F، P/D F، P/S F) بر اساس میانگین ساده‌ی ۴ فصل اخیر (TTM) — به‌جای فصل اخیر
     </label>
     <div class="hint">اگه این گزینه خاموش باشه (پیش‌فرض)، حاشیه سود از فصل اخیر محاسبه می‌شه (و فقط اگه فصل اخیر منفی بود، به‌جاش میانگین دو فصل قبل + فصل مشابه سال قبل جایگزین می‌شه). اگه روشن باشه، همیشه میانگین ساده‌ی حاشیه سود ۴ فصل اخیر (جمع تقسیم بر تعداد) به‌کار می‌ره — صرف‌نظر از مثبت یا منفی بودن فصل اخیر.</div>
     <div class="hint">اگه «ارزش بازار» رو داشته باشی، کافیه فقط یکی از «تعداد کل سهام» یا «قیمت روز هر سهم» رو وارد کنی — اون یکی خودکار محاسبه و پر می‌شه (قیمت = ارزش بازار ÷ تعداد سهام). اگه بعداً خواستی دستی عوضش کنی، مشکلی نیست.</div>`;
