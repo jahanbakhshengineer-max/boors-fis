@@ -387,289 +387,6 @@ async function pickExistingLocalFile(){
     saveState();
     showToast('به فایل محلی وصل شد و اطلاعاتش بارگذاری شد: '+handle.name);
     renderAll();
-  }catch(err){ if(err.name!=='AbortError') showToast(  .form-grid{grid-template-columns:repeat(2,1fr) !important}
-  .card{padding:13px 14px}
-  .kpi .value{font-size:18px}
-  table{font-size:11.5px}
-  .subtabs{overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch}
-  .subtabs button{flex:0 0 auto; white-space:nowrap}
-  .toolbar{flex-direction:column; align-items:stretch}
-  .row{gap:8px}
-  .modal{width:94vw; padding:18px 16px}
-}
-@media(max-width:480px){
-  .grid.cols-4, .grid.cols-3, .grid.cols-2{grid-template-columns:1fr}
-  .form-grid{grid-template-columns:1fr !important}
-  .chart-box{height:230px !important} /* نمودارهای ساده (تک/دو سری) */
-  .chart-box.chart-md{height:260px !important} /* نمودارهای متوسط (چند سری یا لجند بزرگ) */
-  .chart-box.chart-tall{height:320px !important} /* نمودارهای ترکیبی پیچیده (دو محور، چند سری، برچسب مقدار) */
-}
-h1.page-title{font-size:20px; margin:0 0 4px; font-weight:800; color:var(--navy)}
-.page-sub{color:var(--muted); font-size:13px; margin-bottom:22px}
-.grid{display:grid; gap:14px}
-.grid.cols-4{grid-template-columns:repeat(4,1fr)}
-.grid.cols-3{grid-template-columns:repeat(3,1fr)}
-.grid.cols-2{grid-template-columns:repeat(2,1fr)}
-@media(max-width:1100px){.grid.cols-4{grid-template-columns:repeat(2,1fr)} .grid.cols-3{grid-template-columns:repeat(2,1fr)}}
-.card{
-  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
-  box-shadow:var(--shadow); padding:16px 18px;
-}
-.card h3{margin:0 0 12px; font-size:13.5px; color:var(--navy); font-weight:700; display:flex; align-items:center; justify-content:space-between}
-.kpi{padding:14px 16px}
-.kpi .label{font-size:11.5px; color:var(--muted); margin-bottom:6px}
-.kpi .value{font-size:22px; font-weight:800; color:var(--navy); letter-spacing:.2px}
-.kpi .value.small{font-size:17px}
-.kpi .note{font-size:11px; color:var(--muted); margin-top:4px}
-.pill{display:inline-block; font-size:10.5px; padding:2px 9px; border-radius:999px; background:var(--tan); color:var(--navy-dark); font-weight:700}
-.pill.teal{background:var(--teal); color:#fff}
-.section-title{font-size:15px; font-weight:800; color:var(--navy); margin:28px 0 12px; display:flex; align-items:center; gap:8px}
-.section-title::before{content:""; width:5px; height:16px; background:var(--tan); border-radius:3px; display:inline-block}
-.accordion-section{margin:22px 0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper)}
-.accordion-header{
-  width:100%; display:flex; align-items:center; justify-content:space-between; gap:8px;
-  background:linear-gradient(180deg,#fbf9f5,#f3efe6); border:none; cursor:pointer;
-  padding:14px 18px; font-family:inherit; text-align:right;
-}
-.accordion-header .accordion-title{font-size:14.5px; font-weight:800; color:var(--navy); display:flex; align-items:center; gap:8px}
-.accordion-header .accordion-title::before{content:""; width:5px; height:16px; background:var(--tan); border-radius:3px; display:inline-block}
-.accordion-header .accordion-meta{font-size:11.5px; color:var(--muted); font-weight:400}
-.accordion-chevron{font-size:13px; color:var(--navy); transition:transform .2s}
-.accordion-header[data-open="false"] .accordion-chevron{transform:rotate(-90deg)}
-.accordion-body{padding:16px 18px 18px; border-top:1px solid var(--line)}
-table{width:100%; border-collapse:collapse; font-size:12.5px}
-table th{background:var(--navy); color:#fff; padding:9px 8px; font-weight:600; white-space:nowrap; position:sticky; top:0}
-table td{padding:8px; border-bottom:1px solid var(--line); text-align:center; white-space:nowrap}
-table tbody tr:nth-child(even){background:#faf8f4}
-table tbody tr:hover{background:#f0ece1}
-table tfoot td{background:var(--navy-dark); color:#fff; font-weight:700}
-/* فریز ستون اول (نماد) هنگام اسکرول افقی — دقیقاً مثل «Freeze Panes» اکسل */
-.table-wrap table th:first-child, .table-wrap table td:first-child{
-  position:sticky; right:0; z-index:3; box-shadow:2px 0 4px rgba(0,0,0,.10);
-}
-.table-wrap table th:first-child{ z-index:6; background:var(--navy); }
-.table-wrap table td:first-child{ background:#fff; }
-.table-wrap table tbody tr:nth-child(even) td:first-child{ background:#faf8f4; }
-.table-wrap table tbody tr:hover td:first-child{ background:#f0ece1; }
-.table-wrap table tfoot td:first-child{ background:var(--navy-dark); }
-.table-wrap{overflow-x:auto; border-radius:var(--radius); border:1px solid var(--line)}
-/* ردیف فیلتر ستونی زیر سرستون جدول‌ها (مثل فیلتر اکسل) */
-table thead tr.col-filter-row th{position:sticky; top:34px; background:var(--paper); padding:4px 6px; z-index:5; box-shadow:0 1px 0 var(--line)}
-.table-wrap table thead tr.col-filter-row th:first-child{z-index:7}
-.col-filter-input{width:100%; min-width:64px; box-sizing:border-box; font-size:11px; padding:4px 6px; border:1px solid var(--line); border-radius:6px; text-align:center; background:#fff; color:var(--navy-dark); font-family:inherit}
-.col-filter-input:focus{outline:2px solid var(--teal); border-color:var(--teal)}
-.col-filter-input::placeholder{color:var(--muted); font-size:10.5px}
-.btn{
-  background:var(--navy); color:#fff; border:none; border-radius:8px; padding:9px 16px;
-  font-family:inherit; font-size:13px; cursor:pointer; font-weight:600; transition:.15s;
-}
-.btn:hover{background:var(--navy-dark)}
-.btn.secondary{background:var(--paper); color:var(--navy); border:1px solid var(--navy)}
-.btn.secondary:hover{background:#eef2f6}
-.btn.tan{background:var(--tan); color:var(--navy-dark)}
-.btn.tan:hover{background:var(--tan-dark); color:#fff}
-.btn.danger{background:transparent; color:var(--bad); border:1px solid var(--bad)}
-.btn.danger:hover{background:var(--bad); color:#fff}
-.row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-.form-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
-@media(max-width:1000px){.form-grid{grid-template-columns:repeat(2,1fr)}}
-.field label{font-size:11.5px; color:var(--muted); display:block; margin-bottom:5px}
-.chart-box{position:relative; height:260px}
-.tag-row{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px}
-.tag{font-size:11px; background:#eef2f6; color:var(--navy); padding:3px 9px; border-radius:999px; border:1px solid var(--line); cursor:pointer}
-.tag.active{background:var(--navy); color:#fff}
-.empty{padding:40px 20px; text-align:center; color:var(--muted)}
-.empty b{color:var(--navy); display:block; font-size:15px; margin-bottom:6px}
-.toolbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px}
-.badge-industry{font-size:10.5px; background:var(--teal); color:#fff; padding:2px 8px; border-radius:6px; margin-right:6px}
-.hint{font-size:11.5px; color:var(--muted); background:#f0ece1; border-radius:8px; padding:8px 12px; margin-top:10px; line-height:1.7}
-.delete-row-btn{color:var(--bad); cursor:pointer; font-size:11px}
-.modal-overlay{position:fixed; inset:0; background:rgba(19,42,66,.55); display:none; align-items:center; justify-content:center; z-index:50}
-.modal-overlay.open{display:flex}
-.modal{background:var(--paper); border-radius:14px; padding:22px 24px; width:420px; max-width:92vw; box-shadow:0 10px 40px rgba(0,0,0,.25)}
-.modal h3{margin:0 0 14px; color:var(--navy)}
-.modal .field{margin-bottom:12px}
-.toast{position:fixed; bottom:22px; left:50%; transform:translateX(-50%); background:var(--navy-dark); color:#fff; padding:10px 20px; border-radius:999px; font-size:13px; z-index:100; opacity:0; transition:.25s; pointer-events:none}
-.toast.show{opacity:1}
-.subtabs{display:flex; gap:6px; margin-bottom:18px; border-bottom:1px solid var(--line)}
-.subtabs button{background:none; border:none; font-family:inherit; padding:9px 14px; font-size:13px; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent}
-.subtabs button.active{color:var(--navy); border-bottom-color:var(--tan); font-weight:700}
-.file-hidden{display:none}
-/* ===== جابجایی با موس (Drag & Drop) ===== */
-.drag-handle{cursor:grab; color:var(--muted); font-size:13px; padding:0 4px; user-select:none; line-height:1}
-.drag-handle:active{cursor:grabbing}
-[data-dragkey]{transition:opacity .15s}
-[data-dragkey].dragging{opacity:.35; outline:2px dashed var(--tan)}
-.nav [data-dragkey]{display:flex; align-items:center; gap:6px}
-.nav [data-dragkey] .drag-handle{order:2; margin-right:auto}
-.dash-widget{position:relative}
-.dash-widget .drag-handle{position:absolute; top:2px; left:6px; z-index:2}
-.accordion-header .drag-handle{margin-left:auto}
-.clickable-row{cursor:pointer}
-.clickable-row:hover{background:rgba(0,0,0,.035)}
-/* سطر انتخاب‌شده توی جدول سبد سرمایه‌گذاری — پس‌زمینه پررنگ + قاب بالا/پایین تا گم نشه */
-tr.selected-row td, .table-wrap table tr.selected-row td:first-child{
-  background:var(--tan) !important; color:var(--navy-dark); font-weight:700;
-  border-top:2px solid var(--navy); border-bottom:2px solid var(--navy);
-}
-tr.selected-row:hover td, .table-wrap table tr.selected-row:hover td:first-child{background:#e3cd9a !important}
-</style>
-</head>
-<body>
-
-<div class="mobile-topbar">
-  <button id="hamburgerBtn" aria-label="منو">☰</button>
-  <div class="brand">تحلیل بنیادی سهام<small>نسخه آزمایشی</small></div>
-  <div style="width:38px"></div>
-</div>
-<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-<div class="app">
-  <aside class="sidebar" id="sidebarEl">
-    <div class="brand">تحلیل بنیادی سهام<small>نسخه آزمایشی — فاز اول (پالایش و مس)</small></div>
-    <nav class="nav" id="navMenu"></nav>
-    <button id="resetLayoutBtn" class="btn secondary" style="width:100%; font-size:11px; margin:2px 0 10px; padding:6px">↺ بازنشانی چیدمان</button>
-    <div class="stock-picker">
-      <label>سهم فعال <span style="font-weight:400; color:var(--muted); font-size:11px">(کلیک کن یا تایپ کن)</span></label>
-      <div style="position:relative">
-        <input id="activeStockSelect" placeholder="🔎 نماد یا نام سهم..." autocomplete="off">
-        <div id="activeStockDropdown" class="combo-list"></div>
-      </div>
-    </div>
-  </aside>
-  <main id="mainContent"></main>
-</div>
-
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" id="modalBody"></div>
-</div>
-<div class="toast" id="toast"></div>
-<input type="file" id="importFileInput" class="file-hidden" accept="application/json">
-
-<script>
-/* ========================= داده و ذخیره‌سازی ========================= */
-const STORAGE_KEY = 'fundamental_analyzer_v1';
-const FA_DIGITS = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-function toFa(str){ return String(str).replace(/[0-9]/g, d=>FA_DIGITS[d]); }
-function fmt(n, decimals=0){
-  if(n===null || n===undefined || isNaN(n)) return '—';
-  const s = Number(n).toLocaleString('en-US', {maximumFractionDigits:decimals, minimumFractionDigits:decimals});
-  return toFa(s);
-}
-// نمایش تاریخ/ساعت آخرین به‌روزرسانی (مثلاً ارزش بازار) به تقویم شمسی و اعداد فارسی
-function formatUpdateTimestamp(ts){
-  if(!ts) return null;
-  try{
-    return new Intl.DateTimeFormat('fa-IR', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}).format(new Date(ts));
-  }catch(e){
-    return new Date(ts).toLocaleString('fa-IR');
-  }
-}
-function fmtPct(n, decimals=1){
-  if(n===null || n===undefined || isNaN(n)) return '—';
-  return fmt(n*100, decimals) + '٪';
-}
-function uid(){ return Math.random().toString(36).slice(2,10); }
-
-function defaultState(){
-  return {
-    industries: ['پالایش','مس'],
-    stocks: {},
-    goldFunds: {},
-    goldMarket: {}
-  };
-}
-function loadState(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw) return defaultState();
-    const parsed = JSON.parse(raw);
-    if(!parsed.stocks) return defaultState();
-    return parsed;
-  }catch(e){ console.error(e); return defaultState(); }
-}
-let state = loadState();
-let activeSymbol = Object.keys(state.stocks)[0] || null;
-let activeTab = 'dashboard';
-let dashSubtab = 'overview';
-
-function saveState(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  syncToLinkedFile();
-}
-
-/* ========================= فایل محلی (ذخیره و فراخوانی خودکار روی دیسک) ========================= */
-let linkedFileHandle = null;
-let pendingReconnectHandle = null;
-let linkedFileStatusMsg = '';
-const LOCAL_FILE_DB_NAME = 'fundAnalyzerLocalFileDB';
-const LOCAL_FILE_STORE = 'handles';
-function supportsFileSystemAccess(){ return typeof window!=='undefined' && 'showSaveFilePicker' in window; }
-function openHandleDB(){
-  return new Promise((resolve,reject)=>{
-    const req = indexedDB.open(LOCAL_FILE_DB_NAME, 1);
-    req.onupgradeneeded = ()=>{ req.result.createObjectStore(LOCAL_FILE_STORE); };
-    req.onsuccess = ()=>resolve(req.result);
-    req.onerror = ()=>reject(req.error);
-  });
-}
-async function saveHandleToDB(handle){
-  const db = await openHandleDB();
-  return new Promise((resolve,reject)=>{
-    const tx = db.transaction(LOCAL_FILE_STORE,'readwrite');
-    tx.objectStore(LOCAL_FILE_STORE).put(handle,'main');
-    tx.oncomplete = ()=>resolve();
-    tx.onerror = ()=>reject(tx.error);
-  });
-}
-async function loadHandleFromDB(){
-  try{
-    const db = await openHandleDB();
-    return await new Promise((resolve,reject)=>{
-      const tx = db.transaction(LOCAL_FILE_STORE,'readonly');
-      const req = tx.objectStore(LOCAL_FILE_STORE).get('main');
-      req.onsuccess = ()=>resolve(req.result||null);
-      req.onerror = ()=>reject(req.error);
-    });
-  }catch(e){ return null; }
-}
-async function writeStateToHandle(handle, st){
-  const writable = await handle.createWritable();
-  await writable.write(JSON.stringify(st, null, 1));
-  await writable.close();
-}
-async function syncToLinkedFile(){
-  if(!linkedFileHandle) return;
-  try{ await writeStateToHandle(linkedFileHandle, state); }
-  catch(err){ console.error('خطا در ذخیره‌ی خودکار در فایل محلی:', err); }
-}
-async function createLocalFile(){
-  if(!supportsFileSystemAccess()) return showToast('این مرورگر از اتصال به فایل محلی پشتیبانی نمی‌کند — از Chrome یا Edge روی کامپیوتر استفاده کن');
-  try{
-    const handle = await window.showSaveFilePicker({suggestedName:'fundamental-analyzer-data.json', types:[{description:'JSON', accept:{'application/json':['.json']}}]});
-    await writeStateToHandle(handle, state);
-    linkedFileHandle = handle;
-    pendingReconnectHandle = null;
-    await saveHandleToDB(handle);
-    showToast('فایل محلی ساخته شد و وصل شد: '+handle.name);
-    renderAll();
-  }catch(err){ if(err.name!=='AbortError') showToast('خطا: '+err.message); }
-}
-async function pickExistingLocalFile(){
-  if(!supportsFileSystemAccess()) return showToast('این مرورگر از اتصال به فایل محلی پشتیبانی نمی‌کند — از Chrome یا Edge روی کامپیوتر استفاده کن');
-  try{
-    const [handle] = await window.showOpenFilePicker({types:[{description:'JSON', accept:{'application/json':['.json']}}]});
-    const file = await handle.getFile();
-    const text = await file.text();
-    const parsed = JSON.parse(text);
-    if(!parsed || !parsed.stocks) throw new Error('این فایل ساختار معتبری ندارد');
-    state = parsed;
-    activeSymbol = Object.keys(state.stocks)[0] || null;
-    linkedFileHandle = handle;
-    pendingReconnectHandle = null;
-    await saveHandleToDB(handle);
-    saveState();
-    showToast('به فایل محلی وصل شد و اطلاعاتش بارگذاری شد: '+handle.name);
-    renderAll();
   }catch(err){ if(err.name!=='AbortError') showToast('خطا: '+err.message); }
 }
 async function reconnectPendingLocalFile(){
@@ -1017,14 +734,27 @@ function computeQuarterMarginForPeriod(stock, periods, period){
   const ctx = buildBaseContext(stock, periods, period);
   return evalFormulaByKey('qMargin', ctx);
 }
+// میانگین ساده‌ی حاشیه سود ۴ فصل اخیر (جمع ۴ حاشیه‌ی فصلی تقسیم بر تعداد فصل‌های موجود، حداکثر ۴) — برای حالتی که
+// کاربر از تنظیمات سهم «محاسبه حاشیه سود بر اساس میانگین TTM» رو روشن کرده باشه (stock.useTTMMargin)
+function computeTTMAverageMargin(stock){
+  const periods = stock.periods || [];
+  const sorted = sortPeriods(periods);
+  const last4 = sorted.slice(-4);
+  const vals = last4.map(p=> computeQuarterMarginForPeriod(stock, periods, p)).filter(v=>v!=null);
+  if(!vals.length) return null;
+  return vals.reduce((a,b)=>a+b,0)/vals.length;
+}
 // آخرین حاشیه سود به‌دست‌آمده (فصل اخیر) - نه میانگین چند فصل
-// استثنا: اگه حاشیه سود فصل اخیر منفی بشه، به‌جاش میانگین سه عدد زیر رو برای برآورد سود برمی‌گردونیم:
+// استثنا ۱: اگه کاربر برای این سهم «محاسبه بر اساس میانگین TTM» رو روشن کرده باشه (stock.useTTMMargin)، به‌جای منطق زیر
+// همیشه میانگین ساده‌ی ۴ فصل اخیر برگردونده می‌شه — صرف‌نظر از منفی یا مثبت بودن فصل اخیر.
+// استثنا ۲: اگه حاشیه سود فصل اخیر منفی بشه (و حالت TTM روشن نباشه)، به‌جاش میانگین سه عدد زیر رو برای برآورد سود برمی‌گردونیم:
 // حاشیه سود دو دوره‌ی قبل (دوره‌ی ماقبل آخر و دوره‌ی قبل از اون) + حاشیه سود دوره‌ی مشابه سال قبل — جمع سه عدد تقسیم بر سه
 // (اگه حتی یکی از این سه دوره در سابقه‌ی سهم ثبت نشده/محاسبه‌پذیر نباشه، میانگین‌گیری انجام نمی‌شه و همون حاشیه سود خام فصل اخیر برگردونده می‌شه)
 function estimateLatestMargin(stock){
   const lp = latestPeriod(stock);
   if(!lp) return null;
   const periods = stock.periods || [];
+  if(stock.useTTMMargin) return computeTTMAverageMargin(stock);
   const margin = computeQuarterMarginForPeriod(stock, periods, lp);
   if(margin!=null && margin<0){
     const sorted = sortPeriods(periods);
@@ -1452,6 +1182,10 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
   </div>
   <div class="card" style="margin-bottom:14px">
     <div class="grid cols-4" id="dashGaugesGrid">${renderDashboardGauges({exportRatio, divAvg, industryDivAvg, m, pe, peScale, industryPE, pdScale, industryPD, growth, dollarGrowth})}</div>
+    <label style="display:flex; align-items:center; gap:8px; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); font-size:12.5px; cursor:pointer">
+      <input type="checkbox" id="useTTMMarginToggle" ${stock.useTTMMargin?'checked':''}>
+      محاسبه حاشیه سود (برای برآورد سود، P/E F، P/D F، P/S F) بر اساس میانگین ساده‌ی ۴ فصل اخیر (TTM) — به‌جای فصل اخیر
+    </label>
   </div>
   <div class="table-wrap">
     <table>
@@ -2282,6 +2016,11 @@ function renderDataTab(){
       <div class="field"><label>برآورد فروش سالانه (اختیاری - جای‌گزین محاسبه خودکار)</label><input id="manualEstSales" type="number" value="${stock.manual?.estimatedAnnualSalesOverride ?? ''}"></div>
     </div>
     <button class="btn" id="saveManualBtn" style="margin-top:14px">ذخیره ورودی‌های دستی</button>
+    <label style="display:flex; align-items:center; gap:8px; margin-top:16px; padding-top:14px; border-top:1px solid var(--line); font-size:12.5px; cursor:pointer">
+      <input type="checkbox" id="useTTMMarginToggleData" ${stock.useTTMMargin?'checked':''}>
+      محاسبه حاشیه سود (برای برآورد سود، P/E F، P/D F، P/S F) بر اساس میانگین ساده‌ی ۴ فصل اخیر (TTM) — به‌جای فصل اخیر
+    </label>
+    <div class="hint">اگه این گزینه خاموش باشه (پیش‌فرض)، حاشیه سود از فصل اخیر محاسبه می‌شه (و فقط اگه فصل اخیر منفی بود، به‌جاش میانگین دو فصل قبل + فصل مشابه سال قبل جایگزین می‌شه). اگه روشن باشه، همیشه میانگین ساده‌ی حاشیه سود ۴ فصل اخیر (جمع تقسیم بر تعداد) به‌کار می‌ره — صرف‌نظر از مثبت یا منفی بودن فصل اخیر.</div>
     <div class="hint">اگه «ارزش بازار» رو داشته باشی، کافیه فقط یکی از «تعداد کل سهام» یا «قیمت روز هر سهم» رو وارد کنی — اون یکی خودکار محاسبه و پر می‌شه (قیمت = ارزش بازار ÷ تعداد سهام). اگه بعداً خواستی دستی عوضش کنی، مشکلی نیست.</div>`;
 
   return `
@@ -4434,6 +4173,17 @@ function attachHandlers(){
     if(newMarketCap !== prevMarketCap) stock.manual.marketCapUpdatedAt = Date.now();
     saveState(); showToast('ذخیره شد'); renderAll();
   };
+  // کلید روشن/خاموش «حاشیه سود بر اساس میانگین TTM» — هم توی داشبورد هم توی تب ورود اطلاعات نمایش داده می‌شه،
+  // هر دو به یه مقدار مشترک (stock.useTTMMargin) وصل‌ان
+  ['useTTMMarginToggle','useTTMMarginToggleData'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.onchange = ()=>{
+      const stock = state.stocks[activeSymbol];
+      if(!stock) return;
+      stock.useTTMMargin = el.checked;
+      saveState(); renderAll();
+    };
+  });
   const addHoldingBtn = document.getElementById('addHoldingBtn');
   if(addHoldingBtn) addHoldingBtn.onclick = ()=>{
     const qty = document.getElementById('holdQtyInput').value;
