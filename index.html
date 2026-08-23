@@ -2462,11 +2462,22 @@ let editingHoldingId = null;
 let selectedHoldingId = null;
 /* ========================= طلا و نقره — کاملاً جدا از بخش سهام ========================= */
 const OUNCE_TO_GRAM = 31.1034768;
+// طلای معامله‌شده در بازار ایران معمولاً ۱۸ عیار (خلوص ۷۵٪) است، در حالی که قیمت انس جهانی بر مبنای طلای خالص (۲۴ عیار) است؛
+// برای تبدیل قیمت گرمی طلای خالص (۲۴ عیار) به قیمت مرجع طلای ۱۸ عیار، باید در ۱۸/۲۴ = ۰.۷۵ ضرب کرد.
+// این فرمول همون فرمول استاندارد و رایج بازار طلای ایرانه (بدون احتساب اجرت/حق ضرب که مخصوص طلای زینتی خرده‌فروشیه).
+const GOLD_18K_FACTOR = 18/24;
 function getGoldMarket(){ state.goldMarket = state.goldMarket || {}; return state.goldMarket; }
 function getGoldFunds(){ state.goldFunds = state.goldFunds || {}; return state.goldFunds; }
 // دلار «تئوریک» در نقطه‌ای از سال = دلار ابتدای سال، مرکب‌شده با میانگین تورم ماهانه به تعداد ماه‌های گذشته
 function theoreticalDollar(gm, months){
   const base = gm.dollarStartOfYear!=null && gm.dollarStartOfYear!=='' ? Number(gm.dollarStartOfYear) : null;
+  const infl = gm.avgMonthlyInflation!=null && gm.avgMonthlyInflation!=='' ? Number(gm.avgMonthlyInflation) : null;
+  if(base==null || infl==null || months==null) return null;
+  return base * Math.pow(1 + infl/100, months);
+}
+// همون منطق ترکیب تورم ماهانه، ولی عمومی برای هر مقدار پایه (طلا/نقره/دلار) — برای محاسبه‌ی «حباب نسبت به تورم»
+function theoreticalByInflation(baseVal, gm, months){
+  const base = baseVal!=null && baseVal!=='' ? Number(baseVal) : null;
   const infl = gm.avgMonthlyInflation!=null && gm.avgMonthlyInflation!=='' ? Number(gm.avgMonthlyInflation) : null;
   if(base==null || infl==null || months==null) return null;
   return base * Math.pow(1 + infl/100, months);
@@ -2479,20 +2490,39 @@ function computeGoldMarketMetrics(){
   const dollarToday = gm.dollarToday!=null && gm.dollarToday!=='' ? Number(gm.dollarToday) : null;
   // حباب دلار: طبق تورم اعلامی و دلار اول سال، دلار امروز باید چه عددی باشه — چقدر پایین‌تر/بالاتر از اون واقعیه
   const dollarBubble = (theoDollarToday && dollarToday!=null) ? (dollarToday - theoDollarToday)/theoDollarToday : null;
+  // % تغییر پیش‌بینی‌شده‌ی دلار تا پایان سال نسبت به قیمت امروز (برای نمایش پیش‌بینی پایان سال)
+  const dollarYearEndChangeFrac = (dollarToday && theoDollarYearEnd!=null) ? (theoDollarYearEnd/dollarToday - 1) : null;
 
   const goldOunceToday = gm.goldOunceToday!=null && gm.goldOunceToday!=='' ? Number(gm.goldOunceToday) : null;
   const silverOunceToday = gm.silverOunceToday!=null && gm.silverOunceToday!=='' ? Number(gm.silverOunceToday) : null;
   const goldOunceYearEnd = gm.goldOunceYearEnd!=null && gm.goldOunceYearEnd!=='' ? Number(gm.goldOunceYearEnd) : null;
   const silverOunceYearEnd = gm.silverOunceYearEnd!=null && gm.silverOunceYearEnd!=='' ? Number(gm.silverOunceYearEnd) : null;
 
+  // قیمت طلای خالص (۲۴ عیار، معادل انس جهانی) هر گرم به تومان — مقدار میانی، هنوز تبدیل به ۱۸ عیار نشده
   const goldGramTomanToday = (goldOunceToday!=null && dollarToday!=null) ? (goldOunceToday/OUNCE_TO_GRAM)*dollarToday : null;
-  const silverGramTomanToday = (silverOunceToday!=null && dollarToday!=null) ? (silverOunceToday/OUNCE_TO_GRAM)*dollarToday : null;
   const goldGramTomanYearEnd = (goldOunceYearEnd!=null && theoDollarYearEnd!=null) ? (goldOunceYearEnd/OUNCE_TO_GRAM)*theoDollarYearEnd : null;
+  // قیمت نقره (بدون تبدیل عیار — نقره سرمایه‌گذاری معمولاً بر پایه‌ی خلوص ۹۹۹ محاسبه می‌شه، مثل انس جهانی)
+  const silverGramTomanToday = (silverOunceToday!=null && dollarToday!=null) ? (silverOunceToday/OUNCE_TO_GRAM)*dollarToday : null;
   const silverGramTomanYearEnd = (silverOunceYearEnd!=null && theoDollarYearEnd!=null) ? (silverOunceYearEnd/OUNCE_TO_GRAM)*theoDollarYearEnd : null;
+
+  // قیمت مرجع طلای ۱۸ عیار (بازار ایران) = قیمت طلای خالص × ۰.۷۵ — این عددیه که واقعاً به‌عنوان «قیمت روز طلا» گزارش می‌شه
+  const gold18kGramTomanToday = goldGramTomanToday!=null ? goldGramTomanToday*GOLD_18K_FACTOR : null;
+  const gold18kGramTomanYearEnd = goldGramTomanYearEnd!=null ? goldGramTomanYearEnd*GOLD_18K_FACTOR : null;
+
   const goldYearEndChangeFrac = (goldGramTomanToday && goldGramTomanYearEnd!=null) ? (goldGramTomanYearEnd/goldGramTomanToday - 1) : null;
   const silverYearEndChangeFrac = (silverGramTomanToday && silverGramTomanYearEnd!=null) ? (silverGramTomanYearEnd/silverGramTomanToday - 1) : null;
 
-  return { theoDollarToday, theoDollarYearEnd, dollarBubble, goldGramTomanToday, silverGramTomanToday, goldGramTomanYearEnd, silverGramTomanYearEnd, goldYearEndChangeFrac, silverYearEndChangeFrac };
+  // حباب طلا/نقره نسبت به تورم روز: قیمت تئوریکِ امروز (قیمت ابتدای سال مرکب‌شده با تورم ماهانه) در مقابل قیمت واقعی امروز.
+  // همون منطق «حباب دلار»، ولی مستقیم روی قیمت تومانیِ طلا/نقره (نه فقط نرخ ارز) اعمال می‌شه.
+  const theoGold18kToday = monthsElapsed!=null ? theoreticalByInflation(gm.gold18kStartOfYear, gm, monthsElapsed) : null;
+  const theoSilverGramToday = monthsElapsed!=null ? theoreticalByInflation(gm.silverGramStartOfYear, gm, monthsElapsed) : null;
+  const goldInflationBubble = (theoGold18kToday && gold18kGramTomanToday!=null) ? (gold18kGramTomanToday-theoGold18kToday)/theoGold18kToday : null;
+  const silverInflationBubble = (theoSilverGramToday && silverGramTomanToday!=null) ? (silverGramTomanToday-theoSilverGramToday)/theoSilverGramToday : null;
+
+  return { theoDollarToday, theoDollarYearEnd, dollarBubble, dollarToday, dollarYearEndChangeFrac,
+    goldGramTomanToday, silverGramTomanToday, goldGramTomanYearEnd, silverGramTomanYearEnd,
+    gold18kGramTomanToday, gold18kGramTomanYearEnd, goldYearEndChangeFrac, silverYearEndChangeFrac,
+    theoGold18kToday, theoSilverGramToday, goldInflationBubble, silverInflationBubble };
 }
 // معیارهای هر صندوق: حباب خود صندوق (قیمت تابلو در برابر NAV اعلامی)، حباب دلار (سراسری)، حباب محاسباتی (قیمت تابلو در برابر ارزش ذاتی بر پایه‌ی انس+دلار روز — فقط اگه وزن پشتوانه‌ی هر واحد وارد شده باشه)
 function computeFundMetrics(fund, gmm){
@@ -2504,7 +2534,9 @@ function computeFundMetrics(fund, gmm){
   const fundBubble = (marketPrice!=null && nav) ? (marketPrice-nav)/nav : null;
   const dollarBubble = gmm.dollarBubble;
 
-  const gramTomanToday = fund.type==='silver' ? gmm.silverGramTomanToday : gmm.goldGramTomanToday;
+  // صندوق‌های طلای ایرانی معمولاً بر پایه‌ی طلای ۱۸ عیار پشتوانه دارن، نه طلای خالص ۲۴ عیار؛ برای همین برای صندوق طلا
+  // از قیمت مرجع ۱۸ عیار استفاده می‌کنیم (نه goldGramTomanToday خام که معادل طلای خالص/۲۴ عیاره)
+  const gramTomanToday = fund.type==='silver' ? gmm.silverGramTomanToday : gmm.gold18kGramTomanToday;
   const fairValueByOunce = (weightPerUnit!=null && gramTomanToday!=null) ? weightPerUnit*gramTomanToday : null;
   const calcBubble = (marketPrice!=null && fairValueByOunce) ? (marketPrice-fairValueByOunce)/fairValueByOunce : null;
 
@@ -2557,13 +2589,15 @@ function renderGoldTab(){
     <div class="grid cols-4">
       <div class="field"><label>دلار ابتدای سال (تومان)</label><input id="gmDollarStart" type="number" value="${gm.dollarStartOfYear??''}"></div>
       <div class="field"><label>میانگین تورم ماهانه (٪)</label><input id="gmInflation" type="number" step="0.1" value="${gm.avgMonthlyInflation??''}"></div>
-      <div class="field"><label>چند ماه از سال گذشته (برای حباب دلار امروز)</label><input id="gmMonthsElapsed" type="number" min="0" max="12" value="${gm.monthsElapsed??''}"></div>
+      <div class="field"><label>چند ماه از سال گذشته (برای حباب‌های امروز)</label><input id="gmMonthsElapsed" type="number" min="0" max="12" value="${gm.monthsElapsed??''}"></div>
       <div class="field"><label>دلار روز (تومان)</label><input id="gmDollarToday" type="number" value="${gm.dollarToday??''}"></div>
       <div class="field"><label>دلار مشابه سال قبل (تومان) <span style="color:var(--teal); font-size:10.5px">برای گیج رشد دلاری فروش</span></label><input id="gmDollarSamePriorYear" type="number" value="${gm.dollarSamePriorYear??''}"></div>
       <div class="field"><label>قیمت انس طلا روز (دلار)</label><input id="gmGoldOunce" type="number" value="${gm.goldOunceToday??''}"></div>
       <div class="field"><label>قیمت انس نقره روز (دلار)</label><input id="gmSilverOunce" type="number" value="${gm.silverOunceToday??''}"></div>
       <div class="field"><label>تخمین انس طلا پایان سال (دلار)</label><input id="gmGoldOunceYE" type="number" value="${gm.goldOunceYearEnd??''}"></div>
       <div class="field"><label>تخمین انس نقره پایان سال (دلار)</label><input id="gmSilverOunceYE" type="number" value="${gm.silverOunceYearEnd??''}"></div>
+      <div class="field"><label>قیمت طلای ۱۸ عیار ابتدای سال (تومان، هر گرم) <span style="color:var(--teal); font-size:10.5px">برای حباب نسبت به تورم</span></label><input id="gmGold18kStart" type="number" value="${gm.gold18kStartOfYear??''}"></div>
+      <div class="field"><label>قیمت نقره ابتدای سال (تومان، هر گرم) <span style="color:var(--teal); font-size:10.5px">برای حباب نسبت به تورم</span></label><input id="gmSilverGramStart" type="number" value="${gm.silverGramStartOfYear??''}"></div>
     </div>
     <div class="row" style="margin-top:10px">
       <button class="btn tan" id="saveGoldMarketBtn">ذخیره مفروضات</button>
@@ -2571,12 +2605,26 @@ function renderGoldTab(){
       <button class="btn secondary" id="brsFetchDollarStartBtn">📅 دریافت خودکار دلار ابتدای سال</button>
     </div>
     <div class="hint">دکمه‌ی اول «دلار روز»، «انس طلا روز» و «انس نقره روز» (اگه نمادش توی پلن کلیدت باشه) رو زنده از BrsApi می‌گیره. دکمه‌ی دوم قیمت دلار در اول فروردین سال جاری رو از تاریخچه‌ی BrsApi می‌گیره و توی «دلار ابتدای سال» می‌ذاره.</div>
+    <div class="hint">قیمت طلای ۱۸ عیار = (قیمت انس جهانی ÷ ۳۱.۱۰۳) × نرخ دلار × (۱۸/۲۴) — این فرمول استاندارد و رایج بازار طلای ایرانه (بدون احتساب اجرت/حق ضرب طلای زینتی). نقره بدون تبدیل عیار محاسبه می‌شه (بر پایه‌ی خلوص استاندارد ۹۹۹، مثل انس جهانی).</div>
+
     <div class="grid cols-4" style="margin-top:16px">
+      ${kpi('قیمت طلای ۱۸ عیار روز (هر گرم)', gmm.gold18kGramTomanToday!=null?fmt(gmm.gold18kGramTomanToday)+' تومان':'—')}
+      ${kpi('قیمت نقره روز (هر گرم)', gmm.silverGramTomanToday!=null?fmt(gmm.silverGramTomanToday)+' تومان':'—')}
       ${kpi('دلار تئوریک امروز (طبق تورم)', gmm.theoDollarToday!=null?fmt(gmm.theoDollarToday):'—', 'دلار اول سال × (۱+تورم ماهانه)^ماه‌های گذشته')}
       ${kpi('حباب دلار', gmm.dollarBubble!=null?fmtPct(gmm.dollarBubble):'—', 'فاصله‌ی دلار امروز از دلار تئوریک طبق تورم')}
-      ${kpi('% تغییر طلا (تومانی) تا پایان سال', gmm.goldYearEndChangeFrac!=null?fmtPct(gmm.goldYearEndChangeFrac):'—')}
-      ${kpi('% تغییر نقره (تومانی) تا پایان سال', gmm.silverYearEndChangeFrac!=null?fmtPct(gmm.silverYearEndChangeFrac):'—')}
     </div>
+    <div class="grid cols-2" style="margin-top:16px">
+      ${renderGaugeSVG(gmm.goldInflationBubble!=null?gmm.goldInflationBubble*100:null, 'حباب طلا نسبت به تورم', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel:'قیمت واقعی امروز در مقابل قیمت تئوریک طبق تورم از ابتدای سال'})}
+      ${renderGaugeSVG(gmm.silverInflationBubble!=null?gmm.silverInflationBubble*100:null, 'حباب نقره نسبت به تورم', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel:'قیمت واقعی امروز در مقابل قیمت تئوریک طبق تورم از ابتدای سال'})}
+    </div>
+
+    <h3 style="margin-top:22px; padding-top:16px; border-top:1px solid var(--line)">پیش‌بینی پایان سال</h3>
+    <div class="grid cols-3" style="margin-top:8px">
+      ${kpi('دلار پایان سال', gmm.theoDollarYearEnd!=null?fmt(gmm.theoDollarYearEnd)+' تومان':'—', gmm.dollarYearEndChangeFrac!=null?fmtPct(gmm.dollarYearEndChangeFrac)+' نسبت به امروز':'')}
+      ${kpi('طلای ۱۸ عیار پایان سال (هر گرم)', gmm.gold18kGramTomanYearEnd!=null?fmt(gmm.gold18kGramTomanYearEnd)+' تومان':'—', gmm.goldYearEndChangeFrac!=null?fmtPct(gmm.goldYearEndChangeFrac)+' نسبت به امروز':'')}
+      ${kpi('نقره پایان سال (هر گرم)', gmm.silverGramTomanYearEnd!=null?fmt(gmm.silverGramTomanYearEnd)+' تومان':'—', gmm.silverYearEndChangeFrac!=null?fmtPct(gmm.silverYearEndChangeFrac)+' نسبت به امروز':'')}
+    </div>
+    <div class="hint">پیش‌بینی دلار پایان سال بر مبنای تورم ترکیبی (دلار ابتدای سال × (۱+تورم ماهانه)^۱۲) است؛ پیش‌بینی طلا/نقره بر مبنای «تخمین انس پایان سال» که بالا وارد کردی، ضرب‌در همون دلار پایان سالِ پیش‌بینی‌شده.</div>
   </div>
 
   <div class="card" style="margin-bottom:16px">
@@ -4474,6 +4522,8 @@ function attachHandlers(){
     setNum('gmSilverOunce','silverOunceToday');
     setNum('gmGoldOunceYE','goldOunceYearEnd');
     setNum('gmSilverOunceYE','silverOunceYearEnd');
+    setNum('gmGold18kStart','gold18kStartOfYear');
+    setNum('gmSilverGramStart','silverGramStartOfYear');
     saveState(); showToast('مفروضات بازار ذخیره شد'); renderAll();
   };
   const saveGoldFundBtn = document.getElementById('saveGoldFundBtn');
