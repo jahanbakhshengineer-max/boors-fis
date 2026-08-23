@@ -709,6 +709,14 @@ function estimateAnnualSales(stock){
   const {fiscalYear: todayFY, monthInFY: todayMonthInFY} = calendarToFiscalMonth(today.year, today.month, endM);
   const monthlyCount = countContiguousMonthlyEntries(stock, todayFY, todayMonthInFY);
   const periodMonths = (lp && lp.fiscalYear===todayFY) ? lp.months : 0;
+  const ytd = (stock.monthlySalesYTD||{})[todayFY];
+
+  // اگه داده‌ی YTD (از گزارش فعالیت ماهانه خام کدال) برای همین سال مالی موجود باشه و پوشش بیشتر/برابری نسبت به
+  // ماه‌به‌ماهِ پیوسته‌ی ثبت‌شده داشته باشه (یعنی ماه‌به‌ماه یا اصلاً ثبت نشده یا جاافتادگی داره)، اون رو مبنا قرار می‌دیم —
+  // چون این عدد مستقیماً از گزارش تجمیعی شرکته و به جای‌خالیِ ماه‌های واردنشده حساس نیست.
+  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>=monthlyCount){
+    return (ytd.currentYTD/ytd.throughMonth)*12;
+  }
 
   if(monthlyCount>0 && monthlyCount>periodMonths){
     // فروش ماهانه دقیق‌تره (ماه بیشتری نسبت به آخرین دوره پی‌ان‌ال داره)
@@ -804,15 +812,27 @@ function estimateAvgDividendPayout(stock){
   return (sum/last.length)/100;
 }
 // رشد فروش تجمیعی: مقایسه‌ی جمع فروش از ابتدای سال مالی تا آخرین ماه ثبت‌شده، با همون بازه از سال قبل (این یک روش مقایسه‌ایه، نه یک فرمول جبری تک‌خطی)
+// اگه ماه‌به‌ماه به‌طور کامل/پیوسته ثبت نشده باشه ولی داده‌ی YTD (از گزارش فعالیت ماهانه خام کدال) با پوشش بیشتر یا مساوی موجود باشه،
+// به‌جای جمع‌زدن ماه‌به‌ماه (که با جاافتادگی، جمع رو دست‌کم نشون می‌داد)، مستقیماً از اون عدد تجمیعیِ گزارش‌شده استفاده می‌کنیم.
 function computeSalesGrowthCum(stock){
   const fy = currentFiscalYearForSales(stock);
-  if(!fy) return null;
-  const entries = getMonthlySalesFiscalEntries(stock);
-  const curEntries = entries.filter(e=>e.fiscalYear===fy);
-  if(!curEntries.length) return null;
-  const maxMonth = Math.max(...curEntries.map(e=>e.monthInFY));
-  const curMap = {}; curEntries.forEach(e=>curMap[e.monthInFY]=e.value);
-  const priorMap = {}; entries.filter(e=>e.fiscalYear===fy-1).forEach(e=>priorMap[e.monthInFY]=e.value);
+  const ytd = (stock.monthlySalesYTD||{})[fy];
+  const entries0 = fy!=null ? getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy) : [];
+  const monthlyMaxMonth = entries0.length ? Math.max(...entries0.map(e=>e.monthInFY)) : 0;
+  // پوشش ماه‌به‌ماه رو با شمارش پیوسته (بدون جای خالی از ماه ۱) می‌سنجیم، نه فقط بیشترین شماره ماه ثبت‌شده
+  const contiguousMonths = fy!=null ? countContiguousMonthlyEntries(stock, fy, monthlyMaxMonth) : 0;
+  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>=contiguousMonths && ytd.throughMonth>=monthlyMaxMonth){
+    return {
+      curSum: ytd.currentYTD,
+      priorSum: ytd.priorYearYTD ?? null,
+      growth: (ytd.priorYearYTD!=null && ytd.priorYearYTD>0) ? (ytd.currentYTD-ytd.priorYearYTD)/ytd.priorYearYTD : null,
+      months: ytd.throughMonth, fy, priorComplete: ytd.priorYearYTD!=null, usedYTD: true
+    };
+  }
+  if(!fy || !entries0.length) return null;
+  const maxMonth = monthlyMaxMonth;
+  const curMap = {}; entries0.forEach(e=>curMap[e.monthInFY]=e.value);
+  const priorMap = {}; getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy-1).forEach(e=>priorMap[e.monthInFY]=e.value);
   let curSum=0, priorSum=0, priorMonthsCovered=0;
   for(let m=1;m<=maxMonth;m++){
     if(curMap[m]!=null) curSum += Number(curMap[m]);
@@ -820,7 +840,7 @@ function computeSalesGrowthCum(stock){
   }
   const priorComplete = priorMonthsCovered === maxMonth; // برای جلوگیری از مقایسه‌ی نادرست، فقط وقتی همه‌ی ماه‌های سال قبل هم ثبت شده باشن درصد رشد محاسبه می‌شه
   const growth = (priorComplete && priorSum>0) ? (curSum-priorSum)/priorSum : null;
-  return {curSum, priorSum: priorMonthsCovered>0?priorSum:null, growth, months:maxMonth, fy, priorComplete};
+  return {curSum, priorSum: priorMonthsCovered>0?priorSum:null, growth, months:maxMonth, fy, priorComplete, usedYTD:false};
 }
 // فروش نقطه‌به‌نقطه: فروش آخرین ماه ثبت‌شده در مقابل همون ماه در سال قبل
 function computePointToPointSales(stock){
@@ -837,16 +857,26 @@ function computePointToPointSales(stock){
   return {curVal, priorVal: priorVal ?? null, growth, month, fy};
 }
 // فروش نسبت به میانگین: فروش آخرین ماه در مقابل میانگین همه‌ی ماه‌های ثبت‌شده‌ی همین سال مالی (شامل خودش)
+// اگه ماه‌به‌ماه ناقص باشه ولی داده‌ی YTD با پوشش بیشتر/مساوی موجود باشه، میانگین رو از روی YTD (تقسیم بر تعداد ماه واقعی) می‌گیریم.
 function computeSalesVsAverage(stock){
   const fy = currentFiscalYearForSales(stock);
-  if(!fy) return null;
-  const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy);
-  if(!entries.length) return null;
-  const month = Math.max(...entries.map(e=>e.monthInFY));
+  const ytd = (stock.monthlySalesYTD||{})[fy];
+  const entries = fy!=null ? getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy) : [];
+  const monthlyMaxMonth = entries.length ? Math.max(...entries.map(e=>e.monthInFY)) : 0;
+  const contiguousMonths = fy!=null ? countContiguousMonthlyEntries(stock, fy, monthlyMaxMonth) : 0;
+  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>=contiguousMonths && ytd.throughMonth>=monthlyMaxMonth){
+    const avgSoFar = ytd.currentYTD/ytd.throughMonth;
+    // آخرین مقدار تک‌ماهه (اگه ثبت شده باشه) رو برای مقایسه‌ی «این ماه در مقابل میانگین» نگه می‌داریم؛ وگرنه از خودِ میانگین به‌عنوان تنها نقطه‌ی داده استفاده می‌شه
+    const curVal = monthlyMaxMonth>=ytd.throughMonth ? entries.find(e=>e.monthInFY===monthlyMaxMonth)?.value : avgSoFar;
+    const growth = avgSoFar ? (curVal-avgSoFar)/avgSoFar : null;
+    return {curVal, avgSoFar, growth, month: Math.max(monthlyMaxMonth, ytd.throughMonth), fy, monthsCount: ytd.throughMonth, usedYTD:true};
+  }
+  if(!fy || !entries.length) return null;
+  const month = monthlyMaxMonth;
   const curVal = entries.find(e=>e.monthInFY===month)?.value;
   const avgSoFar = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
   const growth = avgSoFar ? (curVal-avgSoFar)/avgSoFar : null;
-  return {curVal, avgSoFar, growth, month, fy, monthsCount: entries.length};
+  return {curVal, avgSoFar, growth, month, fy, monthsCount: entries.length, usedYTD:false};
 }
 // نسبت صادراتی = فروش صادراتی ÷ فروش کل (داخلی + صادراتی)، بر اساس ماه‌های سال مالی جاری که فروش داخلی/صادراتی برایشان ثبت شده
 function computeExportRatio(stock){
@@ -1024,6 +1054,17 @@ function renderDashboardTab(){
   const lp = latestPeriod(stock);
   let metrics = lp ? computeMetricsForPeriod(stock, lp) : {};
   let estSales = estimateAnnualSales(stock);
+  // آیا برآورد فروش بالا از داده‌ی YTD گزارش فعالیت ماهانه استفاده کرده (نه ماه‌به‌ماه)؟ فقط برای نمایش یه نشانگر کوچیک؛
+  // خودِ estimateAnnualSales دست‌نخورده می‌مونه، این فقط همون شرط رو برای نمایش تکرار می‌کنه.
+  let usedYTDForSales = false;
+  {
+    const endM0 = stockFYEndMonth(stock);
+    const today0 = getTodayJalali();
+    const {fiscalYear: todayFY0, monthInFY: todayMonthInFY0} = calendarToFiscalMonth(today0.year, today0.month, endM0);
+    const monthlyCount0 = countContiguousMonthlyEntries(stock, todayFY0, todayMonthInFY0);
+    const ytd0 = (stock.monthlySalesYTD||{})[todayFY0];
+    usedYTDForSales = !!(ytd0 && ytd0.currentYTD!=null && ytd0.throughMonth>=monthlyCount0 && !(stock.manual && stock.manual.estimatedAnnualSalesOverride));
+  }
   let estMargin = estimateLatestMargin(stock);
   let estAddons = estimateNetIncomeAddons(stock);
   let estFinal = estimateFinalNetIncome(stock);
@@ -1046,7 +1087,7 @@ function renderDashboardTab(){
     </div>`;
 
   let body = '';
-  if(dashSubtab==='overview') body = renderOverviewSubtab(stock, lp, metrics, estSales, estMargin, estAddons, estFinal, pe, exportRatio);
+  if(dashSubtab==='overview') body = renderOverviewSubtab(stock, lp, metrics, estSales, estMargin, estAddons, estFinal, pe, exportRatio, usedYTDForSales);
   else if(dashSubtab==='sales') body = renderSalesSubtab(stock, exportRatio);
   else if(dashSubtab==='quarterly') body = renderQuarterlySubtab();
   else if(dashSubtab==='dividend') body = renderDividendSubtab(stock);
@@ -1155,7 +1196,7 @@ function renderDashboardGauges(ctx){
   const order = applySavedOrder(Object.keys(widgets), layout.dashboardGaugeOrder);
   return order.map(key=>`<div class="dash-widget" data-dragkey="${key}"><span class="drag-handle" title="برای جابجایی بکش">⠿</span>${widgets[key]}</div>`).join('');
 }
-function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estFinal, pe, exportRatio){
+function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estFinal, pe, exportRatio, usedYTDForSales){
   const growth = computeSalesGrowthCum(stock);
   // رشد دلاری فروش: هر سال به دلار خودش تبدیل می‌شه، بعد این دو عدد دلاری با هم مقایسه می‌شن
   // (فروش‌تجمعی امسال ÷ دلار روز) نسبت به (فروش‌تجمعی سال قبل ÷ دلار مشابه سال قبل)
@@ -1221,7 +1262,7 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
           <td>${formatByDef(getFormulaByKey('inventoryDays'), m.inventoryDays)}</td>
           <td>${formatByDef(getFormulaByKey('receivableDays'), m.receivableDays)}</td>
           <td>${formatByDef(getFormulaByKey('qMargin'), m.qMargin)}</td>
-          <td>${estSales!=null? fmt(estSales):'—'}</td>
+          <td>${estSales!=null? fmt(estSales):'—'}${usedYTDForSales?' <span title="بر اساس گزارش تجمیعی (YTD)، نه ماه‌به‌ماه" style="color:var(--teal)">📊</span>':''}</td>
           <td>${estFinal!=null? fmt(estFinal):'—'}</td>
           <td>${exportRatio? fmtPct(exportRatio.ratio):'—'}</td>
           <td>${marketCap!=null? fmt(marketCap):'—'}</td>
@@ -1265,12 +1306,12 @@ function renderSalesSubtab(stock, exportRatio){
     <div class="card">
       <h3>فروش نسبت به میانگین</h3>
       <div class="chart-box" style="height:180px"><canvas id="chartVsAverage"></canvas></div>
-      ${vsAvg ? `<div class="note" style="margin-top:6px">میانگین ${toFa(vsAvg.monthsCount)} ماه ثبت‌شده در مقابل آخرین ماه</div>`:''}
+      ${vsAvg ? `<div class="note" style="margin-top:6px">میانگین ${toFa(vsAvg.monthsCount)} ماه ${vsAvg.usedYTD?'(از گزارش تجمیعی)':'ثبت‌شده'} در مقابل آخرین ماه ${vsAvg.usedYTD?'<span style="color:var(--teal)">📊 بر اساس YTD گزارش، نه ماه‌به‌ماه</span>':''}</div>`:''}
     </div>
     <div class="card">
       <h3>فروش تجمیعی</h3>
       <div class="chart-box" style="height:180px"><canvas id="chartSalesGrowth"></canvas></div>
-      ${growth ? `<div class="note" style="margin-top:6px">جمع ${toFa(growth.months)} ماه سال جاری در مقابل بازه مشابه سال قبل${growth.priorSum!=null && !growth.priorComplete ? ' — ⚠️ ناقص' : ''}</div>`:''}
+      ${growth ? `<div class="note" style="margin-top:6px">جمع ${toFa(growth.months)} ماه سال جاری در مقابل بازه مشابه سال قبل${growth.priorSum!=null && !growth.priorComplete ? ' — ⚠️ ناقص' : ''} ${growth.usedYTD?'<br><span style="color:var(--teal)">📊 بر اساس YTD گزارش، نه ماه‌به‌ماه</span>':''}</div>`:''}
     </div>
   </div>
   <div class="grid cols-3" style="margin-top:14px">
@@ -2650,6 +2691,7 @@ function renderPortfolioTab(){
 function renderBackupTab(){
   const email = state.settings?.backupEmail || '';
   const gh = getGhConfig();
+  const brs = getBrsApiConfig();
   const fsSupported = supportsFileSystemAccess();
   let localFileStatusHtml;
   if(!fsSupported){
@@ -2718,6 +2760,18 @@ function renderBackupTab(){
       <button class="btn secondary" id="ghPullBtn">⬇️ دریافت از گیت‌هاب</button>
     </div>
     ${gh.lastSync ? `<div class="hint" style="margin-top:8px">آخرین همگام‌سازی: ${new Date(gh.lastSync).toLocaleString('fa-IR')}</div>` : ''}
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>به‌روزرسانی خودکار نمادها (BrsApi.ir)</h3>
+    <p style="font-size:13px; color:var(--muted)">با یه کلیک، قیمت روز و ارزش بازار همه‌ی سهم‌های تعریف‌شده (و قیمت تابلوی صندوق‌های طلا/نقره) رو از BrsApi.ir می‌گیره و توی «ورودی سایر اطلاعات» هر کدوم جایگزین می‌کنه.</p>
+    <div class="field"><label>کلید API</label><input id="brsApiKey" value="${brs.apiKey!=null?brs.apiKey:'B7L8LXEHpBb2TfgAxwRLRk7v3yxDRRb6'}" placeholder="کلید BrsApi.ir"></div>
+    <div class="row" style="margin-top:8px">
+      <button class="btn secondary" id="brsSaveKeyBtn">ذخیره کلید</button>
+      <button class="btn tan" id="brsUpdateBtn">🔄 به‌روزرسانی همه‌ی نمادها</button>
+    </div>
+    ${brs.lastUpdate ? `<div class="hint" style="margin-top:8px">آخرین به‌روزرسانی: ${new Date(brs.lastUpdate).toLocaleString('fa-IR')}</div>` : ''}
+    <div class="hint">این کلید فقط توی همین مرورگر (localStorage) ذخیره می‌شه، هیچ‌وقت داخل فایل‌های بک‌آپ خروجی یا سینک گیت‌هاب قرار نمی‌گیره. هر وقت از BrsApi.ir کلید جدید گرفتی، همینجا جایگزینش کن.</div>
   </div>
   `;
 }
@@ -3254,6 +3308,13 @@ function parseMonthFromGroupLabel(label){
   if(!m) return null;
   return {fiscalYear: parseInt(m[1]), month: parseInt(m[2])};
 }
+// تاریخ کامل (سال/ماه/روز) رو از متن یه سرفصل استخراج می‌کنه — برای پیدا کردن سرفصل‌های «از ابتدای سال مالی تا تاریخ X»ی
+// که ماه/روزشون با سرفصل «یک ماهه» انتخاب‌شده یکیه (یکی برای سال جاری، یکی برای سال قبل)
+function extractRawDateFromLabel(label){
+  const m = RAW_DATE_RE.exec(toEnDigits(label));
+  if(!m) return null;
+  return {year: parseInt(m[1]), month: parseInt(m[2]), day: parseInt(m[3])};
+}
 function openMonthlyActivityModal(){
   const raw = document.getElementById('monthlyActivityPasteInput').value.trim();
   if(!raw) return showToast('اول متن رو پیست کن');
@@ -3285,6 +3346,22 @@ function openMonthlyActivityModal(){
   const guessExportIdx = lastMatchIdx(l=>l.includes('جمع فروش صادراتی')) ?? lastMatchIdx(l=>l.includes('صادراتی'));
   const guessGroupIdx = groups.findIndex(g=>g.label.includes('یک ماهه'));
 
+  // سرفصل‌های «از ابتدای سال مالی تا تاریخ X» که ماه/روزشون دقیقاً با سرفصل «یک ماهه» یکیه رو پیدا می‌کنیم:
+  // یکی با همون سال (= YTD سال جاری تا همین ماه) و یکی با سال قبل (= YTD سال قبل تا همون تاریخ) — برای محاسبه‌ی
+  // میانگین/تجمیعی فروش ماهانه در داشبورد وقتی ماه‌به‌ماه به‌طور کامل ثبت نشده باشه.
+  const oneMonthDate = guessGroupIdx>-1 ? extractRawDateFromLabel(groups[guessGroupIdx].label) : null;
+  let guessCurrentYTDIdx = null, guessPriorYTDIdx = null;
+  if(oneMonthDate){
+    groups.forEach((g,idx)=>{
+      if(idx===guessGroupIdx || g.label.includes('اصلاح') || !g.label.includes('از ابتدای')) return;
+      const d = extractRawDateFromLabel(g.label);
+      if(!d || d.month!==oneMonthDate.month || d.day!==oneMonthDate.day) return;
+      if(d.year===oneMonthDate.year) guessCurrentYTDIdx = idx;
+      else if(d.year===oneMonthDate.year-1) guessPriorYTDIdx = idx;
+    });
+  }
+  const ytdGroupOpts = (guessIdx)=> `<option value="">— استفاده نکن —</option>` + groups.map((g,idx)=>`<option value="${idx}" ${idx===guessIdx?'selected':''}>${g.label}</option>`).join('');
+
   const groupOpts = groups.map((g,idx)=>`<option value="${idx}" ${idx===(guessGroupIdx>-1?guessGroupIdx:0)?'selected':''}>${g.label}</option>`).join('');
   // شماره‌ی سطر رو جلوی هر گزینه نشون می‌دیم تا اگه عنوان تکراری بود (چند «جمع فروش داخلی»)، بتونی دقیقاً همونی که می‌خوای رو پیدا کنی
   const rowOpts = (guessIdx)=> `<option value="">— انتخاب نشده —</option>` + rowEntries.map(e=>`<option value="${e.idx}" ${e.idx===guessIdx?'selected':''}>سطر ${toFa(e.idx+1)}: ${e.label}</option>`).join('');
@@ -3309,6 +3386,11 @@ function openMonthlyActivityModal(){
     <div class="field" style="margin-bottom:9px"><label>ستون «مبلغ فروش» زیر همین سرفصل <span style="color:var(--teal)">(اگه تشخیص خودکار غلط بود، دستی عوضش کن)</span></label><select id="matAmountCol">${buildColOptions(guessGroupIdx>-1?guessGroupIdx:0)}</select></div>
     <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش داخلی» <span style="color:var(--teal)">(اگه چند بار تکرار شده، شماره سطرِ جمع کل رو انتخاب کن)</span></label><select id="matDomesticRow">${rowOpts(guessDomesticIdx)}</select></div>
     <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش صادراتی»</label><select id="matExportRow">${rowOpts(guessExportIdx)}</select></div>
+    <div style="font-size:11.5px; color:var(--muted); margin:12px 0 6px; padding-top:10px; border-top:1px solid var(--line)">
+      اختیاری — برای محاسبه‌ی درست میانگین/تجمیعیِ فروش ماهانه در داشبورد، حتی اگه بعضی ماه‌های گذشته رو تک‌به‌تک ثبت نکرده باشی:
+    </div>
+    <div class="field" style="margin-bottom:9px"><label>سرفصل «از ابتدای سال مالی تا تاریخ [آخرین گزارش]» (YTD سال جاری)</label><select id="matCurrentYTDGroup">${ytdGroupOpts(guessCurrentYTDIdx)}</select></div>
+    <div class="field" style="margin-bottom:9px"><label>سرفصل «از ابتدای سال مالی تا همون تاریخ، سال قبل» (YTD سال قبل)</label><select id="matPriorYTDGroup">${ytdGroupOpts(guessPriorYTDIdx)}</select></div>
     <div class="row">
       <div class="field" style="flex:1"><label>سال مالی (اگه از سرفصل قابل تشخیص نبود)</label><input id="matFallbackYear" type="number" placeholder="مثلاً 1404"></div>
       <div class="field" style="flex:1"><label>ماه (اگه از سرفصل قابل تشخیص نبود)</label><input id="matFallbackMonth" type="number" min="1" max="12"></div>
@@ -3322,6 +3404,19 @@ function openMonthlyActivityModal(){
       <button class="btn tan" id="confirmMonthlyActivityBtn">وارد کردن این ماه</button>
     </div>
   `);
+  const computeGroupTotal = (groupIdx)=>{
+    if(groupIdx==null || groupIdx==='' ) return null;
+    const g = groups[parseInt(groupIdx)];
+    if(!g) return null;
+    const col = findAmountColInGroup(g, subHeaderLabel);
+    if(col==null) return null;
+    const domesticIdx = document.getElementById('matDomesticRow').value;
+    const exportIdx = document.getElementById('matExportRow').value;
+    const dVal = domesticIdx!=='' ? parseFloatSafe(grid[parseInt(domesticIdx)]?.[col]) : null;
+    const eVal = exportIdx!=='' ? parseFloatSafe(grid[parseInt(exportIdx)]?.[col]) : null;
+    if(dVal==null && eVal==null) return null;
+    return (dVal||0) + (eVal||0);
+  };
   const updatePreview = ()=>{
     const domesticIdx = document.getElementById('matDomesticRow').value;
     const exportIdx = document.getElementById('matExportRow').value;
@@ -3333,17 +3428,23 @@ function openMonthlyActivityModal(){
     const exportVal = exportIdx!=='' ? parseFloatSafe(grid[parseInt(exportIdx)]?.[amountCol]) : null;
     const multiplier = parseFloatSafe(document.getElementById('matMultiplier').value) || 1;
     const total = (domesticVal||0) + (exportVal||0);
+    const currentYTDVal = computeGroupTotal(document.getElementById('matCurrentYTDGroup').value);
+    const priorYTDVal = computeGroupTotal(document.getElementById('matPriorYTDGroup').value);
     box.innerHTML = `ستون انتخاب‌شده برای «مبلغ فروش»: <b>${subHeaderLabel(amountCol) || `ستون ${toFa(amountCol+1)}`}</b><br>
       فروش داخلی: <b>${domesticVal!=null?fmt(domesticVal*multiplier):'—'}</b> میلیارد تومان (خام: ${domesticVal!=null?fmt(domesticVal):'—'})<br>
       فروش صادراتی: <b>${exportVal!=null?fmt(exportVal*multiplier):'—'}</b> میلیارد تومان (خام: ${exportVal!=null?fmt(exportVal):'—'})<br>
-      <b>جمع کل: ${fmt(total*multiplier)} میلیارد تومان</b> — این عدد رو با گزارش کدال مقایسه کن، اگه درست بود «وارد کردن این ماه» رو بزن.`;
+      <b>جمع کل: ${fmt(total*multiplier)} میلیارد تومان</b> — این عدد رو با گزارش کدال مقایسه کن، اگه درست بود «وارد کردن این ماه» رو بزن.
+      ${currentYTDVal!=null || priorYTDVal!=null ? `<div style="margin-top:6px; padding-top:6px; border-top:1px dashed var(--line)">
+        ${currentYTDVal!=null?`جمع از ابتدای سال (سال جاری): <b>${fmt(currentYTDVal*multiplier)}</b> میلیارد تومان<br>`:''}
+        ${priorYTDVal!=null?`جمع از ابتدای سال (سال قبل، همون تاریخ): <b>${fmt(priorYTDVal*multiplier)}</b> میلیارد تومان`:''}
+      </div>`:''}`;
   };
   // با تغییر سرفصل، لیست ستون‌ها هم باید دوباره ساخته بشه (چون هر سرفصل ستون‌های زیرمجموعه‌ی خودش رو داره)
   document.getElementById('matGroupSelect').onchange = ()=>{
     document.getElementById('matAmountCol').innerHTML = buildColOptions(parseInt(document.getElementById('matGroupSelect').value));
     updatePreview();
   };
-  ['matAmountCol','matDomesticRow','matExportRow','matMultiplier'].forEach(id=>{
+  ['matAmountCol','matDomesticRow','matExportRow','matMultiplier','matCurrentYTDGroup','matPriorYTDGroup'].forEach(id=>{
     document.getElementById(id).onchange = updatePreview;
   });
   updatePreview();
@@ -3361,6 +3462,8 @@ function runMonthlyActivityImport(grid, groups){
   const fallbackYear = parseIntSafe(document.getElementById('matFallbackYear').value);
   const fallbackMonth = parseIntSafe(document.getElementById('matFallbackMonth').value);
   const multiplier = parseFloatSafe(document.getElementById('matMultiplier').value) || 1;
+  const currentYTDGroupVal = document.getElementById('matCurrentYTDGroup').value;
+  const priorYTDGroupVal = document.getElementById('matPriorYTDGroup').value;
 
   if(amountColVal==='') return showToast('ستون «مبلغ فروش» رو انتخاب کن');
   const amountCol = parseInt(amountColVal);
@@ -3382,8 +3485,48 @@ function runMonthlyActivityImport(grid, groups){
   stock.monthlySales[`${fy}-${month}`] = total * multiplier;
   stock.monthlySalesSplit = stock.monthlySalesSplit || {};
   stock.monthlySalesSplit[`${fy}-${month}`] = {domestic:(domesticVal||0)*multiplier, export:(exportVal||0)*multiplier};
+
+  // اگه سرفصل‌های YTD (از ابتدای سال مالی تا تاریخ) هم انتخاب شده باشن، برای استفاده به‌عنوان جایگزین محاسبه‌ی
+  // میانگین/تجمیعی فروش ماهانه در داشبورد (وقتی ماه‌به‌ماه به‌طور کامل ثبت نشده) ذخیره‌شون می‌کنیم
+  const computeGroupTotal = (groupIdxVal)=>{
+    if(groupIdxVal==null || groupIdxVal==='') return null;
+    const g = groups[parseInt(groupIdxVal)];
+    if(!g) return null;
+    const headerRowCount = detectHeaderRowCount(grid);
+    const subHeaderLabel = (col)=>{
+      const parts = [];
+      for(let r=1; r<headerRowCount; r++){
+        const t = (grid[r][col]!=null ? String(grid[r][col]) : '').trim();
+        if(t && parts[parts.length-1]!==t) parts.push(t);
+      }
+      return parts.join(' / ');
+    };
+    const col = findAmountColInGroup(g, subHeaderLabel);
+    if(col==null) return null;
+    const dRow = domesticIdxVal ? grid[parseInt(domesticIdxVal)] : null;
+    const eRow = exportIdxVal ? grid[parseInt(exportIdxVal)] : null;
+    const dVal = dRow ? parseFloatSafe(dRow[col]) : null;
+    const eVal = eRow ? parseFloatSafe(eRow[col]) : null;
+    if(dVal==null && eVal==null) return null;
+    return (dVal||0) + (eVal||0);
+  };
+  const currentYTDRaw = computeGroupTotal(currentYTDGroupVal);
+  const priorYTDRaw = computeGroupTotal(priorYTDGroupVal);
+  let ytdNote = '';
+  if(currentYTDRaw!=null){
+    const endM = stockFYEndMonth(stock);
+    const {fiscalYear: realFY, monthInFY} = calendarToFiscalMonth(fy, month, endM);
+    stock.monthlySalesYTD = stock.monthlySalesYTD || {};
+    stock.monthlySalesYTD[realFY] = {
+      throughMonth: monthInFY,
+      currentYTD: currentYTDRaw * multiplier,
+      priorYearYTD: priorYTDRaw!=null ? priorYTDRaw*multiplier : (stock.monthlySalesYTD[realFY]?.priorYearYTD ?? null)
+    };
+    ytdNote = ` — YTD تا ماه ${toFa(monthInFY)} سال مالی هم ذخیره شد (${fmt(currentYTDRaw*multiplier)} م.ت)`;
+  }
+
   saveState(); closeModal();
-  showToast(`ماه ${toFa(month)}/${toFa(fy)} ثبت شد: ${fmt(total*multiplier)} میلیارد تومان (داخلی ${fmt(domesticVal||0)} + صادراتی ${fmt(exportVal||0)} میلیون ریال)`);
+  showToast(`ماه ${toFa(month)}/${toFa(fy)} ثبت شد: ${fmt(total*multiplier)} میلیارد تومان (داخلی ${fmt(domesticVal||0)} + صادراتی ${fmt(exportVal||0)} میلیون ریال)${ytdNote}`);
   renderAll();
 }
 function handleExcelFile(e){
@@ -4299,6 +4442,16 @@ function attachHandlers(){
   const ghPullBtn = document.getElementById('ghPullBtn');
   if(ghPullBtn) ghPullBtn.onclick = ghPull;
 
+  const brsSaveKeyBtn = document.getElementById('brsSaveKeyBtn');
+  if(brsSaveKeyBtn) brsSaveKeyBtn.onclick = ()=>{
+    const cfg = getBrsApiConfig();
+    cfg.apiKey = document.getElementById('brsApiKey').value.trim();
+    saveBrsApiConfig(cfg);
+    showToast('کلید ذخیره شد');
+  };
+  const brsUpdateBtn = document.getElementById('brsUpdateBtn');
+  if(brsUpdateBtn) brsUpdateBtn.onclick = updateSymbolsFromBrsApi;
+
   const saveGoldMarketBtn = document.getElementById('saveGoldMarketBtn');
   if(saveGoldMarketBtn) saveGoldMarketBtn.onclick = ()=>{
     const gm = getGoldMarket();
@@ -4448,6 +4601,63 @@ async function ghPush(){
     renderAll();
   }catch(e){
     showToast('خطا در ارسال به گیت‌هاب: ' + e.message);
+  }
+}
+/* ========================= به‌روزرسانی خودکار نمادها از BrsApi.ir ========================= */
+// این کلید عمداً جدا از state نگه داشته می‌شه تا هیچ‌وقت داخل فایل‌های بک‌آپ/سینک گیت‌هاب قرار نگیره
+const BRSAPI_STORAGE_KEY = 'fundamental_analyzer_brsapi_v1';
+function getBrsApiConfig(){
+  try{ return JSON.parse(localStorage.getItem(BRSAPI_STORAGE_KEY)) || {}; }catch(e){ return {}; }
+}
+function saveBrsApiConfig(cfg){
+  try{ localStorage.setItem(BRSAPI_STORAGE_KEY, JSON.stringify(cfg)); }catch(e){}
+}
+// توجه: قیمت (pc) و ارزش بازار (mv) در خروجی BrsApi/TSETMC به ریال‌اند؛ کل برنامه با تومان کار می‌کنه، پس همه‌جا بر ۱۰ تقسیم می‌شن
+// (ارزش بازار علاوه بر تبدیل ریال‌به‌تومان، به «میلیارد تومان» هم تبدیل می‌شه که واحد فیلد marketCap توی برنامه‌ست)
+async function updateSymbolsFromBrsApi(){
+  const cfg = getBrsApiConfig();
+  const apiKey = (cfg.apiKey!=null && cfg.apiKey!=='') ? cfg.apiKey : 'B7L8LXEHpBb2TfgAxwRLRk7v3yxDRRb6';
+  if(!apiKey) return showToast('اول کلید API رو وارد و ذخیره کن');
+  showToast('در حال دریافت اطلاعات نمادها از BrsApi.ir...');
+  try{
+    const res = await fetch(`https://api.brsapi.ir/Tsetmc/AllSymbols.php?key=${encodeURIComponent(apiKey)}&type=1`);
+    if(!res.ok) throw new Error('خطای سرور BrsApi: ' + res.status);
+    const list = await res.json();
+    if(!Array.isArray(list)) throw new Error('پاسخ نامعتبر از BrsApi دریافت شد');
+    const bySymbol = {};
+    list.forEach(item=>{ if(item && item.l18) bySymbol[item.l18] = item; });
+
+    let updatedStocks = 0, updatedFunds = 0;
+    const notFound = [];
+    Object.keys(state.stocks).forEach(sym=>{
+      const item = bySymbol[sym];
+      if(!item){ notFound.push(sym); return; }
+      const stock = state.stocks[sym];
+      stock.manual = stock.manual || {};
+      if(item.pc!=null) stock.manual.currentPrice = item.pc/10; // ریال -> تومان
+      if(item.mv!=null) stock.manual.marketCap = item.mv/1e10; // ریال -> میلیارد تومان
+      updatedStocks++;
+    });
+    const funds = getGoldFunds();
+    Object.keys(funds).forEach(id=>{
+      const fund = funds[id];
+      const item = bySymbol[fund.symbol];
+      if(!item) return;
+      fund.manual = fund.manual || {};
+      if(item.pc!=null) fund.manual.marketPrice = item.pc/10; // ریال -> تومان
+      updatedFunds++;
+    });
+
+    cfg.apiKey = apiKey;
+    cfg.lastUpdate = new Date().toISOString();
+    saveBrsApiConfig(cfg);
+    saveState();
+    let msg = `${toFa(updatedStocks)} سهم` + (updatedFunds ? ` و ${toFa(updatedFunds)} صندوق` : '') + ' به‌روز شد ✅';
+    if(notFound.length) msg += ` — پیدا نشد: ${notFound.join('، ')}`;
+    showToast(msg);
+    renderAll();
+  }catch(e){
+    showToast('خطا در دریافت اطلاعات از BrsApi: ' + e.message + ' (اگه پیام «Failed to fetch» می‌بینی، احتمالاً محدودیت CORS مرورگره)');
   }
 }
 async function ghPull(){
