@@ -2565,7 +2565,12 @@ function renderGoldTab(){
       <div class="field"><label>تخمین انس طلا پایان سال (دلار)</label><input id="gmGoldOunceYE" type="number" value="${gm.goldOunceYearEnd??''}"></div>
       <div class="field"><label>تخمین انس نقره پایان سال (دلار)</label><input id="gmSilverOunceYE" type="number" value="${gm.silverOunceYearEnd??''}"></div>
     </div>
-    <div class="row" style="margin-top:10px"><button class="btn tan" id="saveGoldMarketBtn">ذخیره مفروضات</button></div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn tan" id="saveGoldMarketBtn">ذخیره مفروضات</button>
+      <button class="btn secondary" id="brsUpdateGoldBtn">🔄 دریافت دلار/انس روز (BrsApi)</button>
+      <button class="btn secondary" id="brsFetchDollarStartBtn">📅 دریافت خودکار دلار ابتدای سال</button>
+    </div>
+    <div class="hint">دکمه‌ی اول «دلار روز»، «انس طلا روز» و «انس نقره روز» (اگه نمادش توی پلن کلیدت باشه) رو زنده از BrsApi می‌گیره. دکمه‌ی دوم قیمت دلار در اول فروردین سال جاری رو از تاریخچه‌ی BrsApi می‌گیره و توی «دلار ابتدای سال» می‌ذاره.</div>
     <div class="grid cols-4" style="margin-top:16px">
       ${kpi('دلار تئوریک امروز (طبق تورم)', gmm.theoDollarToday!=null?fmt(gmm.theoDollarToday):'—', 'دلار اول سال × (۱+تورم ماهانه)^ماه‌های گذشته')}
       ${kpi('حباب دلار', gmm.dollarBubble!=null?fmtPct(gmm.dollarBubble):'—', 'فاصله‌ی دلار امروز از دلار تئوریک طبق تورم')}
@@ -4451,6 +4456,10 @@ function attachHandlers(){
   };
   const brsUpdateBtn = document.getElementById('brsUpdateBtn');
   if(brsUpdateBtn) brsUpdateBtn.onclick = updateSymbolsFromBrsApi;
+  const brsUpdateGoldBtn = document.getElementById('brsUpdateGoldBtn');
+  if(brsUpdateGoldBtn) brsUpdateGoldBtn.onclick = updateGoldMarketFromBrsApi;
+  const brsFetchDollarStartBtn = document.getElementById('brsFetchDollarStartBtn');
+  if(brsFetchDollarStartBtn) brsFetchDollarStartBtn.onclick = fetchDollarStartOfYearFromBrsApi;
 
   const saveGoldMarketBtn = document.getElementById('saveGoldMarketBtn');
   if(saveGoldMarketBtn) saveGoldMarketBtn.onclick = ()=>{
@@ -4636,6 +4645,8 @@ async function updateSymbolsFromBrsApi(){
       stock.manual = stock.manual || {};
       if(item.pc!=null) stock.manual.currentPrice = item.pc/10; // ریال -> تومان
       if(item.mv!=null) stock.manual.marketCap = item.mv/1e10; // ریال -> میلیارد تومان
+      if(item.z!=null) stock.manual.sharesOutstanding = item.z; // تعداد کل سهام شرکت
+      stock.manual.marketCapUpdatedAt = Date.now(); // تا ستون «آخرین به‌روزرسانی» توی سبد سرمایه‌گذاری هم درست بشه
       updatedStocks++;
     });
     const funds = getGoldFunds();
@@ -4658,6 +4669,67 @@ async function updateSymbolsFromBrsApi(){
     renderAll();
   }catch(e){
     showToast('خطا در دریافت اطلاعات از BrsApi: ' + e.message + ' (اگه پیام «Failed to fetch» می‌بینی، احتمالاً محدودیت CORS مرورگره)');
+  }
+}
+/* ---- به‌روزرسانی زنده‌ی طلا/ارز برای بخش «طلا و نقره» (Gold_Currency.php) ---- */
+async function updateGoldMarketFromBrsApi(){
+  const cfg = getBrsApiConfig();
+  const apiKey = (cfg.apiKey!=null && cfg.apiKey!=='') ? cfg.apiKey : 'B7L8LXEHpBb2TfgAxwRLRk7v3yxDRRb6';
+  if(!apiKey) return showToast('اول کلید API رو وارد و ذخیره کن');
+  showToast('در حال دریافت قیمت طلا/ارز از BrsApi.ir...');
+  try{
+    const res = await fetch(`https://api.brsapi.ir/Market/Gold_Currency.php?key=${encodeURIComponent(apiKey)}`);
+    if(!res.ok) throw new Error('خطای سرور BrsApi: ' + res.status);
+    const data = await res.json();
+    const goldList = data.gold || [];
+    const currencyList = data.currency || [];
+    const xau = goldList.find(g=>g.symbol==='XAUUSD'); // انس طلا (دلار)
+    const xag = goldList.find(g=>g.symbol==='XAGUSD'); // انس نقره (دلار) — اگه پلن/کلیدت این نماد رو نداشته باشه، خالی می‌مونه
+    const usd = currencyList.find(c=>c.symbol==='USD'); // دلار (تومان)
+
+    const gm = getGoldMarket();
+    let updated = [];
+    if(usd && usd.price!=null){ gm.dollarToday = usd.price; updated.push('دلار روز'); } // خروجی این endpoint از قبل به تومانه، نیازی به تقسیم بر ۱۰ نیست
+    if(xau && xau.price!=null){ gm.goldOunceToday = xau.price; updated.push('انس طلا'); }
+    if(xag && xag.price!=null){ gm.silverOunceToday = xag.price; updated.push('انس نقره'); }
+    if(!updated.length) throw new Error('هیچ‌کدوم از نمادهای USD/XAUUSD/XAGUSD توی پاسخ پیدا نشد');
+
+    cfg.apiKey = apiKey;
+    cfg.lastGoldUpdate = new Date().toISOString();
+    saveBrsApiConfig(cfg);
+    saveState();
+    let msg = updated.join('، ') + ' به‌روز شد ✅';
+    if(!xag) msg += ' — نماد انس نقره (XAGUSD) توی پاسخ نبود، دستی وارد کن';
+    showToast(msg);
+    renderAll();
+  }catch(e){
+    showToast('خطا در دریافت طلا/ارز از BrsApi: ' + e.message);
+  }
+}
+/* ---- دریافت خودکار «دلار ابتدای سال» از تاریخچه‌ی روزانه (Gold_Currency_Pro.php) ---- */
+async function fetchDollarStartOfYearFromBrsApi(){
+  const cfg = getBrsApiConfig();
+  const apiKey = (cfg.apiKey!=null && cfg.apiKey!=='') ? cfg.apiKey : 'B7L8LXEHpBb2TfgAxwRLRk7v3yxDRRb6';
+  if(!apiKey) return showToast('اول کلید API رو وارد و ذخیره کن');
+  const {year} = getTodayJalali();
+  const dateStr = `${year}-01-01`;
+  showToast(`در حال دریافت قیمت دلار در ${dateStr}...`);
+  try{
+    const res = await fetch(`https://api.brsapi.ir/Market/Gold_Currency_Pro.php?key=${encodeURIComponent(apiKey)}&history=2&symbol=USD&date_start=${dateStr}&date_end=${dateStr}`);
+    if(!res.ok) throw new Error('خطای سرور BrsApi: ' + res.status);
+    const data = await res.json();
+    const rows = Array.isArray(data) ? data : (data.data || data.history || []);
+    const row = rows[0];
+    if(!row || row.price==null) throw new Error('داده‌ای برای این تاریخ برنگشت');
+    const gm = getGoldMarket();
+    gm.dollarStartOfYear = row.price;
+    cfg.apiKey = apiKey;
+    saveBrsApiConfig(cfg);
+    saveState();
+    showToast(`دلار ابتدای سال (${row.date||dateStr}): ${fmt(row.price)} تومان ثبت شد ✅`);
+    renderAll();
+  }catch(e){
+    showToast('خطا در دریافت تاریخچه از BrsApi: ' + e.message);
   }
 }
 async function ghPull(){
