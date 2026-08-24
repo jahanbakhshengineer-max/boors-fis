@@ -3397,6 +3397,11 @@ function openMonthlyActivityModal(){
   const lastMatchIdx = (matchFn)=>{ let found=null; rowEntries.forEach(e=>{ if(matchFn(e.label)) found=e.idx; }); return found; }; // آخرین match = معمولاً جمع کل که پایین جدوله
   const guessDomesticIdx = lastMatchIdx(l=>l.includes('جمع فروش داخلی')) ?? lastMatchIdx(l=>l.includes('داخلی'));
   const guessExportIdx = lastMatchIdx(l=>l.includes('جمع فروش صادراتی')) ?? lastMatchIdx(l=>l.includes('صادراتی'));
+  // ردیف «جمع کل درآمد عملیاتی» (توی گزارش کدال معمولاً فقط با عنوان تک‌کلمه‌ای «جمع» در انتهای جدول میاد، برای همین
+  // تطبیق دقیق (نه شامل‌بودن) استفاده می‌شه تا با «جمع فروش داخلی»/«جمع درآمد ارائه خدمات» و... اشتباه گرفته نشه).
+  // این ردیف معمولاً کمی با «جمع فروش داخلی + جمع فروش صادراتی» فرق داره، چون یه «بهای تمام‌شده‌ی انتسابی» از درآمد کم می‌شه؛
+  // برای همین باید مبلغ نهایی فروش ماهانه از همین ردیف خونده بشه، نه از جمع‌زدن دستیِ داخلی+صادراتی.
+  const guessTotalRevenueIdx = lastMatchIdx(l=>l.trim()==='جمع');
   const guessGroupIdx = groups.findIndex(g=>g.label.includes('یک ماهه'));
 
   // سرفصل‌های «از ابتدای سال مالی تا تاریخ X» که ماه/روزشون دقیقاً با سرفصل «یک ماهه» یکیه رو پیدا می‌کنیم:
@@ -3439,6 +3444,7 @@ function openMonthlyActivityModal(){
     <div class="field" style="margin-bottom:9px"><label>ستون «مبلغ فروش» زیر همین سرفصل <span style="color:var(--teal)">(اگه تشخیص خودکار غلط بود، دستی عوضش کن)</span></label><select id="matAmountCol">${buildColOptions(guessGroupIdx>-1?guessGroupIdx:0)}</select></div>
     <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش داخلی» <span style="color:var(--teal)">(اگه چند بار تکرار شده، شماره سطرِ جمع کل رو انتخاب کن)</span></label><select id="matDomesticRow">${rowOpts(guessDomesticIdx)}</select></div>
     <div class="field" style="margin-bottom:9px"><label>ردیف «جمع فروش صادراتی»</label><select id="matExportRow">${rowOpts(guessExportIdx)}</select></div>
+    <div class="field" style="margin-bottom:9px"><label>ردیف «جمع کل درآمد عملیاتی» <span style="color:var(--teal)">(ردیف «جمع» در انتهای جدول — به‌خاطر بهای تمام‌شده‌ی انتسابی، معمولاً کمی با جمعِ داخلی+صادراتی فرق داره)</span></label><select id="matTotalRevenueRow">${rowOpts(guessTotalRevenueIdx)}</select></div>
     <div style="font-size:11.5px; color:var(--muted); margin:12px 0 6px; padding-top:10px; border-top:1px solid var(--line)">
       اختیاری — برای محاسبه‌ی درست میانگین/تجمیعیِ فروش ماهانه در داشبورد، حتی اگه بعضی ماه‌های گذشته رو تک‌به‌تک ثبت نکرده باشی:
     </div>
@@ -3473,20 +3479,27 @@ function openMonthlyActivityModal(){
   const updatePreview = ()=>{
     const domesticIdx = document.getElementById('matDomesticRow').value;
     const exportIdx = document.getElementById('matExportRow').value;
+    const totalRevenueIdx = document.getElementById('matTotalRevenueRow').value;
     const amountColVal = document.getElementById('matAmountCol').value;
     const amountCol = amountColVal!=='' ? parseInt(amountColVal) : null;
     const box = document.getElementById('matPreview');
     if(amountCol==null){ box.innerHTML = '⚠️ اول ستون «مبلغ فروش» رو انتخاب کن.'; return; }
     const domesticVal = domesticIdx!=='' ? parseFloatSafe(grid[parseInt(domesticIdx)]?.[amountCol]) : null;
     const exportVal = exportIdx!=='' ? parseFloatSafe(grid[parseInt(exportIdx)]?.[amountCol]) : null;
+    const totalRevenueVal = totalRevenueIdx!=='' ? parseFloatSafe(grid[parseInt(totalRevenueIdx)]?.[amountCol]) : null;
     const multiplier = parseFloatSafe(document.getElementById('matMultiplier').value) || 1;
-    const total = (domesticVal||0) + (exportVal||0);
+    const domesticExportSum = (domesticVal||0) + (exportVal||0);
+    // مبلغی که واقعاً به‌عنوان فروش ماهانه ذخیره می‌شه: ترجیحاً ردیف «جمع کل درآمد عملیاتی» (چون بهای تمام‌شده‌ی انتسابی رو
+    // لحاظ کرده)؛ فقط اگه این ردیف انتخاب/پیدا نشده باشه، به‌عنوان جایگزین از جمع داخلی+صادراتی استفاده می‌شه.
+    const finalTotal = totalRevenueVal!=null ? totalRevenueVal : domesticExportSum;
     const currentYTDVal = computeGroupTotal(document.getElementById('matCurrentYTDGroup').value);
     const priorYTDVal = computeGroupTotal(document.getElementById('matPriorYTDGroup').value);
     box.innerHTML = `ستون انتخاب‌شده برای «مبلغ فروش»: <b>${subHeaderLabel(amountCol) || `ستون ${toFa(amountCol+1)}`}</b><br>
-      فروش داخلی: <b>${domesticVal!=null?fmt(domesticVal*multiplier):'—'}</b> میلیارد تومان (خام: ${domesticVal!=null?fmt(domesticVal):'—'})<br>
-      فروش صادراتی: <b>${exportVal!=null?fmt(exportVal*multiplier):'—'}</b> میلیارد تومان (خام: ${exportVal!=null?fmt(exportVal):'—'})<br>
-      <b>جمع کل: ${fmt(total*multiplier)} میلیارد تومان</b> — این عدد رو با گزارش کدال مقایسه کن، اگه درست بود «وارد کردن این ماه» رو بزن.
+      فروش داخلی: <b>${domesticVal!=null?fmt(domesticVal*multiplier):'—'}</b> میلیارد تومان (خام: ${domesticVal!=null?fmt(domesticVal):'—'}) <span style="color:var(--muted)">— فقط برای درصد صادراتی</span><br>
+      فروش صادراتی: <b>${exportVal!=null?fmt(exportVal*multiplier):'—'}</b> میلیارد تومان (خام: ${exportVal!=null?fmt(exportVal):'—'}) <span style="color:var(--muted)">— فقط برای درصد صادراتی</span><br>
+      جمع کل درآمد عملیاتی (ردیف «جمع»): <b>${totalRevenueVal!=null?fmt(totalRevenueVal*multiplier):'—'}</b> میلیارد تومان (خام: ${totalRevenueVal!=null?fmt(totalRevenueVal):'—'})<br>
+      ${totalRevenueVal==null ? `<div style="color:#b35900; margin:4px 0">⚠️ ردیف «جمع کل» انتخاب نشده — به‌جاش جمعِ داخلی+صادراتی (${fmt(domesticExportSum*multiplier)}) ذخیره می‌شه که ممکنه دقیق نباشه.</div>` : ''}
+      <b>مبلغی که ذخیره می‌شه: ${fmt(finalTotal*multiplier)} میلیارد تومان</b> — این عدد رو با گزارش کدال مقایسه کن، اگه درست بود «وارد کردن این ماه» رو بزن.
       ${currentYTDVal!=null || priorYTDVal!=null ? `<div style="margin-top:6px; padding-top:6px; border-top:1px dashed var(--line)">
         ${currentYTDVal!=null?`جمع از ابتدای سال (سال جاری): <b>${fmt(currentYTDVal*multiplier)}</b> میلیارد تومان<br>`:''}
         ${priorYTDVal!=null?`جمع از ابتدای سال (سال قبل، همون تاریخ): <b>${fmt(priorYTDVal*multiplier)}</b> میلیارد تومان`:''}
@@ -3497,7 +3510,7 @@ function openMonthlyActivityModal(){
     document.getElementById('matAmountCol').innerHTML = buildColOptions(parseInt(document.getElementById('matGroupSelect').value));
     updatePreview();
   };
-  ['matAmountCol','matDomesticRow','matExportRow','matMultiplier','matCurrentYTDGroup','matPriorYTDGroup'].forEach(id=>{
+  ['matAmountCol','matDomesticRow','matExportRow','matTotalRevenueRow','matMultiplier','matCurrentYTDGroup','matPriorYTDGroup'].forEach(id=>{
     document.getElementById(id).onchange = updatePreview;
   });
   updatePreview();
@@ -3511,6 +3524,7 @@ function runMonthlyActivityImport(grid, groups){
   const group = groups[groupIdx];
   const domesticIdxVal = document.getElementById('matDomesticRow').value;
   const exportIdxVal = document.getElementById('matExportRow').value;
+  const totalRevenueIdxVal = document.getElementById('matTotalRevenueRow').value;
   const amountColVal = document.getElementById('matAmountCol').value;
   const fallbackYear = parseIntSafe(document.getElementById('matFallbackYear').value);
   const fallbackMonth = parseIntSafe(document.getElementById('matFallbackMonth').value);
@@ -3520,14 +3534,27 @@ function runMonthlyActivityImport(grid, groups){
 
   if(amountColVal==='') return showToast('ستون «مبلغ فروش» رو انتخاب کن');
   const amountCol = parseInt(amountColVal);
-  if(!domesticIdxVal && !exportIdxVal) return showToast('حداقل یکی از ردیف‌های داخلی/صادراتی رو انتخاب کن');
+  if(!domesticIdxVal && !exportIdxVal) return showToast('حداقل یکی از ردیف‌های داخلی/صادراتی رو انتخاب کن (برای محاسبه‌ی درصد فروش صادراتی)');
 
   const domesticRow = domesticIdxVal ? grid[parseInt(domesticIdxVal)] : null;
   const exportRow = exportIdxVal ? grid[parseInt(exportIdxVal)] : null;
   const domesticVal = domesticRow ? parseFloatSafe(domesticRow[amountCol]) : null;
   const exportVal = exportRow ? parseFloatSafe(exportRow[amountCol]) : null;
   if(domesticVal==null && exportVal==null) return showToast('مقداری در ردیف‌های انتخابی، زیر این ستون پیدا نشد');
-  const total = (domesticVal||0) + (exportVal||0);
+
+  // مبلغ نهایی فروش ماهانه از ردیف «جمع کل درآمد عملیاتی» (ردیف «جمع») خونده می‌شه — نه از جمع‌زدن دستیِ داخلی+صادراتی —
+  // چون توی گزارش کدال یه «بهای تمام‌شده‌ی انتسابی» از این دو کم می‌شه تا به عدد واقعیِ درآمد عملیاتی برسه.
+  // ردیف داخلی/صادراتی فقط برای محاسبه‌ی «درصد فروش صادراتی» (computeExportRatio) نگه داشته می‌شن.
+  const totalRevenueRow = totalRevenueIdxVal ? grid[parseInt(totalRevenueIdxVal)] : null;
+  const totalRevenueVal = totalRevenueRow ? parseFloatSafe(totalRevenueRow[amountCol]) : null;
+  let usedFallbackTotal = false;
+  let total;
+  if(totalRevenueVal!=null){
+    total = totalRevenueVal;
+  } else {
+    total = (domesticVal||0) + (exportVal||0);
+    usedFallbackTotal = true;
+  }
 
   const parsed = parseMonthFromGroupLabel(group.label);
   const fy = parsed?.fiscalYear || fallbackYear;
@@ -3556,6 +3583,11 @@ function runMonthlyActivityImport(grid, groups){
     };
     const col = findAmountColInGroup(g, subHeaderLabel);
     if(col==null) return null;
+    // اینجا هم مثل ماه اصلی، ترجیح با ردیف «جمع کل درآمد عملیاتی»ه (چون بهای تمام‌شده‌ی انتسابی رو لحاظ کرده)؛
+    // فقط اگه انتخاب نشده باشه، از جمع داخلی+صادراتی به‌عنوان جایگزین استفاده می‌شه.
+    const totalRow = totalRevenueIdxVal ? grid[parseInt(totalRevenueIdxVal)] : null;
+    const totalVal = totalRow ? parseFloatSafe(totalRow[col]) : null;
+    if(totalVal!=null) return totalVal;
     const dRow = domesticIdxVal ? grid[parseInt(domesticIdxVal)] : null;
     const eRow = exportIdxVal ? grid[parseInt(exportIdxVal)] : null;
     const dVal = dRow ? parseFloatSafe(dRow[col]) : null;
@@ -3579,7 +3611,7 @@ function runMonthlyActivityImport(grid, groups){
   }
 
   saveState(); closeModal();
-  showToast(`ماه ${toFa(month)}/${toFa(fy)} ثبت شد: ${fmt(total*multiplier)} میلیارد تومان (داخلی ${fmt(domesticVal||0)} + صادراتی ${fmt(exportVal||0)} میلیون ریال)${ytdNote}`);
+  showToast(`ماه ${toFa(month)}/${toFa(fy)} ثبت شد: ${fmt(total*multiplier)} میلیارد تومان (${usedFallbackTotal ? 'جمع داخلی+صادراتی، چون ردیف «جمع کل» انتخاب نشده بود' : 'از ردیف «جمع کل درآمد عملیاتی»'})${ytdNote}`);
   renderAll();
 }
 function handleExcelFile(e){
