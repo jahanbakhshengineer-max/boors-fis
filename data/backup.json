@@ -330,29 +330,19 @@
       },
       "dividendHistory": [
         {
-          "fiscalYear": 1399,
-          "profitEndOfPeriod": 13815.5342,
-          "dividendApproved": -11044.880000000001
-        },
-        {
-          "fiscalYear": 1400,
-          "profitEndOfPeriod": 24055.625,
-          "dividendApproved": -18136.1595
-        },
-        {
-          "fiscalYear": 1401,
-          "profitEndOfPeriod": 30457.827,
-          "dividendApproved": -26868.384400000003
-        },
-        {
-          "fiscalYear": 1402,
-          "profitEndOfPeriod": 20521.3335,
-          "dividendApproved": -20151.2883
+          "fiscalYear": 1404,
+          "profitEndOfPeriod": 85599,
+          "dividendApproved": 48718
         },
         {
           "fiscalYear": 1403,
-          "profitEndOfPeriod": 24232,
+          "profitEndOfPeriod": 21326,
           "dividendApproved": 12574
+        },
+        {
+          "fiscalYear": 1402,
+          "profitEndOfPeriod": 31809,
+          "dividendApproved": 20151
         }
       ],
       "useTTMMargin": false
@@ -541,29 +531,19 @@
       },
       "dividendHistory": [
         {
-          "fiscalYear": 1400,
-          "profitEndOfPeriod": 21713,
-          "dividendApproved": 12350
-        },
-        {
-          "fiscalYear": 1401,
-          "profitEndOfPeriod": 33950,
-          "dividendApproved": 20430
-        },
-        {
-          "fiscalYear": 1402,
-          "profitEndOfPeriod": 24183,
-          "dividendApproved": 22631
+          "fiscalYear": 1404,
+          "profitEndOfPeriod": 89453,
+          "dividendApproved": 46415
         },
         {
           "fiscalYear": 1403,
           "profitEndOfPeriod": 30485,
-          "dividendApproved": 18966
+          "dividendApproved": 18965
         },
         {
-          "fiscalYear": 1404,
-          "profitEndOfPeriod": 52595,
-          "dividendApproved": 46415
+          "fiscalYear": 1402,
+          "profitEndOfPeriod": 39713,
+          "dividendApproved": 22631
         }
       ],
       "manual": {
