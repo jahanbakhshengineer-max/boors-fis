@@ -701,40 +701,23 @@ function countContiguousMonthlyEntries(stock, fiscalYear, capMonthInFY){
 // اگه تعداد ماه‌های فروش ماهانه‌ی پیوسته (بدون جای خالی) ثبت‌شده برای سال مالی جاری از تعداد ماه‌های آخرین دوره‌ی
 // صورت سود و زیان ثبت‌شده (برای همون سال مالی) بیشتر باشه، یعنی داده‌ی ماهانه دقیق‌تر و به‌روزتره — پس مبنا قرار می‌گیره
 // (حتی اگه خودش هم صد‌درصد تا امروز کامل نباشه). در غیر این صورت، از فرمول قبلی مبتنی بر دوره‌ی مالی استفاده می‌شه.
+// برآورد فروش سالانه: همیشه از ضرب «میانگین فروش ماهانه» در ۱۲ به دست میاد — نه از فروش دوره‌ی صورت سود و زیان.
+// اولویت با آخرین YTD ثبت‌شده (از گزارش فعالیت ماهانه خام کدال) برای سال مالی جاریه، چون همیشه به‌روزترین و کامل‌ترین
+// عدد تجمیعیِ گزارش‌شده‌ست — حتی اگه ماه‌به‌ماه هم به‌طور کامل وارد شده باشه. فقط اگه YTD ای ثبت نشده، از میانگین
+// همون ماه‌های به‌صورت جداگانه واردشده استفاده می‌شه. اگه هیچ‌کدوم نبود، برآوردی وجود نداره (دیگه به فروش دوره‌ی پی‌ان‌ال برنمی‌گردیم).
 function estimateAnnualSales(stock){
   if(stock.manual && stock.manual.estimatedAnnualSalesOverride) return stock.manual.estimatedAnnualSalesOverride;
-  const lp = latestPeriod(stock);
   const endM = stockFYEndMonth(stock);
   const today = getTodayJalali();
-  const {fiscalYear: todayFY, monthInFY: todayMonthInFY} = calendarToFiscalMonth(today.year, today.month, endM);
-  const monthlyCount = countContiguousMonthlyEntries(stock, todayFY, todayMonthInFY);
-  const periodMonths = (lp && lp.fiscalYear===todayFY) ? lp.months : 0;
+  const {fiscalYear: todayFY} = calendarToFiscalMonth(today.year, today.month, endM);
   const ytd = (stock.monthlySalesYTD||{})[todayFY];
-
-  // اگه داده‌ی YTD (از گزارش فعالیت ماهانه خام کدال) برای همین سال مالی موجود باشه و پوشش بیشتر/برابری نسبت به
-  // ماه‌به‌ماهِ پیوسته‌ی ثبت‌شده داشته باشه (یعنی ماه‌به‌ماه یا اصلاً ثبت نشده یا جاافتادگی داره)، اون رو مبنا قرار می‌دیم —
-  // چون این عدد مستقیماً از گزارش تجمیعی شرکته و به جای‌خالیِ ماه‌های واردنشده حساس نیست.
-  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>=monthlyCount){
+  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>0){
     return (ytd.currentYTD/ytd.throughMonth)*12;
   }
-
-  if(monthlyCount>0 && monthlyCount>periodMonths){
-    // فروش ماهانه دقیق‌تره (ماه بیشتری نسبت به آخرین دوره پی‌ان‌ال داره)
-    const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===todayFY && e.monthInFY<=monthlyCount);
-    const avg = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
-    return avg*12;
-  }
-  // برگشت به روش قبلی: صرفاً بر مبنای آخرین دوره‌ی صورت سود و زیان ثبت‌شده (فروش دوره ÷ ماه‌های دوره × ۱۲)
-  // عمداً اینجا از فروش ماهانه استفاده نمی‌شه، چون اگه به این برانچ رسیدیم یعنی داده‌ی ماهانه به‌قدر کافی پیوسته/قابل‌اعتماد نبوده
-  if(!lp || lp.sales==null || !lp.months){
-    // اگه هیچ دوره‌ی پی‌ان‌الی هم ثبت نشده، به‌عنوان آخرین راه‌حل از میانگین همون فروش‌های ماهانه‌ی پراکنده استفاده کن
-    const fy = currentFiscalYearForSales(stock) || todayFY;
-    const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy && e.value!=null && e.value!=='');
-    if(!entries.length) return null;
-    const avg = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
-    return avg*12;
-  }
-  return (lp.sales/lp.months)*12;
+  const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===todayFY && e.value!=null && e.value!=='');
+  if(!entries.length) return null;
+  const avg = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
+  return avg*12;
 }
 // حاشیه سود فصلی یک دوره‌ی مشخص (با همون فرمول qMargin) — تابع کمکی برای استفاده در چند دوره
 function computeQuarterMarginForPeriod(stock, periods, period){
@@ -814,14 +797,13 @@ function estimateAvgDividendPayout(stock){
 // رشد فروش تجمیعی: مقایسه‌ی جمع فروش از ابتدای سال مالی تا آخرین ماه ثبت‌شده، با همون بازه از سال قبل (این یک روش مقایسه‌ایه، نه یک فرمول جبری تک‌خطی)
 // اگه ماه‌به‌ماه به‌طور کامل/پیوسته ثبت نشده باشه ولی داده‌ی YTD (از گزارش فعالیت ماهانه خام کدال) با پوشش بیشتر یا مساوی موجود باشه،
 // به‌جای جمع‌زدن ماه‌به‌ماه (که با جاافتادگی، جمع رو دست‌کم نشون می‌داد)، مستقیماً از اون عدد تجمیعیِ گزارش‌شده استفاده می‌کنیم.
+// رشد فروش تجمیعی: همیشه بر اساس آخرین گزارش ماهانه‌ای که هم YTD سال جاری و هم سال قبل رو داره محاسبه می‌شه —
+// حتی اگه ماه‌به‌ماه هم به‌طور کامل ثبت شده باشه، چون YTD گزارش همیشه به‌روزترین/دقیق‌ترین عدد تجمیعیه.
+// فقط وقتی هیچ YTD ای ثبت نشده، از جمع‌زدن دستیِ ماه‌به‌ماه استفاده می‌شه.
 function computeSalesGrowthCum(stock){
   const fy = currentFiscalYearForSales(stock);
   const ytd = (stock.monthlySalesYTD||{})[fy];
-  const entries0 = fy!=null ? getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy) : [];
-  const monthlyMaxMonth = entries0.length ? Math.max(...entries0.map(e=>e.monthInFY)) : 0;
-  // پوشش ماه‌به‌ماه رو با شمارش پیوسته (بدون جای خالی از ماه ۱) می‌سنجیم، نه فقط بیشترین شماره ماه ثبت‌شده
-  const contiguousMonths = fy!=null ? countContiguousMonthlyEntries(stock, fy, monthlyMaxMonth) : 0;
-  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>=contiguousMonths && ytd.throughMonth>=monthlyMaxMonth){
+  if(ytd && ytd.currentYTD!=null){
     return {
       curSum: ytd.currentYTD,
       priorSum: ytd.priorYearYTD ?? null,
@@ -829,8 +811,9 @@ function computeSalesGrowthCum(stock){
       months: ytd.throughMonth, fy, priorComplete: ytd.priorYearYTD!=null, usedYTD: true
     };
   }
+  const entries0 = fy!=null ? getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy) : [];
   if(!fy || !entries0.length) return null;
-  const maxMonth = monthlyMaxMonth;
+  const maxMonth = Math.max(...entries0.map(e=>e.monthInFY));
   const curMap = {}; entries0.forEach(e=>curMap[e.monthInFY]=e.value);
   const priorMap = {}; getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy-1).forEach(e=>priorMap[e.monthInFY]=e.value);
   let curSum=0, priorSum=0, priorMonthsCovered=0;
@@ -858,21 +841,22 @@ function computePointToPointSales(stock){
 }
 // فروش نسبت به میانگین: فروش آخرین ماه در مقابل میانگین همه‌ی ماه‌های ثبت‌شده‌ی همین سال مالی (شامل خودش)
 // اگه ماه‌به‌ماه ناقص باشه ولی داده‌ی YTD با پوشش بیشتر/مساوی موجود باشه، میانگین رو از روی YTD (تقسیم بر تعداد ماه واقعی) می‌گیریم.
+// فروش نسبت به میانگین: میانگین همیشه از «فروش تجمعی به‌روز» (آخرین YTD ثبت‌شده) به دست میاد — حتی اگه ماه‌به‌ماه هم کامل باشه.
+// فقط وقتی YTD ای ثبت نشده، از میانگین ماه‌های جداگانه‌ی واردشده استفاده می‌شه.
 function computeSalesVsAverage(stock){
   const fy = currentFiscalYearForSales(stock);
   const ytd = (stock.monthlySalesYTD||{})[fy];
   const entries = fy!=null ? getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy) : [];
-  const monthlyMaxMonth = entries.length ? Math.max(...entries.map(e=>e.monthInFY)) : 0;
-  const contiguousMonths = fy!=null ? countContiguousMonthlyEntries(stock, fy, monthlyMaxMonth) : 0;
-  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>=contiguousMonths && ytd.throughMonth>=monthlyMaxMonth){
+  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>0){
     const avgSoFar = ytd.currentYTD/ytd.throughMonth;
+    const monthlyMaxMonth = entries.length ? Math.max(...entries.map(e=>e.monthInFY)) : 0;
     // آخرین مقدار تک‌ماهه (اگه ثبت شده باشه) رو برای مقایسه‌ی «این ماه در مقابل میانگین» نگه می‌داریم؛ وگرنه از خودِ میانگین به‌عنوان تنها نقطه‌ی داده استفاده می‌شه
     const curVal = monthlyMaxMonth>=ytd.throughMonth ? entries.find(e=>e.monthInFY===monthlyMaxMonth)?.value : avgSoFar;
     const growth = avgSoFar ? (curVal-avgSoFar)/avgSoFar : null;
     return {curVal, avgSoFar, growth, month: Math.max(monthlyMaxMonth, ytd.throughMonth), fy, monthsCount: ytd.throughMonth, usedYTD:true};
   }
   if(!fy || !entries.length) return null;
-  const month = monthlyMaxMonth;
+  const month = Math.max(...entries.map(e=>e.monthInFY));
   const curVal = entries.find(e=>e.monthInFY===month)?.value;
   const avgSoFar = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
   const growth = avgSoFar ? (curVal-avgSoFar)/avgSoFar : null;
@@ -1060,10 +1044,9 @@ function renderDashboardTab(){
   {
     const endM0 = stockFYEndMonth(stock);
     const today0 = getTodayJalali();
-    const {fiscalYear: todayFY0, monthInFY: todayMonthInFY0} = calendarToFiscalMonth(today0.year, today0.month, endM0);
-    const monthlyCount0 = countContiguousMonthlyEntries(stock, todayFY0, todayMonthInFY0);
+    const {fiscalYear: todayFY0} = calendarToFiscalMonth(today0.year, today0.month, endM0);
     const ytd0 = (stock.monthlySalesYTD||{})[todayFY0];
-    usedYTDForSales = !!(ytd0 && ytd0.currentYTD!=null && ytd0.throughMonth>=monthlyCount0 && !(stock.manual && stock.manual.estimatedAnnualSalesOverride));
+    usedYTDForSales = !!(ytd0 && ytd0.currentYTD!=null && ytd0.throughMonth>0 && !(stock.manual && stock.manual.estimatedAnnualSalesOverride));
   }
   let estMargin = estimateLatestMargin(stock);
   let estAddons = estimateNetIncomeAddons(stock);
