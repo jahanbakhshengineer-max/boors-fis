@@ -707,14 +707,18 @@ function countContiguousMonthlyEntries(stock, fiscalYear, capMonthInFY){
 // همون ماه‌های به‌صورت جداگانه واردشده استفاده می‌شه. اگه هیچ‌کدوم نبود، برآوردی وجود نداره (دیگه به فروش دوره‌ی پی‌ان‌ال برنمی‌گردیم).
 function estimateAnnualSales(stock){
   if(stock.manual && stock.manual.estimatedAnnualSalesOverride) return stock.manual.estimatedAnnualSalesOverride;
-  const endM = stockFYEndMonth(stock);
-  const today = getTodayJalali();
-  const {fiscalYear: todayFY} = calendarToFiscalMonth(today.year, today.month, endM);
-  const ytd = (stock.monthlySalesYTD||{})[todayFY];
+  // نکته‌ی مهم: اینجا از currentFiscalYearForSales (سال مالیِ آخرین داده‌ی واقعاً ثبت‌شده) استفاده می‌کنیم،
+  // نه از سال مالیِ «امروزِ واقعیِ تقویم». این باعث می‌شه دقیقاً با همون سال مالی‌ای هماهنگ باشه که تب «فروش ماهانه»
+  // (computeSalesVsAverage/computeSalesGrowthCum) براش میانگین/تجمیعی نشون می‌ده — وگرنه اگه سال مالی تازه شروع شده
+  // باشه ولی هنوز گزارشی براش پیست نشده، این تابع دنبال داده‌ی سال مالیِ خالی می‌گشت و «—» برمی‌گردوند، در حالی‌که
+  // تب فروش ماهانه همچنان میانگینِ (درست) سال مالیِ قبلی رو نشون می‌داد.
+  const fy = currentFiscalYearForSales(stock);
+  if(fy==null) return null;
+  const ytd = (stock.monthlySalesYTD||{})[fy];
   if(ytd && ytd.currentYTD!=null && ytd.throughMonth>0){
     return (ytd.currentYTD/ytd.throughMonth)*12;
   }
-  const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===todayFY && e.value!=null && e.value!=='');
+  const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy && e.value!=null && e.value!=='');
   if(!entries.length) return null;
   const avg = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
   return avg*12;
@@ -1042,10 +1046,8 @@ function renderDashboardTab(){
   // خودِ estimateAnnualSales دست‌نخورده می‌مونه، این فقط همون شرط رو برای نمایش تکرار می‌کنه.
   let usedYTDForSales = false;
   {
-    const endM0 = stockFYEndMonth(stock);
-    const today0 = getTodayJalali();
-    const {fiscalYear: todayFY0} = calendarToFiscalMonth(today0.year, today0.month, endM0);
-    const ytd0 = (stock.monthlySalesYTD||{})[todayFY0];
+    const fy0 = currentFiscalYearForSales(stock);
+    const ytd0 = fy0!=null ? (stock.monthlySalesYTD||{})[fy0] : null;
     usedYTDForSales = !!(ytd0 && ytd0.currentYTD!=null && ytd0.throughMonth>0 && !(stock.manual && stock.manual.estimatedAnnualSalesOverride));
   }
   let estMargin = estimateLatestMargin(stock);
