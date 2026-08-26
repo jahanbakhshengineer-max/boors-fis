@@ -1247,7 +1247,7 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
           <td>${formatByDef(getFormulaByKey('inventoryDays'), m.inventoryDays)}</td>
           <td>${formatByDef(getFormulaByKey('receivableDays'), m.receivableDays)}</td>
           <td>${formatByDef(getFormulaByKey('qMargin'), m.qMargin)}</td>
-          <td>${estSales!=null? fmt(estSales):'—'}${usedYTDForSales?' <span title="بر اساس گزارش تجمیعی (YTD)، نه ماه‌به‌ماه" style="color:var(--teal)">📊</span>':''}</td>
+          <td>${estSales!=null? fmt(estSales):'—'}${(stock.manual && stock.manual.estimatedAnnualSalesOverride) ? ' <span title="این عدد دستی وارد شده (فیلد «برآورد فروش سالانه» در ورودی سایر اطلاعات) و ربطی به میانگین فروش ماهانه نداره" style="color:#b35900">✍️ دستی</span>' : (usedYTDForSales?' <span title="بر اساس گزارش تجمیعی (YTD)، نه ماه‌به‌ماه" style="color:var(--teal)">📊</span>':'')}</td>
           <td>${estFinal!=null? fmt(estFinal):'—'}</td>
           <td>${exportRatio? fmtPct(exportRatio.ratio):'—'}</td>
           <td>${marketCap!=null? fmt(marketCap):'—'}</td>
