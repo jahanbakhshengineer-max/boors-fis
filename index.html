@@ -200,6 +200,9 @@ table thead tr.col-filter-row th{position:sticky; top:34px; background:var(--pap
 .toolbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px}
 .badge-industry{font-size:10.5px; background:var(--teal); color:#fff; padding:2px 8px; border-radius:6px; margin-right:6px}
 .hint{font-size:11.5px; color:var(--muted); background:#f0ece1; border-radius:8px; padding:8px 12px; margin-top:10px; line-height:1.7}
+/* پیش‌فرض، جعبه‌های راهنما مخفی‌ان — فقط با روشن‌کردن سوییچ «نمایش توضیحات راهنما» (بالای منوی کناری) نمایش داده می‌شن */
+.hint{display:none}
+body.show-hints .hint{display:block}
 .delete-row-btn{color:var(--bad); cursor:pointer; font-size:11px}
 .modal-overlay{position:fixed; inset:0; background:rgba(19,42,66,.55); display:none; align-items:center; justify-content:center; z-index:50}
 .modal-overlay.open{display:flex}
@@ -244,7 +247,8 @@ tr.selected-row:hover td, .table-wrap table tr.selected-row:hover td:first-child
   <aside class="sidebar" id="sidebarEl">
     <div class="brand">تحلیل بنیادی سهام<small>نسخه آزمایشی — فاز اول (پالایش و مس)</small></div>
     <nav class="nav" id="navMenu"></nav>
-    <button id="resetLayoutBtn" class="btn secondary" style="width:100%; font-size:11px; margin:2px 0 10px; padding:6px">↺ بازنشانی چیدمان</button>
+    <button id="resetLayoutBtn" class="btn secondary" style="width:100%; font-size:11px; margin:2px 0 6px; padding:6px">↺ بازنشانی چیدمان</button>
+    <button id="toggleHintsBtn" class="btn secondary" style="width:100%; font-size:11px; margin:0 0 10px; padding:6px">💡 نمایش توضیحات راهنما: خاموش</button>
     <div class="stock-picker">
       <label>سهم فعال <span style="font-weight:400; color:var(--muted); font-size:11px">(کلیک کن یا تایپ کن)</span></label>
       <div style="position:relative">
@@ -308,6 +312,15 @@ let state = loadState();
 let activeSymbol = Object.keys(state.stocks)[0] || null;
 let activeTab = 'dashboard';
 let dashSubtab = 'overview';
+// نمایش/مخفی‌کردن توضیحات راهنما (جعبه‌های .hint) — یه ترجیح سبک نمایشیه، جدا از state اصلی نگه داشته می‌شه
+// (نیازی نیست توی بک‌آپ/سینک فایل قرار بگیره)
+const SHOW_HINTS_KEY = 'fundamental_analyzer_show_hints_v1';
+let showHints = localStorage.getItem(SHOW_HINTS_KEY) === '1';
+function applyShowHintsClass(){
+  document.body.classList.toggle('show-hints', showHints);
+  const btn = document.getElementById('toggleHintsBtn');
+  if(btn) btn.textContent = showHints ? '💡 نمایش توضیحات راهنما: روشن' : '💡 نمایش توضیحات راهنما: خاموش';
+}
 
 function saveState(){
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -1247,7 +1260,7 @@ function renderOverviewSubtab(stock, lp, m, estSales, estMargin, estAddons, estF
           <td>${formatByDef(getFormulaByKey('inventoryDays'), m.inventoryDays)}</td>
           <td>${formatByDef(getFormulaByKey('receivableDays'), m.receivableDays)}</td>
           <td>${formatByDef(getFormulaByKey('qMargin'), m.qMargin)}</td>
-          <td>${estSales!=null? fmt(estSales):'—'}${(stock.manual && stock.manual.estimatedAnnualSalesOverride) ? ' <span title="این عدد دستی وارد شده (فیلد «برآورد فروش سالانه» در ورودی سایر اطلاعات) و ربطی به میانگین فروش ماهانه نداره" style="color:#b35900">✍️ دستی</span>' : (usedYTDForSales?' <span title="بر اساس گزارش تجمیعی (YTD)، نه ماه‌به‌ماه" style="color:var(--teal)">📊</span>':'')}</td>
+          <td>${estSales!=null? fmt(estSales):'—'}${(stock.manual && stock.manual.estimatedAnnualSalesOverride) ? ' <span title="این عدد دستی وارد شده (فیلد «برآورد فروش سالانه» در ورودی سایر اطلاعات) و ربطی به میانگین فروش ماهانه نداره" style="color:#b35900">✍️ دستی</span>' : (usedYTDForSales?' <span title="بر اساس گزارش تجمیعی (YTD)، نه ماه‌به‌ماه" style="color:var(--teal)">📊</span>':'')} <span id="estSalesDebugBtn" style="cursor:pointer; color:var(--muted)" title="جزئیات محاسبه">🔍</span></td>
           <td>${estFinal!=null? fmt(estFinal):'—'}</td>
           <td>${exportRatio? fmtPct(exportRatio.ratio):'—'}</td>
           <td>${marketCap!=null? fmt(marketCap):'—'}</td>
@@ -2506,10 +2519,20 @@ function computeGoldMarketMetrics(){
   const goldInflationBubble = (theoGold18kToday && gold18kGramTomanToday!=null) ? (gold18kGramTomanToday-theoGold18kToday)/theoGold18kToday : null;
   const silverInflationBubble = (theoSilverGramToday && silverGramTomanToday!=null) ? (silverGramTomanToday-theoSilverGramToday)/theoSilverGramToday : null;
 
+  // حباب «بازار» طلا: فاصله‌ی قیمت واقعیِ طلای ۱۸ عیار در بازار ایران (که خودت وارد/دریافت می‌کنی) نسبت به قیمتی که
+  // صرفاً از فرمول انس جهانی × دلار امروز به دست میاد. این حباب مستقل از حباب دلاره — چون می‌تونه ناشی از عوامل
+  // داخلی بازار طلا (تقاضای پیش‌خور، محدودیت واردات، جو روانی و...) باشه، نه فقط نرخ دلار.
+  const gold18kMarketToday = gm.gold18kMarketToday!=null && gm.gold18kMarketToday!=='' ? Number(gm.gold18kMarketToday) : null;
+  const goldMarketBubble = (gold18kMarketToday!=null && gold18kGramTomanToday) ? (gold18kMarketToday-gold18kGramTomanToday)/gold18kGramTomanToday : null;
+  // حباب کل طلا در ایران = حباب دلار (نسبت به تورم) + حباب بازار طلا (نسبت به فرمول انس) — طبق درخواست، این دو با هم جمع می‌شن
+  // چون هر دو مسیر جداگانه‌ای برای انحراف قیمت طلا از ارزش بنیادی‌ان (یکی از مسیر ارز، یکی از مسیر بازار داخلی طلا)
+  const goldTotalBubbleInIran = (dollarBubble!=null && goldMarketBubble!=null) ? (dollarBubble + goldMarketBubble) : null;
+
   return { theoDollarToday, theoDollarYearEnd, dollarBubble, dollarToday, dollarYearEndChangeFrac,
     goldGramTomanToday, silverGramTomanToday, goldGramTomanYearEnd, silverGramTomanYearEnd,
     gold18kGramTomanToday, gold18kGramTomanYearEnd, goldYearEndChangeFrac, silverYearEndChangeFrac,
-    theoGold18kToday, theoSilverGramToday, goldInflationBubble, silverInflationBubble };
+    theoGold18kToday, theoSilverGramToday, goldInflationBubble, silverInflationBubble,
+    gold18kMarketToday, goldMarketBubble, goldTotalBubbleInIran };
 }
 // معیارهای هر صندوق: حباب خود صندوق (قیمت تابلو در برابر NAV اعلامی)، حباب دلار (سراسری)، حباب محاسباتی (قیمت تابلو در برابر ارزش ذاتی بر پایه‌ی انس+دلار روز — فقط اگه وزن پشتوانه‌ی هر واحد وارد شده باشه)
 function computeFundMetrics(fund, gmm){
@@ -2583,25 +2606,29 @@ function renderGoldTab(){
       <div class="field"><label>قیمت انس نقره روز (دلار)</label><input id="gmSilverOunce" type="number" value="${gm.silverOunceToday??''}"></div>
       <div class="field"><label>تخمین انس طلا پایان سال (دلار)</label><input id="gmGoldOunceYE" type="number" value="${gm.goldOunceYearEnd??''}"></div>
       <div class="field"><label>تخمین انس نقره پایان سال (دلار)</label><input id="gmSilverOunceYE" type="number" value="${gm.silverOunceYearEnd??''}"></div>
+      <div class="field"><label>قیمت طلای ۱۸ عیار بازار ایران (روز، هر گرم، تومان) <span style="color:var(--teal); font-size:10.5px">قیمت واقعیِ بازار، نه محاسبه‌شده</span></label><input id="gmGold18kMarket" type="number" value="${gm.gold18kMarketToday??''}"></div>
     </div>
     <div class="row" style="margin-top:10px">
       <button class="btn tan" id="saveGoldMarketBtn">ذخیره مفروضات</button>
-      <button class="btn secondary" id="brsUpdateGoldBtn">🔄 دریافت دلار/انس روز (BrsApi)</button>
+      <button class="btn secondary" id="brsUpdateGoldBtn">🔄 دریافت دلار/انس/طلای بازار روز (BrsApi)</button>
       <button class="btn secondary" id="brsFetchDollarStartBtn">📅 دریافت خودکار دلار ابتدای سال</button>
     </div>
-    <div class="hint">دکمه‌ی اول «دلار روز»، «انس طلا روز» و «انس نقره روز» (اگه نمادش توی پلن کلیدت باشه) رو زنده از BrsApi می‌گیره. دکمه‌ی دوم قیمت دلار در اول فروردین سال جاری رو از تاریخچه‌ی BrsApi می‌گیره و توی «دلار ابتدای سال» می‌ذاره.</div>
+    <div class="hint">دکمه‌ی اول «دلار روز»، «انس طلا/نقره روز» رو همیشه، و «قیمت طلای ۱۸ عیار بازار» رو هم اگه توی پاسخ BrsApi موجود باشه، خودکار پر می‌کنه (وگرنه دستی وارد کن). دکمه‌ی دوم قیمت دلار در اول فروردین سال جاری رو از تاریخچه‌ی BrsApi می‌گیره و توی «دلار ابتدای سال» می‌ذاره.</div>
     <div class="hint">قیمت طلای ۱۸ عیار = (قیمت انس جهانی ÷ ۳۱.۱۰۳) × نرخ دلار × (۱۸/۲۴) — این فرمول استاندارد و رایج بازار طلای ایرانه (بدون احتساب اجرت/حق ضرب طلای زینتی). نقره بدون تبدیل عیار محاسبه می‌شه (بر پایه‌ی خلوص استاندارد ۹۹۹، مثل انس جهانی).</div>
-    <div class="hint">حباب طلا/نقره = قیمت واقعی امروز (با دلار واقعی) در مقابل قیمت تئوریک امروز (همون انس جهانی امروز، ولی با «دلار تئوریک» که اگه فقط طبق تورم رشد می‌کرد باید می‌داشتیم). چون انس جهانی توی هر دو طرف یکسانه، این عدد دقیقاً با «حباب دلار» بالا برابره — فقط این‌جا مستقیماً روی قیمت تومانیِ طلا/نقره نشونش می‌دیم تا ملموس‌تر باشه.</div>
+    <div class="hint">حباب طلا/نقره (از مسیر دلار) = قیمت واقعی امروز (با دلار واقعی) در مقابل قیمت تئوریک امروز (همون انس جهانی امروز، ولی با «دلار تئوریک» که اگه فقط طبق تورم رشد می‌کرد باید می‌داشتیم). چون انس جهانی توی هر دو طرف یکسانه، این عدد دقیقاً با «حباب دلار» بالا برابره.</div>
+    <div class="hint">حباب بازار طلا = فاصله‌ی قیمت واقعیِ بازار ایران (که بالا وارد کردی/دریافت شد) نسبت به قیمتی که صرفاً از فرمول انس×دلار به دست میاد — این حباب مستقل از دلاره و می‌تونه ناشی از عوامل داخلی بازار طلا باشه (تقاضای پیش‌خور، محدودیت واردات و...). حباب کل طلا در ایران = حباب دلار + حباب بازار طلا.</div>
 
     <div class="grid cols-4" style="margin-top:16px">
-      ${kpi('قیمت طلای ۱۸ عیار روز (هر گرم)', gmm.gold18kGramTomanToday!=null?fmt(gmm.gold18kGramTomanToday)+' تومان':'—')}
+      ${kpi('قیمت طلای ۱۸ عیار روز (محاسبه‌شده از انس)', gmm.gold18kGramTomanToday!=null?fmt(gmm.gold18kGramTomanToday)+' تومان':'—')}
+      ${kpi('قیمت طلای ۱۸ عیار بازار ایران (روز)', gmm.gold18kMarketToday!=null?fmt(gmm.gold18kMarketToday)+' تومان':'—')}
       ${kpi('قیمت نقره روز (هر گرم)', gmm.silverGramTomanToday!=null?fmt(gmm.silverGramTomanToday)+' تومان':'—')}
       ${kpi('دلار تئوریک امروز (طبق تورم)', gmm.theoDollarToday!=null?fmt(gmm.theoDollarToday):'—', 'دلار اول سال × (۱+تورم ماهانه)^ماه‌های گذشته')}
-      ${kpi('حباب دلار', gmm.dollarBubble!=null?fmtPct(gmm.dollarBubble):'—', 'فاصله‌ی دلار امروز از دلار تئوریک طبق تورم')}
     </div>
-    <div class="grid cols-2" style="margin-top:16px">
-      ${renderGaugeSVG(gmm.goldInflationBubble!=null?gmm.goldInflationBubble*100:null, 'حباب طلا نسبت به تورم', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel:'قیمت واقعی امروز در مقابل قیمت تئوریک طبق تورم از ابتدای سال'})}
+    <div class="grid cols-4" style="margin-top:16px">
+      ${renderGaugeSVG(gmm.dollarBubble!=null?gmm.dollarBubble*100:null, 'حباب دلار (نسبت به تورم)', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel:'دلار امروز در مقابل دلار تئوریک طبق تورم'})}
+      ${renderGaugeSVG(gmm.goldMarketBubble!=null?gmm.goldMarketBubble*100:null, 'حباب بازار طلا (نسبت به فرمول انس)', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel:'قیمت واقعی بازار در مقابل قیمت محاسبه‌شده از انس'})}
       ${renderGaugeSVG(gmm.silverInflationBubble!=null?gmm.silverInflationBubble*100:null, 'حباب نقره نسبت به تورم', {minScale:-50, maxScale:50, decimals:1, benchmarkLabel:'قیمت واقعی امروز در مقابل قیمت تئوریک طبق تورم از ابتدای سال'})}
+      ${renderGaugeSVG(gmm.goldTotalBubbleInIran!=null?gmm.goldTotalBubbleInIran*100:null, '🔶 حباب کل طلا در ایران', {minScale:-80, maxScale:80, decimals:1, benchmarkLabel:'حباب دلار + حباب بازار طلا'})}
     </div>
 
     <h3 style="margin-top:22px; padding-top:16px; border-top:1px solid var(--line)">پیش‌بینی پایان سال</h3>
@@ -2816,6 +2843,43 @@ function renderBackupTab(){
 }
 
 /* ========================= مودال‌ها ========================= */
+// نمایش جزئیات کامل محاسبه‌ی برآورد فروش سالانه (سال مالی استفاده‌شده، YTD، ماه‌های واردشده و میانگین) — برای عیب‌یابی
+// وقتی عدد «برآورد فروش» با میانگین تب فروش ماهانه هم‌خوانی نداره
+function showEstSalesDebugModal(){
+  const stock = state.stocks[activeSymbol];
+  if(!stock) return;
+  const fy = currentFiscalYearForSales(stock);
+  const ytd = fy!=null ? (stock.monthlySalesYTD||{})[fy] : null;
+  const allEntries = getMonthlySalesFiscalEntries(stock);
+  const fyEntries = fy!=null ? allEntries.filter(e=>e.fiscalYear===fy) : [];
+  const override = stock.manual && stock.manual.estimatedAnnualSalesOverride;
+  let html = `<h3 style="margin-bottom:10px">جزئیات محاسبه‌ی برآورد فروش</h3>`;
+  html += `<div class="hint">سال مالیِ استفاده‌شده (بر اساس آخرین داده‌ی واقعاً ثبت‌شده): <b>${fy!=null?toFa(fy):'— (هیچ داده‌ای ثبت نشده)'}</b></div>`;
+  if(override){
+    html += `<div class="hint" style="color:#b35900">⚠️ فیلد «برآورد فروش سالانه» دستی مقدار <b>${fmt(override)}</b> داره — این عدد کاملاً جایگزین محاسبه‌ی زیر می‌شه. اگه می‌خوای محاسبه‌ی خودکار رو ببینی، اول این فیلد رو (در ورود اطلاعات → ورودی سایر اطلاعات) خالی کن.</div>`;
+  }
+  if(fy==null){
+    html += `<div class="hint">هیچ فروش ماهانه‌ای برای این سهم ثبت نشده، برای همین برآوردی هم وجود نداره.</div>`;
+  } else if(ytd && ytd.currentYTD!=null && ytd.throughMonth>0){
+    html += `<div class="hint">این سهم داده‌ی YTD (از گزارش فعالیت ماهانه خام کدال) داره و طبق قاعده، این همیشه اولویت داره:</div>
+      <table style="font-size:12.5px; margin:8px 0"><tbody>
+        <tr><td style="padding:3px 8px">جمع فروش از ابتدای سال مالی تا ماه ${toFa(ytd.throughMonth)}</td><td><b>${fmt(ytd.currentYTD)}</b></td></tr>
+        <tr><td style="padding:3px 8px">میانگین ماهانه = ${fmt(ytd.currentYTD)} ÷ ${toFa(ytd.throughMonth)}</td><td><b>${fmt(ytd.currentYTD/ytd.throughMonth)}</b></td></tr>
+        <tr><td style="padding:3px 8px">برآورد سالانه = میانگین × ۱۲</td><td><b>${fmt((ytd.currentYTD/ytd.throughMonth)*12)}</b></td></tr>
+      </tbody></table>`;
+  } else if(fyEntries.length){
+    html += `<div class="hint">این سهم داده‌ی YTD نداره، پس از میانگینِ ماه‌های تک‌تکِ واردشده برای سال مالی ${toFa(fy)} استفاده می‌شه:</div>
+      <table style="font-size:12.5px; margin:8px 0"><thead><tr><th style="padding:3px 8px">ماه (در سال مالی)</th><th>مقدار</th></tr></thead><tbody>
+      ${fyEntries.sort((a,b)=>a.monthInFY-b.monthInFY).map(e=>`<tr><td style="padding:3px 8px">${toFa(e.monthInFY)}</td><td>${fmt(Number(e.value))}</td></tr>`).join('')}
+      </tbody></table>
+      <div class="hint">جمع = ${fmt(fyEntries.reduce((s,e)=>s+(Number(e.value)||0),0))} ÷ ${toFa(fyEntries.length)} ماه = میانگین <b>${fmt(fyEntries.reduce((s,e)=>s+(Number(e.value)||0),0)/fyEntries.length)}</b> → برآورد سالانه = میانگین × ۱۲ = <b>${fmt((fyEntries.reduce((s,e)=>s+(Number(e.value)||0),0)/fyEntries.length)*12)}</b></div>`;
+  } else {
+    html += `<div class="hint">برای سال مالی ${toFa(fy)} نه YTD و نه فروش ماهانه‌ی تک‌تکی ثبت نشده.</div>`;
+  }
+  html += `<div class="row" style="justify-content:flex-end; margin-top:14px"><button class="btn secondary" id="cancelModalBtn">بستن</button></div>`;
+  openModal(html);
+  document.getElementById('cancelModalBtn').onclick = closeModal;
+}
 function openModal(html){
   document.getElementById('modalBody').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('open');
@@ -4183,6 +4247,13 @@ function attachHandlers(){
     showToast('چیدمان به حالت پیش‌فرض برگشت');
     renderAll();
   };
+  const toggleHintsBtn = document.getElementById('toggleHintsBtn');
+  if(toggleHintsBtn) toggleHintsBtn.onclick = ()=>{
+    showHints = !showHints;
+    localStorage.setItem(SHOW_HINTS_KEY, showHints ? '1' : '0');
+    applyShowHintsClass();
+  };
+  applyShowHintsClass();
   // دوبار کلیک روی ردیف یک سهم (تب مدیریت سهم‌ها، مقایسه صنعت، سبد سرمایه‌گذاری) → رفتن به داشبورد همون سهم
   document.querySelectorAll('tr.clickable-row[data-symbol]').forEach(tr=>{
     tr.ondblclick = (e)=>{
@@ -4401,6 +4472,8 @@ function attachHandlers(){
       saveState(); renderAll();
     };
   });
+  const estSalesDebugBtn = document.getElementById('estSalesDebugBtn');
+  if(estSalesDebugBtn) estSalesDebugBtn.onclick = showEstSalesDebugModal;
   const addHoldingBtn = document.getElementById('addHoldingBtn');
   if(addHoldingBtn) addHoldingBtn.onclick = ()=>{
     const qty = document.getElementById('holdQtyInput').value;
@@ -4540,6 +4613,7 @@ function attachHandlers(){
     setNum('gmSilverOunce','silverOunceToday');
     setNum('gmGoldOunceYE','goldOunceYearEnd');
     setNum('gmSilverOunceYE','silverOunceYearEnd');
+    setNum('gmGold18kMarket','gold18kMarketToday');
     saveState(); showToast('مفروضات بازار ذخیره شد'); renderAll();
   };
   const saveGoldFundBtn = document.getElementById('saveGoldFundBtn');
@@ -4752,12 +4826,21 @@ async function updateGoldMarketFromBrsApi(){
     const xau = goldList.find(g=>g.symbol==='XAUUSD'); // انس طلا (دلار)
     const xag = goldList.find(g=>g.symbol==='XAGUSD'); // انس نقره (دلار) — اگه پلن/کلیدت این نماد رو نداشته باشه، خالی می‌مونه
     const usd = currencyList.find(c=>c.symbol==='USD'); // دلار (تومان)
+    // قیمت طلای ۱۸ عیار بازار ایران: چون نمی‌دونیم دقیقاً BrsApi با چه symbol/name ای این رو برمی‌گردونه، چند احتمال رایج
+    // رو امتحان می‌کنیم (هم روی symbol هم روی name فارسی/انگلیسی)؛ اگه هیچ‌کدوم پیدا نشد، فقط دستی وارد می‌شه (مشکلی پیش نمیاد)
+    const gold18kEntry = goldList.find(g=>{
+      const sym = (g.symbol||'').toUpperCase();
+      const name = (g.name||g.name_fa||'') + ' ' + (g.name_en||'');
+      return sym.includes('IR_GOLD_18K') || sym.includes('GOLD18') || sym==='18AYAR' ||
+             (name.includes('۱۸') && name.includes('عیار')) || (name.toLowerCase().includes('18k')&&name.toLowerCase().includes('gold'));
+    });
 
     const gm = getGoldMarket();
     let updated = [];
     if(usd && usd.price!=null){ gm.dollarToday = usd.price; updated.push('دلار روز'); } // خروجی این endpoint از قبل به تومانه، نیازی به تقسیم بر ۱۰ نیست
     if(xau && xau.price!=null){ gm.goldOunceToday = xau.price; updated.push('انس طلا'); }
     if(xag && xag.price!=null){ gm.silverOunceToday = xag.price; updated.push('انس نقره'); }
+    if(gold18kEntry && gold18kEntry.price!=null){ gm.gold18kMarketToday = gold18kEntry.price; updated.push('طلای ۱۸ عیار بازار'); }
     if(!updated.length) throw new Error('هیچ‌کدوم از نمادهای USD/XAUUSD/XAGUSD توی پاسخ پیدا نشد');
 
     cfg.apiKey = apiKey;
@@ -4766,6 +4849,7 @@ async function updateGoldMarketFromBrsApi(){
     saveState();
     let msg = updated.join('، ') + ' به‌روز شد ✅';
     if(!xag) msg += ' — نماد انس نقره (XAGUSD) توی پاسخ نبود، دستی وارد کن';
+    if(!gold18kEntry) msg += ' — قیمت طلای ۱۸ عیار بازار توی پاسخ پیدا نشد، دستی وارد کن';
     showToast(msg);
     renderAll();
   }catch(e){
