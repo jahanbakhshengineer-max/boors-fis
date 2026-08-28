@@ -695,8 +695,11 @@ function getMonthlySalesFiscalEntries(stock){
 }
 function currentFiscalYearForSales(stock){
   const entries = getMonthlySalesFiscalEntries(stock);
-  if(!entries.length) return null;
-  return Math.max(...entries.map(e=>e.fiscalYear));
+  const monthlyYears = entries.map(e=>e.fiscalYear);
+  const ytdYears = Object.keys(stock.monthlySalesYTD||{}).map(Number);
+  const allYears = monthlyYears.concat(ytdYears);
+  if(!allYears.length) return null;
+  return Math.max(...allYears);
 }
 // شمارش تعداد ماه‌های پیوسته‌ی وارد‌شده‌ی فروش ماهانه از ماه ۱ سال مالی، بدون هیچ جای خالی — تا سقف «امروز» (تا از ماه‌های آینده اشتباهی حساب نشه)
 function countContiguousMonthlyEntries(stock, fiscalYear, capMonthInFY){
@@ -1944,6 +1947,27 @@ function renderDataTab(){
     </div>
     ${renderMonthlySalesTable(stock)}
     <div class="hint">مقدار فروش ماهانه در فرم بالا مستقیم به «میلیارد تومان» وارد می‌شه. اگه از دکمه «آپلود اکسل فروش ماهانه» استفاده کنی (فایل خام کدال به میلیون ریال)، خودکار بر ۱۰٬۰۰۰ تقسیم و به میلیارد تومان تبدیل می‌شه.</div>
+
+    <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--line)">
+      <div style="font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:6px">فروش تجمعی از ابتدای سال مالی (برای میانگین و رشد تجمیعی)</div>
+      <div class="hint" style="margin-bottom:8px">اگه نمی‌خوای از پیست گزارش خام کدال استفاده کنی، می‌تونی این عدد رو مستقیم و دستی وارد کنی. این همون عددیه که «میانگین فروش»، «برآورد فروش سالانه» و «رشد فروش تجمیعی» توی داشبورد ازش استفاده می‌کنن — و همیشه (وقتی وارد شده باشه) اولویت داره.</div>
+      <div class="row" style="margin-bottom:10px">
+        <div class="field" style="width:140px"><label>سال مالی (شمسی)</label><input id="ytdYearInput" type="number" placeholder="مثلاً 1405" value="${stock.fiscalYear||''}"></div>
+        <div class="field" style="width:120px"><label>تا ماه (۱ تا ۱۲)</label><input id="ytdMonthInput" type="number" min="1" max="12"></div>
+        <div class="field" style="width:200px"><label>فروش تجمعی سال جاری (میلیارد تومان)</label><input id="ytdCurrentInput" type="number"></div>
+        <div class="field" style="width:200px"><label>فروش تجمعی سال قبل، تا همون ماه (اختیاری)</label><input id="ytdPriorInput" type="number"></div>
+        <div style="align-self:flex-end"><button class="btn tan" id="saveYtdManualBtn">ثبت / به‌روزرسانی</button></div>
+      </div>
+      ${(()=>{
+        const ytdEntries = Object.entries(stock.monthlySalesYTD||{}).sort((a,b)=>b[0]-a[0]);
+        if(!ytdEntries.length) return '';
+        return `<table style="font-size:12px; margin-bottom:6px"><thead><tr><th style="padding:3px 8px">سال مالی</th><th>تا ماه</th><th>فروش تجمعی سال جاری</th><th>فروش تجمعی سال قبل</th><th></th></tr></thead><tbody>
+          ${ytdEntries.map(([fy,y])=>`<tr><td style="padding:3px 8px">${toFa(fy)}</td><td>${toFa(y.throughMonth)}</td><td>${fmt(y.currentYTD)}</td><td>${y.priorYearYTD!=null?fmt(y.priorYearYTD):'—'}</td>
+            <td><button class="btn secondary delete-ytd-btn" data-ytdyear="${fy}" style="padding:2px 8px; font-size:11px">حذف</button></td></tr>`).join('')}
+          </tbody></table>`;
+      })()}
+    </div>
+
     <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--line)">
       <div style="font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:6px">یا از «گزارش فعالیت ماهانه» خام کدال (با سرفصل و ردیف داخلی/صادراتی)</div>
       <div style="font-size:11.5px; color:var(--muted); margin-bottom:8px">فایل خام گزارش فعالیت ماهانه رو باز کن، کل جدول تولید و فروش (با سرستون‌ها) رو کپی و اینجا پیست کن. بعد سرفصل (دوره)، ردیف «جمع فروش داخلی» و ردیف «جمع فروش صادراتی» رو انتخاب می‌کنی؛ نرم‌افزار مبلغ فروش رو از دو ردیف پیدا و جمع می‌کنه.</div>
@@ -4348,6 +4372,28 @@ function attachHandlers(){
   document.querySelectorAll('[data-delmonth]').forEach(el=>el.onclick=()=>{
     delete state.stocks[activeSymbol].monthlySales[el.dataset.delmonth];
     if(state.stocks[activeSymbol].monthlySalesSplit) delete state.stocks[activeSymbol].monthlySalesSplit[el.dataset.delmonth];
+    saveState(); renderAll();
+  });
+  // ثبت دستیِ فروش تجمعی (YTD) — همون داده‌ای که قبلاً فقط از پیست گزارش خام کدال قابل‌ورود بود
+  const saveYtdManualBtn = document.getElementById('saveYtdManualBtn');
+  if(saveYtdManualBtn) saveYtdManualBtn.onclick = ()=>{
+    const fy = parseIntSafe(document.getElementById('ytdYearInput').value);
+    const month = parseIntSafe(document.getElementById('ytdMonthInput').value);
+    const currentVal = document.getElementById('ytdCurrentInput').value;
+    const priorVal = document.getElementById('ytdPriorInput').value;
+    if(!fy || !month || currentVal==='') return showToast('سال مالی، ماه و فروش تجمعی سال جاری رو وارد کن');
+    const stock = state.stocks[activeSymbol];
+    stock.monthlySalesYTD = stock.monthlySalesYTD || {};
+    stock.monthlySalesYTD[fy] = {
+      throughMonth: month,
+      currentYTD: Number(currentVal),
+      priorYearYTD: priorVal!=='' ? Number(priorVal) : (stock.monthlySalesYTD[fy]?.priorYearYTD ?? null)
+    };
+    saveState(); showToast('فروش تجمعی ثبت شد'); renderAll();
+  };
+  document.querySelectorAll('.delete-ytd-btn').forEach(el=>el.onclick=()=>{
+    const stock = state.stocks[activeSymbol];
+    if(stock.monthlySalesYTD) delete stock.monthlySalesYTD[el.dataset.ytdyear];
     saveState(); renderAll();
   });
   const addDividendBtn = document.getElementById('addDividendBtn');
