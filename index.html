@@ -2991,7 +2991,7 @@ function renderBackupTab(){
   <div class="card" style="margin-top:14px">
     <h3>به‌روزرسانی خودکار نمادها (BrsApi.ir)</h3>
     <p style="font-size:13px; color:var(--muted)">با یه کلیک، قیمت روز و ارزش بازار همه‌ی سهم‌های تعریف‌شده (و قیمت تابلوی صندوق‌های طلا/نقره) رو از BrsApi.ir می‌گیره و توی «ورودی سایر اطلاعات» هر کدوم جایگزین می‌کنه.</p>
-    <div class="field"><label>کلید API</label><input id="brsApiKey" value="${brs.apiKey!=null?brs.apiKey:'B7L8LXEHpBb2TfgAxwRLRk7v3yxDRRb6'}" placeholder="کلید BrsApi.ir"></div>
+    <div class="field"><label>کلید API</label><input id="brsApiKey" value="${brs.apiKey!=null?brs.apiKey:''}" placeholder="کلید BrsApi.ir خودت رو اینجا وارد کن"></div>
     <div class="row" style="margin-top:8px">
       <button class="btn secondary" id="brsSaveKeyBtn">ذخیره کلید</button>
       <button class="btn tan" id="brsUpdateBtn">${icon('refresh',13)} به‌روزرسانی همه‌ی نمادها</button>
@@ -5188,8 +5188,8 @@ function saveBrsApiConfig(cfg){
 // (ارزش بازار علاوه بر تبدیل ریال‌به‌تومان، به «میلیارد تومان» هم تبدیل می‌شه که واحد فیلد marketCap توی برنامه‌ست)
 async function updateSymbolsFromBrsApi(){
   const cfg = getBrsApiConfig();
-  const apiKey = (cfg.apiKey!=null && cfg.apiKey!=='') ? cfg.apiKey : 'B7L8LXEHpBb2TfgAxwRLRk7v3yxDRRb6';
-  if(!apiKey) return showToast('اول کلید API رو وارد و ذخیره کن');
+  const apiKey = cfg.apiKey;
+  if(!apiKey) return showToast('اول کلید API خودت رو توی تب «پشتیبان‌گیری» وارد و ذخیره کن');
   showToast('در حال دریافت اطلاعات نمادها از BrsApi.ir...');
   try{
     const res = await fetch(`https://api.brsapi.ir/Tsetmc/AllSymbols.php?key=${encodeURIComponent(apiKey)}&type=1`);
@@ -5237,8 +5237,8 @@ async function updateSymbolsFromBrsApi(){
 /* ---- به‌روزرسانی زنده‌ی طلا/ارز برای بخش «طلا و نقره» (Gold_Currency.php) ---- */
 async function updateGoldMarketFromBrsApi(){
   const cfg = getBrsApiConfig();
-  const apiKey = (cfg.apiKey!=null && cfg.apiKey!=='') ? cfg.apiKey : 'B7L8LXEHpBb2TfgAxwRLRk7v3yxDRRb6';
-  if(!apiKey) return showToast('اول کلید API رو وارد و ذخیره کن');
+  const apiKey = cfg.apiKey;
+  if(!apiKey) return showToast('اول کلید API خودت رو توی تب «پشتیبان‌گیری» وارد و ذخیره کن');
   showToast('در حال دریافت قیمت طلا/ارز از BrsApi.ir...');
   try{
     const res = await fetch(`https://api.brsapi.ir/Market/Gold_Currency.php?key=${encodeURIComponent(apiKey)}`);
@@ -5282,8 +5282,8 @@ async function updateGoldMarketFromBrsApi(){
 /* ---- دریافت خودکار «دلار ابتدای سال» از تاریخچه‌ی روزانه (Gold_Currency_Pro.php) ---- */
 async function fetchDollarStartOfYearFromBrsApi(){
   const cfg = getBrsApiConfig();
-  const apiKey = (cfg.apiKey!=null && cfg.apiKey!=='') ? cfg.apiKey : 'B7L8LXEHpBb2TfgAxwRLRk7v3yxDRRb6';
-  if(!apiKey) return showToast('اول کلید API رو وارد و ذخیره کن');
+  const apiKey = cfg.apiKey;
+  if(!apiKey) return showToast('اول کلید API خودت رو توی تب «پشتیبان‌گیری» وارد و ذخیره کن');
   const {year} = getTodayJalali();
   const dateStr = `${year}-01-01`;
   showToast(`در حال دریافت قیمت دلار در ${dateStr}...`);
