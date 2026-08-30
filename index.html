@@ -393,6 +393,7 @@ const ICONS = {
   industry: '<path d="M3 21h18"/><path d="M5 21V9l5 3V9l5 3V4l4 3v14"/>',
   manage: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1Z"/>',
   backup: '<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/>',
+  camera: '<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.5"/>',
 };
 function icon(name, size=14){
   const path = ICONS[name] || '';
@@ -1217,7 +1218,7 @@ function renderDashboardTab(){
         <h1 class="page-title">${stock.symbol} <span class="badge-industry">${stock.industry||'بدون صنعت'}</span></h1>
         <div class="page-sub">${stock.name||'—'} · سال مالی منتهی به ${toFa(stock.fiscalYearEndDay||29)} ${PERSIAN_MONTH_NAMES[(stock.fiscalYearEndMonth||12)-1]} · سال مالی جاری: ${toFa(stock.fiscalYear || currentFiscalYearForSales(stock) || (lp?lp.fiscalYear:'') || 'تعریف‌نشده')} · آخرین دوره ثبت‌شده: ${lp ? faPeriodLabel(lp) : 'ثبت نشده'}</div>
       </div>
-      <button class="btn secondary" id="exportImageBtn">📷 خروجی تصویر از این صفحه</button>
+      <button class="btn secondary" id="exportImageBtn">${icon('camera',13)} خروجی تصویر از این صفحه</button>
     </div>
     <div class="card" style="padding:10px 16px; margin:10px 0 16px; display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; border-color:var(--tan)">
       <span style="font-weight:700; color:var(--navy); align-self:center; white-space:nowrap">⚡ به‌روزرسانی سریع ${stock.symbol}:</span>
@@ -2424,10 +2425,16 @@ function renderIndustryTab(){
   industries.forEach(ind=>{
     const allInInd = Object.values(bySymbol).filter(s=>s.industry===ind);
     const stocksInInd = allInInd.filter(stockPassesFilters);
-    html += `<div class="section-title">صنعت ${ind}${industryFilters.length? ` <span class="accordion-meta" style="font-size:11.5px; color:var(--muted); font-weight:400">(${toFa(stocksInInd.length)} از ${toFa(allInInd.length)} با فیلتر فعلی)</span>`:''}</div>`;
+    html += `<div class="section-title" style="display:flex; align-items:center; justify-content:space-between; gap:10px">
+      <span>صنعت ${ind}${industryFilters.length? ` <span class="accordion-meta" style="font-size:11.5px; color:var(--muted); font-weight:400">(${toFa(stocksInInd.length)} از ${toFa(allInInd.length)} با فیلتر فعلی)</span>`:''}</span>
+      ${allInInd.length ? `<span style="display:flex; gap:6px; flex:none">
+        <button class="btn secondary" data-colmgr-industry="${ind}" style="font-size:11px; padding:5px 10px">${icon('form',12)} ستون‌ها</button>
+        <button class="btn secondary" data-export-industry="${ind}" style="font-size:11px; padding:5px 10px">${icon('camera',12)} عکس از این جدول</button>
+      </span>` : ''}
+    </div>`;
     if(!allInInd.length){ html += `<div class="card empty" style="padding:20px"><div>هنوز سهمی در این صنعت ثبت نشده</div></div>`; return; }
     if(!stocksInInd.length){ html += `<div class="card empty" style="padding:20px"><div>هیچ سهمی در این صنعت با فیلتر فعلی مطابقت ندارد</div></div>`; return; }
-    html += `<div class="table-wrap"><table class="sortable-table" id="industryTable-${ind.replace(/[^a-zA-Z0-9آ-ی]/g,'_')}"><thead><tr>
+    html += `<div class="table-wrap"><table class="sortable-table" data-col-mgr="true" id="industryTable-${ind.replace(/[^a-zA-Z0-9آ-ی]/g,'_')}"><thead><tr>
       <th>نماد</th><th>سال مالی</th><th>صورت مالی</th><th>گزارش فعالیت منتهی به</th>
       <th>برآورد فروش تا انتهای سال مالی</th><th>برآورد سود خالص تا انتهای سال مالی</th><th>ارزش بازار روز</th>
       <th>رشد فروش تجمیعی</th><th>میانگین تقسیم سود</th>
@@ -2582,6 +2589,7 @@ function renderManageTab(){
     <div class="row">
       <button class="btn tan" id="openAddStockModal">+ افزودن سهم جدید</button>
       <button class="btn secondary" id="openAddIndustryModal">+ افزودن صنعت جدید</button>
+      <button class="btn secondary" id="exportAIPromptBtn">${icon('chart',13)} خروجی برای تحلیل با هوش مصنوعی</button>
     </div>
   </div>
   <div class="tag-row">${state.industries.map(i=>`<span class="tag">${i}</span>`).join('')}</div>
@@ -2889,8 +2897,9 @@ function renderPortfolioTab(){
   ${holdings.length? `<div class="row" style="gap:10px; margin-bottom:10px; flex-wrap:wrap">
     <div class="field" style="max-width:280px; margin:0"><input id="portfolioSearchInput" type="text" placeholder="🔎 جستجو در سبد (نماد، نام...)"></div>
     <button class="btn secondary" id="clearPortfolioFiltersBtn" style="align-self:center">پاک‌کردن فیلترها</button>
+    <button class="btn secondary" id="portfolioColMgrBtn" style="align-self:center">${icon('form',12)} ستون‌ها</button>
   </div>`:''}
-  <div class="table-wrap"><table class="sortable-table" data-filterable="true" id="portfolioTable">
+  <div class="table-wrap"><table class="sortable-table" data-filterable="true" data-col-mgr="true" id="portfolioTable">
     <thead><tr><th>نماد</th><th>نام</th><th>صنعت</th><th>تاریخ آخرین صورت مالی</th><th>ارزش بازار (م.ت)</th><th>آخرین به‌روزرسانی ارزش بازار</th><th>تعداد</th><th>قیمت سربه‌سر</th><th>قیمت روز</th><th>ارزش سربه‌سر</th><th>ارزش روز</th><th>سود/زیان</th><th>درصد</th><th>P/E F</th><th>هدف (تا P/E=۷)</th><th>P/D F</th><th>P/S F</th><th>P/A</th><th>P/B</th><th>حاشیه سود FIS</th><th>نسبت مطالبات</th><th></th></tr></thead>
     <tbody>${rows || `<tr><td colspan="22" style="color:var(--muted)">هنوز سهمی به سبد اضافه نشده</td></tr>`}</tbody>
     ${holdings.length? `<tfoot><tr><td colspan="9">جمع کل</td><td>${fmt(totalCost)}</td><td>${fmt(totalValue)}</td><td>${fmt(totalPl)}</td><td>${totalPlPct!=null?fmtPct(totalPlPct):'—'}</td><td colspan="8"></td></tr></tfoot>`:''}
@@ -3036,6 +3045,150 @@ function openModal(html){
   document.getElementById('modalOverlay').classList.add('open');
 }
 function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); }
+
+/* ========================= سفارشی‌سازی ستون‌های جدول‌ها ========================= */
+// هر جدول (با آیدی خودش) می‌تونه یه دکمه‌ی «ستون‌ها» داشته باشه که کاربر بتونه هرکدوم از ستون‌ها رو نمایش/مخفی کنه.
+// تنظیمات هر جدول جدا و مستقل ذخیره می‌شه (state.layout.columnVisibility[tableId])، پس مثلاً مخفی‌کردن یه ستون
+// توی جدول سبد سهام، روی جدول‌های صنعت اثر نمی‌ذاره.
+function getColumnVisibilityFor(tableId){
+  const layout = ensureLayoutState();
+  layout.columnVisibility = layout.columnVisibility || {};
+  layout.columnVisibility[tableId] = layout.columnVisibility[tableId] || {};
+  return layout.columnVisibility[tableId];
+}
+function applyColumnVisibility(tableId){
+  const table = document.getElementById(tableId);
+  if(!table) return;
+  const headerRow = table.querySelector('thead tr');
+  if(!headerRow) return;
+  const vis = getColumnVisibilityFor(tableId);
+  const colCount = headerRow.children.length;
+  for(let i=0;i<colCount;i++){
+    const hidden = vis[i]===false;
+    table.querySelectorAll(`:scope > thead > tr > *:nth-child(${i+1}), :scope > tbody > tr > *:nth-child(${i+1}), :scope > tfoot > tr > *:nth-child(${i+1})`)
+      .forEach(cell=> cell.style.display = hidden ? 'none' : '');
+  }
+}
+function applyAllColumnVisibility(){
+  document.querySelectorAll('table[data-col-mgr]').forEach(t=> applyColumnVisibility(t.id));
+}
+function openColumnManagerModal(tableId, tableLabel){
+  const table = document.getElementById(tableId);
+  if(!table) return showToast('جدول پیدا نشد');
+  const headerRow = table.querySelector('thead tr');
+  if(!headerRow) return;
+  const ths = Array.from(headerRow.children);
+  const vis = getColumnVisibilityFor(tableId);
+  const rowsHtml = ths.map((th,i)=>{
+    const label = (th.dataset.origText!=null ? th.dataset.origText : th.textContent).trim() || `ستون ${toFa(i+1)}`;
+    const checked = vis[i]!==false;
+    return `<label style="display:flex; align-items:center; gap:8px; padding:7px 4px; border-bottom:1px solid var(--line); cursor:pointer; font-size:12.5px">
+      <input type="checkbox" data-colidx="${i}" ${checked?'checked':''}> ${label}
+    </label>`;
+  }).join('');
+  openModal(`
+    <h3 style="margin-bottom:4px">ستون‌های ${tableLabel}</h3>
+    <div class="hint" style="margin-bottom:8px">تیک هر ستون رو بردار تا از این جدول مخفی بشه؛ این تنظیم فقط روی همین جدول اثر می‌ذاره و ذخیره می‌مونه.</div>
+    <div style="max-height:340px; overflow-y:auto" id="colMgrList">${rowsHtml}</div>
+    <div class="row" style="justify-content:space-between; margin-top:14px">
+      <button class="btn secondary" id="colMgrShowAllBtn">نمایش همه‌ی ستون‌ها</button>
+      <button class="btn secondary" id="cancelModalBtn">بستن</button>
+    </div>
+  `);
+  document.getElementById('cancelModalBtn').onclick = closeModal;
+  document.querySelectorAll('#colMgrList input[type=checkbox]').forEach(cb=>{
+    cb.onchange = ()=>{
+      vis[Number(cb.dataset.colidx)] = cb.checked;
+      saveState();
+      applyColumnVisibility(tableId);
+    };
+  });
+  document.getElementById('colMgrShowAllBtn').onclick = ()=>{
+    Object.keys(vis).forEach(k=>delete vis[k]);
+    saveState();
+    applyColumnVisibility(tableId);
+    document.querySelectorAll('#colMgrList input[type=checkbox]').forEach(cb=>cb.checked=true);
+  };
+}
+// تولید یه خروجی متنیِ ساختاریافته از همه‌ی سهم‌های ثبت‌شده در برنامه — به‌همراه یه پرامپ راهنما در ابتدا،
+// طوری که مستقیم قابل کپی/دانلود و دادن به یه ابزار هوش مصنوعی برای تحلیل و مقایسه باشه.
+function generateAIExportText(){
+  const symbols = Object.keys(state.stocks);
+  const lines = [];
+  lines.push('# درخواست تحلیل بنیادی سهام بورس ایران');
+  lines.push('');
+  lines.push('اطلاعات زیر مربوط به چند شرکت پذیرفته‌شده در بورس/فرابورس ایرانه که از صورت‌های مالی و گزارش‌های رسمی (کدال) استخراج شده. لطفاً این شرکت‌ها رو از نظر ارزش‌گذاری (نسبت‌های P/E، P/D، P/S، P/A، P/B نسبت به میانگین صنعت خودشون)، روند رشد فروش، حاشیه سود، و جذابیت نسبی برای سرمایه‌گذاری تحلیل و با هم مقایسه کن. اگه دیتای یه فیلد موجود نبود («—»)، فرض کن اون داده در دسترس نبوده، حدس نزن.');
+  lines.push('');
+  lines.push(`تاریخ خروجی: ${new Date().toLocaleDateString('fa-IR')} — تعداد سهم: ${toFa(symbols.length)}`);
+  lines.push('');
+  lines.push('---');
+  symbols.forEach(sym=>{
+    const stock = state.stocks[sym];
+    const lp = latestPeriod(stock);
+    const m = lp ? computeMetricsForPeriod(stock, lp) : {};
+    const pe = peF(stock);
+    const estSales = estimateAnnualSales(stock);
+    const estMargin = estimateLatestMargin(stock);
+    const estFinal = estimateFinalNetIncome(stock);
+    const exportRatio = computeExportRatio(stock);
+    const growth = computeSalesGrowthCum(stock);
+    const marketCap = stock.manual && stock.manual.marketCap ? Number(stock.manual.marketCap) : null;
+    const f = (v, unit='')=> v!=null && !isNaN(v) ? fmt(v)+unit : '—';
+    const fp = (v)=> v!=null ? fmtPct(v) : '—';
+    lines.push(`## ${stock.symbol} — ${stock.name||'—'}`);
+    lines.push(`صنعت: ${stock.industry||'—'}${stock.isHolding?' (هلدینگ/شرکت سرمایه‌گذاری)':''}`);
+    lines.push(`ارزش بازار روز: ${f(marketCap,' میلیارد تومان')}`);
+    lines.push(`آخرین دوره مالی ثبت‌شده: ${lp ? `${toFa(lp.fiscalYear)} - ${toFa(lp.months)} ماهه${lp.reportDate?` (تا ${lp.reportDate})`:''}` : '—'}`);
+    lines.push(`فروش دوره: ${f(lp?.sales)} | سود عملیاتی دوره: ${f(lp?.operatingProfit)} | سود خالص دوره: ${f(lp?.netIncome)}`);
+    lines.push(`حاشیه سود فصل اخیر (FIS): ${fp(m.qMargin)} | نسبت مطالبات: ${fp(m.receivablesRatio)} | نسبت آنی: ${f(m.quickRatio)}`);
+    lines.push(`P/E F: ${f(pe)} | P/D F: ${f(m.pdRatio)} | P/S F: ${f(m.psRatio)} | P/A: ${f(m.paRatio)} | P/B: ${f(m.pbRatio)}`);
+    lines.push(`برآورد فروش سالانه: ${f(estSales,' میلیارد تومان')} | برآورد حاشیه سود: ${fp(estMargin)} | برآورد سود خالص نهایی: ${f(estFinal,' میلیارد تومان')}`);
+    lines.push(`نسبت فروش صادراتی: ${exportRatio? fp(exportRatio.ratio) : '—'}`);
+    lines.push(`رشد فروش تجمیعی (سال جاری نسبت به سال قبل): ${growth && growth.growth!=null ? fp(growth.growth) : '—'}${growth && growth.usedYTD ? ' (بر اساس گزارش تجمیعی ماهانه)':''}`);
+    lines.push('');
+  });
+  return lines.join('\n');
+}
+function showAIExportModal(){
+  const text = generateAIExportText();
+  openModal(`
+    <h3 style="margin-bottom:10px">خروجی برای تحلیل با هوش مصنوعی</h3>
+    <div class="hint" style="margin-bottom:8px">این متن رو کپی کن و مستقیم توی چت هر ابزار هوش مصنوعی (مثل Claude یا ChatGPT) پیست کن، یا فایلش رو دانلود کن.</div>
+    <textarea id="aiExportTextarea" rows="14" style="width:100%; font-family:monospace; font-size:11.5px; direction:rtl" readonly>${text.replace(/</g,'&lt;')}</textarea>
+    <div class="row" style="justify-content:flex-end; margin-top:12px">
+      <button class="btn secondary" id="cancelModalBtn">بستن</button>
+      <button class="btn secondary" id="downloadAIExportBtn">دانلود فایل متنی</button>
+      <button class="btn tan" id="copyAIExportBtn">کپی متن</button>
+    </div>
+  `);
+  document.getElementById('cancelModalBtn').onclick = closeModal;
+  document.getElementById('copyAIExportBtn').onclick = ()=>{
+    const ta = document.getElementById('aiExportTextarea');
+    ta.select();
+    navigator.clipboard?.writeText(text).then(()=> showToast('متن کپی شد ✅')).catch(()=>{
+      document.execCommand('copy'); showToast('متن کپی شد ✅');
+    });
+  };
+  document.getElementById('downloadAIExportBtn').onclick = ()=>{
+    const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `تحلیل-سهام-${new Date().toISOString().slice(0,10)}.txt`;
+    a.click();
+  };
+}
+// خروجی عکس از یه المان دلخواه — برای دکمه‌ی «عکس از داشبورد» و همچنین دکمه‌ی «عکس از جدول این صنعت»
+function exportElementAsImage(el, filename){
+  if(!el || !window.html2canvas) return showToast('کتابخانه تصویربرداری در دسترس نیست (اینترنت رو چک کن)');
+  showToast('در حال ساخت تصویر...');
+  html2canvas(el, {backgroundColor:'#f7f4ee', scale:2, useCORS:true}).then(canvas=>{
+    const a = document.createElement('a');
+    a.download = filename;
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+    showToast('تصویر دانلود شد — می‌تونی برای هرکسی بفرستیش');
+  }).catch(()=> showToast('ساخت تصویر با خطا مواجه شد'));
+}
 
 /* ========================= جست‌وجوی سریع (Ctrl+K) — پرش سریع به هر تب یا سهم ========================= */
 let cmdPaletteActiveIdx = 0;
@@ -4665,18 +4818,27 @@ function attachHandlers(){
   if(plMonthsEl) plMonthsEl.onchange = autofillPLHistoryFields;
   const exportImageBtn = document.getElementById('exportImageBtn');
   if(exportImageBtn) exportImageBtn.onclick = ()=>{
+    const stock = state.stocks[activeSymbol];
     const el = document.getElementById('dashboardCaptureArea');
-    if(!el || !window.html2canvas) return showToast('کتابخانه تصویربرداری در دسترس نیست (اینترنت رو چک کن)');
-    showToast('در حال ساخت تصویر...');
-    html2canvas(el, {backgroundColor:'#f7f4ee', scale:2, useCORS:true}).then(canvas=>{
-      const a = document.createElement('a');
-      const stock = state.stocks[activeSymbol];
-      a.download = `${stock?stock.symbol:'dashboard'}-${dashSubtab}-${new Date().toISOString().slice(0,10)}.png`;
-      a.href = canvas.toDataURL('image/png');
-      a.click();
-      showToast('تصویر دانلود شد — می‌تونی برای هرکسی بفرستیش');
-    }).catch(()=> showToast('ساخت تصویر با خطا مواجه شد'));
+    if(el) exportElementAsImage(el, `${stock?stock.symbol:'dashboard'}-${dashSubtab}-${new Date().toISOString().slice(0,10)}.png`);
   };
+  document.querySelectorAll('[data-export-industry]').forEach(btn=>{
+    btn.onclick = ()=>{
+      const ind = btn.dataset.exportIndustry;
+      const tableId = 'industryTable-'+ind.replace(/[^a-zA-Z0-9آ-ی]/g,'_');
+      const table = document.getElementById(tableId);
+      const wrap = table ? table.closest('.table-wrap') : null;
+      if(!wrap) return showToast('جدول این صنعت پیدا نشد');
+      exportElementAsImage(wrap, `صنعت-${ind}-${new Date().toISOString().slice(0,10)}.png`);
+    };
+  });
+  document.querySelectorAll('[data-colmgr-industry]').forEach(btn=>{
+    btn.onclick = ()=>{
+      const ind = btn.dataset.colmgrIndustry;
+      const tableId = 'industryTable-'+ind.replace(/[^a-zA-Z0-9آ-ی]/g,'_');
+      openColumnManagerModal(tableId, `صنعت ${ind}`);
+    };
+  });
   const savePlBtn = document.getElementById('savePlEntryBtn');
   if(savePlBtn) savePlBtn.onclick = savePLEntry;
   document.querySelectorAll('[data-editpl]').forEach(el=>el.onclick=()=>{
@@ -4779,6 +4941,8 @@ function attachHandlers(){
   if(addStockBtn) addStockBtn.onclick = ()=>addStockModal();
   const addIndBtn = document.getElementById('openAddIndustryModal');
   if(addIndBtn) addIndBtn.onclick = addIndustryModal;
+  const exportAIPromptBtn = document.getElementById('exportAIPromptBtn');
+  if(exportAIPromptBtn) exportAIPromptBtn.onclick = showAIExportModal;
   document.querySelectorAll('[data-editstock]').forEach(el=>el.onclick=()=>addStockModal(el.dataset.editstock));
   document.querySelectorAll('[data-managesub]').forEach(el=>el.onclick=()=>subsidiaryModal(el.dataset.managesub));
   document.querySelectorAll('[data-delstock]').forEach(el=>el.onclick=()=>{
@@ -4911,6 +5075,9 @@ function attachHandlers(){
   wireColumnFilters('portfolioTable');
   const clearPortfolioFiltersBtn = document.getElementById('clearPortfolioFiltersBtn');
   if(clearPortfolioFiltersBtn) clearPortfolioFiltersBtn.onclick = ()=> clearTableFilters('portfolioTable','portfolioSearchInput');
+  const portfolioColMgrBtn = document.getElementById('portfolioColMgrBtn');
+  if(portfolioColMgrBtn) portfolioColMgrBtn.onclick = ()=> openColumnManagerModal('portfolioTable', 'سبد سهام');
+  applyAllColumnVisibility();
   drawCharts();
 }
 /* ========================= همگام‌سازی با گیت‌هاب ========================= */
