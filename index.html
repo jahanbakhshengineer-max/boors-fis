@@ -422,6 +422,7 @@ function loadState(){
 let state = loadState();
 let activeSymbol = Object.keys(state.stocks)[0] || null;
 let activeTab = 'dashboard';
+let pendingIndustryScrollTarget = null; // وقتی از زنجیره ارزش روی یه حلقه کلیک می‌شه، اسمِ صنعتی که باید بهش اسکرول کنیم
 let dashSubtab = 'overview';
 // نمایش/مخفی‌کردن توضیحات راهنما (جعبه‌های .hint) — یه ترجیح سبک نمایشیه، جدا از state اصلی نگه داشته می‌شه
 // (نیازی نیست توی بک‌آپ/سینک فایل قرار بگیره)
@@ -841,7 +842,9 @@ function checkMonthlySalesStale(stock){
   const lastAbs = last.y*12+last.m;
   const todayAbs = today.year*12+today.month;
   const monthsBehind = todayAbs - lastAbs;
-  const stale = monthsBehind>=2 || (monthsBehind===1 && today.day>10);
+  // گزارش ماه M از حدود روز ۷ام تا ۱۰ام ماهِ بعد (M+1) به‌تدریج منتشر می‌شه؛ پس تا وقتی «یک ماه» عقبیم، کاملاً عادیه
+  // (چون گزارشِ ماه جاری هنوز اصلاً موعدش نرسیده) و فقط از ۲ ماه عقب‌تر (و بعد از روز ۱۰ام) به بعد واقعاً عقب‌افتاده حساب می‌شه
+  const stale = monthsBehind>=3 || (monthsBehind===2 && today.day>10);
   return {stale, lastY:last.y, lastM:last.m, monthsBehind};
 }
 // یه نشانگر قرمز کوچیک کنار نماد سهم — وقتی فروش ماهانه‌ش عقب‌افتاده باشه، با tooltip که آخرین ماه ثبت‌شده رو نشون بده
@@ -1219,6 +1222,12 @@ function renderAll(){
   else if(activeTab==='valuechain') main.innerHTML = renderValueChainTab();
   else if(activeTab==='backup') main.innerHTML = renderBackupTab();
   attachHandlers();
+  if(activeTab==='industry' && pendingIndustryScrollTarget){
+    const targetId = 'industrySection-' + pendingIndustryScrollTarget.replace(/[^a-zA-Z0-9آ-ی]/g,'_');
+    const el = document.getElementById(targetId);
+    if(el) setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'start'}), 30);
+    pendingIndustryScrollTarget = null;
+  }
 }
 
 /* ========================= تب داشبورد ========================= */
@@ -1491,69 +1500,94 @@ function getValueChainWeights(){
   state.valueChainWeights = state.valueChainWeights || {peF:20, pdRatio:15, pbRatio:15, margin:25, salesGrowth:25};
   return state.valueChainWeights;
 }
-const VALUE_CHAIN_METRICS = [
-  {key:'peF', label:'P/E F', lowerIsBetter:true},
-  {key:'pdRatio', label:'P/D F', lowerIsBetter:true},
-  {key:'pbRatio', label:'P/B', lowerIsBetter:true},
-  {key:'margin', label:'حاشیه سود', lowerIsBetter:false},
-  {key:'salesGrowth', label:'رشد فروش تجمیعی', lowerIsBetter:false},
-];
-function computeStockValueChainMetrics(stock){
+// کدوم نسبت‌ها فعلاً برای امتیازدهی صنعت انتخاب شدن (پیش‌فرض = همون ۵ نسبت قبلی، برای سازگاری با داده‌ی قبلی)
+function getValueChainSelectedKeys(){
+  state.valueChainSelectedKeys = state.valueChainSelectedKeys || ['peF','pdRatio','pbRatio','margin','salesGrowth'];
+  return state.valueChainSelectedKeys;
+}
+// جهتِ «کمترش بهتره / بیشترش بهتره» برای هر نسبت — پیش‌فرض هوشمند + قابل تغییر دستی توسط کاربر
+const VALUE_CHAIN_DIRECTION_HINTS = {
+  peF:true, peRealized:true, pdRatio:true, psRatio:true, paRatio:true, pbRatio:true,
+  receivablesRatio:true, inventoryDays:true, receivableDays:true,
+  margin:false, salesGrowth:false, qMargin:false, netMarginDP:false, roa:false, roe:false, roeDupont:false,
+  assetTurnoverDP:false, equityMultiplierDP:false, quickRatio:false,
+};
+function getValueChainDirections(){
+  state.valueChainDirections = state.valueChainDirections || {};
+  return state.valueChainDirections;
+}
+function valueChainLowerIsBetter(key){
+  const overrides = getValueChainDirections();
+  if(overrides[key]!=null) return overrides[key];
+  if(VALUE_CHAIN_DIRECTION_HINTS[key]!=null) return VALUE_CHAIN_DIRECTION_HINTS[key];
+  return false; // پیش‌فرض برای نسبت‌های سفارشیِ ناشناخته: بیشترش بهتره
+}
+// دو معیار ویژه (حاشیه سود و رشد فروش) که توی رجیستری فرمول‌ها نیستن، به‌علاوه‌ی همه‌ی فرمول‌های علامت‌خورده با showInIndustry
+function getValueChainAvailableMetrics(){
+  const list = [
+    {key:'margin', label:'حاشیه سود'},
+    {key:'salesGrowth', label:'رشد فروش تجمیعی'},
+  ];
+  getFormulas().filter(f=>f.showInIndustry).forEach(f=>{ list.push({key:f.key, label:f.name}); });
+  return list.map(m=>({...m, lowerIsBetter: valueChainLowerIsBetter(m.key)}));
+}
+function computeStockValueChainMetrics(stock, metricKeys){
   const lp = latestPeriod(stock);
   const m = lp ? computeMetricsForPeriod(stock, lp) : {};
-  const growthInfo = computeSalesGrowthCum(stock);
-  return {
-    peF: peF(stock),
-    pdRatio: m.pdRatio,
-    pbRatio: m.pbRatio,
-    margin: estimateLatestMargin(stock),
-    salesGrowth: growthInfo ? growthInfo.growth : null,
-  };
+  const result = {};
+  metricKeys.forEach(key=>{
+    if(key==='margin') result.margin = estimateLatestMargin(stock);
+    else if(key==='salesGrowth'){ const g = computeSalesGrowthCum(stock); result.salesGrowth = g ? g.growth : null; }
+    else result[key] = m[key];
+  });
+  return result;
 }
-// میانگین صنعت برای نسبت‌هایی که «کمترشون بهتره» (P/E، P/D، P/B) — فقط از مقادیر مثبت و معنادار
-function computeIndustryAveragesForChain(industryName){
+// میانگین صنعت برای هر نسبتِ انتخاب‌شده — برای نسبت‌های «کمترش بهتره» فقط مقادیر مثبت لحاظ می‌شن (چون منفی/صفر برای این نسبت‌ها بی‌معناست)
+function computeIndustryAveragesForChain(industryName, metricKeys){
   const stocks = Object.values(state.stocks).filter(s=>s.industry===industryName);
   const sums = {}, counts = {};
   stocks.forEach(s=>{
-    const vals = computeStockValueChainMetrics(s);
-    VALUE_CHAIN_METRICS.forEach(met=>{
-      const v = vals[met.key];
-      if(met.lowerIsBetter && v!=null && !isNaN(v) && v>0){
-        sums[met.key] = (sums[met.key]||0) + v;
-        counts[met.key] = (counts[met.key]||0) + 1;
-      }
+    const vals = computeStockValueChainMetrics(s, metricKeys);
+    metricKeys.forEach(key=>{
+      const v = vals[key];
+      if(v==null || isNaN(v)) return;
+      if(valueChainLowerIsBetter(key) && v<=0) return;
+      sums[key] = (sums[key]||0) + v;
+      counts[key] = (counts[key]||0) + 1;
     });
   });
   const avgs = {};
-  VALUE_CHAIN_METRICS.forEach(met=>{ avgs[met.key] = counts[met.key] ? sums[met.key]/counts[met.key] : null; });
+  metricKeys.forEach(key=>{ avgs[key] = counts[key] ? sums[key]/counts[key] : null; });
   return avgs;
 }
-// امتیاز ۰ تا ۱۰۰ برای یه نسبتِ مشخص از یه سهم؛ null یعنی داده‌ی کافی برای قضاوت نیست (نه امتیاز خوب نه بد)
+// امتیاز ۰ تا ۱۰۰ برای یه نسبتِ مشخص از یه سهم، نسبت به میانگین صنعت؛ null یعنی داده‌ی کافی برای قضاوت نیست
 function scoreValueChainMetric(metricKey, value, industryAvg){
   if(value==null || isNaN(value)) return null;
-  const met = VALUE_CHAIN_METRICS.find(m=>m.key===metricKey);
-  if(met.lowerIsBetter){
+  const lowerIsBetter = valueChainLowerIsBetter(metricKey);
+  if(lowerIsBetter){
     if(!industryAvg || industryAvg<=0 || value<=0) return null;
     return Math.max(0, Math.min(100, 50 + 50*((industryAvg-value)/industryAvg)));
   }
-  if(metricKey==='margin') return Math.max(0, Math.min(100, value*100*3));
-  if(metricKey==='salesGrowth') return Math.max(0, Math.min(100, 50+value*100));
-  return null;
+  if(industryAvg==null) return null;
+  if(industryAvg===0) return value>0 ? 70 : (value<0 ? 30 : 50);
+  return Math.max(0, Math.min(100, 50 + 50*((value-industryAvg)/Math.abs(industryAvg))));
 }
-// امتیاز سلامت کلی یه صنعت (میانگینِ امتیاز وزنیِ همه‌ی سهم‌های اون صنعت)
+// امتیاز سلامت کلی یه صنعت (میانگینِ امتیاز وزنیِ همه‌ی سهم‌های اون صنعت)، فقط بر اساس نسبت‌های انتخاب‌شده‌ی فعلی
 function computeIndustryHealthScore(industryName, weights){
   const stocks = Object.values(state.stocks).filter(s=>s.industry===industryName);
   if(!stocks.length) return null;
-  const avgs = computeIndustryAveragesForChain(industryName);
+  const metricKeys = getValueChainSelectedKeys().filter(k=>(weights[k]||0)>0);
+  if(!metricKeys.length) return null;
+  const avgs = computeIndustryAveragesForChain(industryName, metricKeys);
   let totalScore = 0, stockCount = 0;
   const stockScores = [];
   stocks.forEach(s=>{
-    const vals = computeStockValueChainMetrics(s);
+    const vals = computeStockValueChainMetrics(s, metricKeys);
     let weightedSum = 0, weightSum = 0;
-    VALUE_CHAIN_METRICS.forEach(met=>{
-      const w = weights[met.key]||0;
+    metricKeys.forEach(key=>{
+      const w = weights[key]||0;
       if(!w) return;
-      const score = scoreValueChainMetric(met.key, vals[met.key], avgs[met.key]);
+      const score = scoreValueChainMetric(key, vals[key], avgs[key]);
       if(score!=null){ weightedSum += score*w; weightSum += w; }
     });
     if(weightSum>0){
@@ -1575,21 +1609,34 @@ function scoreToChainColor(score){
 function renderValueChainTab(){
   const chains = getValueChains();
   const weights = getValueChainWeights();
-  const totalWeight = VALUE_CHAIN_METRICS.reduce((s,m)=>s+(Number(weights[m.key])||0),0);
+  const selectedKeys = getValueChainSelectedKeys();
+  const allMetrics = getValueChainAvailableMetrics();
+  const totalWeight = selectedKeys.reduce((s,k)=>s+(Number(weights[k])||0),0);
   let html = `
   <h1 class="page-title">زنجیره ارزش صنایع</h1>
   <div class="page-sub">صنایع مرتبط رو به ترتیب زنجیره‌ی ارزش (مثلاً پالایشی ← روانکار ← دوده‌ای ← لاستیکی) تعریف کن؛ رنگ هر حلقه بر اساس نسبت‌های مالی و رشد فروش سهم‌های همون صنعت، خودکار محاسبه می‌شه.</div>
   <div class="card" style="margin-bottom:18px">
-    <h3>وزن‌دهی نسبت‌ها برای امتیازدهی</h3>
-    <div class="hint" style="margin-bottom:8px">مشخص کن هر نسبت چقدر توی امتیاز سلامت هر صنعت اهمیت داشته باشه (مجموع باید ۱۰۰ بشه؛ اگه نشه، موقع ذخیره خودکار نرمال می‌شه). چون اهمیت نسبت‌ها بین صنایع فرق می‌کنه، این تنظیم روی کل زنجیره‌ها یکسان اعمال می‌شه.</div>
-    <div class="grid cols-4">
-      ${VALUE_CHAIN_METRICS.map(met=>`
-        <div class="field"><label>${met.label} (٪)</label><input type="number" min="0" max="100" class="vc-weight-input" data-metric="${met.key}" value="${weights[met.key]||0}"></div>
-      `).join('')}
+    <h3>انتخاب و وزن‌دهی نسبت‌ها برای امتیازدهی</h3>
+    <div class="hint" style="margin-bottom:8px">هر نسبتی که می‌خوای توی امتیاز سلامت صنعت اثر بذاره تیک بزن؛ برای نسبت‌های انتخاب‌شده، وزن (٪) و جهتش (کمترش بهتره / بیشترش بهتره) رو مشخص کن. مجموع وزن‌ها باید ۱۰۰ بشه؛ اگه نشه، موقع ذخیره خودکار نرمال می‌شه. این تنظیم روی کل زنجیره‌ها یکسان اعمال می‌شه.</div>
+    <div id="vcMetricsList">
+      ${allMetrics.map(met=>{
+        const checked = selectedKeys.includes(met.key);
+        return `<div class="row vc-metric-row" data-metric="${met.key}" style="align-items:center; margin-bottom:6px; flex-wrap:wrap">
+          <label style="display:flex; align-items:center; gap:6px; min-width:190px; font-size:13px">
+            <input type="checkbox" class="vc-metric-check" data-metric="${met.key}" ${checked?'checked':''} style="width:auto">
+            ${met.label}
+          </label>
+          <input type="number" min="0" max="100" class="vc-weight-input" data-metric="${met.key}" value="${weights[met.key]||0}" placeholder="وزن ٪" style="width:90px; ${checked?'':'display:none'}">
+          <select class="vc-direction-select" data-metric="${met.key}" style="width:150px; ${checked?'':'display:none'}">
+            <option value="lower" ${met.lowerIsBetter?'selected':''}>کمترش بهتره</option>
+            <option value="higher" ${!met.lowerIsBetter?'selected':''}>بیشترش بهتره</option>
+          </select>
+        </div>`;
+      }).join('')}
     </div>
     <div class="row" style="margin-top:10px">
-      <button class="btn tan" id="saveVcWeightsBtn">ذخیره وزن‌ها</button>
-      <span id="vcWeightTotal" style="font-size:12px; color:${totalWeight===100?'var(--good)':'var(--bad)'}">مجموع فعلی: ${toFa(totalWeight)}٪</span>
+      <button class="btn tan" id="saveVcWeightsBtn">ذخیره تنظیمات نسبت‌ها</button>
+      <span id="vcWeightTotal" style="font-size:12px; color:${totalWeight===100?'var(--good)':'var(--bad)'}">مجموع فعلی (نسبت‌های تیک‌خورده): ${toFa(totalWeight)}٪</span>
     </div>
   </div>
   <div class="row" style="margin-bottom:14px">
@@ -1605,11 +1652,11 @@ function renderValueChainTab(){
   return html;
 }
 function renderOneValueChain(cid, chain, weights){
-  const nodes = (chain.links||[]).map(link=>{
+  const nodes = (chain.links||[]).map((link,i)=>{
     const health = computeIndustryHealthScore(link.industry, weights);
     const color = scoreToChainColor(health? health.score : null);
     const scoreText = health? toFa(Math.round(health.score)) : '—';
-    return {label:link.label||link.industry, industry:link.industry, color, scoreText, health};
+    return {idx:i, label:link.label||link.industry, industry:link.industry, note:link.note||'', color, scoreText, health};
   });
   const boxW = 168, boxH = 84, gap = 34;
   const svgWidth = Math.max(500, nodes.length*(boxW+gap));
@@ -1617,11 +1664,13 @@ function renderOneValueChain(cid, chain, weights){
   nodes.forEach((n,i)=>{
     const x = i*(boxW+gap)+8;
     const y = 33;
+    const escIndustry = n.industry.replace(/'/g, "\\'");
     svg += `<g>
-      <rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="12" fill="${n.color}" opacity="0.16" stroke="${n.color}" stroke-width="2.5"/>
-      <text x="${x+boxW/2}" y="${y+28}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)" font-family="Vazirmatn, Tahoma, sans-serif">${n.label}</text>
-      <text x="${x+boxW/2}" y="${y+48}" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="Vazirmatn, Tahoma, sans-serif">${n.industry}${n.health?` (${toFa(n.health.stockCount)} سهم)`:''}</text>
-      <text x="${x+boxW/2}" y="${y+72}" text-anchor="middle" font-size="16" font-weight="800" fill="${n.color}" font-family="Vazirmatn, Tahoma, sans-serif">امتیاز: ${n.scoreText}</text>
+      <rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="12" fill="${n.color}" opacity="0.16" stroke="${n.color}" stroke-width="2.5" style="cursor:pointer" onclick="window.__vcGoToIndustry('${escIndustry}')"/>
+      <text x="${x+boxW/2}" y="${y+28}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)" font-family="Vazirmatn, Tahoma, sans-serif" style="cursor:pointer; pointer-events:none">${n.label}</text>
+      <text x="${x+boxW/2}" y="${y+48}" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="Vazirmatn, Tahoma, sans-serif" style="pointer-events:none">${n.industry}${n.health?` (${toFa(n.health.stockCount)} سهم)`:''}</text>
+      <text x="${x+boxW/2}" y="${y+72}" text-anchor="middle" font-size="16" font-weight="800" fill="${n.color}" font-family="Vazirmatn, Tahoma, sans-serif" style="pointer-events:none">امتیاز: ${n.scoreText}</text>
+      ${n.note ? `<text x="${x+boxW-10}" y="${y+18}" text-anchor="end" font-size="15" style="cursor:pointer" onclick="event.stopPropagation(); window.__vcShowNote('${cid}', ${n.idx})">📝</text>` : ''}
     </g>`;
     if(i<nodes.length-1){
       const ax1 = x+boxW, ax2 = x+boxW+gap, ay = y+boxH/2;
@@ -1639,23 +1688,49 @@ function renderOneValueChain(cid, chain, weights){
       </span>
     </h3>
     <div style="overflow-x:auto">${svg}</div>
-    <div class="hint" style="margin-top:8px">سبز = وضعیت خوب (نسبت‌ها نسبت به میانگین صنعت ارزان‌تر + رشد فروش مثبت)، نارنجی = متوسط، قرمز = ضعیف، خاکستری = داده‌ی کافی برای قضاوت نیست.</div>
+    <div class="hint" style="margin-top:8px">سبز = وضعیت خوب (نسبت‌ها نسبت به میانگین صنعت ارزان‌تر + رشد فروش مثبت)، نارنجی = متوسط، قرمز = ضعیف، خاکستری = داده‌ی کافی برای قضاوت نیست. روی هر حلقه کلیک کن تا سهم‌های اون صنعت رو توی «مقایسه صنعت» ببینی؛ آیکون 📝 یادداشتِ اون حلقه رو نشون می‌ده.</div>
   </div>`;
 }
+// از روی نمودار زنجیره ارزش می‌ره به تب «مقایسه صنعت» و تا بخشِ همون صنعت اسکرول می‌کنه
+window.__vcGoToIndustry = function(industryName){
+  activeTab = 'industry';
+  pendingIndustryScrollTarget = industryName;
+  renderAll();
+};
+// نمایش متن یادداشتِ یک حلقه از زنجیره ارزش
+window.__vcShowNote = function(chainId, linkIdx){
+  const chain = getValueChains()[chainId];
+  const link = chain && chain.links && chain.links[linkIdx];
+  if(!link) return;
+  openModal(`
+    <h3>یادداشت — ${link.label||link.industry}</h3>
+    <div class="note" style="white-space:pre-wrap; margin:10px 0">${(link.note||'').replace(/</g,'&lt;')}</div>
+    <div class="row" style="justify-content:flex-end">
+      <button class="btn secondary" id="cancelModalBtn">بستن</button>
+    </div>
+  `);
+  document.getElementById('cancelModalBtn').onclick = closeModal;
+};
 function openValueChainModal(chainId){
   const chains = getValueChains();
   const chain = chainId ? JSON.parse(JSON.stringify(chains[chainId])) : {name:'', links:[{label:'', industry:(state.industries||[])[0]||''}]};
   const industries = state.industries || [];
-  const renderLinksHtml = (links)=> links.map((l,i)=>`
-    <div class="row vc-link-row" data-idx="${i}" style="margin-bottom:6px">
-      <input type="text" class="vc-link-label" placeholder="عنوان حلقه (مثلاً پالایشی‌ها)" value="${l.label||''}" style="flex:1">
-      <select class="vc-link-industry" style="flex:1">${industries.map(ind=>`<option value="${ind}" ${ind===l.industry?'selected':''}>${ind}</option>`).join('')}</select>
-      <button class="btn secondary vc-remove-link" style="padding:4px 8px; font-size:11px">حذف</button>
-    </div>`).join('');
+  const oneLinkHtml = (l)=>`
+    <div class="vc-link-row" style="border:1px solid var(--border); border-radius:10px; padding:8px; margin-bottom:8px">
+      <div class="row" style="align-items:center; margin-bottom:6px">
+        <span class="vc-move-up" title="جابجایی به بالا" style="cursor:pointer; padding:2px 6px; font-size:13px">▲</span>
+        <span class="vc-move-down" title="جابجایی به پایین" style="cursor:pointer; padding:2px 6px; font-size:13px">▼</span>
+        <input type="text" class="vc-link-label" placeholder="عنوان حلقه (مثلاً پالایشی‌ها)" value="${l.label||''}" style="flex:1">
+        <select class="vc-link-industry" style="flex:1">${industries.map(ind=>`<option value="${ind}" ${ind===l.industry?'selected':''}>${ind}</option>`).join('')}</select>
+        <button class="btn secondary vc-remove-link" style="padding:4px 8px; font-size:11px">حذف</button>
+      </div>
+      <textarea class="vc-link-note" placeholder="یادداشت این حلقه (اختیاری)..." style="width:100%; min-height:44px; font-size:12.5px">${l.note||''}</textarea>
+    </div>`;
+  const renderLinksHtml = (links)=> links.map(oneLinkHtml).join('');
   openModal(`
     <h3>${chainId?'ویرایش':'تعریف'} زنجیره ارزش</h3>
     <div class="field" style="margin-bottom:10px"><label>نام زنجیره</label><input id="vcNameInput" type="text" value="${chain.name||''}" placeholder="مثلاً زنجیره ارزش لاستیک"></div>
-    <div class="hint" style="margin-bottom:8px">حلقه‌ها رو به ترتیبِ زنجیره (از ابتدا به انتها) اضافه کن؛ هر حلقه یه عنوان دلخواه و یه صنعتِ متناظر داره.</div>
+    <div class="hint" style="margin-bottom:8px">حلقه‌ها رو به ترتیبِ زنجیره (از ابتدا به انتها) اضافه کن؛ هر حلقه یه عنوان دلخواه، یه صنعتِ متناظر و در صورت نیاز یه یادداشت داره. با فلش‌های ▲▼ می‌تونی ترتیبشون رو عوض کنی.</div>
     <div id="vcLinksContainer">${renderLinksHtml(chain.links)}</div>
     <button class="btn secondary" id="vcAddLinkBtn" style="margin-top:8px">+ افزودن حلقه</button>
     <div class="row" style="justify-content:flex-end; margin-top:16px">
@@ -1666,24 +1741,32 @@ function openValueChainModal(chainId){
   document.getElementById('cancelModalBtn').onclick = closeModal;
   const addLink = ()=>{
     const container = document.getElementById('vcLinksContainer');
-    const idx = container.children.length;
-    container.insertAdjacentHTML('beforeend', `
-      <div class="row vc-link-row" data-idx="${idx}" style="margin-bottom:6px">
-        <input type="text" class="vc-link-label" placeholder="عنوان حلقه" style="flex:1">
-        <select class="vc-link-industry" style="flex:1">${industries.map(ind=>`<option value="${ind}">${ind}</option>`).join('')}</select>
-        <button class="btn secondary vc-remove-link" style="padding:4px 8px; font-size:11px">حذف</button>
-      </div>`);
-    wireRemoveButtons();
+    container.insertAdjacentHTML('beforeend', oneLinkHtml({label:'', industry:industries[0]||'', note:''}));
+    wireRowButtons();
   };
-  function wireRemoveButtons(){
+  function wireRowButtons(){
     document.querySelectorAll('.vc-remove-link').forEach(btn=>{
       btn.onclick = ()=>{
         if(document.querySelectorAll('.vc-link-row').length<=1) return showToast('حداقل یه حلقه لازمه');
         btn.closest('.vc-link-row').remove();
       };
     });
+    document.querySelectorAll('.vc-move-up').forEach(btn=>{
+      btn.onclick = ()=>{
+        const row = btn.closest('.vc-link-row');
+        const prev = row.previousElementSibling;
+        if(prev) row.parentNode.insertBefore(row, prev);
+      };
+    });
+    document.querySelectorAll('.vc-move-down').forEach(btn=>{
+      btn.onclick = ()=>{
+        const row = btn.closest('.vc-link-row');
+        const next = row.nextElementSibling;
+        if(next) row.parentNode.insertBefore(next, row);
+      };
+    });
   }
-  wireRemoveButtons();
+  wireRowButtons();
   document.getElementById('vcAddLinkBtn').onclick = addLink;
   document.getElementById('vcSaveChainBtn').onclick = ()=>{
     const name = document.getElementById('vcNameInput').value.trim();
@@ -1691,6 +1774,7 @@ function openValueChainModal(chainId){
     const links = Array.from(document.querySelectorAll('.vc-link-row')).map(row=>({
       label: row.querySelector('.vc-link-label').value.trim(),
       industry: row.querySelector('.vc-link-industry').value,
+      note: row.querySelector('.vc-link-note').value.trim(),
     })).filter(l=>l.industry);
     if(!links.length) return showToast('حداقل یه حلقه با صنعت انتخاب‌شده لازمه');
     const id = chainId || ('vc_'+uid());
@@ -2702,7 +2786,7 @@ function renderIndustryTab(){
   industries.forEach(ind=>{
     const allInInd = Object.values(bySymbol).filter(s=>s.industry===ind);
     const stocksInInd = allInInd.filter(stockPassesFilters);
-    html += `<div class="section-title" style="display:flex; align-items:center; justify-content:space-between; gap:10px">
+    html += `<div class="section-title" id="industrySection-${ind.replace(/[^a-zA-Z0-9آ-ی]/g,'_')}" style="display:flex; align-items:center; justify-content:space-between; gap:10px">
       <span>صنعت ${ind}${industryFilters.length? ` <span class="accordion-meta" style="font-size:11.5px; color:var(--muted); font-weight:400">(${toFa(stocksInInd.length)} از ${toFa(allInInd.length)} با فیلتر فعلی)</span>`:''}</span>
       ${allInInd.length ? `<span style="display:flex; gap:6px; flex:none">
         <button class="btn secondary" data-colmgr-industry="${ind}" style="font-size:11px; padding:5px 10px">${icon('form',12)} ستون‌ها</button>
@@ -5246,30 +5330,55 @@ function attachHandlers(){
     delete getValueChains()[btn.dataset.chain];
     saveState(); renderAll();
   });
-  const saveVcWeightsBtn = document.getElementById('saveVcWeightsBtn');
-  if(saveVcWeightsBtn) saveVcWeightsBtn.onclick = ()=>{
-    const weights = getValueChainWeights();
-    let total = 0;
-    const raw = {};
-    document.querySelectorAll('.vc-weight-input').forEach(inp=>{
-      const v = Math.max(0, Number(inp.value)||0);
-      raw[inp.dataset.metric] = v;
-      total += v;
-    });
-    // اگه مجموع دقیقاً ۱۰۰ نبود، خودکار نرمال می‌کنیم (نسبت‌ها رو حفظ می‌کنه، فقط مقیاسشون رو درست می‌کنه)
-    VALUE_CHAIN_METRICS.forEach(met=>{
-      weights[met.key] = total>0 ? (raw[met.key]/total)*100 : 0;
-    });
-    saveState(); showToast('وزن‌ها ذخیره شد'); renderAll();
-  };
-  document.querySelectorAll('.vc-weight-input').forEach(inp=>{
-    inp.oninput = ()=>{
-      let total = 0;
-      document.querySelectorAll('.vc-weight-input').forEach(i2=> total += Math.max(0, Number(i2.value)||0));
-      const label = document.getElementById('vcWeightTotal');
-      if(label){ label.textContent = `مجموع فعلی: ${toFa(total)}٪`; label.style.color = total===100 ? 'var(--good)' : 'var(--bad)'; }
+  // با تیک‌خوردن/برداشتن هر نسبت، ورودی وزن و انتخابگر جهتش نشون/مخفی می‌شه
+  document.querySelectorAll('.vc-metric-check').forEach(chk=>{
+    chk.onchange = ()=>{
+      const row = chk.closest('.vc-metric-row');
+      const weightInp = row.querySelector('.vc-weight-input');
+      const dirSel = row.querySelector('.vc-direction-select');
+      if(chk.checked){
+        weightInp.style.display=''; dirSel.style.display='';
+        if(!Number(weightInp.value)) weightInp.value = 10;
+      } else {
+        weightInp.style.display='none'; dirSel.style.display='none';
+      }
+      updateVcWeightTotal();
     };
   });
+  function updateVcWeightTotal(){
+    let total = 0;
+    document.querySelectorAll('.vc-metric-check').forEach(chk=>{
+      if(!chk.checked) return;
+      const row = chk.closest('.vc-metric-row');
+      total += Math.max(0, Number(row.querySelector('.vc-weight-input').value)||0);
+    });
+    const label = document.getElementById('vcWeightTotal');
+    if(label){ label.textContent = `مجموع فعلی (نسبت‌های تیک‌خورده): ${toFa(total)}٪`; label.style.color = total===100 ? 'var(--good)' : 'var(--bad)'; }
+  }
+  document.querySelectorAll('.vc-weight-input').forEach(inp=> inp.oninput = updateVcWeightTotal);
+  const saveVcWeightsBtn = document.getElementById('saveVcWeightsBtn');
+  if(saveVcWeightsBtn) saveVcWeightsBtn.onclick = ()=>{
+    const selectedKeys = [];
+    const raw = {};
+    const directions = getValueChainDirections();
+    let total = 0;
+    document.querySelectorAll('.vc-metric-row').forEach(row=>{
+      const key = row.dataset.metric;
+      const chk = row.querySelector('.vc-metric-check');
+      if(!chk.checked) return;
+      const v = Math.max(0, Number(row.querySelector('.vc-weight-input').value)||0);
+      selectedKeys.push(key);
+      raw[key] = v;
+      total += v;
+      directions[key] = row.querySelector('.vc-direction-select').value==='lower';
+    });
+    if(!selectedKeys.length) return showToast('حداقل یه نسبت رو تیک بزن');
+    const weights = getValueChainWeights();
+    // اگه مجموع دقیقاً ۱۰۰ نبود، خودکار نرمال می‌کنیم (نسبت‌ها رو حفظ می‌کنه، فقط مقیاسشون رو درست می‌کنه)
+    selectedKeys.forEach(key=>{ weights[key] = total>0 ? (raw[key]/total)*100 : 0; });
+    state.valueChainSelectedKeys = selectedKeys;
+    saveState(); showToast('تنظیمات نسبت‌ها ذخیره شد'); renderAll();
+  };
   document.querySelectorAll('[data-editstock]').forEach(el=>el.onclick=()=>addStockModal(el.dataset.editstock));
   document.querySelectorAll('[data-managesub]').forEach(el=>el.onclick=()=>subsidiaryModal(el.dataset.managesub));
   document.querySelectorAll('[data-delstock]').forEach(el=>el.onclick=()=>{
