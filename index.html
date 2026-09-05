@@ -1612,11 +1612,7 @@ function renderValueChainTab(){
   const selectedKeys = getValueChainSelectedKeys();
   const allMetrics = getValueChainAvailableMetrics();
   const totalWeight = selectedKeys.reduce((s,k)=>s+(Number(weights[k])||0),0);
-  let html = `
-  <h1 class="page-title">زنجیره ارزش صنایع</h1>
-  <div class="page-sub">صنایع مرتبط رو به ترتیب زنجیره‌ی ارزش (مثلاً پالایشی ← روانکار ← دوده‌ای ← لاستیکی) تعریف کن؛ رنگ هر حلقه بر اساس نسبت‌های مالی و رشد فروش سهم‌های همون صنعت، خودکار محاسبه می‌شه.</div>
-  <div class="card" style="margin-bottom:18px">
-    <h3>انتخاب و وزن‌دهی نسبت‌ها برای امتیازدهی</h3>
+  const weightsBody = `
     <div class="hint" style="margin-bottom:8px">هر نسبتی که می‌خوای توی امتیاز سلامت صنعت اثر بذاره تیک بزن؛ برای نسبت‌های انتخاب‌شده، وزن (٪) و جهتش (کمترش بهتره / بیشترش بهتره) رو مشخص کن. مجموع وزن‌ها باید ۱۰۰ بشه؛ اگه نشه، موقع ذخیره خودکار نرمال می‌شه. این تنظیم روی کل زنجیره‌ها یکسان اعمال می‌شه.</div>
     <div id="vcMetricsList">
       ${allMetrics.map(met=>{
@@ -1637,17 +1633,20 @@ function renderValueChainTab(){
     <div class="row" style="margin-top:10px">
       <button class="btn tan" id="saveVcWeightsBtn">ذخیره تنظیمات نسبت‌ها</button>
       <span id="vcWeightTotal" style="font-size:12px; color:${totalWeight===100?'var(--good)':'var(--bad)'}">مجموع فعلی (نسبت‌های تیک‌خورده): ${toFa(totalWeight)}٪</span>
-    </div>
-  </div>
+    </div>`;
+  let html = `
+  <h1 class="page-title">زنجیره ارزش صنایع</h1>
+  <div class="page-sub">صنایع مرتبط رو به ترتیب زنجیره‌ی ارزش (مثلاً پالایشی ← روانکار ← دوده‌ای ← لاستیکی) تعریف کن؛ رنگ هر حلقه بر اساس نسبت‌های مالی و رشد فروش سهم‌های همون صنعت، خودکار محاسبه می‌شه.</div>
+  <div id="vcSettingsAccordion" style="margin-bottom:18px">${accordionSection('vcWeights', 'انتخاب و وزن‌دهی نسبت‌ها برای امتیازدهی', `${toFa(selectedKeys.length)} نسبت انتخاب‌شده`, weightsBody)}</div>
   <div class="row" style="margin-bottom:14px">
     <button class="btn tan" id="addValueChainBtn">+ تعریف زنجیره‌ی جدید</button>
   </div>
   `;
-  const chainIds = Object.keys(chains);
+  const chainIds = applySavedOrder(Object.keys(chains), ensureLayoutState().valueChainOrder);
   if(!chainIds.length){
     html += emptyState('هنوز زنجیره‌ای تعریف نشده', 'با دکمه‌ی بالا یه زنجیره‌ی ارزش جدید (مثلاً «زنجیره لاستیک») بساز و صنایع مرتبط رو به ترتیب بهش اضافه کن.');
   } else {
-    chainIds.forEach(cid=>{ html += renderOneValueChain(cid, chains[cid], weights); });
+    html += `<div id="vcAccordionContainer">${chainIds.map(cid=>renderOneValueChain(cid, chains[cid], weights)).join('')}</div>`;
   }
   return html;
 }
@@ -1679,17 +1678,14 @@ function renderOneValueChain(cid, chain, weights){
     }
   });
   svg += `</svg>`;
-  return `<div class="card" style="margin-bottom:18px">
-    <h3 style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px">
-      <span>${chain.name}</span>
-      <span>
-        <button class="btn secondary vc-edit-btn" data-chain="${cid}" style="font-size:11px; padding:5px 10px">ویرایش</button>
-        <button class="btn secondary vc-delete-btn" data-chain="${cid}" style="font-size:11px; padding:5px 10px; color:var(--bad)">حذف</button>
-      </span>
-    </h3>
+  const body = `
+    <div class="row" style="justify-content:flex-end; margin-bottom:10px">
+      <button class="btn secondary vc-edit-btn" data-chain="${cid}" style="font-size:11px; padding:5px 10px">ویرایش</button>
+      <button class="btn secondary vc-delete-btn" data-chain="${cid}" style="font-size:11px; padding:5px 10px; color:var(--bad)">حذف</button>
+    </div>
     <div style="overflow-x:auto">${svg}</div>
-    <div class="hint" style="margin-top:8px">سبز = وضعیت خوب (نسبت‌ها نسبت به میانگین صنعت ارزان‌تر + رشد فروش مثبت)، نارنجی = متوسط، قرمز = ضعیف، خاکستری = داده‌ی کافی برای قضاوت نیست. روی هر حلقه کلیک کن تا سهم‌های اون صنعت رو توی «مقایسه صنعت» ببینی؛ آیکون 📝 یادداشتِ اون حلقه رو نشون می‌ده.</div>
-  </div>`;
+    <div class="hint" style="margin-top:8px">سبز = وضعیت خوب (نسبت‌ها نسبت به میانگین صنعت ارزان‌تر + رشد فروش مثبت)، نارنجی = متوسط، قرمز = ضعیف، خاکستری = داده‌ی کافی برای قضاوت نیست. روی هر حلقه کلیک کن تا سهم‌های اون صنعت رو توی «مقایسه صنعت» ببینی؛ آیکون 📝 یادداشتِ اون حلقه رو نشون می‌ده.</div>`;
+  return accordionSection('vc_'+cid, chain.name, `${toFa((chain.links||[]).length)} حلقه`, body);
 }
 // از روی نمودار زنجیره ارزش می‌ره به تب «مقایسه صنعت» و تا بخشِ همون صنعت اسکرول می‌کنه
 window.__vcGoToIndustry = function(industryName){
@@ -2302,7 +2298,7 @@ let bsRowsPage = 0; // صفحه‌بندی جدول صورت وضعیت مالی
 let dividendRowsPage = 0; // صفحه‌بندی جدول سود تقسیمی (۰ = تازه‌ترین صفحه)
 // وضعیت باز/بسته‌بودن بخش‌های صفحه‌ی ورود اطلاعات (برای اینکه صفحه‌ی طولانی راحت‌تر پیمایش شه)
 let dataAccordionOpen = {monthly:false, pl:false, bs:false, raw:false, dividend:false, other:false,
-  holdMarket:false, holdEquity:false, holdListedSub:false, holdUnlistedSub:false};
+  holdMarket:false, holdEquity:false, holdListedSub:false, holdUnlistedSub:false, vcWeights:false};
 function accordionSection(key, title, meta, bodyHtml){
   const isOpen = !!dataAccordionOpen[key];
   return `
@@ -4989,6 +4985,13 @@ function attachHandlers(){
     const isHolding = state.stocks[activeSymbol]?.isHolding;
     if(isHolding) layout.holdingDataAccordionOrder = newOrder;
     else layout.dataAccordionOrder = newOrder;
+    saveState();
+  });
+  // جابجایی زنجیره‌های ارزش با موس (کلید هر آیتم به‌فرم vc_<chainId> است)
+  const vcAccordionContainer = document.getElementById('vcAccordionContainer');
+  if(vcAccordionContainer) enableDragReorder(vcAccordionContainer, '.accordion-section', (newOrder)=>{
+    const layout = ensureLayoutState();
+    layout.valueChainOrder = newOrder.map(k=>k.replace(/^vc_/,''));
     saveState();
   });
   // جابجایی گیج‌های داشبورد با موس
