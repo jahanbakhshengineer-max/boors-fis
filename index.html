@@ -2301,7 +2301,8 @@ let plRowsPage = 0; // صفحه‌بندی جدول صورت سود و زیان 
 let bsRowsPage = 0; // صفحه‌بندی جدول صورت وضعیت مالی (۰ = تازه‌ترین صفحه)
 let dividendRowsPage = 0; // صفحه‌بندی جدول سود تقسیمی (۰ = تازه‌ترین صفحه)
 // وضعیت باز/بسته‌بودن بخش‌های صفحه‌ی ورود اطلاعات (برای اینکه صفحه‌ی طولانی راحت‌تر پیمایش شه)
-let dataAccordionOpen = {monthly:true, pl:true, bs:true, raw:false, dividend:false, other:false};
+let dataAccordionOpen = {monthly:false, pl:false, bs:false, raw:false, dividend:false, other:false,
+  holdMarket:false, holdEquity:false, holdListedSub:false, holdUnlistedSub:false};
 function accordionSection(key, title, meta, bodyHtml){
   const isOpen = !!dataAccordionOpen[key];
   return `
@@ -2354,23 +2355,16 @@ function renderHoldingDataTab(stock){
       <td><span class="delete-row-btn" data-delunlisted="${u.id}">حذف</span></td>
     </tr>`).join('') : `<tr><td colspan="4" style="color:var(--muted)">هنوز سهم غیربورسی‌ای ثبت نشده</td></tr>`;
 
-  return `
-  <div class="page-sub">سال مالی جاری این هلدینگ: <b>${stock.fiscalYear? fiscalYearEndDateStr(stock, stock.fiscalYear) : 'تعریف‌نشده (از تب مدیریت سهم‌ها تعریفش کن)'}</b></div>
-  <div class="hint" style="margin-bottom:16px">${icon('manage',13)} چون این سهم به‌عنوان «هلدینگ/شرکت سرمایه‌گذاری» علامت‌گذاری شده، فرم ورود اطلاعاتش ساده شده و فقط همون چیزهایی که برای محاسبه‌ی NAV لازمه رو می‌خواد — نه صورت سود و زیان کامل، نه فروش ماهانه.</div>
-
-  <div class="section-title">ارزش بازار و پرتفوی (برای محاسبه NAV)</div>
-  <div class="card" style="margin-bottom:16px">
+  const marketBody = `
     <div class="grid cols-4">
       <div class="field" style="margin:0"><label>ارزش بازار (میلیارد تومان)</label><input id="holdingMarketCapInput" type="number" value="${stock.manual?.marketCap ?? ''}"></div>
       <div class="field" style="margin:0"><label>ارزش روز سبد بورسی <span style="color:var(--teal)">(از گزارش ماهانه)</span></label><input id="holdingPortfolioMarketInput" type="number" value="${stock.manual?.portfolioMarketValue ?? ''}"></div>
       <div class="field" style="margin:0"><label>بهای تمام‌شده سبد بورسی <span style="color:var(--teal)">(از یادداشت سرمایه‌گذاری‌ها)</span></label><input id="holdingPortfolioBookInput" type="number" value="${stock.manual?.portfolioBookValue ?? ''}"></div>
       <div style="align-self:flex-end"><button class="btn tan" id="saveHoldingInputsBtn">ذخیره</button></div>
     </div>
-    <div class="hint">NAV = حقوق صاحبان سهام + (ارزش روز سبد بورسی − بهای تمام‌شده سبد بورسی). سرمایه‌گذاری‌های غیربورسی (بدون برنامه‌ی قطعی ورود به بازار) به بهای تمام‌شده‌شون توی حقوق صاحبان سهام لحاظ می‌مونن — نیازی نیست جدا به NAV اضافه بشن.</div>
-  </div>
+    <div class="hint">NAV = حقوق صاحبان سهام + (ارزش روز سبد بورسی − بهای تمام‌شده سبد بورسی). سرمایه‌گذاری‌های غیربورسی (بدون برنامه‌ی قطعی ورود به بازار) به بهای تمام‌شده‌شون توی حقوق صاحبان سهام لحاظ می‌مونن — نیازی نیست جدا به NAV اضافه بشن.</div>`;
 
-  <div class="section-title">حقوق صاحبان سهام (از ترازنامه)</div>
-  <div class="card" style="margin-bottom:16px">
+  const equityBody = `
     <div class="row">
       <div class="field" style="width:140px"><label>سال مالی</label><input id="holdingEqYear" type="number" value="${stock.fiscalYear||''}"></div>
       <div class="field" style="width:140px"><label>دوره (۳/۶/۹/۱۲ ماهه)</label><input id="holdingEqMonths" type="number" placeholder="مثلاً 12"></div>
@@ -2380,11 +2374,9 @@ function renderHoldingDataTab(stock){
     <div class="table-wrap" style="margin-top:14px"><table>
       <thead><tr><th>سال مالی</th><th>دوره</th><th>حقوق صاحبان سهام</th><th></th></tr></thead>
       <tbody>${rowsHtml}</tbody>
-    </table></div>
-  </div>
+    </table></div>`;
 
-  <div class="section-title">سهم‌های بورسی زیرمجموعه</div>
-  <div class="card" style="margin-bottom:16px">
+  const listedSubBody = `
     <div class="hint" style="margin-bottom:10px">یا از بین سهم‌هایی که همین‌جا توی برنامه تعریف کردی انتخاب کن، یا (توی بخش پایین) اگه یه سرمایه‌گذاری بورسی داری که هنوز جداگانه توی برنامه ثبتش نکردی، به‌عنوان غیربورسی/بدون‌ردیابی وارد کن.</div>
     <div class="row" style="align-items:flex-end">
       <div class="field" style="width:220px"><label>سهم (از بین سهم‌های ثبت‌شده در برنامه)</label><select id="holdingSubSymbolSelect">${listedOptionsHtml}</select></div>
@@ -2394,11 +2386,9 @@ function renderHoldingDataTab(stock){
     <div class="table-wrap" style="margin-top:14px"><table>
       <thead><tr><th>نماد</th><th>نام</th><th>درصد مالکیت</th><th></th></tr></thead>
       <tbody>${listedRowsHtml}</tbody>
-    </table></div>
-  </div>
+    </table></div>`;
 
-  <div class="section-title">سهم‌های غیربورسی زیرمجموعه</div>
-  <div class="card" style="margin-bottom:16px">
+  const unlistedSubBody = `
     <div class="hint" style="margin-bottom:10px">برای سرمایه‌گذاری‌هایی که نه توی برنامه ثبت‌ان و نه برنامه/خبر قطعی برای ورودشون به بورس هست — بر اساس متدولوژی، این‌ها به «بهای تمام‌شده» پذیرفته می‌شن، نه ارزش روز تخمینی.</div>
     <div class="row" style="align-items:flex-end">
       <div class="field" style="width:220px"><label>نام شرکت غیربورسی</label><input id="unlistedNameInput" placeholder="مثلاً شرکت فرعی الف"></div>
@@ -2409,8 +2399,22 @@ function renderHoldingDataTab(stock){
     <div class="table-wrap" style="margin-top:14px"><table>
       <thead><tr><th>نام</th><th>درصد مالکیت</th><th>بهای تمام‌شده</th><th></th></tr></thead>
       <tbody>${unlistedRowsHtml}</tbody>
-    </table></div>
-  </div>
+    </table></div>`;
+
+  const holdDefs = {
+    holdMarket:     ()=>accordionSection('holdMarket', 'ارزش بازار و پرتفوی (برای محاسبه NAV)', '', marketBody),
+    holdEquity:     ()=>accordionSection('holdEquity', 'حقوق صاحبان سهام (از ترازنامه)', '', equityBody),
+    holdListedSub:  ()=>accordionSection('holdListedSub', 'سهم‌های بورسی زیرمجموعه', '', listedSubBody),
+    holdUnlistedSub:()=>accordionSection('holdUnlistedSub', 'سهم‌های غیربورسی زیرمجموعه', '', unlistedSubBody),
+  };
+  const holdLayout = ensureLayoutState();
+  const holdOrder = applySavedOrder(Object.keys(holdDefs), holdLayout.holdingDataAccordionOrder);
+
+  return `
+  <div class="page-sub">سال مالی جاری این هلدینگ: <b>${stock.fiscalYear? fiscalYearEndDateStr(stock, stock.fiscalYear) : 'تعریف‌نشده (از تب مدیریت سهم‌ها تعریفش کن)'}</b></div>
+  <div class="hint" style="margin-bottom:16px">${icon('manage',13)} چون این سهم به‌عنوان «هلدینگ/شرکت سرمایه‌گذاری» علامت‌گذاری شده، فرم ورود اطلاعاتش ساده شده و فقط همون چیزهایی که برای محاسبه‌ی NAV لازمه رو می‌خواد — نه صورت سود و زیان کامل، نه فروش ماهانه.</div>
+
+  <div id="dataAccordionContainer">${holdOrder.map(key=>holdDefs[key]()).join('')}</div>
 
   <div class="card">
     <button class="btn secondary" id="goToSubsidiariesBtn">مشاهده‌ی نسبت‌های کامل و NAV در داشبورد ›</button>
@@ -4982,7 +4986,9 @@ function attachHandlers(){
   const dataAccordionContainer = document.getElementById('dataAccordionContainer');
   if(dataAccordionContainer) enableDragReorder(dataAccordionContainer, '.accordion-section', (newOrder)=>{
     const layout = ensureLayoutState();
-    layout.dataAccordionOrder = newOrder;
+    const isHolding = state.stocks[activeSymbol]?.isHolding;
+    if(isHolding) layout.holdingDataAccordionOrder = newOrder;
+    else layout.dataAccordionOrder = newOrder;
     saveState();
   });
   // جابجایی گیج‌های داشبورد با موس
