@@ -4598,7 +4598,7 @@ function parseFlexibleNumber(v){
 // نسبت به سرستون اصلی و ردیف‌های داده جابه‌جا (shift) بشه — و همین دقیقاً چیزی بود که باعث می‌شد انتخاب یک سرفصل،
 // عدد سرفصل کناری رو بخونه. الگوریتم زیر همون کاری رو می‌کنه که اکسل موقع پیست از کلیپ‌بورد HTML انجام می‌ده.
 function htmlTableToGrid(table){
-  const rows = Array.from(table.querySelectorAll('tr'));
+  const rows = Array.from(table.rows); // .rows فقط ردیف‌های مستقیمِ همین جدول رو می‌ده (نه ردیف‌های جدولِ تو در توی احتمالی داخل یکی از سلول‌ها)
   const grid = [];
   const pending = {}; // colIdx -> {text, rowsLeft} برای سلول‌هایی که rowspan دارن و باید توی ردیف‌های بعدی هم تکرار بشن
   rows.forEach(tr=>{
@@ -4634,9 +4634,17 @@ function htmlTableToGrid(table){
 function htmlTableToTSV(html){
   try{
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    const table = doc.querySelector('table');
-    if(!table) return null;
-    const grid = htmlTableToGrid(table);
+    const tables = Array.from(doc.querySelectorAll('table'));
+    if(!tables.length) return null;
+    // صفحات پیچیده (مثل گزارش‌های کدال) معمولاً چند <table> تو در تو دارن (یکی برای چیدمان کلی صفحه، یکی برای جدول واقعی داده).
+    // اولین جدول همیشه جدول اصلی نیست؛ برای همین جدولی رو انتخاب می‌کنیم که مستقیماً (بدون احتساب جدول‌های تو در توش) بیشترین تعداد سلول رو داره.
+    let bestTable = null, bestScore = -1;
+    tables.forEach(t=>{
+      const score = Array.from(t.rows).reduce((sum,r)=>sum + r.children.length, 0);
+      if(score > bestScore){ bestScore = score; bestTable = t; }
+    });
+    if(!bestTable || bestScore===0) return null;
+    const grid = htmlTableToGrid(bestTable);
     const lines = grid.map(r=>r.join('\t')).filter(l=> l.replace(/\t/g,'').trim()!=='');
     return lines.length ? lines.join('\n') : null;
   } catch(e){ return null; }
@@ -4649,9 +4657,21 @@ function wireSmartTablePaste(textareaId){
   if(!el) return;
   el.onpaste = (e)=>{
     const html = e.clipboardData && e.clipboardData.getData('text/html');
-    if(!html) return;
+    if(!html) return; // اصلاً HTML نداشت (مثلاً پیست از خودِ اکسل)؛ رفتار پیش‌فرض مرورگر دست‌نخورده می‌مونه
     const tsv = htmlTableToTSV(html);
-    if(!tsv) return; // جدولی توی HTML پیدا نشد؛ بذار پیست معمولی (متن ساده) انجام بشه
+    if(!tsv){
+      // تبدیل جدول شکست خورد — به‌جای برگشتِ ساکت به حالت متن ساده، HTML خام رو نشون می‌دیم تا بشه دقیقاً فهمید ساختار واقعی چیه
+      setTimeout(()=>{
+        openModal(`
+          <h3>ساختار جدول شناسایی نشد</h3>
+          <div class="hint" style="margin-bottom:8px">توی HTML کپی‌شده هیچ &lt;table&gt;ی با محتوای معنادار پیدا نشد. متن پیست‌شده به روش عادی (بدون تشخیص خودکار ستون) وارد شد. اگه این HTML خام رو برام بفرستی، می‌تونم دقیق بفهمم کدال جدولش رو با چه ساختاری می‌سازه:</div>
+          <textarea readonly style="width:100%; min-height:220px; font-family:monospace; font-size:10.5px; direction:ltr" onclick="this.select()">${html.replace(/</g,'&lt;')}</textarea>
+          <div class="row" style="justify-content:flex-end; margin-top:10px"><button class="btn secondary" id="cancelModalBtn">بستن</button></div>
+        `);
+        document.getElementById('cancelModalBtn').onclick = closeModal;
+      }, 50);
+      return;
+    }
     e.preventDefault();
     const start = el.selectionStart, end = el.selectionEnd;
     el.value = el.value.slice(0,start) + tsv + el.value.slice(end);
