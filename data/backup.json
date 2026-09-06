@@ -2207,7 +2207,7 @@
         "sharesOutstanding": 1000000000,
         "currentPrice": 19760,
         "dividendIncome": 15,
-        "bankInterest": 234,
+        "bankInterest": 317,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
@@ -5610,7 +5610,7 @@
     "dollarStartOfYear": "150000",
     "avgMonthlyInflation": "6.5",
     "monthsElapsed": "5",
-    "dollarToday": 224500,
+    "dollarToday": 226800,
     "goldOunceToday": 4432,
     "silverOunceToday": "68",
     "goldOunceYearEnd": "5000",
@@ -5618,7 +5618,7 @@
     "dollarSamePriorYear": "95",
     "gold18kStartOfYear": null,
     "silverGramStartOfYear": null,
-    "gold18kMarketToday": 23649500
+    "gold18kMarketToday": 23698000
   },
   "goldFunds": {},
   "layout": {
@@ -5652,7 +5652,11 @@
     ],
     "columnVisibility": {
       "portfolioTable": {},
-      "industryTable-پالایش": {},
+      "industryTable-پالایش": {
+        "2": false,
+        "3": false,
+        "5": true
+      },
       "industryTable-مس": {},
       "industryTable-سیمان": {},
       "industryTable-روانکار": {},
@@ -5677,11 +5681,13 @@
       "links": [
         {
           "label": "پالایش",
-          "industry": "پالایش"
+          "industry": "پالایش",
+          "note": ""
         },
         {
           "label": "روانکار",
-          "industry": "روانکار"
+          "industry": "روانکار",
+          "note": ""
         }
       ]
     },
@@ -5704,6 +5710,21 @@
     "pdRatio": 25,
     "pbRatio": 5,
     "margin": 20,
-    "salesGrowth": 20
+    "salesGrowth": 15,
+    "receivablesRatio": 10
+  },
+  "valueChainSelectedKeys": [
+    "margin",
+    "salesGrowth",
+    "peF",
+    "pdRatio",
+    "receivablesRatio"
+  ],
+  "valueChainDirections": {
+    "margin": false,
+    "salesGrowth": false,
+    "peF": true,
+    "pdRatio": true,
+    "receivablesRatio": true
   }
 }
