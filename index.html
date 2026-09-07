@@ -4597,8 +4597,7 @@ function parseFlexibleNumber(v){
 // بدون rowspan، سرستونی که روی دو ردیف کشیده شده (مثلاً «ردیف»/«شرح») باعث می‌شد ردیف زیرستون یک یا چند خونه
 // نسبت به سرستون اصلی و ردیف‌های داده جابه‌جا (shift) بشه — و همین دقیقاً چیزی بود که باعث می‌شد انتخاب یک سرفصل،
 // عدد سرفصل کناری رو بخونه. الگوریتم زیر همون کاری رو می‌کنه که اکسل موقع پیست از کلیپ‌بورد HTML انجام می‌ده.
-function htmlTableToGrid(table){
-  const rows = Array.from(table.rows); // .rows فقط ردیف‌های مستقیمِ همین جدول رو می‌ده (نه ردیف‌های جدولِ تو در توی احتمالی داخل یکی از سلول‌ها)
+function trsToGrid(rows){
   const grid = [];
   const pending = {}; // colIdx -> {text, rowsLeft} برای سلول‌هایی که rowspan دارن و باید توی ردیف‌های بعدی هم تکرار بشن
   rows.forEach(tr=>{
@@ -4633,18 +4632,21 @@ function htmlTableToGrid(table){
 }
 function htmlTableToTSV(html){
   try{
-    const doc = new DOMParser().parseFromString(html, 'text/html');
+    // طبق استاندارد HTML، اگه <thead>/<tbody>/<tr> بیرون از یه <table> باشن، مرورگر موقع پارس این تگ‌ها رو
+    // کاملاً نادیده می‌گیره (فقط متن خامشون می‌مونه) — کدال (چون Angular هست) دقیقاً همین‌جوری کپی می‌کنه.
+    // برای همین قبل از پارس، اگه <table>ای در کار نباشه، خودمون یکی دورش می‌ذاریم.
+    const wrappedHtml = /<table[\s>]/i.test(html) ? html : `<table>${html}</table>`;
+    const doc = new DOMParser().parseFromString(wrappedHtml, 'text/html');
     const tables = Array.from(doc.querySelectorAll('table'));
-    if(!tables.length) return null;
     // صفحات پیچیده (مثل گزارش‌های کدال) معمولاً چند <table> تو در تو دارن (یکی برای چیدمان کلی صفحه، یکی برای جدول واقعی داده).
-    // اولین جدول همیشه جدول اصلی نیست؛ برای همین جدولی رو انتخاب می‌کنیم که مستقیماً (بدون احتساب جدول‌های تو در توش) بیشترین تعداد سلول رو داره.
-    let bestTable = null, bestScore = -1;
+    // اولین جدول همیشه جدول اصلی نیست؛ برای همین جدولی رو انتخاب می‌کنیم که مستقیماً (بدون احتساب جدول‌های تو در توش) بیشترین تعداد سلول داره.
+    let bestTable = null, bestScore = 0;
     tables.forEach(t=>{
       const score = Array.from(t.rows).reduce((sum,r)=>sum + r.children.length, 0);
       if(score > bestScore){ bestScore = score; bestTable = t; }
     });
-    if(!bestTable || bestScore===0) return null;
-    const grid = htmlTableToGrid(bestTable);
+    if(!bestTable) return null;
+    const grid = trsToGrid(Array.from(bestTable.rows));
     const lines = grid.map(r=>r.join('\t')).filter(l=> l.replace(/\t/g,'').trim()!=='');
     return lines.length ? lines.join('\n') : null;
   } catch(e){ return null; }
