@@ -1052,6 +1052,17 @@ function computePointToPointSales(stock){
   const growth = (priorVal!=null && priorVal!==0) ? (curVal-priorVal)/priorVal : null;
   return {curVal, priorVal: priorVal ?? null, growth, month, fy};
 }
+// میانگینِ رسمیِ فروش ماهانه‌ی یک سال مالی خاص: اگه فروش تجمعی (YTD) برای اون سال ثبت شده باشه، همیشه اولویت داره
+// (چون معمولاً از ماه‌به‌ماهِ ناقص، کامل‌تره)؛ وگرنه از میانگینِ ماه‌های تک‌تک واردشده استفاده می‌شه.
+// این تابع منبع واحد محاسبه‌ی «میانگین»‌ست و باید همه‌جا (نمودار، KPI، حد ضرر) همینو صدا بزنن تا با هم یکی باشن.
+function computeMonthlyAverageForFY(stock, fy){
+  if(fy==null) return null;
+  const ytd = (stock.monthlySalesYTD||{})[fy];
+  if(ytd && ytd.currentYTD!=null && ytd.throughMonth>0) return ytd.currentYTD/ytd.throughMonth;
+  const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy && e.value!=null && e.value!=='');
+  if(!entries.length) return null;
+  return entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
+}
 // فروش نسبت به میانگین: فروش آخرین ماه در مقابل میانگین همه‌ی ماه‌های ثبت‌شده‌ی همین سال مالی (شامل خودش)
 // اگه ماه‌به‌ماه ناقص باشه ولی داده‌ی YTD با پوشش بیشتر/مساوی موجود باشه، میانگین رو از روی YTD (تقسیم بر تعداد ماه واقعی) می‌گیریم.
 // فروش نسبت به میانگین: میانگین همیشه از «فروش تجمعی به‌روز» (آخرین YTD ثبت‌شده) به دست میاد — حتی اگه ماه‌به‌ماه هم کامل باشه.
@@ -1060,18 +1071,17 @@ function computeSalesVsAverage(stock){
   const fy = currentFiscalYearForSales(stock);
   const ytd = (stock.monthlySalesYTD||{})[fy];
   const entries = fy!=null ? getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy) : [];
+  const avgSoFar = computeMonthlyAverageForFY(stock, fy);
+  if(avgSoFar==null) return null;
   if(ytd && ytd.currentYTD!=null && ytd.throughMonth>0){
-    const avgSoFar = ytd.currentYTD/ytd.throughMonth;
     const monthlyMaxMonth = entries.length ? Math.max(...entries.map(e=>e.monthInFY)) : 0;
     // آخرین مقدار تک‌ماهه (اگه ثبت شده باشه) رو برای مقایسه‌ی «این ماه در مقابل میانگین» نگه می‌داریم؛ وگرنه از خودِ میانگین به‌عنوان تنها نقطه‌ی داده استفاده می‌شه
     const curVal = monthlyMaxMonth>=ytd.throughMonth ? entries.find(e=>e.monthInFY===monthlyMaxMonth)?.value : avgSoFar;
     const growth = avgSoFar ? (curVal-avgSoFar)/avgSoFar : null;
     return {curVal, avgSoFar, growth, month: Math.max(monthlyMaxMonth, ytd.throughMonth), fy, monthsCount: ytd.throughMonth, usedYTD:true};
   }
-  if(!fy || !entries.length) return null;
   const month = Math.max(...entries.map(e=>e.monthInFY));
   const curVal = entries.find(e=>e.monthInFY===month)?.value;
-  const avgSoFar = entries.reduce((s,e)=> s + (Number(e.value)||0), 0) / entries.length;
   const growth = avgSoFar ? (curVal-avgSoFar)/avgSoFar : null;
   return {curVal, avgSoFar, growth, month, fy, monthsCount: entries.length, usedYTD:false};
 }
@@ -1095,10 +1105,7 @@ function checkStopLoss(stock){
       const sorted = entries.slice().sort((a,b)=>a.monthInFY-b.monthInFY);
       const lastTwo = sorted.slice(-2);
       const consecutive = (lastTwo[1].monthInFY - lastTwo[0].monthInFY) === 1;
-      const ytd = (stock.monthlySalesYTD||{})[fy];
-      const avgSoFar = (ytd && ytd.currentYTD!=null && ytd.throughMonth>0)
-        ? ytd.currentYTD/ytd.throughMonth
-        : sorted.reduce((s,e)=>s+(Number(e.value)||0),0)/sorted.length;
+      const avgSoFar = computeMonthlyAverageForFY(stock, fy);
       twoMonthsBelow = consecutive && avgSoFar>0 && lastTwo.every(e=> Number(e.value) < avgSoFar);
     }
   }
@@ -1110,10 +1117,19 @@ function stopLossBadge(stock){
   if(!info || !info.triggered) return '';
   return ` <span title="🔻 حد ضرر: حاشیه سود فصل اخیر کمتر از میانگین ۴ فصل اخیر است، و فروش دو ماه پیاپیِ آخر هم کمتر از میانگین فروش سال مالی جاری بوده" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--bad); vertical-align:middle; margin-inline-start:4px; box-shadow:0 0 0 2px rgba(220,50,50,.25)"></span>`;
 }
+// نسبت صادراتی = فروش صادراتی ÷ فروش کل (داخلی + صادراتی) در سال مالی جاری.
+// اگه فروش داخلی/صادراتیِ «تجمعی» (YTD) مستقیم ثبت شده باشه، همیشه اولویت داره (چون یه عدد رسمی و کامله)؛
+// وگرنه از جمع‌زدنِ فروش داخلی/صادراتیِ ماه‌به‌ماهِ ثبت‌شده استفاده می‌شه (که اگه بعضی ماه‌ها جا افتاده باشن، ناقصه).
 function computeExportRatio(stock){
-  const split = stock.monthlySalesSplit || {};
   const fy = currentFiscalYearForSales(stock);
   if(!fy) return null;
+  const ytd = (stock.monthlySalesYTD||{})[fy];
+  if(ytd && ytd.domesticYTD!=null && ytd.exportYTD!=null){
+    const total = ytd.domesticYTD + ytd.exportYTD;
+    if(!total) return null;
+    return {ratio: ytd.exportYTD/total, domesticSum: ytd.domesticYTD, exportSum: ytd.exportYTD, months: ytd.throughMonth, fy, fromYTD:true};
+  }
+  const split = stock.monthlySalesSplit || {};
   const endM = stockFYEndMonth(stock);
   const keys = Object.keys(split).filter(k=>{
     const [cy,cm] = k.split('-').map(Number);
@@ -1124,7 +1140,7 @@ function computeExportRatio(stock){
   keys.forEach(k=>{ domesticSum += Number(split[k].domestic)||0; exportSum += Number(split[k].export)||0; });
   const total = domesticSum+exportSum;
   if(!total) return null;
-  return {ratio: exportSum/total, domesticSum, exportSum, months: keys.length, fy};
+  return {ratio: exportSum/total, domesticSum, exportSum, months: keys.length, fy, fromYTD:false};
 }
 function peF(stock){ const lp=latestPeriod(stock); if(!lp) return null; return evalFormulaByKey('peF', buildContext(stock, stock.periods, lp)); }
 // برای سهم‌های هلدینگ/شرکت سرمایه‌گذاری: چون خودِ هلدینگ صورت سود و زیان عملیاتی معناداری نداره،
@@ -1862,7 +1878,7 @@ function renderSalesSubtab(stock, exportRatio){
   <div class="grid cols-3" style="margin-top:14px">
     ${kpi('رشد فروش تجمیعی', growth && growth.growth!=null ? fmtPctColored(growth.growth) : '—', growth?`جمع سال جاری: ${fmt(growth.curSum)} م.ت ${growth.priorSum!=null?'— سال قبل: '+fmt(growth.priorSum)+' م.ت':''}`:'', true)}
     ${kpi('رشد نقطه‌به‌نقطه', p2p && p2p.growth!=null ? fmtPctColored(p2p.growth) : '—', p2p?`این ماه: ${fmt(p2p.curVal)} م.ت ${p2p.priorVal!=null?'— ماه مشابه سال قبل: '+fmt(p2p.priorVal)+' م.ت':''}`:'')}
-    ${kpi('نسبت صادراتی', exportRatio? fmtPct(exportRatio.ratio) : '—', exportRatio?`داخلی: ${fmt(exportRatio.domesticSum)} م.ت — صادراتی: ${fmt(exportRatio.exportSum)} م.ت (${toFa(exportRatio.months)} ماه)`:'فروش داخلی/صادراتی به‌تفکیک ثبت نشده')}
+    ${kpi('نسبت صادراتی', exportRatio? fmtPct(exportRatio.ratio) : '—', exportRatio?`داخلی: ${fmt(exportRatio.domesticSum)} م.ت — صادراتی: ${fmt(exportRatio.exportSum)} م.ت (${exportRatio.fromYTD?`تجمعی تا ماه ${toFa(exportRatio.months)}`:`جمعِ ${toFa(exportRatio.months)} ماه ثبت‌شده`})`:'فروش داخلی/صادراتی به‌تفکیک ثبت نشده')}
   </div>
   `;
 }
@@ -2135,10 +2151,11 @@ function drawMonthlySalesChart(stock){
   const prevMap = {}; entries.filter(e=>e.fiscalYear===prevFy).forEach(e=>prevMap[e.monthInFY]=e.value);
   const curData = MONTH_LABELS.map((_,i)=> curMap[i+1] ?? null);
   const prevData = MONTH_LABELS.map((_,i)=> prevMap[i+1] ?? null);
-  const curVals = curData.filter(v=>v!=null);
-  const prevVals = prevData.filter(v=>v!=null);
-  const avgCur = curVals.length ? curVals.reduce((a,b)=>a+b,0)/curVals.length : null;
-  const avgPrev = prevVals.length ? prevVals.reduce((a,b)=>a+b,0)/prevVals.length : null;
+  // میانگین از همون تابع مرجعِ کل برنامه (computeMonthlyAverageForFY) گرفته می‌شه — نه از میانگینِ ساده‌ی
+  // فقط ماه‌های تک‌تک واردشده — چون اگه فروش تجمعی (YTD) برای این سال ثبت شده باشه (که پوشش کامل‌تری داره)،
+  // باید همون ملاک باشه؛ وگرنه با میانگینی که بقیه‌ی برنامه (KPI، حد ضرر) نشون می‌ده هم‌خوانی نداره.
+  const avgCur = computeMonthlyAverageForFY(stock, fy);
+  const avgPrev = computeMonthlyAverageForFY(stock, prevFy);
   const datasets = [
     {label:'سال مالی '+toFa(prevFy), data:prevData, backgroundColor:'#c6a06a'},
     {label:'سال مالی '+toFa(fy), data:curData, backgroundColor:'#1c3a5b'},
@@ -2504,6 +2521,11 @@ function renderDataTab(){
         <div class="field" style="width:120px"><label>تا ماه (۱ تا ۱۲)</label><input id="ytdMonthInput" type="number" min="1" max="12"></div>
         <div class="field" style="width:200px"><label>فروش تجمعی سال جاری (میلیارد تومان)</label><input id="ytdCurrentInput" type="number"></div>
         <div class="field" style="width:200px"><label>فروش تجمعی سال قبل، تا همون ماه (اختیاری)</label><input id="ytdPriorInput" type="number"></div>
+      </div>
+      <div class="row" style="margin-bottom:10px">
+        <div class="field" style="width:200px"><label>فروش داخلی تجمعی سال جاری (اختیاری)</label><input id="ytdDomesticInput" type="number"></div>
+        <div class="field" style="width:200px"><label>فروش صادراتی تجمعی سال جاری (اختیاری)</label><input id="ytdExportInput" type="number"></div>
+        <div class="hint" style="align-self:flex-end; margin:0">اگه این دو رو پر کنی، «نسبت صادراتی» توی داشبورد از روی همین عددِ تجمعی محاسبه می‌شه — نه از جمع‌زدنِ فروش داخلی/صادراتیِ ماه‌به‌ماهی که پایین وارد کردی (که اگه بعضی ماه‌ها ثبت نشده باشن، ناقص می‌شه).</div>
         <div style="align-self:flex-end"><button class="btn tan" id="saveYtdManualBtn">ثبت / به‌روزرسانی</button></div>
       </div>
       ${(()=>{
@@ -5229,13 +5251,17 @@ function attachHandlers(){
     const month = parseIntSafe(document.getElementById('ytdMonthInput').value);
     const currentVal = document.getElementById('ytdCurrentInput').value;
     const priorVal = document.getElementById('ytdPriorInput').value;
+    const domesticVal = document.getElementById('ytdDomesticInput').value;
+    const exportVal = document.getElementById('ytdExportInput').value;
     if(!fy || !month || currentVal==='') return showToast('سال مالی، ماه و فروش تجمعی سال جاری رو وارد کن');
     const stock = state.stocks[activeSymbol];
     stock.monthlySalesYTD = stock.monthlySalesYTD || {};
     stock.monthlySalesYTD[fy] = {
       throughMonth: month,
       currentYTD: Number(currentVal),
-      priorYearYTD: priorVal!=='' ? Number(priorVal) : (stock.monthlySalesYTD[fy]?.priorYearYTD ?? null)
+      priorYearYTD: priorVal!=='' ? Number(priorVal) : (stock.monthlySalesYTD[fy]?.priorYearYTD ?? null),
+      domesticYTD: domesticVal!=='' ? Number(domesticVal) : (stock.monthlySalesYTD[fy]?.domesticYTD ?? null),
+      exportYTD: exportVal!=='' ? Number(exportVal) : (stock.monthlySalesYTD[fy]?.exportYTD ?? null),
     };
     saveState(); showToast('فروش تجمعی ثبت شد'); renderAll();
   };
