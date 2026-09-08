@@ -448,10 +448,28 @@ function applyDarkModeClass(){
   if(btn) btn.innerHTML = `${icon(darkMode?'sun':'moon',12)} حالت تیره: ${darkMode?'روشن':'خاموش'}`;
 }
 
+// ردیابی «ورودیِ ذخیره‌نشده»: هر تغییری توی فرم‌های داخل کارت‌ها/مودال‌ها (نه جست‌وجوی بالای صفحه) این رو true می‌کنه؛
+// با هر saveState() موفق (که یعنی کاربر دکمه‌ی تایید/ذخیره رو زده) دوباره false می‌شه
+let hasUnsavedInput = false;
+document.addEventListener('input', (e)=>{
+  const t = e.target;
+  if(!t || !(t.matches && (t.matches('input, textarea, select')))) return;
+  if(t.closest('.card, #modalBody')) hasUnsavedInput = true;
+});
 function saveState(){
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   syncToLinkedFile();
+  hasUnsavedInput = false;
 }
+// حالت «ذخیره‌سازی هنگام بستن»: 'ask' (پیش‌فرض) یعنی اگه ورودیِ ذخیره‌نشده هست، مرورگر قبل از بستن/رفتن هشدار بده؛
+// 'auto' یعنی بدون هشدار، ساکت ببند (چون تقریباً همه‌ی عملیات‌ها همین الان هم خودکار در همون لحظه ذخیره می‌شن)
+window.addEventListener('beforeunload', (e)=>{
+  const mode = state.settings?.closeSaveMode || 'ask';
+  if(mode==='ask' && hasUnsavedInput){
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
 
 /* ========================= فایل محلی (ذخیره و فراخوانی خودکار روی دیسک) ========================= */
 let linkedFileHandle = null;
@@ -1058,6 +1076,40 @@ function computeSalesVsAverage(stock){
   return {curVal, avgSoFar, growth, month, fy, monthsCount: entries.length, usedYTD:false};
 }
 // نسبت صادراتی = فروش صادراتی ÷ فروش کل (داخلی + صادراتی)، بر اساس ماه‌های سال مالی جاری که فروش داخلی/صادراتی برایشان ثبت شده
+// «حد ضرر سهم»: وقتی هم‌زمان دو شرط زیر برقرار باشن، سهم قرمز/هشدار می‌شه:
+//  ۱. حاشیه سود فصل اخیر از میانگین ۴ فصل اخیر (TTM) کمتر شده باشه
+//  ۲. فروش دو ماهِ پیاپیِ آخر (سال مالی جاری)، هر دو کمتر از میانگین فروش ماهانه‌ی همون سال مالی بوده باشن
+function checkStopLoss(stock){
+  if(!stock || state.settings?.stopLossEnabled===false) return null; // پیش‌فرض فعال؛ فقط با غیرفعال‌سازی صریح خاموش می‌شه
+  const periods = stock.periods || [];
+  const lp = latestPeriod(stock);
+  const curMargin = lp ? computeQuarterMarginForPeriod(stock, periods, lp) : null;
+  const avgMargin = computeTTMAverageMargin(stock);
+  const marginBelow = (curMargin!=null && avgMargin!=null && curMargin < avgMargin);
+
+  const fy = currentFiscalYearForSales(stock);
+  let twoMonthsBelow = false;
+  if(fy!=null){
+    const entries = getMonthlySalesFiscalEntries(stock).filter(e=>e.fiscalYear===fy && e.value!=null && e.value!=='');
+    if(entries.length>=2){
+      const sorted = entries.slice().sort((a,b)=>a.monthInFY-b.monthInFY);
+      const lastTwo = sorted.slice(-2);
+      const consecutive = (lastTwo[1].monthInFY - lastTwo[0].monthInFY) === 1;
+      const ytd = (stock.monthlySalesYTD||{})[fy];
+      const avgSoFar = (ytd && ytd.currentYTD!=null && ytd.throughMonth>0)
+        ? ytd.currentYTD/ytd.throughMonth
+        : sorted.reduce((s,e)=>s+(Number(e.value)||0),0)/sorted.length;
+      twoMonthsBelow = consecutive && avgSoFar>0 && lastTwo.every(e=> Number(e.value) < avgSoFar);
+    }
+  }
+  return {triggered: marginBelow && twoMonthsBelow, marginBelow, twoMonthsBelow, curMargin, avgMargin};
+}
+// نشونه‌ی کوچیک قرمز کنار نماد، وقتی شرط حد ضرر برقرار باشه
+function stopLossBadge(stock){
+  const info = checkStopLoss(stock);
+  if(!info || !info.triggered) return '';
+  return ` <span title="🔻 حد ضرر: حاشیه سود فصل اخیر کمتر از میانگین ۴ فصل اخیر است، و فروش دو ماه پیاپیِ آخر هم کمتر از میانگین فروش سال مالی جاری بوده" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--bad); vertical-align:middle; margin-inline-start:4px; box-shadow:0 0 0 2px rgba(220,50,50,.25)"></span>`;
+}
 function computeExportRatio(stock){
   const split = stock.monthlySalesSplit || {};
   const fy = currentFiscalYearForSales(stock);
@@ -1285,7 +1337,7 @@ function renderDashboardTab(){
     ${renderStockSwitcherBar()}
     <div class="row" style="justify-content:space-between; align-items:flex-start">
       <div>
-        <h1 class="page-title">${stock.symbol} <span class="badge-industry">${stock.industry||'بدون صنعت'}</span></h1>
+        <h1 class="page-title">${stock.symbol}${stopLossBadge(stock)} <span class="badge-industry">${stock.industry||'بدون صنعت'}</span></h1>
         <div class="page-sub">${stock.name||'—'} · سال مالی منتهی به ${toFa(stock.fiscalYearEndDay||29)} ${PERSIAN_MONTH_NAMES[(stock.fiscalYearEndMonth||12)-1]} · سال مالی جاری: ${toFa(stock.fiscalYear || currentFiscalYearForSales(stock) || (lp?lp.fiscalYear:'') || 'تعریف‌نشده')} · آخرین دوره ثبت‌شده: ${lp ? faPeriodLabel(lp) : 'ثبت نشده'}</div>
       </div>
       <button class="btn secondary" id="exportImageBtn">${icon('camera',13)} خروجی تصویر از این صفحه</button>
@@ -2828,7 +2880,7 @@ function renderIndustryTab(){
         if(v!=null){ colSums[f.key] = (colSums[f.key]||0)+v; colCounts[f.key] = (colCounts[f.key]||0)+1; }
       });
       html += `<tr class="clickable-row" data-symbol="${s.symbol}" title="دوبار کلیک برای رفتن به داشبورد این سهم">
-        <td><b>${s.symbol}</b>${staleSalesBadge(s)}</td>
+        <td><b>${s.symbol}</b>${staleSalesBadge(s)}${stopLossBadge(s)}</td>
         <td>${lp?toFa(lp.fiscalYear):'—'}</td>
         <td>${lp?toFa(lp.months)+' ماهه':'—'}</td>
         <td>${lp ? (lp.reportDate || faPeriodLabel(lp)) : '—'}</td>
@@ -2880,6 +2932,14 @@ function renderFormulasTab(){
     <thead><tr><th>نام</th><th>عبارت فرمول</th><th>فرمت نمایش</th><th>در KPI داشبورد</th><th>در جدول صنعت</th><th></th></tr></thead>
     <tbody>${rows}</tbody>
   </table></div>
+
+  <div class="section-title">حد ضرر سهم (هشدار قرمز خودکار)</div>
+  <div class="card" style="margin-bottom:18px">
+    <label style="font-size:13px; display:flex; align-items:center; gap:6px"><input type="checkbox" id="stopLossEnabledChk" ${state.settings?.stopLossEnabled!==false?'checked':''} style="width:auto"> فعال باشه</label>
+    <div class="hint" style="margin-top:8px">وقتی هر دو شرط زیر هم‌زمان برای یه سهم برقرار باشن، یه نشونه‌ی 🔴 قرمز کنار نمادش — توی همه‌ی بخش‌های برنامه (داشبورد، مقایسه صنعت، پرتفوی، مدیریت سهم‌ها، جست‌وجو) — ظاهر می‌شه:
+      <br>۱. حاشیه سود فصل اخیر، کمتر از میانگین ۴ فصل اخیر (TTM) باشه.
+      <br>۲. فروش دو ماه پیاپیِ آخرِ سال مالی جاری، هر دو کمتر از میانگین فروش ماهانه‌ی همون سال مالی بوده باشن.</div>
+  </div>
 
   <div class="section-title">متغیرهای قابل استفاده در عبارت فرمول</div>
   <div class="card">
@@ -2969,7 +3029,7 @@ function renderManageTab(){
     symbols.forEach(sym=>{
       const s = state.stocks[sym];
       const subCount = (s.subsidiaries||[]).length;
-      html += `<tr class="clickable-row" data-symbol="${sym}" title="دوبار کلیک برای رفتن به داشبورد این سهم"><td><b>${s.symbol}</b>${staleSalesBadge(s)}</td><td>${s.name||'—'}</td><td>${s.industry||'—'}</td><td>${toFa((s.periods||[]).length)}</td>
+      html += `<tr class="clickable-row" data-symbol="${sym}" title="دوبار کلیک برای رفتن به داشبورد این سهم"><td><b>${s.symbol}</b>${staleSalesBadge(s)}${stopLossBadge(s)}</td><td>${s.name||'—'}</td><td>${s.industry||'—'}</td><td>${toFa((s.periods||[]).length)}</td>
         <td><span class="delete-row-btn" data-managesub="${sym}" style="color:var(--teal)">${subCount? `${toFa(subCount)} سهم زیرمجموعه`:'+ افزودن زیرمجموعه'}</span></td>
         <td>
           <span class="delete-row-btn" data-editstock="${sym}" style="color:var(--navy); margin-left:8px">ویرایش</span>
@@ -3218,7 +3278,7 @@ function renderPortfolioTab(){
     if(curValue!=null) totalValue += curValue;
     const mcUpdatedAt = stock.manual && stock.manual.marketCapUpdatedAt;
     return `<tr class="clickable-row${h.id===selectedHoldingId?' selected-row':''}" data-symbol="${h.symbol}" data-holdingrow="${h.id}" title="کلیک برای هایلایت‌کردن ردیف؛ دوبار کلیک برای رفتن به داشبورد این سهم">
-      <td>${h.symbol}${staleSalesBadge(stock)}</td>
+      <td>${h.symbol}${staleSalesBadge(stock)}${stopLossBadge(stock)}</td>
       <td>${stock.name||'—'}</td>
       <td>${stock.industry||'—'}</td>
       <td>${lp ? (lp.reportDate || faPeriodLabel(lp)) : '—'}</td>
@@ -3301,6 +3361,15 @@ function renderBackupTab(){
   return `
   <h1 class="page-title">پشتیبان‌گیری و بازیابی</h1>
   <div class="page-sub">داده‌ها روی همین مرورگر و کامپیوتر ذخیره می‌شن. برای اطمینان و جابه‌جایی، از این‌جا بک‌آپ بگیر.</div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3>ذخیره‌سازی هنگام بستن برنامه</h3>
+    <p style="font-size:13px; color:var(--muted)">اکثر عملیات‌ها (ثبت، ویرایش، حذف) همون لحظه‌ای که تاییدشون می‌کنی خودکار ذخیره می‌شن. این تنظیم مربوط به حالتیه که یه چیزی توی یه فرم/باکس پیست تایپ کردی ولی هنوز دکمه‌ی تایید/ذخیره رو نزدی و می‌خوای صفحه رو ببندی.</p>
+    <div class="field">
+      <label style="display:flex; align-items:center; gap:6px; margin-bottom:6px"><input type="radio" name="closeSaveMode" value="ask" ${(state.settings?.closeSaveMode||'ask')==='ask'?'checked':''} style="width:auto"> هر بار قبل از بستن، اگه چیزی ذخیره‌نشده مونده بود هشدار بده</label>
+      <label style="display:flex; align-items:center; gap:6px"><input type="radio" name="closeSaveMode" value="auto" ${state.settings?.closeSaveMode==='auto'?'checked':''} style="width:auto"> بدون هشدار، ساکت ببند (خودم مطمئنم چیزی رو گم نمی‌کنم)</label>
+    </div>
+  </div>
 
   <div class="card" style="margin-bottom:14px">
     <h3>فایل محلی (ذخیره و فراخوانی خودکار)</h3>
@@ -3579,7 +3648,7 @@ let cmdPaletteActiveIdx = 0;
 function cmdPaletteAllItems(){
   const tabItems = NAV_ITEMS.map(it=>({type:'tab', iconName:it.icon, title:it.label, sub:'رفتن به این تب', action:()=>{ activeTab=it.id; closeSidebar(); renderAll(); }}));
   const stockItems = Object.keys(state.stocks).map(sym=>({
-    type:'stock', iconName:'search', title:sym+staleSalesBadge(state.stocks[sym]), sub:state.stocks[sym].name||'', action:()=>{ activeSymbol=sym; activeTab='dashboard'; closeSidebar(); renderAll(); }
+    type:'stock', iconName:'search', title:sym+staleSalesBadge(state.stocks[sym])+stopLossBadge(state.stocks[sym]), sub:state.stocks[sym].name||'', action:()=>{ activeSymbol=sym; activeTab='dashboard'; closeSidebar(); renderAll(); }
   }));
   return {tabItems, stockItems};
 }
@@ -5336,6 +5405,12 @@ function attachHandlers(){
   // formulas tab
   const openAddFormulaBtn = document.getElementById('openAddFormulaModal');
   if(openAddFormulaBtn) openAddFormulaBtn.onclick = ()=>openFormulaModal();
+  const stopLossChk = document.getElementById('stopLossEnabledChk');
+  if(stopLossChk) stopLossChk.onchange = ()=>{
+    state.settings = state.settings || {};
+    state.settings.stopLossEnabled = stopLossChk.checked;
+    saveState(); renderAll();
+  };
   document.querySelectorAll('[data-editformula]').forEach(el=>el.onclick=()=>openFormulaModal(el.dataset.editformula));
   document.querySelectorAll('[data-delformula]').forEach(el=>el.onclick=()=>{
     if(!confirm('این المان تحلیلی حذف شود؟')) return;
@@ -5426,6 +5501,14 @@ function attachHandlers(){
   });
 
   // backup tab
+  document.querySelectorAll('input[name="closeSaveMode"]').forEach(radio=>{
+    radio.onchange = ()=>{
+      state.settings = state.settings || {};
+      state.settings.closeSaveMode = radio.value;
+      saveState();
+      showToast('ذخیره شد');
+    };
+  });
   const createLocalFileBtn = document.getElementById('createLocalFileBtn');
   if(createLocalFileBtn) createLocalFileBtn.onclick = createLocalFile;
   const pickLocalFileBtn = document.getElementById('pickLocalFileBtn');
@@ -5833,7 +5916,7 @@ function wireSearchableStockCombo(inputId, dropdownId){
   const symbols = Object.keys(state.stocks);
   // فیلدِ بسته فقط نماد رو نشون می‌ده (بدون نام شرکت/توضیح اضافه)؛ آیتم‌های لیست کشویی برای جست‌وجوی راحت‌تر نام شرکت رو هم دارن
   function displayValue(sym){ return sym || ''; }
-  function optionLabel(sym){ return sym ? `${sym} — ${state.stocks[sym].name||''}${staleSalesBadge(state.stocks[sym])}` : ''; }
+  function optionLabel(sym){ return sym ? `${sym} — ${state.stocks[sym].name||''}${staleSalesBadge(state.stocks[sym])}${stopLossBadge(state.stocks[sym])}` : ''; }
   function renderOptions(filterText){
     const q = (filterText||'').trim().toLowerCase();
     const filtered = symbols.filter(s=>{
