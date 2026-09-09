@@ -700,6 +700,14 @@ function sortPeriods(periods){
 function findPeriod(periods, fiscalYear, months){
   return periods.find(p=>p.fiscalYear===fiscalYear && p.months===months);
 }
+// یک دوره «پایان سال مالی» حساب می‌شه اگه ۱۲ماهه باشه، یا (برای سالی که سال مالی وسطش عوض شده و دوره‌ی کامل کوتاه‌تر/بلندتر از ۱۲ ماه شده)
+// کاربر صریحاً موقع ثبت دوره تیک «این دوره پایان سال مالی است» رو زده باشه
+function isFYEndPeriod(period){
+  return !!period && (period.months===12 || period.isFYEnd===true);
+}
+function findFYEndPeriod(periods, fiscalYear){
+  return periods.find(p=>p.fiscalYear===fiscalYear && isFYEndPeriod(p));
+}
 // TTM: هر دوره اول سراغ فیلدهای دستی «دوره مشابه سال قبل» و «آخرین سال مالی کامل» می‌ره؛
 // اگه خالی بودن، خودش دنبال دوره‌ی واقعی ثبت‌شده در سابقه‌ی همین سهم می‌گرده (fiscalYear-1) و از اونجا مقدار رو برمی‌داره.
 // ویژه‌ی دوره ۱۲ماهه: میانگین امسال و سال قبل. اگه داده‌ی سال قبل نبود: همون آخرین مقدار وارد شده (بدون تعدیل)
@@ -707,12 +715,13 @@ function ttmFlowSelfContained(periods, target, field){
   const current = target[field];
   if(current==null) return null;
   const priorYearPeriod = (months)=> findPeriod(periods, target.fiscalYear-1, months);
-  if(target.months===12){
-    const lastFullYear = target[field+'LastFullYear'] ?? priorYearPeriod(12)?.[field] ?? null;
+  const priorYearFYEnd = ()=> findFYEndPeriod(periods, target.fiscalYear-1);
+  if(isFYEndPeriod(target)){
+    const lastFullYear = target[field+'LastFullYear'] ?? priorYearFYEnd()?.[field] ?? null;
     return lastFullYear!=null ? (current+lastFullYear)/2 : current;
   }
   const samePrior = target[field+'SamePriorPeriod'] ?? priorYearPeriod(target.months)?.[field] ?? null;
-  const lastFullYear = target[field+'LastFullYear'] ?? priorYearPeriod(12)?.[field] ?? null;
+  const lastFullYear = target[field+'LastFullYear'] ?? priorYearFYEnd()?.[field] ?? null;
   if(lastFullYear!=null && samePrior!=null) return lastFullYear - samePrior + current;
   return current;
 }
@@ -737,7 +746,7 @@ function ttmNetIncomeSelfContained(periods, target){
 }
 // میانگین موجودی/مطالبات = میانگین با مانده‌ی پایان سال مالی قبل (نه دوره مشابه سال قبل) — مطابق روش تأییدشده کاربر
 function avgBalance(periods, target, field){
-  const prevYearEnd = findPeriod(periods, target.fiscalYear-1, 12);
+  const prevYearEnd = findFYEndPeriod(periods, target.fiscalYear-1);
   if(prevYearEnd && prevYearEnd[field]!=null && target[field]!=null) return (target[field] + prevYearEnd[field]) / 2;
   return target[field];
 }
@@ -2549,6 +2558,9 @@ function renderDataTab(){
     <div class="form-grid">
       <div class="field"><label>سال مالی</label><input id="plYear" type="number" value="${stock.fiscalYear||''}"></div>
       <div class="field"><label>دوره (۳/۶/۹/۱۲ ماهه)</label><input id="plMonths" type="number" placeholder="مثلاً 6"></div>
+      <div class="field" style="grid-column:span 2; display:flex; align-items:center; gap:6px; padding-top:20px">
+        <label style="display:flex; align-items:center; gap:6px; font-size:12.5px; margin:0"><input type="checkbox" id="plIsFYEnd" style="width:auto"> این دوره پایانِ سال مالی است (حتی اگه ۱۲ماهه نباشه — برای وقتی سال مالی وسط سال عوض شده)</label>
+      </div>
       <div class="field" style="grid-column:span 2"><label>گزارش فعالیت منتهی به (اختیاری)</label><input id="plReportDate" placeholder="1404/06/31"></div>
       <div class="field"><label>سود خالص در حال تداوم (تجمیعی از ابتدای سال مالی)</label><input id="plNetIncomeQ" type="number"></div>
       <div class="field"><label>سایر درآمدها (تجمیعی از ابتدای سال مالی)</label><input id="plOtherIncomeQ" type="number"></div>
@@ -2571,12 +2583,16 @@ function renderDataTab(){
     </table></div>
     ${findInconsistentPeriods(stock).map(w=>`<div class="hint" style="background:#fdf0ec; border-color:#e8b8a8; color:#8a3f2f">⚠️ ${w}</div>`).join('')}
     ${renderPLPager(stock)}
-    <div class="hint">«سود خالص در حال تداوم»، «سایر درآمدها» و «سایر درآمد غیرعملیاتی» حالا مثل فروش/بهای‌تمام‌شده <b>تجمیعی از ابتدای سال مالی</b> وارد می‌شن (دقیقاً مطابق صورت‌های مالی کدال)؛ عدد فصلی سه‌ماهه‌ی هرکدوم با تفریق از دوره‌ی تجمیعی قبلِ همون سال مالی، خودکار محاسبه می‌شه. فیلدهای «دوره مشابه سال قبل» و «آخرین سال مالی کامل» هم اگه در سابقه‌ی این سهم ثبت شده باشن، خودکار پیشنهاد داده می‌شن (قابل ویرایش دستی)؛ حتی اگه این فیلدها رو خالی بگذاری، محاسبه‌ی TTM باز هم خودش دنبال دوره‌ی مشابه در سابقه می‌گرده.</div>`;
+    <div class="hint">«سود خالص در حال تداوم»، «سایر درآمدها» و «سایر درآمد غیرعملیاتی» حالا مثل فروش/بهای‌تمام‌شده <b>تجمیعی از ابتدای سال مالی</b> وارد می‌شن (دقیقاً مطابق صورت‌های مالی کدال)؛ عدد فصلی سه‌ماهه‌ی هرکدوم با تفریق از دوره‌ی تجمیعی قبلِ همون سال مالی، خودکار محاسبه می‌شه. فیلدهای «دوره مشابه سال قبل» و «آخرین سال مالی کامل» هم اگه در سابقه‌ی این سهم ثبت شده باشن، خودکار پیشنهاد داده می‌شن (قابل ویرایش دستی)؛ حتی اگه این فیلدها رو خالی بگذاری، محاسبه‌ی TTM باز هم خودش دنبال دوره‌ی مشابه در سابقه می‌گرده.
+    <br><br>⚠️ اگه سال مالی این شرکت وسطِ سال تغییر کرده (مثلاً از پایانِ اسفند به پایانِ شهریور)، دوره‌ی انتقالی معمولاً کمتر از ۱۲ ماه کامل می‌شه (مثلاً ۶ یا ۹ ماهه) ولی همون دوره در واقع «سال مالی کامل» همون سال به‌حساب میاد. اگه این تیک رو نزنی، محاسبات میانگین/TTM اشتباه می‌شه چون برنامه دنبال یه دوره‌ی ۱۲ماهه می‌گرده که وجود نداره — پس حتماً برای همون دوره‌ی کوتاه‌ترِ پایانی، تیکِ «این دوره پایان سال مالی است» رو بزن.</div>`;
 
   const bsBody = `
     <div class="form-grid">
       <div class="field"><label>سال مالی</label><input id="bsYear" type="number" value="${stock.fiscalYear||''}"></div>
       <div class="field"><label>دوره (۳/۶/۹/۱۲ ماهه)</label><input id="bsMonths" type="number" placeholder="مثلاً 6"></div>
+      <div class="field" style="grid-column:span 2; display:flex; align-items:center; padding-top:20px">
+        <label style="display:flex; align-items:center; gap:6px; font-size:12.5px; margin:0"><input type="checkbox" id="bsIsFYEnd" style="width:auto"> این دوره پایانِ سال مالی است (حتی اگه ۱۲ماهه نباشه)</label>
+      </div>
       <div class="field"><label>جمع حقوق مالکانه (میلیارد تومان)</label><input id="bsEquity" type="number"></div>
       <div class="field"><label>جمع کل دارایی‌ها (میلیارد تومان)</label><input id="bsTotalAssets" type="number"></div>
       <div class="field"><label>دریافتنی‌های تجاری (میلیارد تومان)</label><input id="bsReceivables" type="number"></div>
@@ -2760,7 +2776,7 @@ function renderPLRows(stock){
     const qNetQ = discreteQuarter(allSorted, p, 'netIncomeQ');
     const m = computeMetricsForPeriod(stock, p);
     return `<tr>
-      <td>${toFa(p.fiscalYear)}</td><td>${toFa(p.months)} ماهه</td>
+      <td>${toFa(p.fiscalYear)}</td><td>${toFa(p.months)} ماهه${p.isFYEnd && p.months!==12 ? ` <span title="این دوره به‌عنوان پایان سال مالی علامت‌گذاری شده (سال مالی انتقالی)" style="color:var(--teal); font-weight:700">(پایان سال مالی)</span>`:''}</td>
       <td>${fmt(p.netIncomeQ)}</td><td>${fmt(qNetQ)}</td><td>${fmtPct(m.qMargin)}</td>
       <td>${fmt(p.sales)}</td><td>${fmt(p.cogs)}</td>
       <td>${fmt(ttmS)}</td><td>${fmt(ttmC)}</td>
@@ -2786,7 +2802,7 @@ function renderBSRows(stock){
   return pageItems.map(p=>{
     const m = computeMetricsForPeriod(stock, p);
     return `<tr>
-    <td>${toFa(p.fiscalYear)}</td><td>${toFa(p.months)} ماهه</td>
+    <td>${toFa(p.fiscalYear)}</td><td>${toFa(p.months)} ماهه${p.isFYEnd && p.months!==12 ? ` <span title="این دوره به‌عنوان پایان سال مالی علامت‌گذاری شده (سال مالی انتقالی)" style="color:var(--teal); font-weight:700">(پایان سال مالی)</span>`:''}</td>
     <td>${fmt(p.equity)}</td><td>${fmt(p.totalAssets)}</td><td>${fmt(p.receivables)}</td><td>${fmt(p.inventory)}</td>
     <td>${fmt(p.currentAssets)}</td><td>${fmt(p.prepaid)}</td><td>${fmt(p.currentLiabilities)}</td>
     <td style="font-weight:700; color:var(--navy)">${formatByDef(getFormulaByKey('quickRatio'), m.quickRatio)}</td>
@@ -3882,6 +3898,7 @@ function savePLEntry(){
   const months = parseIntSafe(document.getElementById('plMonths').value);
   if(!fy || ![3,6,9,12].includes(months)) return showToast('سال مالی و دوره را درست وارد کن (۳،۶،۹ یا ۱۲)');
   const entry = upsertPeriod(stock, fy, months);
+  entry.isFYEnd = !!document.getElementById('plIsFYEnd').checked;
   entry.reportDate = document.getElementById('plReportDate').value.trim() || null;
   entry.netIncomeQ = numOrNull('plNetIncomeQ');
   entry.otherIncomeQ = numOrNull('plOtherIncomeQ');
@@ -3897,6 +3914,7 @@ function savePLEntry(){
 function fillPLForm(p){
   document.getElementById('plYear').value = p.fiscalYear;
   document.getElementById('plMonths').value = p.months;
+  document.getElementById('plIsFYEnd').checked = !!p.isFYEnd;
   document.getElementById('plReportDate').value = p.reportDate || '';
   document.getElementById('plNetIncomeQ').value = p.netIncomeQ ?? '';
   document.getElementById('plOtherIncomeQ').value = p.otherIncomeQ ?? '';
@@ -3920,7 +3938,7 @@ function autofillPLHistoryFields(){
   if(!fy || !months) return;
   const periods = stock.periods || [];
   const samePrior = findPeriod(periods, fy-1, months);
-  const lastFY = findPeriod(periods, fy-1, 12);
+  const lastFY = findFYEndPeriod(periods, fy-1);
   const samePriorEl = document.getElementById('plSalesSamePrior');
   const cogsSamePriorEl = document.getElementById('plCogsSamePrior');
   const salesLastFYEl = document.getElementById('plSalesLastFY');
@@ -3941,6 +3959,7 @@ function saveBSEntry(){
   const months = parseIntSafe(document.getElementById('bsMonths').value);
   if(!fy || ![3,6,9,12].includes(months)) return showToast('سال مالی و دوره را درست وارد کن (۳،۶،۹ یا ۱۲)');
   const entry = upsertPeriod(stock, fy, months);
+  entry.isFYEnd = !!document.getElementById('bsIsFYEnd').checked;
   entry.equity = numOrNull('bsEquity');
   entry.totalAssets = numOrNull('bsTotalAssets');
   entry.receivables = numOrNull('bsReceivables');
@@ -3953,6 +3972,7 @@ function saveBSEntry(){
 function fillBSForm(p){
   document.getElementById('bsYear').value = p.fiscalYear;
   document.getElementById('bsMonths').value = p.months;
+  document.getElementById('bsIsFYEnd').checked = !!p.isFYEnd;
   document.getElementById('bsEquity').value = p.equity ?? '';
   document.getElementById('bsTotalAssets').value = p.totalAssets ?? '';
   document.getElementById('bsReceivables').value = p.receivables ?? '';
