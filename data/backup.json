@@ -16,7 +16,11 @@
     "فلزات ارزشمند",
     "غذایی",
     "لاستیک",
-    "دوده"
+    "دوده",
+    "پتروشیمی",
+    "محصولات لبنی",
+    "صنعت آهن و فولاد",
+    "روغن خوراکی"
   ],
   "stocks": {
     "شبندر": {
@@ -242,15 +246,15 @@
         "1405-5": 144364.00400000002
       },
       "manual": {
-        "marketCap": 585112.8070788,
+        "marketCap": 649032.6935664,
         "sharesOutstanding": 409742862100,
-        "currentPrice": 1428,
+        "currentPrice": 1584,
         "dividendIncome": 2283,
         "bankInterest": 155,
         "otherOperatingIncome": 4784,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "monthlyPaste": {
@@ -566,14 +570,14 @@
         }
       ],
       "manual": {
-        "marketCap": 893808.753525,
-        "currentPrice": 1425,
+        "marketCap": 869346.619218,
+        "currentPrice": 1386,
         "dividendIncome": 853,
         "bankInterest": 1019,
         "otherOperatingIncome": 3,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": 1673456,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "sharesOutstanding": 627234213000
       },
       "rawSheets": {
@@ -688,13 +692,13 @@
         }
       ],
       "manual": {
-        "marketCap": 120680,
-        "currentPrice": 2155,
+        "marketCap": 124880,
+        "currentPrice": 2230,
         "dividendIncome": 2583,
         "bankInterest": 4,
         "otherOperatingIncome": 662,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "sharesOutstanding": 56000000000,
         "otherNonOperatingIncome": 323
       },
@@ -922,14 +926,14 @@
         }
       ],
       "manual": {
-        "marketCap": 10049.6,
-        "currentPrice": 6281,
+        "marketCap": 9265.6,
+        "currentPrice": 5791,
         "dividendIncome": 14,
         "bankInterest": 226,
         "otherOperatingIncome": 100,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "sharesOutstanding": 1600000000
       },
       "rawSheets": {
@@ -1223,14 +1227,14 @@
         }
       ],
       "manual": {
-        "marketCap": 119790,
-        "currentPrice": 10890,
+        "marketCap": 109340,
+        "currentPrice": 9940,
         "dividendIncome": 0,
         "bankInterest": 1320,
         "otherOperatingIncome": 363,
         "otherNonOperatingIncome": -480,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "sharesOutstanding": 11000000000
       },
       "rawSheets": {
@@ -1453,14 +1457,14 @@
         }
       ],
       "manual": {
-        "marketCap": 33679.16444818,
-        "currentPrice": 1370,
+        "marketCap": 32548.331189336,
+        "currentPrice": 1324,
         "dividendIncome": 2,
         "bankInterest": 29,
         "otherOperatingIncome": 434,
         "otherNonOperatingIncome": 142,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "sharesOutstanding": 24583331714
       },
       "rawSheets": {
@@ -1668,15 +1672,15 @@
         }
       ],
       "manual": {
-        "marketCap": 176760,
+        "marketCap": 190170,
         "sharesOutstanding": 30000000000,
-        "currentPrice": 5892,
+        "currentPrice": 6339,
         "dividendIncome": 1200,
         "bankInterest": 242,
         "otherOperatingIncome": 10,
         "otherNonOperatingIncome": -1600,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -1884,15 +1888,15 @@
         }
       ],
       "manual": {
-        "marketCap": 16586.997592,
+        "marketCap": 17495.50451,
         "sharesOutstanding": 8995118000,
-        "currentPrice": 1844,
+        "currentPrice": 1945,
         "dividendIncome": 6,
         "bankInterest": 0,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": -10,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -1971,15 +1975,15 @@
         }
       ],
       "manual": {
-        "marketCap": 210910,
+        "marketCap": 199120,
         "sharesOutstanding": 655000000000,
-        "currentPrice": 322,
+        "currentPrice": 304,
         "dividendIncome": null,
         "bankInterest": 23,
         "otherOperatingIncome": 450,
         "otherNonOperatingIncome": 3380,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -2205,15 +2209,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 22470,
+        "marketCap": 22970,
         "sharesOutstanding": 1000000000,
-        "currentPrice": 22470,
+        "currentPrice": 22970,
         "dividendIncome": 15,
         "bankInterest": 317,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -2243,7 +2247,7 @@
     "فولاد": {
       "symbol": "فولاد",
       "name": "",
-      "industry": "فلزات اساسی",
+      "industry": "صنعت آهن و فولاد",
       "isHolding": false,
       "fiscalYear": 1405,
       "fiscalYearEndMonth": 12,
@@ -2408,15 +2412,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 574114.5,
+        "marketCap": 641839.5,
         "sharesOutstanding": 1935000000000,
-        "currentPrice": 296.7,
+        "currentPrice": 331.7,
         "dividendIncome": 18566,
         "bankInterest": null,
         "otherOperatingIncome": 11530,
         "otherNonOperatingIncome": 3445,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -2613,15 +2617,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 5243.637,
+        "marketCap": 4884.07332,
         "sharesOutstanding": 4993940000,
-        "currentPrice": 1050,
+        "currentPrice": 978,
         "dividendIncome": null,
         "bankInterest": 18,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -2800,15 +2804,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 57223.4,
+        "marketCap": 57831.8,
         "sharesOutstanding": 33800000000,
-        "currentPrice": 1693,
+        "currentPrice": 1711,
         "dividendIncome": 2000,
         "bankInterest": 2,
         "otherOperatingIncome": 15,
         "otherNonOperatingIncome": 45,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -2957,15 +2961,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3755520,
+        "marketCap": 3895200,
         "sharesOutstanding": 1440000000000,
-        "currentPrice": 2608,
+        "currentPrice": 2705,
         "dividendIncome": 33,
         "bankInterest": 843,
         "otherOperatingIncome": -12922,
         "otherNonOperatingIncome": 3934,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -3015,9 +3019,9 @@
       ],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 194370,
-        "marketCapUpdatedAt": 1789276307741,
-        "currentPrice": 341,
+        "marketCap": 206340,
+        "marketCapUpdatedAt": 1789733015682,
+        "currentPrice": 362,
         "portfolioMarketValue": 223829,
         "portfolioBookValue": 32298,
         "sharesOutstanding": 570000000000
@@ -3121,15 +3125,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 19855,
+        "marketCap": 19575,
         "sharesOutstanding": 5000000000,
-        "currentPrice": 3971,
+        "currentPrice": 3915,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -3250,15 +3254,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 19316,
+        "marketCap": 18953,
         "sharesOutstanding": 1100000000,
-        "currentPrice": 17560,
+        "currentPrice": 17230,
         "dividendIncome": 97,
         "bankInterest": 353,
         "otherOperatingIncome": 154,
         "otherNonOperatingIncome": 0,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -3383,15 +3387,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3172.8,
+        "marketCap": 3006.72,
         "sharesOutstanding": 960000000,
-        "currentPrice": 3305,
+        "currentPrice": 3132,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -3523,15 +3527,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 2491.93,
+        "marketCap": 2413.845,
         "sharesOutstanding": 3395000000,
-        "currentPrice": 734,
+        "currentPrice": 711,
         "dividendIncome": 1,
         "bankInterest": 1,
         "otherOperatingIncome": 1,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -3760,15 +3764,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 22287.708,
+        "marketCap": 21636.684,
         "sharesOutstanding": 2466000000,
-        "currentPrice": 9038,
+        "currentPrice": 8774,
         "dividendIncome": 8,
         "bankInterest": 184,
         "otherOperatingIncome": 207,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -3879,15 +3883,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 2821.75894,
+        "marketCap": 2876.4588125,
         "sharesOutstanding": 18862025000,
-        "currentPrice": 149.6,
+        "currentPrice": 152.5,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 28,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -4021,15 +4025,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 157734,
+        "marketCap": 161406,
         "sharesOutstanding": 5400000000,
-        "currentPrice": 29210,
+        "currentPrice": 29890,
         "dividendIncome": 15000,
         "bankInterest": null,
         "otherOperatingIncome": 49,
         "otherNonOperatingIncome": 25,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789196564145
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -4174,15 +4178,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 176593.5,
+        "marketCap": 177165,
         "sharesOutstanding": 571500000000,
-        "currentPrice": 309,
+        "currentPrice": 310,
         "dividendIncome": 235,
         "bankInterest": 28,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": 4000,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "pl": {
@@ -4197,7 +4201,7 @@
     "غکورش": {
       "symbol": "غکورش",
       "name": "",
-      "industry": "غذایی",
+      "industry": "روغن خوراکی",
       "isHolding": false,
       "fiscalYear": 1405,
       "fiscalYearEndMonth": 12,
@@ -4289,15 +4293,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 116424,
+        "marketCap": 116688,
         "sharesOutstanding": 44000000000,
-        "currentPrice": 2646,
+        "currentPrice": 2652,
         "dividendIncome": 398,
         "bankInterest": 30,
         "otherOperatingIncome": 48,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -4414,10 +4418,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1104,
-        "marketCap": 10372.08,
+        "currentPrice": 1226,
+        "marketCap": 11518.27,
         "sharesOutstanding": 9395000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": 50,
         "bankInterest": null,
         "otherOperatingIncome": 20,
@@ -4538,10 +4542,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1054,
-        "marketCap": 5902.4,
+        "currentPrice": 1076,
+        "marketCap": 6025.6,
         "sharesOutstanding": 5600000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 62,
@@ -4791,10 +4795,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1672,
-        "marketCap": 16720,
+        "currentPrice": 1665,
+        "marketCap": 16650,
         "sharesOutstanding": 10000000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 6.2,
@@ -4828,7 +4832,7 @@
     "غگلپا": {
       "symbol": "غگلپا",
       "name": "",
-      "industry": "زراعت و دامی",
+      "industry": "محصولات لبنی",
       "isHolding": false,
       "fiscalYear": 1405,
       "fiscalYearEndMonth": 9,
@@ -4915,10 +4919,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2320,
-        "marketCap": 2737.6,
+        "currentPrice": 2381,
+        "marketCap": 2809.58,
         "sharesOutstanding": 1180000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 1.5,
@@ -5040,10 +5044,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 638,
-        "marketCap": 416295,
+        "currentPrice": 707,
+        "marketCap": 461317.5,
         "sharesOutstanding": 652500000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 3500,
@@ -5148,10 +5152,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 615,
-        "marketCap": 42619.5,
+        "currentPrice": 644,
+        "marketCap": 44629.2,
         "sharesOutstanding": 69300000000,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -5187,10 +5191,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1072,
-        "marketCap": 18652.8,
+        "currentPrice": 1022,
+        "marketCap": 17782.8,
         "sharesOutstanding": 17400000000,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       }
     },
     "آردینه": {
@@ -5283,15 +5287,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 6976,
+        "marketCap": 7012,
         "sharesOutstanding": 2000000000,
-        "currentPrice": 3488,
+        "currentPrice": 3506,
         "dividendIncome": 198,
         "bankInterest": 78,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -5540,10 +5544,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 11140,
-        "marketCap": 66840,
+        "currentPrice": 11690,
+        "marketCap": 70140,
         "sharesOutstanding": 6000000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": 392,
         "bankInterest": 320,
         "otherOperatingIncome": 50,
@@ -5660,10 +5664,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 6606,
-        "marketCap": 13212,
+        "currentPrice": 6379,
+        "marketCap": 12758,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": null,
         "bankInterest": 100,
         "otherOperatingIncome": null,
@@ -5842,10 +5846,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2633,
-        "marketCap": 16324.6,
+        "currentPrice": 2546,
+        "marketCap": 15785.2,
         "sharesOutstanding": 6200000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": 953,
         "bankInterest": 132,
         "otherOperatingIncome": 12,
@@ -5875,7 +5879,7 @@
     "ارفع": {
       "symbol": "ارفع",
       "name": "",
-      "industry": "فلزات اساسی",
+      "industry": "صنعت آهن و فولاد",
       "isHolding": false,
       "fiscalYear": 1405,
       "fiscalYearEndMonth": 12,
@@ -5952,10 +5956,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1181,
-        "marketCap": 49602,
+        "currentPrice": 1327,
+        "marketCap": 55734,
         "sharesOutstanding": 42000000000,
-        "marketCapUpdatedAt": 1789276307741,
+        "marketCapUpdatedAt": 1789733015682,
         "dividendIncome": 9,
         "bankInterest": 90,
         "otherOperatingIncome": 400,
@@ -5985,7 +5989,7 @@
     "فغدیر": {
       "symbol": "فغدیر",
       "name": "",
-      "industry": "فلزات اساسی",
+      "industry": "صنعت آهن و فولاد",
       "isHolding": false,
       "fiscalYear": 1405,
       "fiscalYearEndMonth": 12,
@@ -5997,16 +6001,16 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 614,
-        "marketCap": 25788,
+        "currentPrice": 650,
+        "marketCap": 27300,
         "sharesOutstanding": 42000000000,
-        "marketCapUpdatedAt": 1788943644376
+        "marketCapUpdatedAt": 1789733015682
       }
     },
     "فسبزوار": {
       "symbol": "فسبزوار",
       "name": "",
-      "industry": "فلزات اساسی",
+      "industry": "صنعت آهن و فولاد",
       "isHolding": false,
       "fiscalYear": null,
       "fiscalYearEndMonth": 9,
@@ -6018,10 +6022,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 7860,
-        "marketCap": 31440,
+        "currentPrice": 7762,
+        "marketCap": 31048,
         "sharesOutstanding": 4000000000,
-        "marketCapUpdatedAt": 1789276307741
+        "marketCapUpdatedAt": 1789733015682
       }
     },
     "زقیام": {
@@ -6038,7 +6042,12 @@
       "dividendHistory": [],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {}
+      "manual": {
+        "currentPrice": 1102,
+        "marketCap": 7600.58134452,
+        "sharesOutstanding": 6897079260,
+        "marketCapUpdatedAt": 1789733015682
+      }
     },
     "زمگسا": {
       "symbol": "زمگسا",
@@ -6054,7 +6063,12 @@
       "dividendHistory": [],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {}
+      "manual": {
+        "currentPrice": 10012,
+        "marketCap": 3003.6,
+        "sharesOutstanding": 300000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
     },
     "زشریف": {
       "symbol": "زشریف",
@@ -6070,7 +6084,12 @@
       "dividendHistory": [],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {}
+      "manual": {
+        "currentPrice": 1938,
+        "marketCap": 4660.477206,
+        "sharesOutstanding": 2404787000,
+        "marketCapUpdatedAt": 1789733015682
+      }
     },
     "زبینا": {
       "symbol": "زبینا",
@@ -6086,7 +6105,12 @@
       "dividendHistory": [],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {}
+      "manual": {
+        "currentPrice": 1408,
+        "marketCap": 5125.163646592,
+        "sharesOutstanding": 3640030999,
+        "marketCapUpdatedAt": 1789733015682
+      }
     },
     "زفکا": {
       "symbol": "زفکا",
@@ -6102,7 +6126,12 @@
       "dividendHistory": [],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {}
+      "manual": {
+        "currentPrice": 884,
+        "marketCap": 10731.902324,
+        "sharesOutstanding": 12140161000,
+        "marketCapUpdatedAt": 1789733015682
+      }
     },
     "پاسا": {
       "symbol": "پاسا",
@@ -6118,7 +6147,12 @@
       "dividendHistory": [],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {}
+      "manual": {
+        "currentPrice": 1080,
+        "marketCap": 4644,
+        "sharesOutstanding": 4300000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
     },
     "پکرمان": {
       "symbol": "پکرمان",
@@ -6134,7 +6168,12 @@
       "dividendHistory": [],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {}
+      "manual": {
+        "currentPrice": 803,
+        "marketCap": 15813.479,
+        "sharesOutstanding": 19693000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
     },
     "پکویر": {
       "symbol": "پکویر",
@@ -6150,7 +6189,390 @@
       "dividendHistory": [],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {}
+      "manual": {
+        "currentPrice": 360,
+        "marketCap": 12120.77808,
+        "sharesOutstanding": 33668828000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "کاسپین": {
+      "symbol": "کاسپین",
+      "name": "",
+      "industry": "دارویی",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 3635,
+        "marketCap": 28861.9,
+        "sharesOutstanding": 7940000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "شبصیر": {
+      "symbol": "شبصیر",
+      "name": "",
+      "industry": "پتروشیمی",
+      "isHolding": false,
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 1586,
+        "marketCap": 15860,
+        "sharesOutstanding": 10000000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "کگهر": {
+      "symbol": "کگهر",
+      "name": "",
+      "industry": "سنگ آهن",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 9,
+      "fiscalYearEndDay": 30,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 815,
+        "marketCap": 171150,
+        "sharesOutstanding": 210000000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "سفارس": {
+      "symbol": "سفارس",
+      "name": "",
+      "industry": "هلدینگ و شرکت‌های سرمایه‌گذاری",
+      "isHolding": true,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 2753,
+        "marketCap": 55060,
+        "sharesOutstanding": 20000000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "غشاذر": {
+      "symbol": "غشاذر",
+      "name": "",
+      "industry": "محصولات لبنی",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 9,
+      "fiscalYearEndDay": 30,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 2008,
+        "marketCap": 3441.988397184,
+        "sharesOutstanding": 1714137648,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "غشصفا": {
+      "symbol": "غشصفا",
+      "name": "",
+      "industry": "محصولات لبنی",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 9,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 2685,
+        "marketCap": 5760.8286,
+        "sharesOutstanding": 2145560000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "غگلستا": {
+      "symbol": "غگلستا",
+      "name": "",
+      "industry": "محصولات لبنی",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 9,
+      "fiscalYearEndDay": 30,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 1776,
+        "marketCap": 1980.24,
+        "sharesOutstanding": 1115000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "غشان": {
+      "symbol": "غشان",
+      "name": "",
+      "industry": "محصولات لبنی",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 9,
+      "fiscalYearEndDay": 30,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 1761,
+        "marketCap": 4161.243,
+        "sharesOutstanding": 2363000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "هرمز": {
+      "symbol": "هرمز",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 477,
+        "marketCap": 66589.2,
+        "sharesOutstanding": 139600000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "کاوه": {
+      "symbol": "کاوه",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 734,
+        "marketCap": 44774,
+        "sharesOutstanding": 61000000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "سیسکو": {
+      "symbol": "سیسکو",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 9,
+      "fiscalYearEndDay": 30,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 691,
+        "marketCap": 86375,
+        "sharesOutstanding": 125000000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "فرود": {
+      "symbol": "فرود",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 960,
+        "marketCap": 5184,
+        "sharesOutstanding": 5400000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "شدوص": {
+      "symbol": "شدوص",
+      "name": "",
+      "industry": "دوده",
+      "isHolding": false,
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 736,
+        "marketCap": 4116.816,
+        "sharesOutstanding": 5593500000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "شصدف": {
+      "symbol": "شصدف",
+      "name": "",
+      "industry": "دوده",
+      "isHolding": false,
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 1917,
+        "marketCap": 3834,
+        "sharesOutstanding": 2000000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "شکربن": {
+      "symbol": "شکربن",
+      "name": "",
+      "industry": "دوده",
+      "isHolding": false,
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 882,
+        "marketCap": 5631.682896,
+        "sharesOutstanding": 6385128000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "حتاید": {
+      "symbol": "حتاید",
+      "name": "",
+      "industry": "حمل و نقل",
+      "isHolding": false,
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 875,
+        "marketCap": 19250,
+        "sharesOutstanding": 22000000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "حپارسا": {
+      "symbol": "حپارسا",
+      "name": "",
+      "industry": "حمل و نقل",
+      "isHolding": false,
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 2244,
+        "marketCap": 4263.6,
+        "sharesOutstanding": 1900000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
+    },
+    "حخزر": {
+      "symbol": "حخزر",
+      "name": "",
+      "industry": "حمل و نقل",
+      "isHolding": false,
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {
+        "currentPrice": 1013,
+        "marketCap": 15195,
+        "sharesOutstanding": 15000000000,
+        "marketCapUpdatedAt": 1789733015682
+      }
     }
   },
   "formulas": [
@@ -6448,15 +6870,15 @@
     "dollarStartOfYear": "150000",
     "avgMonthlyInflation": "6.5",
     "monthsElapsed": "5",
-    "dollarToday": "226700",
-    "goldOunceToday": "4400",
+    "dollarToday": 227900,
+    "goldOunceToday": 4392,
     "silverOunceToday": "68",
     "goldOunceYearEnd": "5000",
     "silverOunceYearEnd": "100",
     "dollarSamePriorYear": "95",
     "gold18kStartOfYear": null,
     "silverGramStartOfYear": null,
-    "gold18kMarketToday": "23623400"
+    "gold18kMarketToday": 23363000
   },
   "goldFunds": {},
   "layout": {
@@ -6507,38 +6929,18 @@
       "industryTable-دارویی": {},
       "industryTable-فلزات_ارزشمند": {},
       "industryTable-غذایی": {},
-      "industryTable-لاستیک": {}
+      "industryTable-لاستیک": {},
+      "industryTable-پتروشیمی": {},
+      "industryTable-محصولات_لبنی": {},
+      "industryTable-صنعت_آهن_و_فولاد": {},
+      "industryTable-روغن_خوراکی": {},
+      "industryTable-دوده": {}
     }
   },
   "settings": {
     "backupEmail": "jahanbakhsh.engineer@gmail.com"
   },
   "valueChains": {
-    "vc_is14ktif": {
-      "name": "لاسیتک",
-      "links": [
-        {
-          "label": "پالایش",
-          "industry": "پالایش",
-          "note": ""
-        },
-        {
-          "label": "روانکار",
-          "industry": "روانکار",
-          "note": ""
-        },
-        {
-          "label": "دوده",
-          "industry": "دوده",
-          "note": ""
-        },
-        {
-          "label": "لاستیک",
-          "industry": "لاستیک",
-          "note": ""
-        }
-      ]
-    },
     "vc_ackwb5vl": {
       "name": "فولاد",
       "links": [
@@ -6549,6 +6951,31 @@
         {
           "label": "فلزاد اساسی",
           "industry": "فلزات اساسی"
+        }
+      ]
+    },
+    "vc_9md5obdm": {
+      "name": "زنجیره لاستیک",
+      "links": [
+        {
+          "label": "پالایش",
+          "industry": "پالایش",
+          "note": "شپنا"
+        },
+        {
+          "label": "روانکار",
+          "industry": "روانکار",
+          "note": "شسپا"
+        },
+        {
+          "label": "دوده",
+          "industry": "دوده",
+          "note": "شکربن"
+        },
+        {
+          "label": "لاستیک",
+          "industry": "لاستیک",
+          "note": ""
         }
       ]
     }
