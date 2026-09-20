@@ -6402,10 +6402,42 @@ function biApplyMonthly(stock, p){
     };
   }
 }
-function biApplySheet(stock, type, item, mapping, opts, warns){
+// تاریخ انتشار به‌صورت رشته‌ی عددی قابل‌مقایسه (۱۴۰۴/۰۸/۰۵ ۱۰:۲۹:۴۱ → 14040805102941)
+function biPub(item){ return biNorm(item.publishedAt||'').replace(/\D/g,''); }
+// وضعیت حسابرسی «هر ستون» از زیرسرفصل جدول («حسابرسی شده» / «حسابرسی نشده»)؛ اگه نبود از وضعیت خود اطلاعیه
+function biColAudit(grid, ci, fallback){
+  for(let r=0; r<Math.min(grid.length,4); r++){
+    const n = biNorm(grid[r][ci]||'');
+    if(n.includes('حسابرسینشده')) return false;
+    if(n.includes('حسابرسیشده')) return true;
+  }
+  return fallback===true;
+}
+// اولویت نسخه‌ها برای یک دوره‌ی یکسان: ۱) حسابرسی‌شده  ۲) جدیدترین زمان انتشار (اصلاحیه همیشه بعد از اصل منتشر می‌شه، پس بر اصل مقدمه)  ۳) اصلاحیه بودن (فقط برای تساوی)
+// (اگه pref='newest' مورد ۱ حذف می‌شه). ستون‌های «تجدید ارائه شده» گزارش‌های بعدی هم به‌عنوان نامزد همین دوره حساب می‌شن.
+function biRank(c, pref){ return [pref==='newest'?0:(c.aud?1:0), c.pub||'', c.rev?1:0]; }
+function biGt(a, b, pref){
+  const x = biRank(a,pref), y = biRank(b,pref);
+  for(let k=0; k<3; k++){ if(x[k]!==y[k]) return x[k]>y[k]; }
+  return false;
+}
+// فروش ماهانه و تقسیم سود: برای هر دوره فقط نسخه‌ی برتر (بر همون اساس) اعمال می‌شه؛ سود و زیان/ترازنامه دست‌نخورده می‌مونن (تصمیم‌گیری در سطح ستون)
+function biBestPerPeriod(arr, pref){
+  const best = new Map(), keep = [];
+  const ri = (it)=>({aud: it.audited===true, rev: !!it.isRevision, pub: biPub(it)});
+  arr.forEach(it=>{
+    if(it.kind!=='monthly' && it.kind!=='div'){ keep.push(it); return; }
+    const k = `${it.kind}|${it.periodEnd}|${it.consolidated?1:0}`;
+    const cur = best.get(k);
+    if(!cur || biGt(ri(it), ri(cur), pref)) best.set(k, it);
+  });
+  return keep.concat([...best.values()]).sort((a,b)=>((a.periodEnd||'')+biPub(a)) < ((b.periodEnd||'')+biPub(b)) ? -1 : 1);
+}
+// ستون‌های یک گزارش → «نامزدهای» دوره‌ها (هنوز چیزی نوشته نمی‌شه)
+function biSheetCandidates(stock, type, item, mapping, opts, warns){
   const grid = parseRawGrid(item.tsv);
   const dateCols = biDateCols(grid, stockFYEndMonth(stock), opts.openingAsPrev);
-  if(!Object.keys(dateCols).length){ warns.push(`${item.symbol} ${item.periodEnd} ${BI_KIND_LABEL[type]}: ستون تاریخ پیدا نشد`); return 0; }
+  if(!Object.keys(dateCols).length){ warns.push(`${item.symbol} ${item.periodEnd} ${BI_KIND_LABEL[type]}: ستون تاریخ پیدا نشد`); return []; }
   const rows = {};
   RAW_SHEET_FIELDS[type].forEach(f=>{
     let row = mapping[f.key] ? biFindRow(grid, mapping[f.key]) : null;
@@ -6416,8 +6448,7 @@ function biApplySheet(stock, type, item, mapping, opts, warns){
     }
     rows[f.key] = row;
   });
-  stock.periods = stock.periods || [];
-  let count = 0;
+  const out = [];
   Object.entries(dateCols).forEach(([ci, d])=>{
     const vals = {};
     RAW_SHEET_FIELDS[type].forEach(f=>{
@@ -6426,12 +6457,24 @@ function biApplySheet(stock, type, item, mapping, opts, warns){
       if(v!=null) vals[f.key] = v;
     });
     if(!Object.keys(vals).length) return;
-    let entry = stock.periods.find(p=>p.fiscalYear===d.fiscalYear && p.months===d.months);
-    if(!entry){ entry = {id: uid(), fiscalYear: d.fiscalYear, months: d.months}; stock.periods.push(entry); }
-    Object.assign(entry, vals);
-    count++;
+    out.push({fy:d.fiscalYear, months:d.months, vals, aud: biColAudit(grid, +ci, item.audited), rev: !!item.isRevision, pub: biPub(item)});
   });
-  return count;
+  return out;
+}
+// نامزدها را به‌ازای هر دوره (سال مالی + طول دوره) گروه می‌کنه، برنده را بر اساس اولویت انتخاب می‌کنه و فقط همون را می‌نویسه
+function biWriteCandidates(stock, type, cands, opts, notes, sym){
+  const groups = new Map();
+  cands.forEach(c=>{ const k = c.fy+'|'+c.months; (groups.get(k) || groups.set(k, []).get(k)).push(c); });
+  stock.periods = stock.periods || [];
+  groups.forEach(arr=>{
+    let best = arr[0]; arr.forEach(c=>{ if(biGt(c, best, opts.pref)) best = c; });
+    const newest = arr.reduce((m,c)=> (c.pub>m.pub ? c : m), arr[0]);
+    if(arr.length>1 && best!==newest)
+      notes.push(`${sym} ${BI_KIND_LABEL[type]} ${toFa(best.fy)}/${toFa(best.months)}ماهه: نسخه‌ی «${best.aud?'حسابرسی‌شده':'حسابرسی‌نشده'}${best.rev?' (اصلاحیه)':''}» به نسخه‌ی جدیدتر ترجیح داده شد (از ${toFa(arr.length)} نسخه)`);
+    let entry = stock.periods.find(p=>p.fiscalYear===best.fy && p.months===best.months);
+    if(!entry){ entry = {id: uid(), fiscalYear: best.fy, months: best.months}; stock.periods.push(entry); }
+    Object.assign(entry, best.vals);
+  });
 }
 
 /* ------------------------------ تقسیم سود مجمع (ن-52) ------------------------------ */
@@ -6581,7 +6624,7 @@ function biRenderPreview(){
   const consNote = biData.meta.options.cons==='consolidated' ? 'تلفیقی' : 'اصلی';
   document.getElementById('biRoot').innerHTML = `
     <h3 style="margin-bottom:4px">پیش‌نمایش ورود دسته‌ای</h3>
-    <div style="font-size:12px; color:var(--muted); margin-bottom:8px">فایل: ${biEsc(biData.fileName)} — ${toFa(total)} مورد برای ${toFa(syms.length)} نماد — نوع صورت مالی: ${consNote}${missing?` — <span style="color:#b23a3a">${toFa(missing)} نماد در برنامه تعریف نشده و رد می‌شه</span>`:''}</div>
+    <div style="font-size:12px; color:var(--muted); margin-bottom:8px">فایل: ${biEsc(biData.fileName)} — ${toFa(total)} مورد برای ${toFa(syms.length)} نماد — نوع صورت مالی: ${consNote} — اولویت نسخه: ${(biData.meta.options&&biData.meta.options.pref)==='newest'?'جدیدترین':'حسابرسی‌شده، بعد اصلاحیه، بعد جدیدترین'}${missing?` — <span style="color:#b23a3a">${toFa(missing)} نماد در برنامه تعریف نشده و رد می‌شه</span>`:''}</div>
     <div class="table-wrap" style="max-height:220px; overflow:auto"><table style="font-size:12px"><thead><tr><th>نماد</th><th>در برنامه</th><th>فروش ماهانه</th><th>سود و زیان</th><th>ترازنامه</th><th>تقسیم سود</th><th>آخرین ماه فروش (ثبت‌شونده)</th></tr></thead><tbody>${okRows}</tbody></table></div>
     ${biMappingSection('pl')}${biMappingSection('bs')}${biDividendSection()}
     <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--line); font-size:12.5px">
@@ -6611,6 +6654,7 @@ function biRunImport(){
   const opts = {
     openingAsPrev: document.getElementById('biOpening').checked,
     skipExisting: document.getElementById('biSkipExisting').checked,
+    pref: (biData.meta.options && biData.meta.options.pref) || 'audited',
   };
   const mappings = {pl:{}, bs:{}};
   document.querySelectorAll('[data-bimap]').forEach(sel=>{
@@ -6621,12 +6665,13 @@ function biRunImport(){
   document.querySelectorAll('[data-bidiv]').forEach(sel=>{ divMap[sel.dataset.bidiv] = sel.value; });
   if(document.getElementById('biBackup').checked){ try{ biDownloadBackup(); }catch(e){ console.error(e); } }
 
-  const warns = [], stats = {monthly:0, pl:0, bs:0, div:0, skipped:0, errors:0};
+  const warns = [], notes = [], stats = {monthly:0, pl:0, bs:0, div:0, skipped:0, errors:0};
   const missingSyms = [];
   Object.keys(biData.bySymbol).forEach(sym=>{
     const stock = biFindStock(sym);
     if(!stock){ missingSyms.push(sym); return; }
-    const arr = biData.bySymbol[sym];
+    const arr = biBestPerPeriod(biData.bySymbol[sym], opts.pref);
+    const cands = {pl:[], bs:[]};
     arr.forEach(it=>{
       if(it.pageSymbol && biNorm(it.pageSymbol)!==biNorm(stock.symbol||sym)) warns.push(`${sym}: نماد داخل گزارش «${it.pageSymbol}» با نماد برنامه فرق داره (${it.periodEnd})`);
     });
@@ -6642,11 +6687,12 @@ function biRunImport(){
           const n = biApplyDividend(stock, it, divMap, warns);
           if(n) stats.div++; else stats.errors++;
         } else if(it.kind==='pl' || it.kind==='bs'){
-          const n = biApplySheet(stock, it.kind, it, mappings[it.kind], opts, warns);
-          if(n) stats[it.kind]++; else stats.errors++;
+          const c = biSheetCandidates(stock, it.kind, it, mappings[it.kind], opts, warns);
+          if(c.length){ cands[it.kind].push(...c); stats[it.kind]++; } else stats.errors++;
         }
       }catch(e){ console.error(e); warns.push(`${sym} ${it.periodEnd} ${BI_KIND_LABEL[it.kind]||it.kind}: خطا — ${e.message}`); stats.errors++; }
     });
+    ['pl','bs'].forEach(t=>{ if(cands[t].length) biWriteCandidates(stock, t, cands[t], opts, notes, sym); });
     // مثل پیست دستی: آخرین متن خام هر برگه برای سهم نگه داشته می‌شه
     stock.rawSheets = stock.rawSheets || {};
     [['monthly','monthlyActivity'],['pl','pl'],['bs','bs'],['div','dividendPaste']].forEach(([kind, key])=>{
@@ -6671,6 +6717,7 @@ function biRunImport(){
       ${stats.errors?`<br><span style="color:#b23a3a">خطا/ناقص: ${toFa(stats.errors)}</span>`:''}
       ${missingSyms.length?`<br><span style="color:#b23a3a">نمادهای تعریف‌نشده در برنامه (رد شدن): ${biEsc(missingSyms.join('، '))}</span>`:''}
     </div>
+    ${notes.length?`<div style="margin-top:10px; font-size:12px; font-weight:700">انتخاب نسخه‌ی برتر (${toFa(notes.length)}):</div><div style="max-height:120px; overflow:auto; font-size:11.5px; color:var(--muted)">${notes.slice(0,30).map(w=>`<div style="padding:2px 0; border-bottom:1px dashed var(--line)">${biEsc(w)}</div>`).join('')}</div>`:''}
     ${warns.length?`<div style="margin-top:10px; font-size:12px; font-weight:700">هشدارها (${toFa(warns.length)}):</div><div style="max-height:220px; overflow:auto; font-size:11.5px; color:var(--muted)">${shown}${warns.length>60?`<div>… و ${toFa(warns.length-60)} مورد دیگه</div>`:''}</div>`:''}
     <div class="row" style="justify-content:flex-end; margin-top:14px"><button class="btn tan" id="biClose">بستن</button></div>`;
   document.getElementById('biClose').onclick = closeModal;
