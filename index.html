@@ -6281,7 +6281,7 @@ const BI_RULES = {
     currentLiabilities:[n=>n==='جمعبدهیهایجاری'],
   },
 };
-const BI_KIND_LABEL = {monthly:'فروش ماهانه', pl:'سود و زیان', bs:'ترازنامه'};
+const BI_KIND_LABEL = {monthly:'فروش ماهانه', pl:'سود و زیان', bs:'ترازنامه', div:'تقسیم سود'};
 
 function biFindStock(sym){
   if(state.stocks[sym]) return state.stocks[sym];
@@ -6434,6 +6434,62 @@ function biApplySheet(stock, type, item, mapping, opts, warns){
   return count;
 }
 
+/* ------------------------------ تقسیم سود مجمع (ن-52) ------------------------------ */
+// هر آیتم div: {columns:[{periodEnd,label}], rows:[{key,label,values:[...]}]} — مقادیر عددی دقیق (میلیون ریال، منفی برای سود مصوب) از خود صفحه‌ی کدال.
+// به‌ازای هر سال مالی → dividendHistory.push({fiscalYear, profitEndOfPeriod, dividendApproved}) به میلیارد تومان.
+function biDivDefaults(){
+  const sv = (getRawMapping().dividendBatch) || {};
+  return {profit: sv.profit || 'NetIncomeLoss', approved: sv.approved || 'DividedRetainedEarning'};
+}
+function biDivMult(item){
+  const lab = (item.columns && item.columns[0] && item.columns[0].label) || '';
+  if(/میلیون/.test(lab)) return {mult: BI_ML_MULT, ok:true};
+  if(/ریال|ريال/.test(lab)) return {mult: 1e-10, ok:true};
+  return {mult: BI_ML_MULT, ok:false};
+}
+function biDivRow(item, key){
+  if(!item.rows) return null;
+  return item.rows.find(r=>r.key===key) || item.rows.find(r=>biNorm(r.label)===biNorm(key)) || null;
+}
+function biDivParse(item, map){
+  const col = Math.max(0, (item.columns||[]).findIndex(c=>c.periodEnd===item.periodEnd));
+  const rp = biDivRow(item, map.profit), rd = biDivRow(item, map.approved);
+  if(!rp || !rd) return {error: 'ردیف ' + (!rp ? 'سود' : 'سود سهام مصوب') + ' در گزارش پیدا نشد'};
+  const pv = rp.values[col], dv = rd.values[col];
+  if(pv==null && dv==null) return {error:'مقدار ردیف‌ها خالیه'};
+  const pe = ((item.columns||[])[col] && item.columns[col].periodEnd) || item.periodEnd || '';
+  const m = /(\d{4})\/(\d{1,2})\/(\d{1,2})/.exec(pe);
+  if(!m) return {error:'سال مالی تشخیص داده نشد'};
+  return {y:+m[1], mo:+m[2], pv, dv, mu: biDivMult(item)};
+}
+function biApplyDividend(stock, item, map, warns){
+  const p = biDivParse(item, map);
+  if(p.error){ warns.push(`${item.symbol} ${item.periodEnd} تقسیم سود: ${p.error}`); return 0; }
+  if(!p.mu.ok) warns.push(`${item.symbol} ${item.periodEnd} تقسیم سود: واحد ستون مشخص نبود؛ میلیون ریال فرض شد`);
+  const {fiscalYear} = calendarToFiscalMonth(p.y, p.mo, stockFYEndMonth(stock));
+  stock.dividendHistory = (stock.dividendHistory||[]).filter(h=>h.fiscalYear!==fiscalYear);
+  stock.dividendHistory.push({
+    fiscalYear,
+    profitEndOfPeriod: p.pv!=null ? p.pv*p.mu.mult : null,
+    dividendApproved: p.dv!=null ? Math.abs(p.dv)*p.mu.mult : null,   // در کدال منفی ثبت می‌شه؛ برنامه قدر مطلقش رو می‌خواد
+  });
+  return 1;
+}
+function biDividendSection(){
+  const items = Object.values(biData.bySymbol).flat().filter(i=>i.kind==='div' && i.rows);
+  if(!items.length) return '';
+  const opts = [], seen = new Set();
+  items.slice(0,40).forEach(i=>i.rows.forEach(r=>{ if(seen.has(r.key)) return; seen.add(r.key); opts.push({key:r.key, label:r.label}); }));
+  const d = biDivDefaults();
+  const sel = (id, cur, title, hint) => `<div class="field" style="margin-bottom:8px"><label>${title} &nbsp; <span style="color:#b35900">${hint}</span></label>
+    <select data-bidiv="${id}">${opts.map(o=>`<option value="${biEsc(o.key)}" ${o.key===cur?'selected':''}>${biEsc(o.label)} — ${biEsc(o.key)}</option>`).join('')}</select></div>`;
+  return `<div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--line)">
+    <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px">نگاشت ردیف‌های تقسیم سود (ن-۵۲)</div>
+    ${sel('profit', d.profit, 'کدوم ردیف = سود سهام پایان دوره؟ (مخرج درصد تقسیم سود)', 'پیش‌فرض: سود (زیان) خالص — بررسی کن')}
+    ${sel('approved', d.approved, 'کدوم ردیف = سود سهام مصوب تقسیمی؟', 'پیش‌فرض: سود سهام مصوب (مجمع سال جاری)')}
+  </div>`;
+}
+
 /* ------------------------------ رابط کاربری ------------------------------ */
 function openBatchImportModal(){
   biData = null;
@@ -6512,15 +6568,22 @@ function biRenderPreview(){
       last = p.error ? `<span style="color:#b23a3a">${biEsc(p.error)}</span>` : `${toFa(p.fy)}/${toFa(p.month)}: ${fmt(p.total*BI_ML_MULT)} م.ت${p.usedFallback?' <span style="color:#b35900">(بدون ردیف «جمع»)</span>':''}`;
     }
     const cons = arr.some(i=>i.consolidated) ? ' <span style="color:#b35900">تلفیقی</span>' : '';
-    okRows += `<tr><td>${biEsc(sym)}${cons}</td><td>${stock?'✅':'<span style="color:#b23a3a">در برنامه نیست</span>'}</td><td>${toFa(cnt('monthly'))}</td><td>${toFa(cnt('pl'))}</td><td>${toFa(cnt('bs'))}</td><td style="font-size:11.5px">${last}</td></tr>`;
+    const dvItems = arr.filter(i=>i.kind==='div');
+    let divCell = toFa(dvItems.length);
+    if(dvItems.length){
+      const dd = biDivDefaults(); const lastDiv = dvItems[dvItems.length-1]; const pp = biDivParse(lastDiv, dd);
+      if(pp.error) divCell += ` <span style="color:#b23a3a;font-size:11px">${biEsc(pp.error)}</span>`;
+      else if(pp.pv && pp.dv!=null) divCell += ` <span style="font-size:11px">(${toFa(pp.y)}: ${toFa(Math.round(Math.abs(pp.dv/pp.pv)*100))}٪)</span>`;
+    }
+    okRows += `<tr><td>${biEsc(sym)}${cons}</td><td>${stock?'✅':'<span style="color:#b23a3a">در برنامه نیست</span>'}</td><td>${toFa(cnt('monthly'))}</td><td>${toFa(cnt('pl'))}</td><td>${toFa(cnt('bs'))}</td><td>${divCell}</td><td style="font-size:11.5px">${last}</td></tr>`;
   });
   const total = Object.values(biData.bySymbol).flat().length;
   const consNote = biData.meta.options.cons==='consolidated' ? 'تلفیقی' : 'اصلی';
   document.getElementById('biRoot').innerHTML = `
     <h3 style="margin-bottom:4px">پیش‌نمایش ورود دسته‌ای</h3>
     <div style="font-size:12px; color:var(--muted); margin-bottom:8px">فایل: ${biEsc(biData.fileName)} — ${toFa(total)} مورد برای ${toFa(syms.length)} نماد — نوع صورت مالی: ${consNote}${missing?` — <span style="color:#b23a3a">${toFa(missing)} نماد در برنامه تعریف نشده و رد می‌شه</span>`:''}</div>
-    <div class="table-wrap" style="max-height:220px; overflow:auto"><table style="font-size:12px"><thead><tr><th>نماد</th><th>در برنامه</th><th>فروش ماهانه</th><th>سود و زیان</th><th>ترازنامه</th><th>آخرین ماه فروش (ثبت‌شونده)</th></tr></thead><tbody>${okRows}</tbody></table></div>
-    ${biMappingSection('pl')}${biMappingSection('bs')}
+    <div class="table-wrap" style="max-height:220px; overflow:auto"><table style="font-size:12px"><thead><tr><th>نماد</th><th>در برنامه</th><th>فروش ماهانه</th><th>سود و زیان</th><th>ترازنامه</th><th>تقسیم سود</th><th>آخرین ماه فروش (ثبت‌شونده)</th></tr></thead><tbody>${okRows}</tbody></table></div>
+    ${biMappingSection('pl')}${biMappingSection('bs')}${biDividendSection()}
     <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--line); font-size:12.5px">
       <label style="display:flex; gap:6px; align-items:center; margin-bottom:5px"><input type="checkbox" id="biBackup" checked> قبل از ورود، یک فایل بک‌آپ از داده‌های فعلی دانلود کن</label>
       <label style="display:flex; gap:6px; align-items:center; margin-bottom:5px"><input type="checkbox" id="biOpening" checked> ستون «اول سال مالی» ترازنامه (مثل ۱۴۰۴/۰۱/۰۱) به‌عنوان مانده‌ی پایان سال قبل ثبت بشه</label>
@@ -6554,9 +6617,11 @@ function biRunImport(){
     const [type, key] = sel.dataset.bimap.split('|');
     mappings[type][key] = sel.value || null;
   });
+  const divMap = biDivDefaults();
+  document.querySelectorAll('[data-bidiv]').forEach(sel=>{ divMap[sel.dataset.bidiv] = sel.value; });
   if(document.getElementById('biBackup').checked){ try{ biDownloadBackup(); }catch(e){ console.error(e); } }
 
-  const warns = [], stats = {monthly:0, pl:0, bs:0, skipped:0, errors:0};
+  const warns = [], stats = {monthly:0, pl:0, bs:0, div:0, skipped:0, errors:0};
   const missingSyms = [];
   Object.keys(biData.bySymbol).forEach(sym=>{
     const stock = biFindStock(sym);
@@ -6573,6 +6638,9 @@ function biRunImport(){
           if(opts.skipExisting && stock.monthlySales && stock.monthlySales[`${p.fy}-${p.month}`]!=null){ stats.skipped++; return; }
           if(p.usedFallback) warns.push(`${sym} ${toFa(p.fy)}/${toFa(p.month)} فروش ماهانه: ردیف «جمع» نبود؛ جمع داخلی+صادراتی ثبت شد`);
           biApplyMonthly(stock, p); stats.monthly++;
+        } else if(it.kind==='div'){
+          const n = biApplyDividend(stock, it, divMap, warns);
+          if(n) stats.div++; else stats.errors++;
         } else if(it.kind==='pl' || it.kind==='bs'){
           const n = biApplySheet(stock, it.kind, it, mappings[it.kind], opts, warns);
           if(n) stats[it.kind]++; else stats.errors++;
@@ -6581,7 +6649,7 @@ function biRunImport(){
     });
     // مثل پیست دستی: آخرین متن خام هر برگه برای سهم نگه داشته می‌شه
     stock.rawSheets = stock.rawSheets || {};
-    [['monthly','monthlyActivity'],['pl','pl'],['bs','bs']].forEach(([kind, key])=>{
+    [['monthly','monthlyActivity'],['pl','pl'],['bs','bs'],['div','dividendPaste']].forEach(([kind, key])=>{
       const last = arr.filter(i=>i.kind===kind).pop();
       if(last) stock.rawSheets[key] = {raw: last.tsv};
     });
@@ -6590,6 +6658,7 @@ function biRunImport(){
     const m = {}; Object.entries(mappings[t]).forEach(([k,v])=>{ if(v) m[k]=v; });
     if(Object.keys(m).length) getRawMapping()[t] = Object.assign({}, getRawMapping()[t]||{}, m);
   });
+  if(stats.div){ getRawMapping().dividendBatch = {profit: divMap.profit, approved: divMap.approved}; }
   saveState();
   renderAll();
 
@@ -6597,7 +6666,7 @@ function biRunImport(){
   document.getElementById('biRoot').innerHTML = `
     <h3 style="margin-bottom:6px">ورود دسته‌ای انجام شد ✅</h3>
     <div style="font-size:13px; line-height:1.9">
-      فروش ماهانه: <b>${toFa(stats.monthly)}</b> ماه — سود و زیان: <b>${toFa(stats.pl)}</b> گزارش — ترازنامه: <b>${toFa(stats.bs)}</b> گزارش
+      فروش ماهانه: <b>${toFa(stats.monthly)}</b> ماه — سود و زیان: <b>${toFa(stats.pl)}</b> گزارش — ترازنامه: <b>${toFa(stats.bs)}</b> گزارش — تقسیم سود: <b>${toFa(stats.div)}</b> سال
       ${stats.skipped?`<br>ردشده (از قبل ثبت‌شده): ${toFa(stats.skipped)}`:''}
       ${stats.errors?`<br><span style="color:#b23a3a">خطا/ناقص: ${toFa(stats.errors)}</span>`:''}
       ${missingSyms.length?`<br><span style="color:#b23a3a">نمادهای تعریف‌نشده در برنامه (رد شدن): ${biEsc(missingSyms.join('، '))}</span>`:''}
