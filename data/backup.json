@@ -16778,33 +16778,6 @@
           "id": "p7pq8ve3",
           "fiscalYear": 1403,
           "months": 12,
-          "sales": 666.501,
-          "cogs": -555.5906,
-          "netIncomeQ": 74.0715,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 5.1286,
-          "inventory": 67.8838,
-          "receivables": 394.88,
-          "totalAssets": 875.9807,
-          "equity": 262.8901,
-          "currentAssets": 524.6825,
-          "prepaid": 3.8104,
-          "currentLiabilities": 613.0906
-        },
-        {
-          "id": "aq5v55np",
-          "fiscalYear": 1402,
-          "months": 12,
-          "sales": 358.0248,
-          "cogs": -245.3653,
-          "netIncomeQ": 83.4858,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 7.204
-        },
-        {
-          "id": "olqdz80n",
-          "fiscalYear": 1403,
-          "months": 6,
           "sales": 880.6404,
           "cogs": -629.158,
           "netIncomeQ": 181.2496,
@@ -16819,9 +16792,87 @@
           "currentLiabilities": 354.7056
         },
         {
+          "id": "aq5v55np",
+          "fiscalYear": 1402,
+          "months": 12,
+          "sales": 698.0131,
+          "cogs": -476.7081,
+          "netIncomeQ": 192.2902,
+          "otherIncomeQ": 0,
+          "otherNonOperatingQ": 26.6304,
+          "inventory": 27.4486,
+          "receivables": 246.2342,
+          "totalAssets": 473.81,
+          "equity": 202.0455,
+          "currentAssets": 370.0472,
+          "prepaid": 2.2317,
+          "currentLiabilities": 271.7645
+        },
+        {
+          "id": "olqdz80n",
+          "fiscalYear": 1403,
+          "months": 6,
+          "sales": 358.0248,
+          "cogs": -245.3653,
+          "netIncomeQ": 83.4858,
+          "otherIncomeQ": 0,
+          "otherNonOperatingQ": 7.204,
+          "inventory": 56.3799,
+          "receivables": 251.7842,
+          "totalAssets": 658.7598,
+          "equity": 338.2191,
+          "currentAssets": 409.8647,
+          "prepaid": 45.5481,
+          "currentLiabilities": 320.5407
+        },
+        {
           "id": "qryctjrv",
           "fiscalYear": 1404,
           "months": 3,
+          "sales": 316.4773,
+          "cogs": -232.4151,
+          "netIncomeQ": 60.7581,
+          "otherIncomeQ": 0,
+          "otherNonOperatingQ": 1.6647,
+          "inventory": 44.9949,
+          "receivables": 334.5936,
+          "totalAssets": 801.614,
+          "equity": 313.1808,
+          "currentAssets": 453.2918,
+          "prepaid": 2.6726,
+          "currentLiabilities": 488.4332
+        },
+        {
+          "id": "nys3d5cl",
+          "fiscalYear": 1403,
+          "months": 3,
+          "sales": 180.4673,
+          "cogs": -122.9538,
+          "netIncomeQ": 47.7499,
+          "otherIncomeQ": 0,
+          "otherNonOperatingQ": 4.2637
+        },
+        {
+          "id": "0kwl12dn",
+          "fiscalYear": 1404,
+          "months": 6,
+          "sales": 666.501,
+          "cogs": -555.5906,
+          "netIncomeQ": 74.0715,
+          "otherIncomeQ": 0,
+          "otherNonOperatingQ": 5.1286,
+          "inventory": 67.8838,
+          "receivables": 394.88,
+          "totalAssets": 875.9807,
+          "equity": 262.8901,
+          "currentAssets": 524.6825,
+          "prepaid": 3.8104,
+          "currentLiabilities": 613.0906
+        },
+        {
+          "id": "wh2zn279",
+          "fiscalYear": 1404,
+          "months": 9,
           "sales": 1044.5918,
           "cogs": -893.5411,
           "netIncomeQ": 110.6175,
@@ -16836,19 +16887,26 @@
           "currentLiabilities": 703.6078
         },
         {
-          "id": "nys3d5cl",
+          "id": "gp35q0om",
           "fiscalYear": 1403,
-          "months": 3,
+          "months": 9,
           "sales": 590.9817,
           "cogs": -418.2018,
           "netIncomeQ": 126.2136,
           "otherIncomeQ": 0,
-          "otherNonOperatingQ": 7.8002
+          "otherNonOperatingQ": 7.8002,
+          "inventory": 75.81,
+          "receivables": 314.109,
+          "totalAssets": 740.1296,
+          "equity": 380.9469,
+          "currentAssets": 489.8297,
+          "prepaid": 46.759,
+          "currentLiabilities": 359.1827
         },
         {
-          "id": "0kwl12dn",
+          "id": "p7455wm1",
           "fiscalYear": 1404,
-          "months": 6,
+          "months": 12,
           "sales": 1356.5786,
           "cogs": -1070.2768,
           "netIncomeQ": 215.4939,
@@ -16863,9 +16921,9 @@
           "currentLiabilities": 644.2974
         },
         {
-          "id": "wh2zn279",
-          "fiscalYear": 1404,
-          "months": 9,
+          "id": "pl33hedk",
+          "fiscalYear": 1405,
+          "months": 3,
           "sales": 527.4468,
           "cogs": -402.189,
           "netIncomeQ": 98.1748,
@@ -16880,26 +16938,36 @@
           "currentLiabilities": 984.0847
         },
         {
-          "id": "gp35q0om",
-          "fiscalYear": 1403,
+          "id": "e89sx67m",
+          "fiscalYear": 1402,
           "months": 9,
-          "sales": 316.4773,
-          "cogs": -232.4151,
-          "netIncomeQ": 60.7581,
+          "inventory": 27.4486,
+          "receivables": 246.2342,
+          "totalAssets": 473.81,
+          "equity": 202.0455,
+          "currentAssets": 370.0472,
+          "prepaid": 2.2317,
+          "currentLiabilities": 271.7645,
+          "sales": 494.6442,
+          "cogs": -351.7866,
+          "netIncomeQ": 107.4227,
           "otherIncomeQ": 0,
-          "otherNonOperatingQ": 1.6647,
-          "inventory": 38.2053,
-          "receivables": 328.807,
-          "totalAssets": 725.3542,
-          "equity": 370.6486,
-          "currentAssets": 395.0477,
-          "prepaid": 8.4791,
-          "currentLiabilities": 354.7056
+          "otherNonOperatingQ": 0
         },
         {
-          "id": "p7455wm1",
-          "fiscalYear": 1404,
-          "months": 12,
+          "id": "b7inkinc",
+          "fiscalYear": 1402,
+          "months": 6,
+          "sales": 345.0415,
+          "cogs": -243.6554,
+          "netIncomeQ": 87.3703,
+          "otherIncomeQ": 0,
+          "otherNonOperatingQ": 13.5501
+        },
+        {
+          "id": "xe0qbszd",
+          "fiscalYear": 1405,
+          "months": 6,
           "sales": 1125.7124,
           "cogs": -849.8827,
           "netIncomeQ": 232.2803,
@@ -16914,9 +16982,9 @@
           "currentLiabilities": 1046.6283
         },
         {
-          "id": "pl33hedk",
+          "id": "bsefefdm",
           "fiscalYear": 1405,
-          "months": 3,
+          "months": 9,
           "sales": 1941.4161,
           "cogs": -1476.0339,
           "netIncomeQ": 372.1472,
@@ -16931,16 +16999,16 @@
           "currentLiabilities": 1326.868
         },
         {
-          "id": "e89sx67m",
-          "fiscalYear": 1402,
-          "months": 9,
-          "inventory": 27.4486,
-          "receivables": 246.2342,
-          "totalAssets": 473.81,
-          "equity": 202.0455,
-          "currentAssets": 370.0472,
-          "prepaid": 2.2317,
-          "currentLiabilities": 271.7645
+          "id": "wadjjjb6",
+          "fiscalYear": 1401,
+          "months": 12,
+          "inventory": 10.1433,
+          "receivables": 277.0879,
+          "totalAssets": 420.1079,
+          "equity": 208.8311,
+          "currentAssets": 346.7328,
+          "prepaid": 4.935,
+          "currentLiabilities": 211.2768
         }
       ],
       "monthlySales": {
@@ -16955,7 +17023,25 @@
         "1405-2": 305.1957,
         "1405-3": 240.9718,
         "1405-4": 325.3413,
-        "1405-5": 339.846
+        "1405-5": 339.846,
+        "1402-12": 56.120400000000004,
+        "1403-1": 71.4817,
+        "1403-2": 71.0399,
+        "1403-3": 80.01610000000001,
+        "1403-4": 78.5403,
+        "1403-5": 87.48150000000001,
+        "1403-6": 80.7581,
+        "1403-7": 90.6067,
+        "1403-8": 109.2538,
+        "1403-9": 100.9884,
+        "1403-10": 113.2136,
+        "1403-11": 111.8965,
+        "1403-12": 127.77470000000001,
+        "1404-1": 108.7595,
+        "1404-2": 95.0973,
+        "1404-3": 102.95710000000001,
+        "1404-4": 99.81670000000001,
+        "1404-5": 110.1156
       },
       "monthlySalesSplit": {
         "1404-6": {
@@ -17005,6 +17091,78 @@
         "1405-5": {
           "domestic": 339.846,
           "export": 0
+        },
+        "1402-12": {
+          "domestic": 56.120400000000004,
+          "export": 0
+        },
+        "1403-1": {
+          "domestic": 71.4817,
+          "export": 0
+        },
+        "1403-2": {
+          "domestic": 71.0399,
+          "export": 0
+        },
+        "1403-3": {
+          "domestic": 80.01610000000001,
+          "export": 0
+        },
+        "1403-4": {
+          "domestic": 78.5403,
+          "export": 0
+        },
+        "1403-5": {
+          "domestic": 87.48150000000001,
+          "export": 0
+        },
+        "1403-6": {
+          "domestic": 80.7581,
+          "export": 0
+        },
+        "1403-7": {
+          "domestic": 90.6067,
+          "export": 0
+        },
+        "1403-8": {
+          "domestic": 109.2538,
+          "export": 0
+        },
+        "1403-9": {
+          "domestic": 100.9884,
+          "export": 0
+        },
+        "1403-10": {
+          "domestic": 113.2136,
+          "export": 0
+        },
+        "1403-11": {
+          "domestic": 111.8965,
+          "export": 0
+        },
+        "1403-12": {
+          "domestic": 127.77470000000001,
+          "export": 0
+        },
+        "1404-1": {
+          "domestic": 108.7595,
+          "export": 0
+        },
+        "1404-2": {
+          "domestic": 95.0973,
+          "export": 0
+        },
+        "1404-3": {
+          "domestic": 102.95710000000001,
+          "export": 0
+        },
+        "1404-4": {
+          "domestic": 99.81670000000001,
+          "export": 0
+        },
+        "1404-5": {
+          "domestic": 110.1156,
+          "export": 0
         }
       },
       "dividendHistory": [
@@ -17032,7 +17190,23 @@
         "sharesOutstanding": 1900000000,
         "marketCapUpdatedAt": 1789994186340
       },
-      "monthlySalesYTD": {},
+      "monthlySalesYTD": {
+        "1403": {
+          "throughMonth": 12,
+          "currentYTD": 875.0816000000001,
+          "priorYearYTD": null
+        },
+        "1404": {
+          "throughMonth": 12,
+          "currentYTD": 1348.8266,
+          "priorYearYTD": null
+        },
+        "1405": {
+          "throughMonth": 11,
+          "currentYTD": 2606.6034,
+          "priorYearYTD": null
+        }
+      },
       "rawSheets": {
         "monthlyActivity": {
           "raw": "شرح خدمات یا فروش\tقرارد دادها\tقرارد دادها\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tتوضیحات\nشرح خدمات یا فروش\tتاریخ عقد قرارداد\tمدت قرارداد (ماه)\tدرآمد شناساسي شده از ابتداي سال مالي تا پايان دوره مالي منتهي به ۱۴۰۵/۰۴/۳۱\tاصلاحات\tدرآمد شناساسی شده از ابتدای سال مالی تا پایان دوره مالی منتهی به ۱۴۰۵/۰۴/۳۱ - اصلاح شده\tدرآمد شناساسی شده طی دوره یک ماهه منتهی به ۱۴۰۵/۰۵/۳۱\tدرآمد شناساسی شده از اول سال مالی تا پایان دوره مالی منتهی به ۱۴۰۵/۰۵/۳۱\tدرامد شناساسي شده تا پايان دوره مالي منتهي به ۱۴۰۴/۰۶/۳۱\tتوضیحات\nحمل ونقل(ساير مشتريان)\t۱۴۰۴/۰۹/۰۱\t۱۲\t۱,۱۰۷,۲۶۱\t۰\t۱,۱۰۷,۲۶۱\t۱۳۱,۷۸۵\t۱,۲۳۹,۰۴۶\t۱۱۷,۵۲۵\t\nحمل ونقل(شرکت نفت پارس)\t۱۴۰۴/۰۲/۰۱\t۰\t۲۴۳,۴۵۷\t۰\t۲۴۳,۴۵۷\t۰\t۲۴۳,۴۵۷\t۲۱۵,۴۶۷\t\nحمل ونقل(شرکت نفت ايرانول)\t\t۰\t۰\t۰\t۰\t۰\t۰\t۱۲۰,۷۶۲\t\nحمل و نقل (بهران)\t\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۱۵۸,۱۶۲\t\nحمل و نقل (شرکت سيمان آبيک)\t\t۰\t۰\t۰\t۰\t۰\t۰\t۱۲,۰۷۸\t\nحمل و نقل (شرکت پخش)\t۱۴۰۵/۰۱/۰۱\t۱۲\t۲۰,۶۷۸,۴۴۷\t۰\t۲۰,۶۷۸,۴۴۷\t۳,۱۳۲,۰۱۲\t۲۳,۸۱۰,۴۵۹\t۱۱,۹۴۱,۷۹۲\t\nصدور بارنامه (ايران گاز)\t۱۴۰۴/۱۱/۰۱\t۱۲\t۲۵۴,۴۱۹\t۰\t۲۵۴,۴۱۹\t۴۵,۹۸۱\t۳۰۰,۴۰۰\t۰\t\nساير\t۱۴۰۵/۰۱/۰۱\t۰\t۳۲,۴۶۵\t۰\t۳۲,۴۶۵\t۰\t۳۲,۴۶۵\t۰\t\nحمل ونقل(شرکت توسعه صنايع بهشهر)\t\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t\nشرکت جاويدکيا(حمل ونقل)\t۱۴۰۵/۰۴/۰۱\t۰\t۳۵۱,۵۲۵\t۰\t۳۵۱,۵۲۵\t۸۸,۶۸۲\t۴۴۰,۲۰۷\t۰\t\nجمع\t\t۰\t۲۲,۶۶۷,۵۷۴\t۰\t۲۲,۶۶۷,۵۷۴\t۳,۳۹۸,۴۶۰\t۲۶,۰۶۶,۰۳۴\t۱۳,۵۶۵,۷۸۶\t"
