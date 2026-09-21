@@ -1945,33 +1945,6 @@
           "currentLiabilities": 68799.9226
         },
         {
-          "id": "zgj4yaxr",
-          "fiscalYear": 1402,
-          "months": 9,
-          "sales": 48015.0128,
-          "cogs": -38575.208,
-          "netIncomeQ": 9387.9206,
-          "otherIncomeQ": 286.0776,
-          "otherNonOperatingQ": 5044.1888
-        },
-        {
-          "id": "784obidg",
-          "fiscalYear": 1402,
-          "months": 12,
-          "sales": 68560.0359,
-          "cogs": -49469.9107,
-          "netIncomeQ": 18090.7471,
-          "otherIncomeQ": 833.1514,
-          "otherNonOperatingQ": 6356.5745,
-          "inventory": 18154.0215,
-          "receivables": 37986.3377,
-          "totalAssets": 122809.6248,
-          "equity": 58099.5401,
-          "currentAssets": 58584.4301,
-          "prepaid": 1558.6871,
-          "currentLiabilities": 57172.204
-        },
-        {
           "id": "a7w6hc2q",
           "fiscalYear": 1404,
           "months": 3,
@@ -2111,30 +2084,6 @@
           "cogsSamePriorPeriod": -20891.2368,
           "salesLastFullYear": 95887.2945,
           "cogsLastFullYear": -72659.6391
-        },
-        {
-          "id": "gkdy8rzv",
-          "fiscalYear": 1402,
-          "months": 3,
-          "inventory": 11751.3188,
-          "receivables": 31475.3801,
-          "totalAssets": 86666.9378,
-          "equity": 46137.2931,
-          "currentAssets": 44910.08,
-          "prepaid": 642.2843,
-          "currentLiabilities": 31870.1281
-        },
-        {
-          "id": "xm49o79p",
-          "fiscalYear": 1401,
-          "months": 12,
-          "inventory": 11751.3188,
-          "receivables": 31475.3801,
-          "totalAssets": 86666.9378,
-          "equity": 46137.2931,
-          "currentAssets": 44910.08,
-          "prepaid": 642.2843,
-          "currentLiabilities": 31870.1281
         }
       ],
       "monthlySales": {
@@ -5848,110 +5797,6 @@
       "fiscalYearEndDay": 29,
       "periods": [
         {
-          "id": "2zbp8mit",
-          "fiscalYear": 1398,
-          "months": 12,
-          "inventory": 4.6068,
-          "receivables": 17.3425,
-          "totalAssets": 52.7402,
-          "equity": 44.6476,
-          "currentAssets": 35.2562,
-          "prepaid": 12.0109,
-          "currentLiabilities": 8.0926
-        },
-        {
-          "id": "rat59exo",
-          "fiscalYear": 1397,
-          "months": 12,
-          "inventory": 2.9803,
-          "receivables": 8.271,
-          "totalAssets": 37.5539,
-          "equity": 31.7667,
-          "currentAssets": 28.2912,
-          "prepaid": 9.6367,
-          "currentLiabilities": 5.7872
-        },
-        {
-          "id": "gyvcetex",
-          "fiscalYear": 1396,
-          "months": 12,
-          "inventory": 2.9485,
-          "receivables": 12.223,
-          "totalAssets": 24.971,
-          "equity": 24.053,
-          "currentAssets": 17.2353,
-          "prepaid": 1.7076,
-          "currentLiabilities": 0.918
-        },
-        {
-          "id": "gyvsffpz",
-          "fiscalYear": 1399,
-          "months": 12,
-          "inventory": 5.2608,
-          "receivables": 36.9018,
-          "totalAssets": 143.8538,
-          "equity": 119.5792,
-          "currentAssets": 92.1008,
-          "prepaid": 41.5429,
-          "currentLiabilities": 24.2746
-        },
-        {
-          "id": "n8hoysca",
-          "fiscalYear": 1402,
-          "months": 9,
-          "inventory": 17.171,
-          "receivables": 305.1224,
-          "totalAssets": 541.5025,
-          "equity": 419.783,
-          "currentAssets": 364.2713,
-          "prepaid": 27.0768,
-          "currentLiabilities": 121.7195,
-          "sales": 638.8719,
-          "cogs": -421.0333,
-          "netIncomeQ": 206.7666,
-          "otherIncomeQ": 0.0167,
-          "otherNonOperatingQ": 0.2966
-        },
-        {
-          "id": "luo3tm40",
-          "fiscalYear": 1401,
-          "months": 12,
-          "inventory": 13.9887,
-          "receivables": 133.0628,
-          "totalAssets": 424.0483,
-          "equity": 323.5166,
-          "currentAssets": 253.0549,
-          "prepaid": 46.549,
-          "currentLiabilities": 100.5317,
-          "sales": 718.5902,
-          "cogs": -428.6129,
-          "netIncomeQ": 254.2197,
-          "otherIncomeQ": 0.7402,
-          "otherNonOperatingQ": 2.5102
-        },
-        {
-          "id": "ocjom55a",
-          "fiscalYear": 1400,
-          "months": 12,
-          "inventory": 12.2548,
-          "receivables": 53.9889,
-          "totalAssets": 243.2887,
-          "equity": 210.2969,
-          "currentAssets": 104.882,
-          "prepaid": 22.6976,
-          "currentLiabilities": 32.9918
-        },
-        {
-          "id": "p6wi2gc3",
-          "fiscalYear": 1401,
-          "months": 9,
-          "sales": 519.6085,
-          "cogs": -292.6487,
-          "netIncomeQ": 199.4423,
-          "otherIncomeQ": 0.6791,
-          "otherNonOperatingQ": 2.4747
-        },
-        {
           "id": "hi81hr7b",
           "fiscalYear": 1403,
           "months": 3,
@@ -5969,33 +5814,6 @@
           "otherNonOperatingQ": 10.0019
         },
         {
-          "id": "rmjqxrn7",
-          "fiscalYear": 1402,
-          "months": 12,
-          "inventory": 23.235,
-          "receivables": 327.8873,
-          "totalAssets": 644.6307,
-          "equity": 550.6082,
-          "currentAssets": 449.4003,
-          "prepaid": 94.6188,
-          "currentLiabilities": 94.0225,
-          "sales": 850.6998,
-          "cogs": -571.2825,
-          "netIncomeQ": 337.0916,
-          "otherIncomeQ": 0.0214,
-          "otherNonOperatingQ": 94.4413
-        },
-        {
-          "id": "xdcy2wff",
-          "fiscalYear": 1402,
-          "months": 3,
-          "sales": 189.3664,
-          "cogs": -117.9781,
-          "netIncomeQ": 69.9104,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 0.1363
-        },
-        {
           "id": "1t39slzu",
           "fiscalYear": 1403,
           "months": 6,
@@ -6011,16 +5829,6 @@
           "netIncomeQ": 95.521,
           "otherIncomeQ": 0.0369,
           "otherNonOperatingQ": 1.2882
-        },
-        {
-          "id": "3hw591od",
-          "fiscalYear": 1402,
-          "months": 6,
-          "sales": 390.4713,
-          "cogs": -254.6998,
-          "netIncomeQ": 127.0851,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 0.201
         },
         {
           "id": "aqgxvap5",
@@ -17188,7 +16996,12 @@
         "currentPrice": 2089,
         "marketCap": 3969.1,
         "sharesOutstanding": 1900000000,
-        "marketCapUpdatedAt": 1789994186340
+        "marketCapUpdatedAt": 1789994186340,
+        "dividendIncome": null,
+        "bankInterest": 25,
+        "otherOperatingIncome": null,
+        "otherNonOperatingIncome": 8,
+        "estimatedAnnualSalesOverride": null
       },
       "monthlySalesYTD": {
         "1403": {
@@ -17220,7 +17033,8 @@
         "dividendPaste": {
           "raw": "شرح\tسال منتهی به 1404/06/31 (میلیون ريال)\nسود (زیان) خالص\t2,154,939\nسود (زیان) انباشته ابتدای دوره\t1,820,158\nتعدیلات سنواتی\t0\nسود (زیان) انباشته ابتدای دوره تعدیل‌شده\t1,820,158\nسود سهام مصوب (مجمع سال قبل)\t(1,818,300)\nتغییرات سرمایه از محل سود (زیان) انباشته\t0\nسود انباشته ابتدای دوره تخصیص نیافته\t1,858\nانتقال از سایر اقلام حقوق صاحبان سهام\t0\nسود قابل تخصیص\t2,156,797\nانتقال به اندوخته‌ قانونی\t(68,398)\nانتقال به سایر اندوخته‌ها\t0\nسود (زیان) انباشته پايان دوره\t2,088,399\nسود سهام مصوب (مجمع سال جاری)\t(2,004,500)\nسود (زیان) انباشته پایان دوره (با لحاظ نمودن مصوبات مجمع)\t83,899\nسود (زیان) خالص هر سهم- ریال\t1,134\nسود نقدی هر سهم (ریال)\t1,055\nسرمایه\t1,900,000"
         }
-      }
+      },
+      "useTTMMargin": false
     },
     "حخزر": {
       "symbol": "حخزر",
