@@ -16771,8 +16771,8 @@
       "industry": "حمل و نقل",
       "isHolding": false,
       "fiscalYear": 1405,
-      "fiscalYearEndMonth": 12,
-      "fiscalYearEndDay": 29,
+      "fiscalYearEndMonth": 6,
+      "fiscalYearEndDay": 31,
       "periods": [
         {
           "id": "p7pq8ve3",
@@ -17032,18 +17032,7 @@
         "sharesOutstanding": 1900000000,
         "marketCapUpdatedAt": 1789994186340
       },
-      "monthlySalesYTD": {
-        "1404": {
-          "throughMonth": 12,
-          "currentYTD": 1124.8975,
-          "priorYearYTD": null
-        },
-        "1405": {
-          "throughMonth": 5,
-          "currentYTD": 2606.6034,
-          "priorYearYTD": null
-        }
-      },
+      "monthlySalesYTD": {},
       "rawSheets": {
         "monthlyActivity": {
           "raw": "شرح خدمات یا فروش\tقرارد دادها\tقرارد دادها\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tدرآمد شناسایی شده\tتوضیحات\nشرح خدمات یا فروش\tتاریخ عقد قرارداد\tمدت قرارداد (ماه)\tدرآمد شناساسي شده از ابتداي سال مالي تا پايان دوره مالي منتهي به ۱۴۰۵/۰۴/۳۱\tاصلاحات\tدرآمد شناساسی شده از ابتدای سال مالی تا پایان دوره مالی منتهی به ۱۴۰۵/۰۴/۳۱ - اصلاح شده\tدرآمد شناساسی شده طی دوره یک ماهه منتهی به ۱۴۰۵/۰۵/۳۱\tدرآمد شناساسی شده از اول سال مالی تا پایان دوره مالی منتهی به ۱۴۰۵/۰۵/۳۱\tدرامد شناساسي شده تا پايان دوره مالي منتهي به ۱۴۰۴/۰۶/۳۱\tتوضیحات\nحمل ونقل(ساير مشتريان)\t۱۴۰۴/۰۹/۰۱\t۱۲\t۱,۱۰۷,۲۶۱\t۰\t۱,۱۰۷,۲۶۱\t۱۳۱,۷۸۵\t۱,۲۳۹,۰۴۶\t۱۱۷,۵۲۵\t\nحمل ونقل(شرکت نفت پارس)\t۱۴۰۴/۰۲/۰۱\t۰\t۲۴۳,۴۵۷\t۰\t۲۴۳,۴۵۷\t۰\t۲۴۳,۴۵۷\t۲۱۵,۴۶۷\t\nحمل ونقل(شرکت نفت ايرانول)\t\t۰\t۰\t۰\t۰\t۰\t۰\t۱۲۰,۷۶۲\t\nحمل و نقل (بهران)\t\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۱۵۸,۱۶۲\t\nحمل و نقل (شرکت سيمان آبيک)\t\t۰\t۰\t۰\t۰\t۰\t۰\t۱۲,۰۷۸\t\nحمل و نقل (شرکت پخش)\t۱۴۰۵/۰۱/۰۱\t۱۲\t۲۰,۶۷۸,۴۴۷\t۰\t۲۰,۶۷۸,۴۴۷\t۳,۱۳۲,۰۱۲\t۲۳,۸۱۰,۴۵۹\t۱۱,۹۴۱,۷۹۲\t\nصدور بارنامه (ايران گاز)\t۱۴۰۴/۱۱/۰۱\t۱۲\t۲۵۴,۴۱۹\t۰\t۲۵۴,۴۱۹\t۴۵,۹۸۱\t۳۰۰,۴۰۰\t۰\t\nساير\t۱۴۰۵/۰۱/۰۱\t۰\t۳۲,۴۶۵\t۰\t۳۲,۴۶۵\t۰\t۳۲,۴۶۵\t۰\t\nحمل ونقل(شرکت توسعه صنايع بهشهر)\t\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t\nشرکت جاويدکيا(حمل ونقل)\t۱۴۰۵/۰۴/۰۱\t۰\t۳۵۱,۵۲۵\t۰\t۳۵۱,۵۲۵\t۸۸,۶۸۲\t۴۴۰,۲۰۷\t۰\t\nجمع\t\t۰\t۲۲,۶۶۷,۵۷۴\t۰\t۲۲,۶۶۷,۵۷۴\t۳,۳۹۸,۴۶۰\t۲۶,۰۶۶,۰۳۴\t۱۳,۵۶۵,۷۸۶\t"
@@ -18298,25 +18287,31 @@
     }
   },
   "valueChainWeights": {
-    "peF": 40,
-    "pdRatio": 30,
+    "peF": 60,
+    "pdRatio": 15,
     "pbRatio": 5,
-    "margin": 15,
-    "salesGrowth": 10,
-    "receivablesRatio": 5
+    "margin": 5,
+    "salesGrowth": 5,
+    "receivablesRatio": 5,
+    "qMargin": 5,
+    "quickRatio": 5
   },
   "valueChainSelectedKeys": [
     "margin",
     "salesGrowth",
+    "qMargin",
     "peF",
     "pdRatio",
-    "receivablesRatio"
+    "receivablesRatio",
+    "quickRatio"
   ],
   "valueChainDirections": {
     "margin": false,
     "salesGrowth": false,
     "peF": true,
     "pdRatio": true,
-    "receivablesRatio": true
+    "receivablesRatio": true,
+    "qMargin": false,
+    "quickRatio": false
   }
 }
