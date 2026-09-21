@@ -6822,6 +6822,49 @@ function biRunImport(){
   document.getElementById('biClose').onclick = closeModal;
   showToast('ورود دسته‌ای از کدال انجام شد');
 }
+/* ===================== رفع خطای «دریافت از گیت‌هاب» برای فایل‌های بزرگ‌تر از ۱ مگابایت =====================
+   ذخیره در گیت‌هاب با Git Blobs API انجام می‌شه (تا ۱۰۰ مگابایت مشکلی نداره) ولی دریافت با Contents API بود که برای فایل بزرگ‌تر از ۱ مگابایت
+   فیلد content رو خالی می‌فرسته (encoding: none) و JSON.parse روی رشته‌ی خالی خطا می‌داد. با ورود دسته‌ای داده‌ها بزرگ‌تر از ۱ مگابایت شدن.
+   این تعریف بعد از تعریف اصلی می‌آد و جایگزینش می‌شه (بقیه‌ی رفتار عین قبل). اگه ghPull اصلی رو خودت اصلاح کردی می‌تونی این بلوک رو حذف کنی. */
+async function ghPull(){
+  const cfg = getGhConfig();
+  if(!cfg.owner || !cfg.repo || !cfg.token) return showToast('اول تنظیمات گیت‌هاب رو کامل کن و ذخیره کن');
+  if(!confirm('اطلاعات فعلی این مرورگر با نسخه‌ی گیت‌هاب جایگزین می‌شه. مطمئنی؟')) return;
+  const path = cfg.path || 'data/backup.json';
+  const branch = cfg.branch || 'main';
+  showToast('در حال دریافت از گیت‌هاب...');
+  try{
+    const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(branch)}`;
+    // Accept=raw: خودِ فایل مستقیم برمی‌گرده (تا ۱۰۰ مگابایت)، نه پاسخ JSON با محتوای base64
+    const res = await fetch(url, { headers: Object.assign({}, ghHeaders(cfg.token), {'Accept':'application/vnd.github.raw+json'}) });
+    if(res.status===404) throw new Error('هنوز فایلی توی این مسیر ذخیره نشده — اول یه‌بار «ذخیره در گیت‌هاب» بزن');
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      throw new Error(err.message || ('خطای گیت‌هاب: ' + res.status));
+    }
+    const txt = await res.text();
+    let parsed;
+    try{ parsed = JSON.parse(txt); }catch(e){ throw new Error('محتوای فایل گیت‌هاب JSON معتبر نیست (' + e.message + ') — اندازه‌ی دریافت‌شده: ' + txt.length + ' نویسه'); }
+    // اگه پاسخ ساختار قدیمی Contents API بود (content به‌صورت base64 یا encoding: none)
+    if(parsed && !parsed.stocks && typeof parsed.encoding==='string'){
+      if(parsed.encoding==='base64' && parsed.content) parsed = JSON.parse(base64ToUtf8(parsed.content));
+      else if(parsed.git_url){
+        const br = await fetch(parsed.git_url, { headers: ghHeaders(cfg.token) });
+        if(!br.ok) throw new Error('خطای گیت‌هاب: ' + br.status);
+        parsed = JSON.parse(base64ToUtf8((await br.json()).content));
+      }
+    }
+    if(!parsed || typeof parsed!=='object' || !parsed.stocks) throw new Error('این فایل ساختار بک‌آپ برنامه (stocks) رو نداره؛ چیزی جایگزین نشد');
+    state = parsed;
+    saveState();
+    cfg.lastSync = new Date().toISOString();
+    saveGhConfig(cfg);
+    showToast('اطلاعات از گیت‌هاب بازیابی شد ✅');
+    renderAll();
+  }catch(e){
+    showToast('خطا در دریافت از گیت‌هاب: ' + e.message);
+  }
+}
 (function(){
   const b = document.getElementById('openBatchImportBtn');
   if(b) b.onclick = openBatchImportModal;
