@@ -6638,11 +6638,36 @@ function openBatchImportModal(){
   mo.observe(ov, {attributes:true, attributeFilter:['class']});
   biRenderPick();
 }
+// داده‌ی خروجی افزونه (codal-batch/1) را به ساختار داخلی تبدیل می‌کنه (هم از فایل، هم دریافت مستقیم، هم گیت‌هاب)
+function biIngestPayload(j, fileName){
+  if(!j || j.schema!==BI_SCHEMA || !Array.isArray(j.items)) throw new Error('این داده خروجی افزونه (codal-batch/1) نیست');
+  const bySymbol = {};
+  j.items.forEach(it=>{ (bySymbol[it.symbol] = bySymbol[it.symbol] || []).push(it); });
+  Object.values(bySymbol).forEach(arr=>arr.sort((a,b)=>((a.periodEnd||'')+(a.publishedAt||'')) < ((b.periodEnd||'')+(b.publishedAt||'')) ? -1 : 1));
+  biData = {meta:{createdAt:j.createdAt, options:j.options||{}}, bySymbol, fileName: fileName||'دریافت مستقیم'};
+}
+// مسیر فایل ورود در گیت‌هاب: کنار فایل بک‌آپ برنامه (همون پوشه)، با نام codal-batch.json
+function biGhBatchPath(cfg){ return ((cfg.path||'data/backup.json').replace(/[^\/]*$/,'')) + 'codal-batch.json'; }
+async function biPullFromGithub(){
+  const cfg = getGhConfig();
+  if(!cfg.owner || !cfg.repo || !cfg.token) return showToast('اول تنظیمات گیت‌هاب رو کامل کن و ذخیره کن');
+  const path = biGhBatchPath(cfg), branch = cfg.branch || 'main';
+  showToast('در حال دریافت فایل ورود از گیت‌هاب...');
+  try{
+    const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path.split('/').map(encodeURIComponent).join('/')}?ref=${encodeURIComponent(branch)}`;
+    const res = await fetch(url, { headers: Object.assign({}, ghHeaders(cfg.token), {'Accept':'application/vnd.github.raw+json'}) });
+    if(res.status===404) throw new Error('فایل «'+path+'» هنوز تو گیت‌هاب نیست — از افزونه «آپلود فایل ورود در گیت‌هاب» رو بزن');
+    if(!res.ok) throw new Error(((await res.json().catch(()=>({}))).message) || ('خطای گیت‌هاب: '+res.status));
+    biIngestPayload(JSON.parse(await res.text()), 'گیت‌هاب: '+path);
+    biRenderPreview();
+  }catch(e){ showToast('خطا در دریافت از گیت‌هاب: '+e.message); }
+}
 function biRenderPick(){
   document.getElementById('biRoot').innerHTML = `
     <h3 style="margin-bottom:4px">ورود دسته‌ای از اکستنشن کدال</h3>
     <div style="font-size:12px; color:var(--muted); margin-bottom:12px">فایل JSON ساخته‌شده توسط اکستنشن «جمع‌آوری دسته‌ای کدال» رو انتخاب کن. قبل از ورود، پیش‌نمایش و نگاشت ردیف‌ها رو می‌بینی.</div>
     <input type="file" id="biFile" accept=".json,application/json">
+    <div style="margin-top:8px"><button class="btn secondary" id="biPullGh">دریافت فایل ورود از گیت‌هاب</button> <span style="font-size:11.5px; color:var(--muted)">(بعد از «آپلود فایل ورود در گیت‌هاب» تو افزونه)</span></div>
     <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--line); font-size:12px; color:var(--muted)">برای ابزار جمع‌آوری کدال (نسخه‌ی بدون اکستنشن): فهرست نمادهای برنامه رو کپی کن و توی پنل ابزار پیست کن.
       <div style="margin-top:6px"><button class="btn secondary" id="biCopySyms">کپی فهرست نمادها</button></div></div>
     <div class="row" style="justify-content:flex-end; margin-top:14px"><button class="btn secondary" id="biCancel">بستن</button></div>`;
@@ -6653,23 +6678,18 @@ function biRenderPick(){
     if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(()=>showToast('فهرست نمادها کپی شد'), fallback); }
     else fallback();
   };
+  document.getElementById('biPullGh').onclick = biPullFromGithub;
   document.getElementById('biFile').onchange = (e)=>{
     const f = e.target.files[0]; if(!f) return;
     const rd = new FileReader();
     rd.onload = ()=>{
-      try{
-        const j = JSON.parse(rd.result);
-        if(!j || j.schema!==BI_SCHEMA || !Array.isArray(j.items)) throw new Error('این فایل خروجی اکستنشن (codal-batch/1) نیست');
-        const bySymbol = {};
-        j.items.forEach(it=>{ (bySymbol[it.symbol] = bySymbol[it.symbol] || []).push(it); });
-        Object.values(bySymbol).forEach(arr=>arr.sort((a,b)=>((a.periodEnd||'')+(a.publishedAt||'')) < ((b.periodEnd||'')+(b.publishedAt||'')) ? -1 : 1));
-        biData = {meta:{createdAt:j.createdAt, options:j.options||{}}, bySymbol, fileName:f.name};
-        biRenderPreview();
-      }catch(err){ showToast('خطا در خواندن فایل: '+err.message); }
+      try{ biIngestPayload(JSON.parse(rd.result), f.name); biRenderPreview(); }
+      catch(err){ showToast('خطا در خواندن فایل: '+err.message); }
     };
     rd.readAsText(f);
   };
 }
+
 function biMappingSection(type){
   const items = Object.values(biData.bySymbol).flat().filter(i=>i.kind===type);
   if(!items.length) return '';
@@ -6822,6 +6842,33 @@ function biRunImport(){
   document.getElementById('biClose').onclick = closeModal;
   showToast('ورود دسته‌ای از کدال انجام شد');
 }
+/* ===================== دریافت مستقیم از افزونه / ابزار کدال =====================
+   افزونه با window.biReceivePayload(payload, opts) داده رو مستقیم تو همین تب می‌ریزه (بدون فایل)؛ ابزار بدون‌نصب (بوکمارکلت) هم با postMessage.
+   opts.auto=true → بدون پیش‌نمایش وارد می‌کنه؛ opts.backup=false → بک‌آپ محلی نگیره؛ opts.push=true → بعد از ورود «ذخیره در گیت‌هاب» برنامه هم اجرا بشه. */
+window.biReceivePayload = function(payload, opts){
+  opts = opts || {};
+  try{
+    openBatchImportModal();
+    biIngestPayload(payload, opts.source || 'دریافت مستقیم');
+    biRenderPreview();
+    if(opts.auto){
+      const bk = document.getElementById('biBackup'); if(bk) bk.checked = opts.backup!==false;
+      biRunImport();
+      if(opts.push && typeof ghPush==='function'){ try{ ghPush(); }catch(e){ console.error(e); } }
+    } else showToast('داده دریافت شد — پیش‌نمایش رو بررسی کن و «وارد کردن همه» رو بزن');
+    return {ok:true, items: payload.items.length, auto: !!opts.auto};
+  }catch(e){ showToast('خطا در دریافت داده: '+e.message); return {ok:false, error:e.message}; }
+};
+// ابزار بدون‌نصب روی codal.ir: فقط از origin کدال و فقط برای پیش‌نمایش (ورود خودکار از این مسیر پذیرفته نمی‌شه)
+window.addEventListener('message', ev=>{
+  try{
+    if(!/^https:\/\/(www\.)?codal\.ir$/.test(ev.origin)) return;
+    const d = ev.data;
+    if(d && d.type==='codal-batch:payload') window.biReceivePayload(d.payload, {source:'ابزار کدال'});
+  }catch(e){ console.error(e); }
+});
+if(window.opener){ try{ window.opener.postMessage({type:'codal-batch:ready'}, '*'); }catch(e){} }
+
 /* ===================== رفع خطای «دریافت از گیت‌هاب» برای فایل‌های بزرگ‌تر از ۱ مگابایت =====================
    ذخیره در گیت‌هاب با Git Blobs API انجام می‌شه (تا ۱۰۰ مگابایت مشکلی نداره) ولی دریافت با Contents API بود که برای فایل بزرگ‌تر از ۱ مگابایت
    فیلد content رو خالی می‌فرسته (encoding: none) و JSON.parse روی رشته‌ی خالی خطا می‌داد. با ورود دسته‌ای داده‌ها بزرگ‌تر از ۱ مگابایت شدن.
