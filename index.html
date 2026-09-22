@@ -6286,6 +6286,10 @@ window.addEventListener('resize', ()=>{
 renderAll();
 tryAutoReconnectLocalFile();
 
+// رفع حدس نادرست «تطبیق سود تقسیمی» دستی (پیست خام مجمع): مخرج پیش‌فرض باید «سود قابل تخصیص» باشه، نه اولین ردیف جدول
+// (این خط فقط کلیدواژه‌ی حدسِ همون فیلد رو عوض می‌کنه؛ FIELD_KEYWORDS و بقیه‌ی برنامه دست‌نخورده می‌مونن)
+if (typeof FIELD_KEYWORDS !== 'undefined') FIELD_KEYWORDS.profitEndOfPeriod = ['سود قابل تخصیص', 'سود سهام پایان دوره', 'سود پایان دوره', 'سود هر سهم'];
+
 /* ========================= ورود دسته‌ای از اکستنشن کدال ========================= */
 // فایل JSON اکستنشن «جمع‌آوری دسته‌ای کدال» (شِمای codal-batch/1) رو می‌خونه و با همون منطق پیست دستی
 // (گزارش فعالیت ماهانه، سود و زیان، ترازنامه) داخل سهم‌های برنامه وارد می‌کنه.
@@ -6576,7 +6580,9 @@ function biWriteCandidates(stock, type, cands, opts, notes, sym){
 // به‌ازای هر سال مالی → dividendHistory.push({fiscalYear, profitEndOfPeriod, dividendApproved}) به میلیارد تومان.
 function biDivDefaults(){
   const sv = (getRawMapping().dividendBatch) || {};
-  return {profit: sv.profit || 'NetIncomeLoss', approved: sv.approved || 'DividedRetainedEarning'};
+  // مخرج درصد تقسیم سود = «سود قابل تخصیص» (ProportionableRetainedEarnings)، نه سود خالص و نه سود انباشته پایان دوره
+  // (که بعد از کسر سود مصوب همون سال به‌دست میاد و مخرج درستی برای محاسبه‌ی درصد تقسیم نیست)
+  return {profit: sv.profit || 'ProportionableRetainedEarnings', approved: sv.approved || 'DividedRetainedEarning'};
 }
 function biDivMult(item){
   const lab = (item.columns && item.columns[0] && item.columns[0].label) || '';
@@ -6618,11 +6624,11 @@ function biDividendSection(){
   const opts = [], seen = new Set();
   items.slice(0,40).forEach(i=>i.rows.forEach(r=>{ if(seen.has(r.key)) return; seen.add(r.key); opts.push({key:r.key, label:r.label}); }));
   const d = biDivDefaults();
-  const sel = (id, cur, title, hint) => `<div class="field" style="margin-bottom:8px"><label>${title} &nbsp; <span style="color:#b35900">${hint}</span></label>
+  const sel = (id, cur, title, hint) => `<div class="field" style="margin-bottom:8px"><label>${title} &nbsp; <span style="color:#1f7a4d">${hint}</span></label>
     <select data-bidiv="${id}">${opts.map(o=>`<option value="${biEsc(o.key)}" ${o.key===cur?'selected':''}>${biEsc(o.label)} — ${biEsc(o.key)}</option>`).join('')}</select></div>`;
   return `<div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--line)">
     <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px">نگاشت ردیف‌های تقسیم سود (ن-۵۲)</div>
-    ${sel('profit', d.profit, 'کدوم ردیف = سود سهام پایان دوره؟ (مخرج درصد تقسیم سود)', 'پیش‌فرض: سود (زیان) خالص — بررسی کن')}
+    ${sel('profit', d.profit, 'کدوم ردیف = مخرج درصد تقسیم سود؟', 'پیش‌فرض: سود قابل تخصیص')}
     ${sel('approved', d.approved, 'کدوم ردیف = سود سهام مصوب تقسیمی؟', 'پیش‌فرض: سود سهام مصوب (مجمع سال جاری)')}
   </div>`;
 }
