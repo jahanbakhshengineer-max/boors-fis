@@ -7911,67 +7911,6 @@
       "fiscalYearEndDay": 30,
       "periods": [
         {
-          "id": "9du1pgox",
-          "fiscalYear": 1402,
-          "months": 9,
-          "sales": 6455.3904,
-          "cogs": -3312.8521,
-          "netIncomeQ": 3117.4072,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 64.4275,
-          "inventory": 1174.6845,
-          "receivables": 1667.094,
-          "totalAssets": 4767.3094,
-          "equity": 4037.489,
-          "currentAssets": 3662.7419,
-          "prepaid": 634.2587,
-          "currentLiabilities": 661.8662
-        },
-        {
-          "id": "x98fo251",
-          "fiscalYear": 1401,
-          "months": 9,
-          "sales": 4048.5745,
-          "cogs": -3072.5281,
-          "netIncomeQ": 969.9346,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 62.3975
-        },
-        {
-          "id": "8qswig9c",
-          "fiscalYear": 1401,
-          "months": 12,
-          "sales": 5761.1644,
-          "cogs": -4266.2793,
-          "netIncomeQ": 1432.3796,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 56.7754,
-          "inventory": 1001.6817,
-          "receivables": 323.2489,
-          "totalAssets": 3711.5793,
-          "equity": 2204.4295,
-          "currentAssets": 2644.6078,
-          "prepaid": 527.806,
-          "currentLiabilities": 1440.386
-        },
-        {
-          "id": "4n64xrcj",
-          "fiscalYear": 1402,
-          "months": 12,
-          "sales": 9333.2549,
-          "cogs": -5068.1272,
-          "netIncomeQ": 4192.4033,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 66.5547,
-          "inventory": 1344.7026,
-          "receivables": 952.2787,
-          "totalAssets": 5772.356,
-          "equity": 5116.3607,
-          "currentAssets": 4688.3447,
-          "prepaid": 1440.4338,
-          "currentLiabilities": 587.7314
-        },
-        {
           "id": "lrsb12u4",
           "fiscalYear": 1403,
           "months": 3,
@@ -7989,16 +7928,6 @@
           "currentLiabilities": 3732.4862
         },
         {
-          "id": "c3wun779",
-          "fiscalYear": 1402,
-          "months": 3,
-          "sales": 729.171,
-          "cogs": -366.5212,
-          "netIncomeQ": 361.445,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 26.9666
-        },
-        {
           "id": "yp4dwqgs",
           "fiscalYear": 1403,
           "months": 6,
@@ -8014,16 +7943,6 @@
           "currentAssets": 4904.6579,
           "prepaid": 1406.7161,
           "currentLiabilities": 2438.3699
-        },
-        {
-          "id": "eme67hap",
-          "fiscalYear": 1402,
-          "months": 6,
-          "sales": 3650.2573,
-          "cogs": -1739.3342,
-          "netIncomeQ": 1887.999,
-          "otherIncomeQ": 0,
-          "otherNonOperatingQ": 32.6067
         },
         {
           "id": "lcaw4cw8",
@@ -8160,18 +8079,6 @@
           "currentAssets": 17572.061,
           "prepaid": 1148.5696,
           "currentLiabilities": 11779.0951
-        },
-        {
-          "id": "owzyiae4",
-          "fiscalYear": 1400,
-          "months": 12,
-          "inventory": 1050.2431,
-          "receivables": 771.8844,
-          "totalAssets": 3910.5582,
-          "equity": 3156.9743,
-          "currentAssets": 2647.5136,
-          "prepaid": 88.6654,
-          "currentLiabilities": 704.5598
         }
       ],
       "monthlySales": {
@@ -8321,7 +8228,12 @@
         "currentPrice": 7540,
         "marketCap": 30160,
         "sharesOutstanding": 4000000000,
-        "marketCapUpdatedAt": 1789994186340
+        "marketCapUpdatedAt": 1789994186340,
+        "dividendIncome": null,
+        "bankInterest": 15,
+        "otherOperatingIncome": 6,
+        "otherNonOperatingIncome": -7,
+        "estimatedAnnualSalesOverride": null
       },
       "monthlySalesYTD": {
         "1403": {
@@ -8353,7 +8265,8 @@
         "dividendPaste": {
           "raw": "شرح\tسال منتهی به 1404/09/30 (میلیون ريال)\nسود (زیان) خالص\t38,001,223\nسود (زیان) انباشته ابتدای دوره\t50,516,223\nتعدیلات سنواتی\t0\nسود (زیان) انباشته ابتدای دوره تعدیل‌شده\t50,516,223\nسود سهام مصوب (مجمع سال قبل)\t(35,200,000)\nتغییرات سرمایه از محل سود (زیان) انباشته\t0\nسود انباشته ابتدای دوره تخصیص نیافته\t15,316,223\nانتقال از سایر اقلام حقوق صاحبان سهام\t0\nسود قابل تخصیص\t53,317,446\nانتقال به اندوخته‌ قانونی\t0\nانتقال به سایر اندوخته‌ها\t0\nسود (زیان) انباشته پايان دوره\t53,317,446\nسود سهام مصوب (مجمع سال جاری)\t(27,200,000)\nسود (زیان) انباشته پایان دوره (با لحاظ نمودن مصوبات مجمع)\t26,117,446\nسود (زیان) خالص هر سهم- ریال\t9,500\nسود نقدی هر سهم (ریال)\t6,800\nسرمایه\t4,000,000"
         }
-      }
+      },
+      "useTTMMargin": false
     },
     "زقیام": {
       "symbol": "زقیام",
@@ -17861,6 +17774,22 @@
           "raw": "شرح\tسال منتهی به 1404/12/29 (میلیون ريال)\nسود (زیان) خالص\t33,307,255\nسود (زیان) انباشته ابتدای دوره\t58,822,122\nتعدیلات سنواتی\t0\nسود (زیان) انباشته ابتدای دوره تعدیل‌شده\t58,822,122\nسود سهام مصوب (مجمع سال قبل)\t(28,000,000)\nتغییرات سرمایه از محل سود (زیان) انباشته\t(24,500,000)\nسود انباشته ابتدای دوره تخصیص نیافته\t6,322,122\nانتقال از سایر اقلام حقوق صاحبان سهام\t0\nسود قابل تخصیص\t39,629,377\nانتقال به اندوخته‌ قانونی\t(1,665,363)\nانتقال به سایر اندوخته‌ها\t0\nسود (زیان) انباشته پايان دوره\t37,964,014\nسود سهام مصوب (مجمع سال جاری)\t(7,470,000)\nسود (زیان) انباشته پایان دوره (با لحاظ نمودن مصوبات مجمع)\t30,494,014\nسود (زیان) خالص هر سهم- ریال\t268\nسود نقدی هر سهم (ریال)\t60\nسرمایه\t124,500,000"
         }
       }
+    },
+    "غدانه": {
+      "symbol": "غدانه",
+      "name": "",
+      "industry": "روغن خوراکی",
+      "isHolding": false,
+      "fiscalYear": null,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {}
     }
   },
   "formulas": [
