@@ -6918,26 +6918,75 @@ async function ghPull(){
     showToast('خطا در دریافت از گیت‌هاب: ' + e.message);
   }
 }
-/* ===================== اصلاح ROA و ROE: میانگین ابتدا/انتهای دوره به‌جای فقط عدد پایان دوره =====================
-   قبلاً roa=n/A و roe=n/E بودن (A و E فقط مانده‌ی پایان دوره‌ان). حالا دو متغیر جدید 'a' و 'e' (میانگین با پایان سال
-   مالی قبل، دقیقاً مثل 'i' و 'r' که برای موجودی و مطالبات همین الگو رو دارن) اضافه می‌شه و roa/roe از اونا استفاده می‌کنن.
-   برای اینکه «ROE دوپونت» و اجزاش (گردش دارایی، ضریب مالکانه) هم‌چنان دقیقاً به roe جدید برسن، همون‌ها هم به میانگین
-   سوییچ می‌کنن. نسبت‌های ارزش‌گذاری/نقدینگی (P/A، P/B، نسبت مطالبات، نسبت آنی) دست‌نخورده می‌مونن چون این‌ها ارزش
-   بازار یا وضعیت جاری رو با مانده‌ی «همین الان» مقایسه می‌کنن، نه با میانگین یک دوره. */
+/* ===================== اصلاح ROA و ROE: میانگین ابتدا/انتهای دوره + سود خالصِ همون دوره (نه TTM) =====================
+   دو اصلاح روی هم:
+   ۱) مخرج = میانگین دارایی/حقوق مالکانه (مانده پایان دوره + مانده پایان سال مالی قبل، تقسیم بر ۲) — همون قبلی.
+   ۲) صورت‌کسر = سود خالص «همون دوره‌ای که ترازنامه‌ش رو میانگین گرفتیم» (سه‌ماهه برای دوره سه‌ماهه، ۹ماهه برای دوره
+      ۹ماهه، سالانه برای دوره سالانه) — نه سود خالص TTM (که یه پنجره‌ی ۱۲ماهه‌ی رولینگه و با میانگینِ «اول تا آخر سال
+      مالی» هم‌خوانی نداره، مخصوصاً برای دوره‌های میان‌دوره‌ای). برای این کار یه متغیر جدید N اضافه شد: سود خالص
+      تجمیعیِ خودِ دوره (target.netIncomeQ)، دقیقاً هم‌خانواده‌ی S/C/A/E که از قبل تو برنامه بودن.
+   دوپونت (roeDupont) و اجزاش هم به همین سود/فروش دوره‌ای (نه TTM) سوییچ شدن تا هم‌چنان دقیقاً به ROE جدید برسن. */
+function computeYTDAverageMargin(stock){
+  const lp = latestPeriod(stock);
+  if(!lp) return null;
+  const periods = stock.periods || [];
+  const sameYear = sortPeriods(periods).filter(p=>p.fiscalYear===lp.fiscalYear && p.months<=lp.months);
+  const vals = sameYear.map(p=>computeQuarterMarginForPeriod(stock, periods, p)).filter(v=>v!=null);
+  if(!vals.length) return null;
+  return vals.reduce((a,b)=>a+b,0)/vals.length;
+}
+function computeTTMAverageMargin(stock){
+  if(stock && stock.marginMode==='ytd') return computeYTDAverageMargin(stock);
+  const periods = stock.periods || [];
+  const sorted = sortPeriods(periods);
+  const last4 = sorted.slice(-4);
+  const vals = last4.map(p=> computeQuarterMarginForPeriod(stock, periods, p)).filter(v=>v!=null);
+  if(!vals.length) return null;
+  return vals.reduce((a,b)=>a+b,0)/vals.length;
+}
+function estimateLatestMargin(stock){
+  const lp = latestPeriod(stock);
+  if(!lp) return null;
+  const periods = stock.periods || [];
+  const mode = stock.marginMode || (stock.useTTMMargin ? 'ttm' : 'latest');
+  if(mode==='ytd') return computeYTDAverageMargin(stock);
+  if(mode==='ttm') return computeTTMAverageMargin(stock);
+  const margin = computeQuarterMarginForPeriod(stock, periods, lp);
+  if(margin!=null && margin<0){
+    const sorted = sortPeriods(periods);
+    const idx = sorted.findIndex(p=>p.fiscalYear===lp.fiscalYear && p.months===lp.months);
+    const prev1 = idx>0 ? sorted[idx-1] : null;
+    const prev2 = idx>1 ? sorted[idx-2] : null;
+    const samePriorYear = findPeriod(periods, lp.fiscalYear-1, lp.months);
+    const fallbackVals = [prev1, prev2, samePriorYear].map(p=> computeQuarterMarginForPeriod(stock, periods, p));
+    if(fallbackVals.every(v=>v!=null)) return fallbackVals.reduce((a,b)=>a+b,0)/3;
+  }
+  return margin;
+}
 (function(){
-  const patch = {roa:'n/a', roe:'n/e', roeDupont:'(n/s)*(s/a)*(a/e)', assetTurnoverDP:'s/a', equityMultiplierDP:'a/e'};
-  Object.entries(patch).forEach(([key, expr])=>{ const f = DEFAULT_FORMULAS.find(x=>x.key===key); if(f) f.expression = expr; });
+  const patch = {
+    roa:{expression:'N/a', name:'ROA (بازده دارایی)'},
+    roe:{expression:'N/e', name:'ROE (بازده حقوق مالکانه)'},
+    roeDupont:{expression:'(N/S)*(S/a)*(a/e)'},
+    netMarginDP:{expression:'N/S'},
+    assetTurnoverDP:{expression:'S/a'},
+    equityMultiplierDP:{expression:'a/e'},
+  };
+  Object.entries(patch).forEach(([key, upd])=>{
+    const f = DEFAULT_FORMULAS.find(x=>x.key===key);
+    if(f) Object.assign(f, upd);
+  });
   if(!AVAILABLE_VARS.some(x=>x.v==='a')) AVAILABLE_VARS.push({v:'a', d:'میانگین کل دارایی (مانده پایان دوره + مانده پایان سال مالی قبل، تقسیم بر ۲)'});
   if(!AVAILABLE_VARS.some(x=>x.v==='e')) AVAILABLE_VARS.push({v:'e', d:'میانگین حقوق مالکانه (مانده پایان دوره + مانده پایان سال مالی قبل، تقسیم بر ۲)'});
+  if(!AVAILABLE_VARS.some(x=>x.v==='N')) AVAILABLE_VARS.push({v:'N', d:'سود خالص تجمیعیِ خودِ دوره (مثلاً ۹ماهه برای دوره ۹ماهه) — نه TTM'});
   const _origBuildBaseContext = buildBaseContext;
   buildBaseContext = function(stock, periods, target){
     const ctx = _origBuildBaseContext(stock, periods, target);
     ctx.a = avgBalance(periods, target, 'totalAssets');
     ctx.e = avgBalance(periods, target, 'equity');
+    ctx.N = target.netIncomeQ;
     return ctx;
   };
-  // فرمول‌های ذخیره‌شده‌ی کاربر (state.formulas) رو یک‌بار با نسخه‌ی اصلاح‌شده‌ی DEFAULT_FORMULAS بازسازی می‌کنه؛
-  // فرمول‌های دلخواهی که خود کاربر ساخته (builtin=false) دست‌نخورده می‌مونن، فقط فرمول‌های استاندارد به‌روز می‌شن
   if(state.formulas){ state.formulaSchemaVersion = null; getFormulas(); saveState(); }
   renderAll();
 })();
@@ -6990,6 +7039,29 @@ function estimateLatestMargin(stock){
 }
 // رابط کاربری: کنار هر کدوم از دو سوییچ قدیمی TTM (داشبورد و تب ورود اطلاعات)، یه گروه سه‌گزینه‌ای می‌ذاره؛
 // سوییچ قدیمی مخفی می‌شه ولی از کار نمی‌افته (فقط برای سازگاری با state.useTTMMargin موجود نگه داشته شده)
+// کنار گیج «حاشیه سود» توی داشبورد، زیر عنوانش، یه گروه سه‌گزینه‌ای اضافه می‌کنه (همون‌جایی که کاربر می‌بینه)
+function biInjectMarginModeGauge(){
+  const box = document.querySelector('.dash-widget[data-dragkey="margin"]');
+  if(!box || box.dataset.biMarginUi) return;
+  const stock = state.stocks[activeSymbol];
+  if(!stock) return;
+  box.dataset.biMarginUi = '1';
+  const mode = stock.marginMode || (stock.useTTMMargin ? 'ttm' : 'latest');
+  const opts = [['latest','فصل اخیر'], ['ttm','TTM (۴ فصل)'], ['ytd','از ابتدای سال مالی']];
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:4px; font-size:10.5px; color:var(--muted)';
+  wrap.innerHTML = opts.map(([v,tt])=>`<label style="display:flex; align-items:center; gap:3px; cursor:pointer; white-space:nowrap">
+      <input type="radio" name="biMarginModeGauge" value="${v}" ${mode===v?'checked':''} style="margin:0"> ${tt}</label>`).join('');
+  box.appendChild(wrap);
+  wrap.querySelectorAll('input[type=radio]').forEach(r=>{
+    r.onchange = ()=>{
+      const st = state.stocks[activeSymbol]; if(!st) return;
+      st.marginMode = r.value;
+      st.useTTMMargin = (r.value !== 'latest');
+      saveState(); renderAll();
+    };
+  });
+}
 function biInjectMarginModeUI(){
   ['useTTMMarginToggle','useTTMMarginToggleData'].forEach(id=>{
     const chk = document.getElementById(id);
@@ -7028,12 +7100,19 @@ const _origAttachHandlers = attachHandlers;
 attachHandlers = function(){
   _origAttachHandlers();
   try{ biInjectMarginModeUI(); }catch(e){ console.error(e); }
+  try{ biInjectMarginModeGauge(); }catch(e){ console.error(e); }
 };
+// اسکریپت اصلی همین الان (بالاتر از این خط) یه‌بار renderAll() رو با نسخه‌ی قدیمیِ attachHandlers صدا زده (قبل از این‌که
+// همین چند خط بالا جایگزینش کنه)، پس گزینه‌ی رادیویی هنوز روی صفحه نیست؛ یه‌بار دیگه (با نسخه‌ی جدید) رندر می‌کنیم
+// تا همون اولین چیزی که کاربر می‌بینه درست باشه (این اتفاق قبل از رنگ‌آمیزی مرورگر می‌افته، پس چشمک نمی‌زنه)
+renderAll();
 
 (function(){
   const b = document.getElementById('openBatchImportBtn');
   if(b) b.onclick = openBatchImportModal;
 })();
+try{ renderAll(); }catch(e){ console.error(e); }
+
 </script>
 <script>
 // یه service worker قدیمی (sw.js) قبلاً اینجا ثبت می‌شد که باعث می‌شد بعد از تغییر اسم فایل،
