@@ -7107,6 +7107,84 @@ attachHandlers = function(){
 // تا همون اولین چیزی که کاربر می‌بینه درست باشه (این اتفاق قبل از رنگ‌آمیزی مرورگر می‌افته، پس چشمک نمی‌زنه)
 renderAll();
 
+/* ===================== بازه‌ی زمانی نمودارها (از سال - تا سال) =====================
+   فقط روی نمودارهایی اثر می‌ذاره که تاریخچه‌ی چندساله نشون می‌دن (نمودارهای فصلی ROA/ROE/دوپونت/دوره گردش/نسبت آنی/
+   نسبت مطالبات، نمودار ترکیبی فصلی، و روند تقسیم سود/رشد تقسیم سود). نمودارهای مقایسه‌ای دوستونی (فروش ماهانه، رشد
+   فروش، نقطه‌به‌نقطه، نسبت به میانگین) همیشه فقط «امسال در مقابل پارسال» هستن و مفهوم «بازه» ندارن، دست‌نخورده می‌مونن.
+   محاسبات همیشه روی کل تاریخچه انجام می‌شه (میانگین‌ها/TTM/رشدِ نسبت‌به‌سال‌قبل درست می‌مونن) و فقط خروجیِ نمایش‌داده‌شده
+   به بازه‌ی انتخابی محدود می‌شه — این‌طوری اولین/آخرین نقطه‌ی بازه هم درست حساب می‌شه، نه اینکه چون داده‌ی مقایسه‌ای
+   بیرون بازه حذف شده باشه، غلط دربیاد. بازه برای هر سهم جدا ذخیره می‌شه. */
+function biTrimChartToRange(chart, fiscalYears, range){
+  if(!chart || !chart.data || !range) return;
+  if(range.from==null && range.to==null) return;
+  const keep = fiscalYears.map(fy => (range.from==null || fy>=range.from) && (range.to==null || fy<=range.to));
+  if(keep.length!==(chart.data.labels||[]).length || keep.every(k=>k)) return;
+  chart.data.labels = (chart.data.labels||[]).filter((_,i)=>keep[i]);
+  (chart.data.datasets||[]).forEach(ds=>{ ds.data = (ds.data||[]).filter((_,i)=>keep[i]); });
+  chart.update();
+}
+function biApplyChartRange(stock){
+  const range = {from: stock.chartRangeFrom!=null?stock.chartRangeFrom:null, to: stock.chartRangeTo!=null?stock.chartRangeTo:null};
+  if(range.from==null && range.to==null) return;
+  const qFY = sortPeriods(stock.periods||[]).map(p=>p.fiscalYear);
+  ['roaRoe','cycleDays','quickRatio','receivablesRatio','dupont','quarterlyCombo'].forEach(k=> biTrimChartToRange(chartRefs[k], qFY, range));
+  const dFY = (stock.dividendHistory||[]).slice().sort((a,b)=>a.fiscalYear-b.fiscalYear).map(h=>h.fiscalYear);
+  ['dividendTrend','dividendGrowth'].forEach(k=> biTrimChartToRange(chartRefs[k], dFY, range));
+}
+function biRangeControlHtml(stock, idSuffix){
+  const from = stock.chartRangeFrom!=null ? stock.chartRangeFrom : '';
+  const to = stock.chartRangeTo!=null ? stock.chartRangeTo : '';
+  return `<div class="card" style="margin-bottom:14px; padding:10px 14px">
+    <div class="row" style="align-items:center; gap:10px; flex-wrap:wrap; font-size:12.5px">
+      <b>بازه‌ی نمودارها:</b>
+      <label style="display:flex; align-items:center; gap:4px">از سال <input type="number" inputmode="numeric" data-bi-range-from="${idSuffix}" value="${biEsc(from)}" style="width:80px; padding:4px 6px"></label>
+      <label style="display:flex; align-items:center; gap:4px">تا سال <input type="number" inputmode="numeric" data-bi-range-to="${idSuffix}" value="${biEsc(to)}" style="width:80px; padding:4px 6px"></label>
+      <button class="btn secondary" data-bi-range-clear="${idSuffix}" style="padding:4px 10px; font-size:12px">پاک کردن بازه</button>
+      <span style="color:var(--muted)">خالی = نمایش کل تاریخچه</span>
+    </div>
+  </div>`;
+}
+function biWireRangeControl(root, idSuffix){
+  const apply = ()=>{
+    const stock = state.stocks[activeSymbol]; if(!stock) return;
+    const fromEl = root.querySelector(`[data-bi-range-from="${idSuffix}"]`);
+    const toEl = root.querySelector(`[data-bi-range-to="${idSuffix}"]`);
+    const fv = (fromEl.value||'').trim(), tv = (toEl.value||'').trim();
+    stock.chartRangeFrom = fv ? parseInt(fv,10) : null;
+    stock.chartRangeTo = tv ? parseInt(tv,10) : null;
+    saveState(); renderAll();
+  };
+  root.querySelectorAll(`[data-bi-range-from="${idSuffix}"], [data-bi-range-to="${idSuffix}"]`).forEach(el=>{ el.onchange = apply; });
+  const clearBtn = root.querySelector(`[data-bi-range-clear="${idSuffix}"]`);
+  if(clearBtn) clearBtn.onclick = ()=>{
+    const stock = state.stocks[activeSymbol]; if(!stock) return;
+    stock.chartRangeFrom = null; stock.chartRangeTo = null;
+    saveState(); renderAll();
+  };
+}
+function biInjectChartRangeUI(){
+  const stock = state.stocks[activeSymbol];
+  if(!stock) return;
+  [['chartQuarterlyCombo','q'], ['chartDividendTrend','d']].forEach(([canvasId, suffix])=>{
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const card = canvas.closest('.card');
+    if(!card || card.dataset.biRangeDone) return;
+    card.insertAdjacentHTML('beforebegin', biRangeControlHtml(stock, suffix));
+    const newEl = card.previousElementSibling;
+    biWireRangeControl(newEl, suffix);
+    card.dataset.biRangeDone = '1';
+  });
+}
+const _origDrawCharts = drawCharts;
+drawCharts = function(){
+  _origDrawCharts();
+  const stock = state.stocks[activeSymbol];
+  if(stock){ try{ biApplyChartRange(stock); }catch(e){ console.error(e); } }
+  try{ biInjectChartRangeUI(); }catch(e){ console.error(e); }
+};
+try{ renderAll(); }catch(e){ console.error(e); }
+
 (function(){
   const b = document.getElementById('openBatchImportBtn');
   if(b) b.onclick = openBatchImportModal;
