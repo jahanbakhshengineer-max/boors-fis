@@ -6808,6 +6808,7 @@ function biRunImport(){
           if(opts.skipExisting && stock.monthlySales && stock.monthlySales[`${p.fy}-${p.month}`]!=null){ stats.skipped++; return; }
           if(p.usedFallback) warns.push(`${sym} ${toFa(p.fy)}/${toFa(p.month)} فروش ماهانه: ردیف «جمع» نبود؛ جمع داخلی+صادراتی ثبت شد`);
           biApplyMonthly(stock, p); stats.monthly++;
+          try{ biApplyProductData(stock, biParseMonthlyProducts(it.tsv)); }catch(e){ console.error(e); }
         } else if(it.kind==='div'){
           const n = biApplyDividend(stock, it, divMap, warns);
           if(n) stats.div++; else stats.errors++;
@@ -7180,8 +7181,267 @@ const _origDrawCharts = drawCharts;
 drawCharts = function(){
   _origDrawCharts();
   const stock = state.stocks[activeSymbol];
-  if(stock){ try{ biApplyChartRange(stock); }catch(e){ console.error(e); } }
+  if(stock){
+    try{ biApplyChartRange(stock); }catch(e){ console.error(e); }
+    try{ biInjectProductionChartUI(stock); biDrawProductionChart(stock); }catch(e){ console.error(e); }
+  }
   try{ biInjectChartRangeUI(); }catch(e){ console.error(e); }
+};
+try{ renderAll(); }catch(e){ console.error(e); }
+
+/* ===================== تولید و فروش هر محصول، به‌صورت نموداری ماهانه =====================
+   گزارش ماهانه‌ی کدال (ن-۳۰) که همین الان هم برای فروش کل ماه استفاده می‌شه، برای شرکت‌های تولیدی/کالایی ردیف
+   جداگانه‌ای برای هر محصول داره (مثلاً هر نوع سیمان)، با ستون «تعداد تولید» و «تعداد فروش» زیر همون سرفصل «دوره
+   یک ماهه». این بخش، بدون نیاز به هیچ تغییری تو افزونه (چون کل جدول از قبل تو tsv هست)، این ردیف‌ها رو هم می‌خونه:
+   - تولید: مجموع ردیف داخلی+صادراتی همون محصول (تولید به مقصد فروش تقسیم نمی‌شه، پس جمع می‌زنیم)
+   - فروش: داخلی و صادراتی جدا نگه داشته می‌شه (طبق نظر کاربر)
+   شرکت‌های خدماتی (مثل حمل‌ونقل) ردیف محصول به این شکل ندارن، پس خودکار هیچی براشون ثبت/نمایش داده نمی‌شه.
+   نمودار زیر نمودار «فروش ماهانه» تو تب فروش اضافه می‌شه؛ همه‌ی محصولات تو یه نمودار (طبق نظر کاربر)، با کلیک رو
+   نام هر محصول تو راهنمای نمودار می‌شه اون خط رو موقتاً مخفی/آشکار کرد (این قابلیت پیش‌فرض خودِ Chart.js هست). */
+function biFindQtyColInGroup(group, subHeaderLabel, wantProduction){
+  for(let c=group.startCol; c<=group.endCol; c++){
+    const h = subHeaderLabel(c);
+    if(!h) continue;
+    if(h.includes('مبلغ')) continue;
+    const hasCount = h.includes('تعداد') || h.includes('مقدار');
+    if(!hasCount) continue;
+    if(wantProduction && h.includes('تولید')) return c;
+    if(!wantProduction && h.includes('فروش')) return c;
+  }
+  return null;
+}
+function biClassifyProductRow(label){
+  const raw = (label||'').trim();
+  if(!raw) return null;
+  const n = biNorm(raw);   // کدال بعضی‌جاها «ي/ك» عربی به‌جای «ی/ک» فارسی می‌ذاره؛ برای تشخیص پسوند نرمال می‌کنیم
+  if(/^جمع/.test(n)) return null;
+  const dom = /داخلی\s*$/.test(n), exp = /صادراتی\s*$/.test(n);
+  if(!dom && !exp) return null;
+  // پسوند رو از متنِ خام (نه نرمال‌شده) حذف می‌کنیم تا اسم محصول با همون املای کدال بمونه؛ هر دو گونه‌ی ي/ی رو پوشش می‌ده
+  const base = raw.replace(/\s*(داخلی|داخلي|صادراتی|صادراتي)\s*$/,'').replace(/[-–—]\s*$/,'').trim();
+  if(!base) return null;
+  return {base, market: dom?'domestic':'export'};
+}
+function biParseMonthlyProducts(tsv){
+  const grid = parseRawGrid(tsv);
+  if(grid.length < 4) return null;
+  const groups = parseGroupedHeaderRow(grid[0]);
+  if(!groups.length) return null;
+  const hdr = detectHeaderRowCount(grid);
+  const sub = (col)=>{
+    const parts = [];
+    for(let r=1; r<hdr; r++){ const t = (grid[r][col]!=null ? String(grid[r][col]) : '').trim(); if(t && parts[parts.length-1]!==t) parts.push(t); }
+    return parts.join(' / ');
+  };
+  const gIdx = groups.findIndex(gr=>biNorm(gr.label).includes('یکماهه'));
+  if(gIdx<0) return null;
+  const g = groups[gIdx];
+  const prodCol = biFindQtyColInGroup(g, sub, true);
+  const salesQtyCol = biFindQtyColInGroup(g, sub, false);
+  if(prodCol==null && salesQtyCol==null) return null;
+  const pm = parseMonthFromGroupLabel(g.label);
+  if(!pm) return null;
+  // ستون نام ردیف («شرح») همیشه اولین گروهه؛ عمداً از extractRowLabel استفاده نمی‌کنیم چون اون تابع اولین سلولِ
+  // «غیرعددی» کل ردیف رو برمی‌گردونه و بعضی اسم محصول‌ها (که فقط شامل رقم‌ان، مثل «...تیپ 2 داخلی») اشتباهی
+  // به‌عنوان عدد تشخیص داده می‌شن و رد می‌شن؛ ستون اول گروهِ «شرح» همیشه قابل‌اعتمادتره
+  const labelCol = groups[0] ? groups[0].startCol : 0;
+  const rows = {};
+  grid.forEach((r, idx)=>{
+    if(idx<hdr) return;
+    const label = r[labelCol];
+    const cls = biClassifyProductRow(label);
+    if(!cls) return;
+    const prod = prodCol!=null ? parseFloatSafe(r[prodCol]) : null;
+    const sq = salesQtyCol!=null ? parseFloatSafe(r[salesQtyCol]) : null;
+    if(prod==null && sq==null) return;
+    if(!rows[cls.base]) rows[cls.base] = {production:0, hasProd:false, domesticSalesQty:null, exportSalesQty:null};
+    const rec = rows[cls.base];
+    if(prod!=null){ rec.production += prod; rec.hasProd = true; }
+    if(sq!=null){
+      if(cls.market==='domestic') rec.domesticSalesQty = (rec.domesticSalesQty||0) + sq;
+      else rec.exportSalesQty = (rec.exportSalesQty||0) + sq;
+    }
+  });
+  const products = Object.entries(rows)
+    .filter(([,v])=>v.hasProd || v.domesticSalesQty!=null || v.exportSalesQty!=null)
+    .map(([name,v])=>({name, production: v.hasProd? v.production : null, domesticSalesQty: v.domesticSalesQty, exportSalesQty: v.exportSalesQty}));
+  return products.length ? {fy: pm.fiscalYear, month: pm.month, products} : null;
+}
+function biApplyProductData(stock, parsed){
+  if(!parsed || !parsed.products.length) return 0;
+  const key = `${parsed.fy}-${parsed.month}`;
+  stock.productProduction = stock.productProduction || {};
+  parsed.products.forEach(p=>{
+    stock.productProduction[p.name] = stock.productProduction[p.name] || {};
+    stock.productProduction[p.name][key] = {production:p.production, domesticSalesQty:p.domesticSalesQty, exportSalesQty:p.exportSalesQty};
+  });
+  return parsed.products.length;
+}
+function biProductMonthKeys(stock){
+  const keys = new Set();
+  Object.values(stock.productProduction||{}).forEach(months=>Object.keys(months).forEach(k=>keys.add(k)));
+  return [...keys].sort((a,b)=>{
+    const [ay,am]=a.split('-').map(Number), [by,bm]=b.split('-').map(Number);
+    return ay-by || am-bm;
+  });
+}
+function biDrawProductionChart(stock){
+  const canvas = document.getElementById('chartProductProduction');
+  if(!canvas) return;
+  const keys = biProductMonthKeys(stock);
+  if(!keys.length) return;
+  const labels = keys.map(k=>{ const [y,m]=k.split('-'); return toFa(+m)+'/'+toFa(+y); });
+  const palette = ['#1c3a5b','#c6a06a','#3f8f86','#c0503f','#7a62a8','#4a7c59','#a83e6c','#5b8dbf','#bf8f3f','#5f5f5f'];
+  const datasets = []; let ci = 0;
+  Object.entries(stock.productProduction||{}).forEach(([name, months])=>{
+    const color = palette[ci++ % palette.length];
+    const prodData = keys.map(k=> months[k] && months[k].production!=null ? months[k].production : null);
+    if(prodData.some(v=>v!=null)) datasets.push({label:`${name} — تولید`, data:prodData, borderColor:color, borderWidth:2.5, tension:.25, pointRadius:3});
+    const domData = keys.map(k=> months[k] && months[k].domesticSalesQty!=null ? months[k].domesticSalesQty : null);
+    if(domData.some(v=>v!=null)) datasets.push({label:`${name} — فروش داخلی`, data:domData, borderColor:color, borderDash:[6,3], borderWidth:1.5, tension:.25, pointRadius:2});
+    const expData = keys.map(k=> months[k] && months[k].exportSalesQty!=null ? months[k].exportSalesQty : null);
+    if(expData.some(v=>v!=null)) datasets.push({label:`${name} — فروش صادراتی`, data:expData, borderColor:color, borderDash:[2,2], borderWidth:1.5, tension:.25, pointRadius:2});
+  });
+  if(!datasets.length) return;
+  if(chartRefs.productProduction) chartRefs.productProduction.destroy();
+  chartRefs.productProduction = new Chart(canvas, {type:'line', data:{labels, datasets}, options: baseChartOptions()});
+}
+function biInjectProductionChartUI(stock){
+  if(!stock.productProduction || !Object.keys(stock.productProduction).length) return; // سهم خدماتی یا بدون داده‌ی تولید
+  const salesCanvas = document.getElementById('chartMonthlySales');
+  if(!salesCanvas) return;
+  const card = salesCanvas.closest('.card');
+  if(!card || document.getElementById('chartProductProduction')) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'card';
+  wrap.style.marginTop = '14px';
+  wrap.innerHTML = `<h3>روند ماهانه تولید و فروش به تفکیک محصول</h3>
+    <div class="chart-box chart-tall" style="height:420px"><canvas id="chartProductProduction"></canvas></div>
+    <div class="hint">خط پررنگ = تولید، خط‌چین بلند = فروش داخلی، خط‌چین کوتاه = فروش صادراتی. رو نام هر محصول تو راهنمای زیر نمودار کلیک کن تا موقتاً مخفی/آشکار بشه.</div>`;
+  card.parentNode.insertBefore(wrap, card.nextSibling);
+}
+
+/* ===================== نوار کناری صنایع: کلیک روی هر صنعت لیست سهم‌هاش (اسکرول‌پذیر) رو باز می‌کنه + صنعت فرعی =====================
+   یه بخش جدید زیر «سهم فعال» تو نوار کناری اضافه می‌شه: فهرست صنایع (state.industries)، هر کدوم با کلیک باز/بسته
+   می‌شه و زیرش سهم‌های همون صنعت (stock.industry) میاد، با اسکرول اگه لیست طولانی بود. کنار هر سهم یه دکمه‌ی کوچیک
+   برای تعریف «صنعت فرعی» هست (stock.subIndustry) — یه برچسب متنی آزاد، مستقل از صنعت اصلی، که می‌تونه با یکی از
+   حلقه‌های زنجیره ارزش (state.valueChains) هم‌نام باشه تا اون سهم، بدون تغییر صنعت اصلیش، تو اون حلقه هم لحاظ بشه.
+   برای همین، تابع محاسبه‌ی میانگین/امتیاز هر حلقه هم اصلاح شد تا هم صنعت اصلی هم صنعت فرعی رو چک کنه. */
+function computeIndustryAveragesForChain(industryName, metricKeys){
+  const stocks = Object.values(state.stocks).filter(s=>s.industry===industryName || s.subIndustry===industryName);
+  const sums = {}, counts = {};
+  stocks.forEach(s=>{
+    const vals = computeStockValueChainMetrics(s, metricKeys);
+    metricKeys.forEach(key=>{
+      const v = vals[key];
+      if(v==null || isNaN(v)) return;
+      if(valueChainLowerIsBetter(key) && v<=0) return;
+      sums[key] = (sums[key]||0) + v;
+      counts[key] = (counts[key]||0) + 1;
+    });
+  });
+  const avgs = {};
+  metricKeys.forEach(key=>{ avgs[key] = counts[key] ? sums[key]/counts[key] : null; });
+  return avgs;
+}
+function computeIndustryHealthScore(industryName, weights){
+  const stocks = Object.values(state.stocks).filter(s=>s.industry===industryName || s.subIndustry===industryName);
+  if(!stocks.length) return null;
+  const metricKeys = getValueChainSelectedKeys().filter(k=>(weights[k]||0)>0);
+  if(!metricKeys.length) return null;
+  const avgs = computeIndustryAveragesForChain(industryName, metricKeys);
+  let totalScore = 0, stockCount = 0;
+  const stockScores = [];
+  stocks.forEach(s=>{
+    const vals = computeStockValueChainMetrics(s, metricKeys);
+    let weightedSum = 0, weightSum = 0;
+    metricKeys.forEach(key=>{
+      const w = weights[key]||0;
+      if(!w) return;
+      const score = scoreValueChainMetric(key, vals[key], avgs[key]);
+      if(score!=null){ weightedSum += score*w; weightSum += w; }
+    });
+    if(weightSum>0){
+      const stockScore = weightedSum/weightSum;
+      stockScores.push({symbol:s.symbol, score:stockScore});
+      totalScore += stockScore;
+      stockCount++;
+    }
+  });
+  if(!stockCount) return null;
+  return {score: totalScore/stockCount, stockScores, stockCount, totalInIndustry: stocks.length};
+}
+let biSidebarExpanded = null;   // Set از اسم صنایعِ بازشده — فقط تو حافظه، بین رفرش‌ها حفظ می‌شه ولی بین بارگذاری‌های صفحه نه
+function biIndustrySidebarHtml(){
+  const industries = state.industries || [];
+  if(!industries.length) return '';
+  const bySymbol = state.stocks || {};
+  const activeStock = bySymbol[activeSymbol];
+  if(biSidebarExpanded===null) biSidebarExpanded = new Set(activeStock && activeStock.industry ? [activeStock.industry] : []);
+  let html = `<div class="stock-picker" id="biIndustrySidebar" style="margin-top:10px; padding-top:10px; border-top:1px solid var(--line)">
+    <label style="margin-bottom:6px; display:block">صنایع</label>
+    <div style="max-height:min(46vh,380px); overflow-y:auto; display:flex; flex-direction:column; gap:2px; padding-left:2px">`;
+  industries.forEach(ind=>{
+    const list = Object.values(bySymbol).filter(s=>s.industry===ind).sort((a,b)=> (a.symbol||'').localeCompare(b.symbol||'','fa'));
+    const open = biSidebarExpanded.has(ind);
+    html += `<div>
+      <button class="bi-ind-toggle" data-bi-ind="${biEsc(ind)}" style="width:100%; text-align:right; background:none; border:0; padding:7px 8px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; border-radius:6px; font-size:12.5px; color:var(--ink,inherit)">
+        <span>${open?'▾':'◂'} ${biEsc(ind)}</span>
+        <span style="color:var(--muted); font-size:11px">${toFa(list.length)}</span>
+      </button>
+      <div class="bi-ind-list" data-bi-ind="${biEsc(ind)}" style="display:${open?'block':'none'}; max-height:190px; overflow-y:auto; padding-right:16px; margin:2px 0 4px">
+        ${list.length ? list.map(s=>{
+          const isActive = s.symbol===activeSymbol;
+          return `<div class="bi-stock-row" data-bi-stock="${biEsc(s.symbol)}" style="display:flex; align-items:center; justify-content:space-between; gap:4px; padding:4px 6px; border-radius:5px; cursor:pointer; font-size:12px; ${isActive?'background:var(--accent-bg,#eef3f8); font-weight:700':''}">
+            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">${biEsc(s.symbol)}${s.name?' — '+biEsc(s.name):''}${s.subIndustry?` <span style="color:var(--muted); font-size:10.5px">(${biEsc(s.subIndustry)})</span>`:''}</span>
+            <button data-bi-subind-edit="${biEsc(s.symbol)}" title="تعیین صنعت فرعی" style="flex:none; background:none; border:0; cursor:pointer; padding:2px; font-size:12px">🏷️</button>
+          </div>`;
+        }).join('') : `<div style="color:var(--muted); font-size:11.5px; padding:4px 6px">سهمی ثبت نشده</div>`}
+      </div>
+    </div>`;
+  });
+  html += `</div></div>`;
+  return html;
+}
+function biRefreshIndustrySidebar(){
+  const anchor = document.querySelector('.sidebar .stock-picker');
+  if(!anchor) return;
+  let box = document.getElementById('biIndustrySidebar');
+  const html = biIndustrySidebarHtml();
+  if(!html) { if(box) box.remove(); return; }
+  if(box) box.outerHTML = html; else anchor.insertAdjacentHTML('afterend', html);
+  document.querySelectorAll('.bi-ind-toggle').forEach(btn=>{
+    btn.onclick = ()=>{
+      const ind = btn.dataset.biInd;
+      if(biSidebarExpanded.has(ind)) biSidebarExpanded.delete(ind); else biSidebarExpanded.add(ind);
+      biRefreshIndustrySidebar();
+    };
+  });
+  document.querySelectorAll('.bi-stock-row').forEach(row=>{
+    row.onclick = (e)=>{
+      if(e.target.closest('[data-bi-subind-edit]')) return;
+      activeSymbol = row.dataset.biStock;
+      saveState(); renderAll();
+    };
+  });
+  document.querySelectorAll('[data-bi-subind-edit]').forEach(btn=>{
+    btn.onclick = (e)=>{
+      e.stopPropagation();
+      const sym = btn.dataset.biSubindEdit;
+      const st = state.stocks[sym];
+      if(!st) return;
+      const cur = st.subIndustry || '';
+      const val = prompt(`صنعت فرعی برای ${sym} (خالی = حذف):`, cur);
+      if(val===null) return;
+      st.subIndustry = val.trim() || null;
+      saveState(); renderAll();
+    };
+  });
+}
+const _origAttachHandlers2 = attachHandlers;
+attachHandlers = function(){
+  _origAttachHandlers2();
+  try{ biRefreshIndustrySidebar(); }catch(e){ console.error(e); }
 };
 try{ renderAll(); }catch(e){ console.error(e); }
 
