@@ -7210,6 +7210,13 @@ function biFindQtyColInGroup(group, subHeaderLabel, wantProduction){
   }
   return null;
 }
+function biFindPriceColInGroup(group, subHeaderLabel){
+  for(let c=group.startCol; c<=group.endCol; c++){
+    const h = subHeaderLabel(c);
+    if(h && h.includes('نرخ')) return c;
+  }
+  return null;
+}
 function biClassifyProductRow(label){
   const raw = (label||'').trim();
   if(!raw) return null;
@@ -7238,6 +7245,7 @@ function biParseMonthlyProducts(tsv){
   const g = groups[gIdx];
   const prodCol = biFindQtyColInGroup(g, sub, true);
   const salesQtyCol = biFindQtyColInGroup(g, sub, false);
+  const priceCol = biFindPriceColInGroup(g, sub);
   if(prodCol==null && salesQtyCol==null) return null;
   const pm = parseMonthFromGroupLabel(g.label);
   if(!pm) return null;
@@ -7253,18 +7261,22 @@ function biParseMonthlyProducts(tsv){
     if(!cls) return;
     const prod = prodCol!=null ? parseFloatSafe(r[prodCol]) : null;
     const sq = salesQtyCol!=null ? parseFloatSafe(r[salesQtyCol]) : null;
+    const price = priceCol!=null ? parseFloatSafe(r[priceCol]) : null;
     if(prod==null && sq==null) return;
-    if(!rows[cls.base]) rows[cls.base] = {production:0, hasProd:false, domesticSalesQty:null, exportSalesQty:null};
+    if(!rows[cls.base]) rows[cls.base] = {production:0, hasProd:false, domesticSalesQty:null, exportSalesQty:null, domesticPrice:null, exportPrice:null};
     const rec = rows[cls.base];
     if(prod!=null){ rec.production += prod; rec.hasProd = true; }
     if(sq!=null){
       if(cls.market==='domestic') rec.domesticSalesQty = (rec.domesticSalesQty||0) + sq;
       else rec.exportSalesQty = (rec.exportSalesQty||0) + sq;
     }
+    if(price!=null){
+      if(cls.market==='domestic') rec.domesticPrice = price; else rec.exportPrice = price;
+    }
   });
   const products = Object.entries(rows)
     .filter(([,v])=>v.hasProd || v.domesticSalesQty!=null || v.exportSalesQty!=null)
-    .map(([name,v])=>({name, production: v.hasProd? v.production : null, domesticSalesQty: v.domesticSalesQty, exportSalesQty: v.exportSalesQty}));
+    .map(([name,v])=>({name, production: v.hasProd? v.production : null, domesticSalesQty: v.domesticSalesQty, exportSalesQty: v.exportSalesQty, domesticPrice: v.domesticPrice, exportPrice: v.exportPrice}));
   return products.length ? {fy: pm.fiscalYear, month: pm.month, products} : null;
 }
 function biApplyProductData(stock, parsed){
@@ -7273,7 +7285,7 @@ function biApplyProductData(stock, parsed){
   stock.productProduction = stock.productProduction || {};
   parsed.products.forEach(p=>{
     stock.productProduction[p.name] = stock.productProduction[p.name] || {};
-    stock.productProduction[p.name][key] = {production:p.production, domesticSalesQty:p.domesticSalesQty, exportSalesQty:p.exportSalesQty};
+    stock.productProduction[p.name][key] = {production:p.production, domesticSalesQty:p.domesticSalesQty, exportSalesQty:p.exportSalesQty, domesticPrice:p.domesticPrice, exportPrice:p.exportPrice};
   });
   return parsed.products.length;
 }
@@ -7321,14 +7333,218 @@ function biInjectProductionChartUI(stock){
   card.parentNode.insertBefore(wrap, card.nextSibling);
 }
 
-/* ===================== نوار کناری صنایع: کلیک روی هر صنعت لیست سهم‌هاش (اسکرول‌پذیر) رو باز می‌کنه + صنعت فرعی =====================
-   یه بخش جدید زیر «سهم فعال» تو نوار کناری اضافه می‌شه: فهرست صنایع (state.industries)، هر کدوم با کلیک باز/بسته
-   می‌شه و زیرش سهم‌های همون صنعت (stock.industry) میاد، با اسکرول اگه لیست طولانی بود. کنار هر سهم یه دکمه‌ی کوچیک
-   برای تعریف «صنعت فرعی» هست (stock.subIndustry) — یه برچسب متنی آزاد، مستقل از صنعت اصلی، که می‌تونه با یکی از
-   حلقه‌های زنجیره ارزش (state.valueChains) هم‌نام باشه تا اون سهم، بدون تغییر صنعت اصلیش، تو اون حلقه هم لحاظ بشه.
-   برای همین، تابع محاسبه‌ی میانگین/امتیاز هر حلقه هم اصلاح شد تا هم صنعت اصلی هم صنعت فرعی رو چک کنه. */
+/* ===================== زیردسته‌ها (چندتایی)، ارزش بنیادی، و نوار مستقل صنایع سمت چپ =====================
+   ۱) stock.subIndustry (تکی) به stock.subIndustries (آرایه) تبدیل و مهاجرت می‌شه — هر سهم می‌تونه چند زیردسته داشته باشه.
+   ۲) امتیاز «ارزش بنیادی» (۱ تا ۱۰) برای هر سهم: هر نسبتی که تو تنظیماتش روشن باشه، با مقدارِ همون سهم در مقایسه با
+      میانگین صنعتش سنجیده می‌شه؛ جهتِ «کمتر بهتره / بیشتر بهتره» و وزنِ هر نسبت هم قابل‌تنظیمه (پیش‌فرض یا به‌ازای هر صنعت).
+   ۳) نوار «صنایع» به‌جای اینکه تو نوار کناری سمت راست تو در تو باشه، به‌عنوان یه ستون کاملاً مستقل به سمت چپ داشبورد
+      اضافه می‌شه (فرزند مستقیم .app، پس فلکس‌باکس خودش جا براش باز می‌کنه) و از رنگ‌های استاندارد کارت/متن برنامه
+      استفاده می‌کنه (نه فرض «متن سفید روی نویی» که تو حالت روشن دیده نمی‌شد).
+   ۴) تو فرم «افزودن سهم» فیلد زیردسته‌ها و محصولات هم اضافه شد.
+   ۵) تو ادیتور «حلقه‌های زنجیره ارزش»، کنار صنایع اصلی، زیردسته‌های تعریف‌شده هم قابل انتخابن.
+   ۶) تو جدول‌های «مقایسه صنعت»، یه ستون «ارزش بنیادی» اضافه می‌شه و زیر هر جدولِ صنعت، اگه سهم‌هاش زیردسته داشته
+      باشن، جدول‌های کوچیک‌تر جدا برای هر زیردسته هم می‌آد. */
+function biMigrateSubIndustries(){
+  Object.values(state.stocks||{}).forEach(s=>{
+    if(s.subIndustry && !s.subIndustries){ s.subIndustries = [s.subIndustry]; }
+    delete s.subIndustry;
+    if(!Array.isArray(s.subIndustries)) s.subIndustries = [];
+  });
+}
+function biParseTagList(text){
+  return String(text||'').split(/[,،]/).map(x=>x.trim()).filter(Boolean);
+}
+function biAllSubIndustries(){
+  const set = new Set();
+  Object.values(state.stocks||{}).forEach(s=>(s.subIndustries||[]).forEach(x=>set.add(x)));
+  return [...set].sort((a,b)=>a.localeCompare(b,'fa'));
+}
+
+/* ---------- ارزش بنیادی ---------- */
+function biIndustryPeers(stock){
+  return Object.values(state.stocks||{}).filter(s=>s.industry===stock.industry);
+}
+function biDefaultFVList(){
+  const wants = [['peF','lower'],['pdRatio','lower'],['pbRatio','lower'],['margin','higher'],['roa','higher'],['roe','higher'],['salesGrowth','higher']];
+  const have = getFormulas();
+  const out = [];
+  wants.forEach(([key,dir])=>{ if(have.some(f=>f.key===key)) out.push({key,dir,weight:1}); });
+  return out;
+}
+function biFVConfig(){ state.fundamentalValueConfig = state.fundamentalValueConfig || {perIndustry:{}, default:null}; return state.fundamentalValueConfig; }
+function biFVListFor(industryName){
+  const cfg = biFVConfig();
+  if(industryName && cfg.perIndustry && cfg.perIndustry[industryName]) return cfg.perIndustry[industryName];
+  return cfg.default || biDefaultFVList();
+}
+function biMetricValue(stock, key){
+  if(key==='margin') return estimateLatestMargin(stock);
+  const lp = latestPeriod(stock);
+  if(!lp) return null;
+  const m = computeMetricsForPeriod(stock, lp);
+  return m ? m[key] : null;
+}
+function biComputeFundamentalValue(stock){
+  if(!stock || !stock.industry) return null;
+  const list = biFVListFor(stock.industry);
+  if(!list || !list.length) return null;
+  const peers = biIndustryPeers(stock);
+  let weighted = 0, weightSum = 0;
+  list.forEach(c=>{
+    const w = c.weight!=null ? c.weight : 1;
+    if(!w) return;
+    const val = biMetricValue(stock, c.key);
+    if(val==null || isNaN(val)) return;
+    let sum=0, count=0;
+    peers.forEach(p=>{ const v = biMetricValue(p, c.key); if(v!=null && !isNaN(v)){ sum+=v; count++; } });
+    if(!count) return;
+    const avg = sum/count;
+    let score;
+    if(c.dir==='lower'){
+      if(avg<=0 || val<=0) return;
+      score = 50 + 50*((avg-val)/avg);
+    } else {
+      if(avg===0) return;
+      score = 50 + 50*((val-avg)/Math.abs(avg));
+    }
+    score = Math.max(0, Math.min(100, score));
+    weighted += score*w; weightSum += w;
+  });
+  if(!weightSum) return null;
+  const v = Math.round((weighted/weightSum)/10*10)/10;
+  return Math.max(1, Math.min(10, v));
+}
+function biOpenFVSettingsModal(){
+  openModal('<div id="biFVRoot"></div>');
+  document.getElementById('modalBody').style.width = 'min(720px, 94vw)';
+  biRenderFVSettings('(پیش‌فرض همه)');
+}
+function biRenderFVSettings(currentInd){
+  const industries = ['(پیش‌فرض همه)'].concat(state.industries||[]);
+  const allFormulas = getFormulas();
+  const list = biFVConfig().perIndustry[currentInd] || (currentInd==='(پیش‌فرض همه)' ? (biFVConfig().default||biDefaultFVList()) : null) || biDefaultFVList();
+  const usingDefault = currentInd!=='(پیش‌فرض همه)' && !biFVConfig().perIndustry[currentInd];
+  const byKey = {}; list.forEach(x=>byKey[x.key]=x);
+  const rows = allFormulas.map(f=>{
+    const cur = byKey[f.key] || {on:false, dir:'higher', weight:1};
+    const on = byKey[f.key] ? true : false;
+    return `<tr data-fv-key="${biEsc(f.key)}">
+      <td><label style="display:flex; gap:6px; align-items:center; font-size:12.5px"><input type="checkbox" class="fv-on" ${on?'checked':''}> ${biEsc(f.name||f.key)}</label></td>
+      <td><select class="fv-dir" style="font-size:12px"><option value="higher" ${cur.dir!=='lower'?'selected':''}>بیشتر بهتره</option><option value="lower" ${cur.dir==='lower'?'selected':''}>کمتر بهتره</option></select></td>
+      <td><input type="number" class="fv-weight" value="${cur.weight!=null?cur.weight:1}" min="0" step="0.5" style="width:64px; font-size:12px"></td>
+    </tr>`;
+  }).join('');
+  document.getElementById('biFVRoot').innerHTML = `
+    <h3 style="margin-bottom:4px">تنظیمات ارزش بنیادی</h3>
+    <div style="font-size:12px; color:var(--muted); margin-bottom:10px">امتیاز هر سهم (۱ تا ۱۰) از مقایسه‌ی نسبت‌های تیک‌خورده با میانگین همون صنعت به دست می‌آد.${usingDefault?' <span style="color:#b35900">این صنعت هنوز تنظیم اختصاصی نداره؛ پیش‌فرض نشون داده شده.</span>':''}</div>
+    <div class="field" style="margin-bottom:10px"><label>صنعت</label><select id="biFVIndustry">${industries.map(i=>`<option value="${biEsc(i)}" ${i===currentInd?'selected':''}>${biEsc(i)}</option>`).join('')}</select></div>
+    <div class="table-wrap" style="max-height:340px; overflow:auto"><table style="font-size:12.5px"><thead><tr><th>نسبت</th><th>جهت</th><th>وزن</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="row" style="justify-content:flex-end; margin-top:12px">
+      <button class="btn secondary" id="biFVCancel">بستن</button>
+      <button class="btn tan" id="biFVSave">ذخیره برای این صنعت</button>
+    </div>`;
+  document.getElementById('biFVIndustry').onchange = e=>biRenderFVSettings(e.target.value);
+  document.getElementById('biFVCancel').onclick = closeModal;
+  document.getElementById('biFVSave').onclick = ()=>{
+    const ind = document.getElementById('biFVIndustry').value;
+    const newList = [];
+    document.querySelectorAll('#biFVRoot tr[data-fv-key]').forEach(tr=>{
+      if(!tr.querySelector('.fv-on').checked) return;
+      newList.push({key:tr.dataset.fvKey, dir:tr.querySelector('.fv-dir').value, weight: parseFloat(tr.querySelector('.fv-weight').value)||0});
+    });
+    const cfg = biFVConfig();
+    if(ind==='(پیش‌فرض همه)') cfg.default = newList; else cfg.perIndustry[ind] = newList;
+    saveState(); closeModal(); showToast('تنظیمات ارزش بنیادی ذخیره شد'); renderAll();
+  };
+}
+
+/* ---------- تقویت جدول‌های «مقایسه صنعت» با ستون ارزش بنیادی + جدول زیردسته ---------- */
+function biAugmentIndustryTables(){
+  document.querySelectorAll('table.sortable-table[id^="industryTable-"]').forEach(table=>{
+    if(table.dataset.biFvDone) return;
+    table.dataset.biFvDone = '1';
+    const headRow = table.querySelector('thead tr');
+    if(headRow) headRow.insertAdjacentHTML('beforeend', `<th>ارزش بنیادی</th>`);
+    const bodyRows = table.querySelectorAll('tbody tr[data-symbol]');
+    bodyRows.forEach(tr=>{
+      const sym = tr.dataset.symbol;
+      const stock = state.stocks[sym];
+      const score = stock ? biComputeFundamentalValue(stock) : null;
+      tr.insertAdjacentHTML('beforeend', `<td>${score!=null? toFa(score)+'/۱۰' : '—'}</td>`);
+    });
+    const footRow = table.querySelector('tfoot tr');
+    if(footRow) footRow.insertAdjacentHTML('beforeend', `<td></td>`);
+    if(!bodyRows.length) return;
+    const wrap = table.closest('.table-wrap') || table.parentElement;
+    const firstSym = bodyRows[0].dataset.symbol;
+    const indName = state.stocks[firstSym] ? state.stocks[firstSym].industry : null;
+    if(!indName || wrap.dataset.biSubDone) return;
+    wrap.dataset.biSubDone = '1';
+    const subGroups = {};
+    bodyRows.forEach(tr=>{
+      const s = state.stocks[tr.dataset.symbol];
+      (s && s.subIndustries || []).forEach(si=>{ (subGroups[si]=subGroups[si]||[]).push(tr.dataset.symbol); });
+    });
+    const keys = Object.keys(subGroups);
+    if(!keys.length) return;
+    let extra = '';
+    keys.forEach(si=>{
+      extra += `<div style="font-size:12.5px; font-weight:700; color:var(--navy); margin:10px 0 4px">زیردسته «${biEsc(si)}» (صنعت ${biEsc(indName)})</div>
+        <div class="table-wrap"><table class="sortable-table" style="font-size:12px"><thead><tr><th>نماد</th><th>نام</th><th>ارزش بنیادی</th></tr></thead><tbody>
+          ${subGroups[si].map(sym=>{ const st=state.stocks[sym]; const sc=biComputeFundamentalValue(st); return `<tr><td>${biEsc(sym)}</td><td>${biEsc(st?st.name||'':'')}</td><td>${sc!=null?toFa(sc)+'/۱۰':'—'}</td></tr>`; }).join('')}
+        </tbody></table></div>`;
+    });
+    wrap.insertAdjacentHTML('afterend', extra);
+  });
+}
+
+/* ---------- افزودن زیردسته/صنعت فرعی به فرم «افزودن سهم» ---------- */
+function addStockModal(){
+  const industries = state.industries||[];
+  const html = `
+    <h3>افزودن سهم جدید</h3>
+    <div class="field"><label>نماد</label><input type="text" id="newStockSymbol" placeholder="مثلاً فولاد"></div>
+    <div class="field"><label>نام شرکت</label><input type="text" id="newStockName"></div>
+    <div class="field"><label>صنعت</label>
+      <select id="newStockIndustry">${industries.map(i=>`<option value="${i}">${i}</option>`).join('')}<option value="__new__">+ صنعت جدید...</option></select>
+    </div>
+    <div class="field" id="newIndustryWrap" style="display:none"><label>نام صنعت جدید</label><input type="text" id="newStockIndustryNew"></div>
+    <div class="field"><label>زیردسته‌ها (اختیاری، با ویرگول جدا کن — یه سهم می‌تونه چند زیردسته داشته باشه)</label><input type="text" id="newStockSubIndustries" placeholder="مثلاً روانکار، پتروشیمی"></div>
+    <div class="field"><label>محصولات (اختیاری، با ویرگول جدا کن)</label><input type="text" id="newStockProducts" placeholder="مثلاً سیمان تیپ ۱، سیمان تیپ ۲"></div>
+    <div class="field"><label class="check"><input type="checkbox" id="newStockIsHolding"> هلدینگ است</label></div>
+    <div class="row" style="justify-content:flex-end; margin-top:14px">
+      <button class="btn secondary" id="cancelAddStockBtn">انصراف</button>
+      <button class="btn tan" id="confirmAddStockBtn">افزودن</button>
+    </div>`;
+  openModal(html);
+  const indSel = document.getElementById('newStockIndustry');
+  indSel.onchange = ()=>{ document.getElementById('newIndustryWrap').style.display = indSel.value==='__new__' ? 'block' : 'none'; };
+  document.getElementById('cancelAddStockBtn').onclick = closeModal;
+  document.getElementById('confirmAddStockBtn').onclick = ()=>{
+    const symbol = document.getElementById('newStockSymbol').value.trim();
+    if(!symbol) return showToast('نماد رو وارد کن');
+    if(state.stocks[symbol]) return showToast('این نماد قبلاً ثبت شده');
+    let industry = indSel.value;
+    if(industry==='__new__'){
+      industry = document.getElementById('newStockIndustryNew').value.trim();
+      if(!industry) return showToast('نام صنعت جدید رو وارد کن');
+      if(!state.industries.includes(industry)) state.industries.push(industry);
+    }
+    state.stocks[symbol] = {
+      symbol, name: document.getElementById('newStockName').value.trim(),
+      industry, isHolding: document.getElementById('newStockIsHolding').checked,
+      subIndustries: biParseTagList(document.getElementById('newStockSubIndustries').value),
+      productsManual: biParseTagList(document.getElementById('newStockProducts').value),
+      fiscalYear: (new Date()).getFullYear(), fiscalYearEndMonth: 12,
+      periods: [], monthlySales: {}, dividendHistory: [], manual: {},
+    };
+    saveState(); closeModal(); showToast('سهم اضافه شد'); renderAll();
+  };
+}
+
+/* ---------- زیردسته‌ها هم تو محاسبه‌ی حلقه‌های زنجیره ارزش لحاظ بشن ---------- */
 function computeIndustryAveragesForChain(industryName, metricKeys){
-  const stocks = Object.values(state.stocks).filter(s=>s.industry===industryName || s.subIndustry===industryName);
+  const stocks = Object.values(state.stocks).filter(s=>s.industry===industryName || (s.subIndustries||[]).includes(industryName));
   const sums = {}, counts = {};
   stocks.forEach(s=>{
     const vals = computeStockValueChainMetrics(s, metricKeys);
@@ -7345,7 +7561,7 @@ function computeIndustryAveragesForChain(industryName, metricKeys){
   return avgs;
 }
 function computeIndustryHealthScore(industryName, weights){
-  const stocks = Object.values(state.stocks).filter(s=>s.industry===industryName || s.subIndustry===industryName);
+  const stocks = Object.values(state.stocks).filter(s=>s.industry===industryName || (s.subIndustries||[]).includes(industryName));
   if(!stocks.length) return null;
   const metricKeys = getValueChainSelectedKeys().filter(k=>(weights[k]||0)>0);
   if(!metricKeys.length) return null;
@@ -7371,30 +7587,61 @@ function computeIndustryHealthScore(industryName, weights){
   if(!stockCount) return null;
   return {score: totalScore/stockCount, stockScores, stockCount, totalInIndustry: stocks.length};
 }
-let biSidebarExpanded = null;   // Set از اسم صنایعِ بازشده — فقط تو حافظه، بین رفرش‌ها حفظ می‌شه ولی بین بارگذاری‌های صفحه نه
-function biIndustrySidebarHtml(){
+function biAugmentRingIndustrySelect(sel){
+  if(sel.dataset.biAugmented) return;
+  sel.dataset.biAugmented = '1';
+  const subs = biAllSubIndustries().filter(si=>!(state.industries||[]).includes(si));
+  if(!subs.length) return;
+  const group = document.createElement('optgroup');
+  group.label = 'زیردسته‌ها';
+  subs.forEach(si=>{
+    const opt = document.createElement('option');
+    opt.value = si; opt.textContent = si;
+    group.appendChild(opt);
+  });
+  sel.appendChild(group);
+}
+function biScanModalForRingSelects(){
+  const root = document.getElementById('modalBody');
+  if(root) root.querySelectorAll('.vc-link-industry').forEach(biAugmentRingIndustrySelect);
+}
+const _origOpenModal = openModal;
+let _biModalObserver = null;
+openModal = function(html){
+  _origOpenModal(html);
+  document.getElementById('modalBody').style.width = '';
+  biScanModalForRingSelects();
+  if(_biModalObserver) _biModalObserver.disconnect();
+  const body = document.getElementById('modalBody');
+  if(body){ _biModalObserver = new MutationObserver(()=>biScanModalForRingSelects()); _biModalObserver.observe(body, {childList:true, subtree:true}); }
+};
+
+/* ---------- نوار مستقل صنایع، سمت چپ داشبورد ---------- */
+let biSidebarExpanded = null;
+function biIndustryPanelHtml(){
   const industries = state.industries || [];
   if(!industries.length) return '';
   const bySymbol = state.stocks || {};
   const activeStock = bySymbol[activeSymbol];
   if(biSidebarExpanded===null) biSidebarExpanded = new Set(activeStock && activeStock.industry ? [activeStock.industry] : []);
-  let html = `<div class="stock-picker" id="biIndustrySidebar" style="margin-top:10px; padding-top:10px; border-top:1px solid var(--line)">
-    <label style="margin-bottom:6px; display:block">صنایع</label>
-    <div style="max-height:min(46vh,380px); overflow-y:auto; display:flex; flex-direction:column; gap:2px; padding-left:2px">`;
+  let html = `<div class="card" style="padding:12px">
+    <div style="font-weight:700; font-size:13px; color:var(--ink); margin-bottom:8px">صنایع</div>
+    <div style="display:flex; flex-direction:column; gap:2px">`;
   industries.forEach(ind=>{
-    const list = Object.values(bySymbol).filter(s=>s.industry===ind).sort((a,b)=> (a.symbol||'').localeCompare(b.symbol||'','fa'));
+    const list = Object.values(bySymbol).filter(s=>s.industry===ind).sort((a,b)=>(a.symbol||'').localeCompare(b.symbol||'','fa'));
     const open = biSidebarExpanded.has(ind);
     html += `<div>
-      <button class="bi-ind-toggle" data-bi-ind="${biEsc(ind)}" style="width:100%; text-align:right; background:none; border:0; padding:7px 8px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; border-radius:6px; font-size:12.5px; color:var(--ink,inherit)">
+      <button class="bi-ind-toggle" data-bi-ind="${biEsc(ind)}" style="width:100%; text-align:right; background:none; border:0; padding:7px 8px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; border-radius:6px; font-size:12.5px; color:var(--ink)">
         <span>${open?'▾':'◂'} ${biEsc(ind)}</span>
         <span style="color:var(--muted); font-size:11px">${toFa(list.length)}</span>
       </button>
-      <div class="bi-ind-list" data-bi-ind="${biEsc(ind)}" style="display:${open?'block':'none'}; max-height:190px; overflow-y:auto; padding-right:16px; margin:2px 0 4px">
+      <div class="bi-ind-list" data-bi-ind="${biEsc(ind)}" style="display:${open?'block':'none'}; max-height:220px; overflow-y:auto; padding-right:14px; margin:2px 0 4px">
         ${list.length ? list.map(s=>{
           const isActive = s.symbol===activeSymbol;
-          return `<div class="bi-stock-row" data-bi-stock="${biEsc(s.symbol)}" style="display:flex; align-items:center; justify-content:space-between; gap:4px; padding:4px 6px; border-radius:5px; cursor:pointer; font-size:12px; ${isActive?'background:var(--accent-bg,#eef3f8); font-weight:700':''}">
-            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">${biEsc(s.symbol)}${s.name?' — '+biEsc(s.name):''}${s.subIndustry?` <span style="color:var(--muted); font-size:10.5px">(${biEsc(s.subIndustry)})</span>`:''}</span>
-            <button data-bi-subind-edit="${biEsc(s.symbol)}" title="تعیین صنعت فرعی" style="flex:none; background:none; border:0; cursor:pointer; padding:2px; font-size:12px">🏷️</button>
+          const subTxt = (s.subIndustries&&s.subIndustries.length) ? ` <span style="color:var(--muted); font-size:10.5px">(${biEsc(s.subIndustries.join('، '))})</span>` : '';
+          return `<div class="bi-stock-row" data-bi-stock="${biEsc(s.symbol)}" style="display:flex; align-items:center; justify-content:space-between; gap:4px; padding:4px 6px; border-radius:5px; cursor:pointer; font-size:12px; color:var(--ink); ${isActive?'background:var(--line)':''}">
+            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">${biEsc(s.symbol)}${s.name?' — '+biEsc(s.name):''}${subTxt}</span>
+            <button data-bi-subind-edit="${biEsc(s.symbol)}" title="تعیین زیردسته(ها)" style="flex:none; background:none; border:0; cursor:pointer; padding:2px; font-size:12px">🏷️</button>
           </div>`;
         }).join('') : `<div style="color:var(--muted); font-size:11.5px; padding:4px 6px">سهمی ثبت نشده</div>`}
       </div>
@@ -7403,37 +7650,43 @@ function biIndustrySidebarHtml(){
   html += `</div></div>`;
   return html;
 }
-function biRefreshIndustrySidebar(){
-  const anchor = document.querySelector('.sidebar .stock-picker');
-  if(!anchor) return;
-  let box = document.getElementById('biIndustrySidebar');
-  const html = biIndustrySidebarHtml();
-  if(!html) { if(box) box.remove(); return; }
-  if(box) box.outerHTML = html; else anchor.insertAdjacentHTML('afterend', html);
-  document.querySelectorAll('.bi-ind-toggle').forEach(btn=>{
+function biRefreshIndustryPanel(){
+  let col = document.getElementById('biIndustryCol');
+  const app = document.querySelector('.app');
+  if(!app) return;
+  const html = biIndustryPanelHtml();
+  if(!html){ if(col) col.remove(); return; }
+  if(!col){
+    col = document.createElement('div');
+    col.id = 'biIndustryCol';
+    col.style.cssText = 'flex:0 0 240px; padding:14px 10px; position:sticky; top:0; align-self:flex-start; max-height:100vh; overflow-y:auto';
+    app.appendChild(col);
+  }
+  col.innerHTML = html;
+  col.querySelectorAll('.bi-ind-toggle').forEach(btn=>{
     btn.onclick = ()=>{
       const ind = btn.dataset.biInd;
       if(biSidebarExpanded.has(ind)) biSidebarExpanded.delete(ind); else biSidebarExpanded.add(ind);
-      biRefreshIndustrySidebar();
+      biRefreshIndustryPanel();
     };
   });
-  document.querySelectorAll('.bi-stock-row').forEach(row=>{
+  col.querySelectorAll('.bi-stock-row').forEach(row=>{
     row.onclick = (e)=>{
       if(e.target.closest('[data-bi-subind-edit]')) return;
       activeSymbol = row.dataset.biStock;
       saveState(); renderAll();
     };
   });
-  document.querySelectorAll('[data-bi-subind-edit]').forEach(btn=>{
+  col.querySelectorAll('[data-bi-subind-edit]').forEach(btn=>{
     btn.onclick = (e)=>{
       e.stopPropagation();
       const sym = btn.dataset.biSubindEdit;
       const st = state.stocks[sym];
       if(!st) return;
-      const cur = st.subIndustry || '';
-      const val = prompt(`صنعت فرعی برای ${sym} (خالی = حذف):`, cur);
+      const cur = (st.subIndustries||[]).join('، ');
+      const val = prompt(`زیردسته(های) ${sym} را با ویرگول جدا بنویس (خالی = حذف):`, cur);
       if(val===null) return;
-      st.subIndustry = val.trim() || null;
+      st.subIndustries = biParseTagList(val);
       saveState(); renderAll();
     };
   });
@@ -7441,9 +7694,23 @@ function biRefreshIndustrySidebar(){
 const _origAttachHandlers2 = attachHandlers;
 attachHandlers = function(){
   _origAttachHandlers2();
-  try{ biRefreshIndustrySidebar(); }catch(e){ console.error(e); }
+  try{ biMigrateSubIndustries(); }catch(e){ console.error(e); }
+  try{ biRefreshIndustryPanel(); }catch(e){ console.error(e); }
+  try{ biAugmentIndustryTables(); }catch(e){ console.error(e); }
 };
+try{ biMigrateSubIndustries(); }catch(e){ console.error(e); }
 try{ renderAll(); }catch(e){ console.error(e); }
+
+(function(){
+  const btn = document.getElementById('openBatchImportBtn');
+  if(!btn) return;
+  const fvBtn = document.createElement('button');
+  fvBtn.id = 'openFVSettingsBtn'; fvBtn.className = 'btn secondary';
+  fvBtn.style.cssText = 'width:100%; font-size:11px; margin:0 0 6px; padding:6px';
+  fvBtn.textContent = 'تنظیمات ارزش بنیادی';
+  btn.parentNode.insertBefore(fvBtn, btn.nextSibling);
+  fvBtn.onclick = biOpenFVSettingsModal;
+})();
 
 (function(){
   const b = document.getElementById('openBatchImportBtn');
