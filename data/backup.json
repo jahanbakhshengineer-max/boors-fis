@@ -637,7 +637,9 @@
           "priorYearYTD": 354340.2733
         }
       },
-      "subIndustries": []
+      "subIndustries": [],
+      "chartRangeFrom": 1404,
+      "chartRangeTo": null
     },
     "شسپا": {
       "symbol": "شسپا",
@@ -8968,7 +8970,7 @@
           "priorYearYTD": 2170.1736
         }
       },
-      "useTTMMargin": false,
+      "useTTMMargin": true,
       "productProduction": {
         "سيمان پاکتي": {
           "1405-4": {
@@ -9017,7 +9019,8 @@
           }
         }
       },
-      "subIndustries": []
+      "subIndustries": [],
+      "marginMode": "ytd"
     },
     "ارفع": {
       "symbol": "ارفع",
