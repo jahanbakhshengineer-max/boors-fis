@@ -251,15 +251,15 @@
         "1405-6": 176967.4499
       },
       "manual": {
-        "marketCap": 626906.579013,
+        "marketCap": 607648.6644943,
         "sharesOutstanding": 409742862100,
-        "currentPrice": 1530,
+        "currentPrice": 1483,
         "dividendIncome": 2283,
         "bankInterest": 155,
         "otherOperatingIncome": 4784,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "monthlyPaste": {
@@ -605,14 +605,14 @@
         }
       ],
       "manual": {
-        "marketCap": 859310.87181,
-        "currentPrice": 1370,
+        "marketCap": 837984.908568,
+        "currentPrice": 1336,
         "dividendIncome": 853,
         "bankInterest": 1019,
         "otherOperatingIncome": 3,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": 1673456,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "sharesOutstanding": 627234213000
       },
       "rawSheets": {
@@ -1003,14 +1003,14 @@
         }
       ],
       "manual": {
-        "marketCap": 9339.2,
-        "currentPrice": 5837,
+        "marketCap": 9622.4,
+        "currentPrice": 6014,
         "dividendIncome": 14,
         "bankInterest": 226,
         "otherOperatingIncome": 100,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "sharesOutstanding": 1600000000
       },
       "rawSheets": {
@@ -1389,14 +1389,14 @@
         }
       ],
       "manual": {
-        "marketCap": 105358,
-        "currentPrice": 9578,
+        "marketCap": 102201,
+        "currentPrice": 9291,
         "dividendIncome": 0,
         "bankInterest": 1320,
         "otherOperatingIncome": 363,
         "otherNonOperatingIncome": -480,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "sharesOutstanding": 11000000000
       },
       "rawSheets": {
@@ -1628,14 +1628,14 @@
         }
       ],
       "manual": {
-        "marketCap": 31933.747896486,
-        "currentPrice": 1299,
+        "marketCap": 31417.497930492,
+        "currentPrice": 1278,
         "dividendIncome": 2,
         "bankInterest": 29,
         "otherOperatingIncome": 434,
         "otherNonOperatingIncome": 142,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "sharesOutstanding": 24583331714
       },
       "rawSheets": {
@@ -1866,15 +1866,15 @@
         }
       ],
       "manual": {
-        "marketCap": 172170,
+        "marketCap": 174570,
         "sharesOutstanding": 30000000000,
-        "currentPrice": 5739,
+        "currentPrice": 5819,
         "dividendIncome": 1200,
         "bankInterest": 242,
         "otherOperatingIncome": 10,
         "otherNonOperatingIncome": -1600,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -1897,7 +1897,7 @@
           "priorYearYTD": 105807.03120000001
         }
       },
-      "useTTMMargin": false,
+      "useTTMMargin": true,
       "productProduction": {
         "گاز مايع": {
           "1405-4": {
@@ -1932,7 +1932,10 @@
           }
         }
       },
-      "subIndustries": []
+      "subIndustries": [],
+      "chartRangeFrom": 1404,
+      "chartRangeTo": null,
+      "marginMode": "ytd"
     },
     "حسینا": {
       "symbol": "حسینا",
@@ -2390,15 +2393,15 @@
         }
       ],
       "manual": {
-        "marketCap": 18206.118832,
+        "marketCap": 18332.050484,
         "sharesOutstanding": 8995118000,
-        "currentPrice": 2024,
+        "currentPrice": 2038,
         "dividendIncome": 6,
         "bankInterest": 0,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": -10,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -2677,15 +2680,15 @@
         }
       ],
       "manual": {
-        "marketCap": 209141.5,
+        "marketCap": 204360,
         "sharesOutstanding": 655000000000,
-        "currentPrice": 319.3,
+        "currentPrice": 312,
         "dividendIncome": null,
         "bankInterest": 23,
         "otherOperatingIncome": 450,
         "otherNonOperatingIncome": 3380,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -2926,15 +2929,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 24260,
+        "marketCap": 24120,
         "sharesOutstanding": 1000000000,
-        "currentPrice": 24260,
+        "currentPrice": 24120,
         "dividendIncome": 15,
         "bankInterest": 317,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -3265,15 +3268,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 700470,
+        "marketCap": 719820,
         "sharesOutstanding": 1935000000000,
-        "currentPrice": 362,
+        "currentPrice": 372,
         "dividendIncome": 18566,
         "bankInterest": null,
         "otherOperatingIncome": 11530,
         "otherNonOperatingIncome": 3445,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -3599,15 +3602,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 5328.53398,
+        "marketCap": 5463.37036,
         "sharesOutstanding": 4993940000,
-        "currentPrice": 1067,
+        "currentPrice": 1094,
         "dividendIncome": null,
         "bankInterest": 18,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -3811,15 +3814,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 63341.2,
+        "marketCap": 62868,
         "sharesOutstanding": 33800000000,
-        "currentPrice": 1874,
+        "currentPrice": 1860,
         "dividendIncome": 2000,
         "bankInterest": 2,
         "otherOperatingIncome": 15,
         "otherNonOperatingIncome": 45,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -4324,15 +4327,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3944160,
+        "marketCap": 4053600,
         "sharesOutstanding": 1440000000000,
-        "currentPrice": 2739,
+        "currentPrice": 2815,
         "dividendIncome": 33,
         "bankInterest": 843,
         "otherOperatingIncome": -12922,
         "otherNonOperatingIncome": 3934,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -4476,9 +4479,9 @@
       ],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 209760,
-        "marketCapUpdatedAt": 1790752813781,
-        "currentPrice": 368,
+        "marketCap": 213180,
+        "marketCapUpdatedAt": 1791006786442,
+        "currentPrice": 374,
         "portfolioMarketValue": 223829,
         "portfolioBookValue": 32298,
         "sharesOutstanding": 570000000000
@@ -4621,15 +4624,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 21415,
+        "marketCap": 22285,
         "sharesOutstanding": 5000000000,
-        "currentPrice": 4283,
+        "currentPrice": 4457,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -4785,15 +4788,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 18722,
+        "marketCap": 18381,
         "sharesOutstanding": 1100000000,
-        "currentPrice": 17020,
+        "currentPrice": 16710,
         "dividendIncome": 97,
         "bankInterest": 555,
         "otherOperatingIncome": 154,
         "otherNonOperatingIncome": 0,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -5035,15 +5038,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3383.04,
+        "marketCap": 3369.6,
         "sharesOutstanding": 960000000,
-        "currentPrice": 3524,
+        "currentPrice": 3510,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -5206,15 +5209,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 2315.39,
+        "marketCap": 2332.365,
         "sharesOutstanding": 3395000000,
-        "currentPrice": 682,
+        "currentPrice": 687,
         "dividendIncome": 1,
         "bankInterest": 1,
         "otherOperatingIncome": 1,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -5528,15 +5531,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 21875.886,
+        "marketCap": 22507.182,
         "sharesOutstanding": 2466000000,
-        "currentPrice": 8871,
+        "currentPrice": 9127,
         "dividendIncome": 8,
         "bankInterest": 184,
         "otherOperatingIncome": 207,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -5754,15 +5757,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 2961.337925,
+        "marketCap": 3016.0377975,
         "sharesOutstanding": 18862025000,
-        "currentPrice": 157,
+        "currentPrice": 159.9,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 28,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -5927,15 +5930,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 189378,
+        "marketCap": 195048,
         "sharesOutstanding": 5400000000,
-        "currentPrice": 35070,
+        "currentPrice": 36120,
         "dividendIncome": 15000,
         "bankInterest": null,
         "otherOperatingIncome": 49,
         "otherNonOperatingIncome": 25,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -6214,15 +6217,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 176707.8,
+        "marketCap": 174879,
         "sharesOutstanding": 571500000000,
-        "currentPrice": 309.2,
+        "currentPrice": 306,
         "dividendIncome": 235,
         "bankInterest": 28,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": 4000,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "pl": {
@@ -6358,15 +6361,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 127908,
+        "marketCap": 131736,
         "sharesOutstanding": 44000000000,
-        "currentPrice": 2907,
+        "currentPrice": 2994,
         "dividendIncome": 398,
         "bankInterest": 30,
         "otherOperatingIncome": 48,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -6497,10 +6500,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1303,
-        "marketCap": 12241.685,
+        "currentPrice": 1337,
+        "marketCap": 12561.115,
         "sharesOutstanding": 9395000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": 50,
         "bankInterest": null,
         "otherOperatingIncome": 20,
@@ -6635,10 +6638,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1155,
-        "marketCap": 6468,
+        "currentPrice": 1130,
+        "marketCap": 6328,
         "sharesOutstanding": 5600000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 62,
@@ -6936,10 +6939,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1919,
-        "marketCap": 19190,
+        "currentPrice": 1976,
+        "marketCap": 19760,
         "sharesOutstanding": 10000000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 6.2,
@@ -7086,10 +7089,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2618,
-        "marketCap": 3089.24,
+        "currentPrice": 2698,
+        "marketCap": 3183.64,
         "sharesOutstanding": 1180000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 1.5,
@@ -7220,10 +7223,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 668,
-        "marketCap": 435870,
+        "currentPrice": 655,
+        "marketCap": 427387.5,
         "sharesOutstanding": 652500000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 3500,
@@ -7365,10 +7368,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 663,
-        "marketCap": 45945.9,
+        "currentPrice": 681,
+        "marketCap": 47193.3,
         "sharesOutstanding": 69300000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -7653,10 +7656,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1153,
-        "marketCap": 20062.2,
+        "currentPrice": 1187,
+        "marketCap": 20653.8,
         "sharesOutstanding": 17400000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -8074,15 +8077,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 6654,
+        "marketCap": 6960,
         "sharesOutstanding": 2000000000,
-        "currentPrice": 3327,
+        "currentPrice": 3480,
         "dividendIncome": 198,
         "bankInterest": 78,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -8523,10 +8526,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1423,
-        "marketCap": 90289.35,
+        "currentPrice": 1465,
+        "marketCap": 92954.25,
         "sharesOutstanding": 63450000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": 555,
         "bankInterest": 60,
         "otherOperatingIncome": 20,
@@ -8683,10 +8686,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 11390,
-        "marketCap": 68340,
+        "currentPrice": 11600,
+        "marketCap": 69600,
         "sharesOutstanding": 6000000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": 392,
         "bankInterest": 320,
         "otherOperatingIncome": 50,
@@ -8834,10 +8837,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 6470,
-        "marketCap": 12940,
+        "currentPrice": 6440,
+        "marketCap": 12880,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": 100,
         "otherOperatingIncome": null,
@@ -9042,10 +9045,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2665,
-        "marketCap": 16523,
+        "currentPrice": 2739,
+        "marketCap": 16981.8,
         "sharesOutstanding": 6200000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": 953,
         "bankInterest": 132,
         "otherOperatingIncome": 12,
@@ -9452,10 +9455,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1529,
-        "marketCap": 64218,
+        "currentPrice": 1528,
+        "marketCap": 64176,
         "sharesOutstanding": 42000000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": 9,
         "bankInterest": 90,
         "otherOperatingIncome": 400,
@@ -9995,10 +9998,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 868,
-        "marketCap": 36456,
+        "currentPrice": 894,
+        "marketCap": 37548,
         "sharesOutstanding": 42000000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -10033,7 +10036,9 @@
       },
       "subIndustries": [
         "آهن اسفنجی"
-      ]
+      ],
+      "chartRangeFrom": 1403,
+      "chartRangeTo": null
     },
     "فسبزوار": {
       "symbol": "فسبزوار",
@@ -10364,10 +10369,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 8192,
-        "marketCap": 32768,
+        "currentPrice": 8433,
+        "marketCap": 33732,
         "sharesOutstanding": 4000000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": 15,
         "otherOperatingIncome": 6,
@@ -10834,10 +10839,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1217,
-        "marketCap": 8393.74545942,
+        "currentPrice": 1186,
+        "marketCap": 8179.93600236,
         "sharesOutstanding": 6897079260,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -11289,10 +11294,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 10600,
-        "marketCap": 3180,
+        "currentPrice": 10850,
+        "marketCap": 3255,
         "sharesOutstanding": 300000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -11739,10 +11744,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2001,
-        "marketCap": 4811.978787,
+        "currentPrice": 2016,
+        "marketCap": 4848.050592,
         "sharesOutstanding": 2404787000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -12194,10 +12199,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1570,
-        "marketCap": 5714.84866843,
+        "currentPrice": 1612,
+        "marketCap": 5867.729970388,
         "sharesOutstanding": 3640030999,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -12649,10 +12654,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 840,
-        "marketCap": 10197.73524,
+        "currentPrice": 815,
+        "marketCap": 9894.231215,
         "sharesOutstanding": 12140161000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "rawSheets": {
         "dividendPaste": {
@@ -13011,10 +13016,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1120,
-        "marketCap": 4816,
+        "currentPrice": 1153,
+        "marketCap": 4957.9,
         "sharesOutstanding": 4300000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -13047,7 +13052,9 @@
           "raw": "شرح\tسال منتهی به 1404/12/29 (میلیون ريال)\nسود (زیان) خالص\t6,607,660\nسود (زیان) انباشته ابتدای دوره\t5,108,760\nتعدیلات سنواتی\t0\nسود (زیان) انباشته ابتدای دوره تعدیل‌شده\t5,108,760\nسود سهام مصوب (مجمع سال قبل)\t(2,707,500)\nتغییرات سرمایه از محل سود (زیان) انباشته\t0\nسود انباشته ابتدای دوره تخصیص نیافته\t2,401,260\nانتقال از سایر اقلام حقوق صاحبان سهام\t0\nسود قابل تخصیص\t9,008,920\nانتقال به اندوخته‌ قانونی\t0\nانتقال به سایر اندوخته‌ها\t0\nسود (زیان) انباشته پايان دوره\t9,008,920\nسود سهام مصوب (مجمع سال جاری)\t(5,950,000)\nسود (زیان) انباشته پایان دوره (با لحاظ نمودن مصوبات مجمع)\t3,058,920\nسود (زیان) خالص هر سهم- ریال\t3,478\nسود نقدی هر سهم (ریال)\t3,132\nسرمایه\t1,900,000"
         }
       },
-      "subIndustries": []
+      "subIndustries": [],
+      "marginMode": "latest",
+      "useTTMMargin": false
     },
     "پکرمان": {
       "symbol": "پکرمان",
@@ -13534,10 +13541,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 788,
-        "marketCap": 15518.084,
+        "currentPrice": 811,
+        "marketCap": 15971.023,
         "sharesOutstanding": 19693000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -13992,7 +13999,7 @@
         "currentPrice": 355,
         "marketCap": 11952.43394,
         "sharesOutstanding": 33668828000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -14132,10 +14139,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 4005,
-        "marketCap": 31799.7,
+        "currentPrice": 4007,
+        "marketCap": 31815.58,
         "sharesOutstanding": 7940000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": 2,
         "otherOperatingIncome": null,
@@ -14410,10 +14417,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1691,
-        "marketCap": 16910,
+        "currentPrice": 1700,
+        "marketCap": 17000,
         "sharesOutstanding": 10000000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": 100,
         "otherOperatingIncome": 7,
@@ -14824,10 +14831,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 750,
-        "marketCap": 157500,
+        "currentPrice": 766,
+        "marketCap": 160860,
         "sharesOutstanding": 210000000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -14872,10 +14879,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2954,
-        "marketCap": 59080,
+        "currentPrice": 2908,
+        "marketCap": 58160,
         "sharesOutstanding": 20000000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "subIndustries": []
     },
@@ -15143,10 +15150,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2124,
-        "marketCap": 3640.828364352,
+        "currentPrice": 2132,
+        "marketCap": 3654.541465536,
         "sharesOutstanding": 1714137648,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -15442,10 +15449,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2732,
-        "marketCap": 5861.66992,
+        "currentPrice": 2698,
+        "marketCap": 5788.72088,
         "sharesOutstanding": 2145560000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -15739,10 +15746,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1707,
-        "marketCap": 1903.305,
+        "currentPrice": 1757,
+        "marketCap": 1959.055,
         "sharesOutstanding": 1115000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -16036,10 +16043,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2070,
-        "marketCap": 4891.41,
+        "currentPrice": 2132,
+        "marketCap": 5037.916,
         "sharesOutstanding": 2363000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -16346,10 +16353,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 464,
-        "marketCap": 64774.4,
+        "currentPrice": 452,
+        "marketCap": 63099.2,
         "sharesOutstanding": 139600000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -17061,10 +17068,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 688,
-        "marketCap": 86000,
+        "currentPrice": 680,
+        "marketCap": 85000,
         "sharesOutstanding": 125000000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -17339,10 +17346,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 939,
-        "marketCap": 5070.6,
+        "currentPrice": 967,
+        "marketCap": 5221.8,
         "sharesOutstanding": 5400000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -17796,10 +17803,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 754,
-        "marketCap": 4217.499,
+        "currentPrice": 776,
+        "marketCap": 4340.556,
         "sharesOutstanding": 5593500000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -18072,10 +18079,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1782,
-        "marketCap": 3564,
+        "currentPrice": 1792,
+        "marketCap": 3584,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -18377,10 +18384,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1147,
-        "marketCap": 7323.741816,
+        "currentPrice": 1129,
+        "marketCap": 7208.809512,
         "sharesOutstanding": 6385128000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1404": {
@@ -18895,10 +18902,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 846,
-        "marketCap": 18612,
+        "currentPrice": 833,
+        "marketCap": 18326,
         "sharesOutstanding": 22000000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": 560,
         "bankInterest": null,
         "otherOperatingIncome": null,
@@ -19396,10 +19403,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2286,
-        "marketCap": 4343.4,
+        "currentPrice": 2354,
+        "marketCap": 4472.6,
         "sharesOutstanding": 1900000000,
-        "marketCapUpdatedAt": 1790752813781,
+        "marketCapUpdatedAt": 1791006786442,
         "dividendIncome": null,
         "bankInterest": 25,
         "otherOperatingIncome": null,
@@ -19925,10 +19932,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1210,
-        "marketCap": 18150,
+        "currentPrice": 1246,
+        "marketCap": 18690,
         "sharesOutstanding": 15000000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -20431,10 +20438,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 360,
-        "marketCap": 44820,
+        "currentPrice": 383,
+        "marketCap": 47683.5,
         "sharesOutstanding": 124500000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -20771,10 +20778,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2009,
-        "marketCap": 4018,
+        "currentPrice": 2069,
+        "marketCap": 4138,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -21158,10 +21165,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 21600,
-        "marketCap": 4320,
+        "currentPrice": 22240,
+        "marketCap": 4448,
         "sharesOutstanding": 200000000,
-        "marketCapUpdatedAt": 1790752813781
+        "marketCapUpdatedAt": 1791006786442
       },
       "monthlySalesYTD": {
         "1403": {
@@ -21197,6 +21204,20 @@
       "subIndustries": [],
       "chartRangeFrom": 1403,
       "chartRangeTo": null
+    },
+    "زکشت": {
+      "symbol": "زکشت",
+      "name": "",
+      "industry": "زراعت و دامی",
+      "isHolding": false,
+      "subIndustries": [],
+      "productsManual": [],
+      "fiscalYear": 2026,
+      "fiscalYearEndMonth": 12,
+      "periods": [],
+      "monthlySales": {},
+      "dividendHistory": [],
+      "manual": {}
     }
   },
   "formulas": [
@@ -21657,11 +21678,6 @@
         "weight": 2
       },
       {
-        "key": "inventoryDays",
-        "dir": "lower",
-        "weight": 2
-      },
-      {
         "key": "peF",
         "dir": "lower",
         "weight": 6
@@ -21679,6 +21695,11 @@
       {
         "key": "receivablesRatio",
         "dir": "lower",
+        "weight": 2
+      },
+      {
+        "key": "quickRatio",
+        "dir": "higher",
         "weight": 2
       }
     ]
