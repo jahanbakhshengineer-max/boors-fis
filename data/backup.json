@@ -5837,7 +5837,45 @@
       "subIndustries": [],
       "isHolding": false,
       "businessType": "manufacturing",
-      "productsManual": []
+      "productsManual": [],
+      "historicalMarket": {
+        "1405-6": {
+          "targetJalali": "1405/06/01",
+          "dateBasis": "unknown",
+          "dollar": {
+            "requestedDate": 20260823,
+            "date": 20260823,
+            "jalali": "1405/06/01",
+            "rialPerDollar": 1999000,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F05%2F22&to=1405%2F06%2F11&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/05/22",
+            "filterTo": "1405/06/11",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1405-3": {
+          "targetJalali": "1405/03/01",
+          "dateBasis": "unknown",
+          "dollar": {
+            "requestedDate": 20260522,
+            "date": 20260521,
+            "jalali": "1405/02/31",
+            "rialPerDollar": 1790800,
+            "gapDays": 1,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F02%2F22&to=1405%2F03%2F11&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/02/22",
+            "filterTo": "1405/03/11",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
+        }
+      }
     },
     "شراز": {
       "symbol": "شراز",
@@ -9988,6 +10026,28 @@
           "mode": "manual",
           "value": -1600
         }
+      },
+      "historicalMarket": {
+        "1405-6": {
+          "targetJalali": "1405/07/30",
+          "dateBasis": "publication",
+          "letterSerial": "XcBtV3O0tH6sHoRVUWiHSA==",
+          "publicationSource": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=XcBtV3O0tH6sHoRVUWiHSA%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=24",
+          "dollar": {
+            "requestedDate": 20261022,
+            "date": 20261022,
+            "jalali": "1405/07/30",
+            "rialPerDollar": 2719050,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F07%2F20&to=1405%2F08%2F10&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/07/20",
+            "filterTo": "1405/08/10",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
+        }
       }
     },
     "حسینا": {
@@ -10633,6 +10693,44 @@
           "priorYearYTD": 2408.2760000000003,
           "calendarYear": 1405,
           "calendarMonth": 5
+        }
+      },
+      "historicalMarket": {
+        "1405-3": {
+          "targetJalali": "1405/03/05",
+          "dateBasis": "unknown",
+          "dollar": {
+            "requestedDate": 20260526,
+            "date": 20260526,
+            "jalali": "1405/03/05",
+            "rialPerDollar": 1724000,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F02%2F26&to=1405%2F03%2F15&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/02/26",
+            "filterTo": "1405/03/15",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1404-12": {
+          "targetJalali": "1405/01/01",
+          "dateBasis": "unknown",
+          "dollar": {
+            "requestedDate": 20260321,
+            "date": 20260319,
+            "jalali": "1404/12/28",
+            "rialPerDollar": 1592800,
+            "gapDays": 2,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1404%2F12%2F20&to=1405%2F01%2F11&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1404/12/20",
+            "filterTo": "1405/01/11",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
         }
       }
     },
@@ -11489,6 +11587,22 @@
             "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/15949743338644220/0",
             "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/15949743338644220/20260721",
             "unit": "rial"
+          },
+          "letterSerial": "fOOObOOODEMT37w3OOObOOOlkdM4pVJhgw==",
+          "publicationSource": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=fOOObOOODEMT37w3OOObOOOlkdM4pVJhgw%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "dollar": {
+            "requestedDate": 20260721,
+            "date": 20260721,
+            "jalali": "1405/04/30",
+            "rialPerDollar": 1903000,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F04%2F20&to=1405%2F05%2F09&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/04/20",
+            "filterTo": "1405/05/09",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
           }
         },
         "1404-12": {
@@ -13292,18 +13406,18 @@
           "id": "rdzt356u",
           "fiscalYear": 1404,
           "months": 12,
-          "sales": 1837.8454,
+          "sales": 1769.1894,
           "cogs": -1432.4511,
           "netIncomeQ": 565.413,
           "otherIncomeQ": 0.0677,
           "otherNonOperatingQ": 0.0019,
           "inventory": 349.3186,
-          "receivables": 170.968,
-          "totalAssets": 2709.0897,
-          "equity": 2323.8012,
+          "receivables": 0,
+          "totalAssets": 582.4694,
+          "equity": null,
           "currentAssets": 582.4694,
           "prepaid": 15.0378,
-          "currentLiabilities": 309.6078
+          "currentLiabilities": null
         },
         {
           "id": "l151jrkn",
@@ -13343,7 +13457,7 @@
           "id": "s9hve449",
           "fiscalYear": 1404,
           "months": 6,
-          "sales": 708.4554,
+          "sales": 661.1817,
           "cogs": -588.3813,
           "netIncomeQ": 214.5162,
           "otherIncomeQ": 0.0676,
@@ -13376,12 +13490,12 @@
           "otherIncomeQ": 0,
           "otherNonOperatingQ": 0,
           "inventory": 210.0161,
-          "receivables": 53.0236,
-          "totalAssets": 1076.3239,
-          "equity": 799.8575,
+          "receivables": 0,
+          "totalAssets": 300.9757,
+          "equity": null,
           "currentAssets": 300.9757,
           "prepaid": 15.3902,
-          "currentLiabilities": 230.2169
+          "currentLiabilities": null
         },
         {
           "id": "wmak37c9",
@@ -13431,11 +13545,18 @@
           "id": "egjd58ns",
           "fiscalYear": 1405,
           "months": 6,
-          "sales": 1756.3111,
+          "sales": 1645.911,
           "cogs": -1509.7129,
           "netIncomeQ": 575.0149,
           "otherIncomeQ": 0,
-          "otherNonOperatingQ": 0.0059
+          "otherNonOperatingQ": 0.0059,
+          "inventory": 656.5905,
+          "receivables": 0,
+          "totalAssets": 1119.3268,
+          "equity": null,
+          "currentAssets": 1119.3268,
+          "prepaid": 41.1926,
+          "currentLiabilities": null
         }
       ],
       "monthlySales": {
@@ -13462,7 +13583,8 @@
         "1404-12": 226.044,
         "1405-1": 0,
         "1405-2": 247.26670000000001,
-        "1405-3": 290.89570000000003
+        "1405-3": 290.89570000000003,
+        "1405-7": 339.85970000000003
       },
       "monthlySalesSplit": {
         "1405-5": {
@@ -13560,6 +13682,10 @@
         "1405-3": {
           "domestic": 290.89570000000003,
           "export": 0
+        },
+        "1405-7": {
+          "domestic": 300.90500000000003,
+          "export": 0
         }
       },
       "dividendHistory": [
@@ -13602,10 +13728,10 @@
           "raw": "شرح\tدوره منتهی به ۱۴۰۵/۰۶/۳۱\tتجدید ارائه شده دوره مالی منتهی به ۱۴۰۴/۰۶/۳۱\tتجدید ارائه شده سال مالی منتهی به ۱۴۰۴/۱۲/۲۹\tدرصد تغییرات\nشرح\tحسابرسی نشده\tحسابرسی شده\tحسابرسی شده\tدرصد تغییرات\nعملیات در حال تداوم:\t\t\t\t\nارزش منصفانه تولیدات کشاورزی\t۱۵,۸۷۳,۷۷۱\t۶,۱۹۰,۶۴۹\t۱۴,۶۹۷,۹۹۰\t۱۵۶\nخالص افزایش (کاهش) ارزش منصفانه دارایی های زیستی غیر مولد\t۳۲۷,۳۵۹\t۱۶۵,۹۰۱\t۳۱۳,۰۸۱\t۹۷\nمجموع\t۱۶,۲۰۱,۱۳۰\t۶,۳۵۶,۵۵۰\t۱۵,۰۱۱,۰۷۱\t۱۵۵\nخالص فروش تولیدات کشاورزی و دارایی های زیستی غیر مولد\t۱۶,۴۵۹,۱۱۰\t۶,۶۱۱,۸۱۷\t۱۷,۶۹۱,۸۹۴\t۱۴۹\nبهای تمام شده انتسابی\t(۱۵,۰۹۷,۱۲۹)\t(۵,۸۸۳,۸۱۳)\t(۱۴,۳۲۴,۵۱۱)\t(۱۵۷)\nمجموع\t۱,۳۶۱,۹۸۱\t۷۲۸,۰۰۴\t۳,۳۶۷,۳۸۳\t۸۷\nدرآمدهای عملیاتی\t۱۷,۵۶۳,۱۱۱\t۷,۰۸۴,۵۵۴\t۱۸,۳۷۸,۴۵۴\t۱۴۸\nهزینه های تولید\t(۱۳,۴۹۹,۱۷۵)\t(۵,۲۵۸,۵۴۰)\t(۱۳,۴۰۷,۲۰۵)\t(۱۵۷)\nهزینه های فروش، اداری و عمومی\t(۲۷۰,۹۳۷)\t(۱۲۸,۸۲۶)\t(۳۵۸,۴۲۵)\t(۱۱۰)\nساير درآمدهاى عملياتى\t۰\t۶۷۶\t۶۷۷\t--\nساير هزينه ‏هاى عملياتى\t(۳۱۶,۵۳۵)\t(۱۱۲,۱۱۱)\t(۳۶۰,۴۶۱)\t(۱۸۲)\nسود (زیان) عملیاتی\t۳,۴۷۶,۴۶۴\t۱,۵۸۵,۷۵۳\t۴,۲۵۳,۰۴۰\t۱۱۹\nسود (زیان) فروش دارایی زیستی مولد\t۲,۳۵۵,۰۷۶\t۷۲۶,۹۸۵\t۱,۷۴۸,۷۷۴\t۲۲۴\nساير درآمدها و هزينه ‏هاى غیرعملياتى - درآمد سرمایه گذاری ها\t۵۹\t۲\t۱۹\t۲,۸۵۰\nساير درآمدها و هزينه‏ هاى غیرعملياتى - اقلام متفرقه\t۲۲,۵۱۷\t(۱۱۳,۷۵۳)\t(۲۳۳,۴۹۲)\t--\nهزینه های مالی\t(۹۸,۳۳۸)\t(۵۰,۵۱۳)\t(۱۱۰,۵۹۳)\t(۹۵)\nمجموع\t۲,۲۷۹,۳۱۴\t۵۶۲,۷۲۱\t۱,۴۰۴,۷۰۸\t۳۰۵\nسود (زیان) عملیات در حال تداوم قبل از مالیات\t۵,۷۵۵,۷۷۸\t۲,۱۴۸,۴۷۴\t۵,۶۵۷,۷۴۸\t۱۶۸\nهزینه مالیات بر درآمد:\t\t\t\t\nسال جاری\t(۵,۶۲۹)\t(۳,۳۱۲)\t(۳,۶۱۸)\t(۷۰)\nسال‌های قبل\t۰\t۰\t۰\t۰\nسود (زیان) خالص عملیات در حال تداوم\t۵,۷۵۰,۱۴۹\t۲,۱۴۵,۱۶۲\t۵,۶۵۴,۱۳۰\t۱۶۸\nعملیات متوقف شده:\t\t\t\t\nسود (زیان) خالص عملیات متوقف شده\t۰\t۰\t۰\t۰\nسود (زیان) خالص\t۵,۷۵۰,۱۴۹\t۲,۱۴۵,۱۶۲\t۵,۶۵۴,۱۳۰\t۱۶۸\nسود (زیان) پایه هر سهم:\t\t\t\t\nعملیاتی (ریال)\t۶۹۶\t۳۱۸\t۸۵۲\t۱۱۹\nغیرعملیاتی (ریال)\t۴۵۵\t۱۱۲\t۲۸۰\t۳۰۶\nناشی از عملیات در حال تداوم\t۱,۱۵۱\t۴۳۰\t۱,۱۳۲\t۱۶۸\nناشی از عملیات متوقف شده\t۰\t۰\t۰\t۰\nسود (زیان) پایه هر سهم\t۱,۱۵۱\t۴۳۰\t۱,۱۳۲\t۱۶۸\nسود (زیان) خالص هر سهم– ریال\t۱,۱۵۱\t۴۳۰\t۱,۱۳۲\t۱۶۸\nسرمایه\t۴,۹۹۳,۹۴۰\t۴,۹۹۳,۹۴۰\t۴,۹۹۳,۹۴۰\t۰"
         },
         "bs": {
-          "raw": "شرح\tدوره منتهی به ۱۴۰۵/۰۶/۳۱\tتجدید ارائه شده دوره مالی منتهی به ۱۴۰۴/۱۲/۲۹\tتجدید ارائه شده سال مالی منتهی به ۱۴۰۴/۰۱/۰۱\tدرصد تغییرات\tدرصد تغییرات\nشرح\tحسابرسی نشده\tحسابرسی شده\tحسابرسی شده\tدرصد تغییرات\tدرصد تغییرات\nداراییها\t\t\t\t\t\nداراییهای غیرجاری\t\t\t\t\t\nدارایی های زیستی مولد\t۵,۴۵۵,۷۸۴\t۳,۹۱۵,۱۷۹\t۲,۶۲۷,۶۷۹\t۳۹\t۱۰۸\nداراییهای ثابت مشهود\t۱۷,۴۸۹,۱۱۱\t۱۷,۳۴۱,۹۹۲\t۵,۱۲۳,۳۰۵\t۱\t۲۴۱\nسرمایهگذاری در املاک\t۰\t۰\t۰\t۰\t۰\nداراییهای نامشهود\t۷,۵۹۱\t۸,۶۳۶\t۲,۱۰۲\t(۱۲)\t۲۶۱\nسرمایهگذاریهای بلندمدت\t۳۹۶\t۳۹۶\t۳۹۶\t۰\t۰\nدریافتنیهای بلندمدت\t۰\t۰\t۰\t۰\t۰\nسایر داراییها\t۰\t۰\t۰\t۰\t۰\nجمع داراییهای غیرجاری\t۲۲,۹۵۲,۸۸۲\t۲۱,۲۶۶,۲۰۳\t۷,۷۵۳,۴۸۲\t۸\t۱۹۶\nداراییهای جاری\t\t\t\t\t\nدارایی زیستی غیرمولد\t۵۳۹,۰۲۲\t۳۲۲,۹۶۱\t۱۶۱,۷۲۳\t۶۷\t۲۳۳\nسفارشات و پیشپرداختها\t۴۱۱,۹۲۶\t۱۵۰,۳۷۸\t۱۵۳,۹۰۲\t۱۷۴\t۱۶۸\nموجودی مواد و کالا\t۶,۵۶۵,۹۰۵\t۳,۴۹۳,۱۸۶\t۲,۱۰۰,۱۶۱\t۸۸\t۲۱۳\nدریافتنیهای تجاری و سایر دریافتنیها\t۳,۳۶۴,۸۶۹\t۱,۷۰۹,۶۸۰\t۵۳۰,۲۳۶\t۹۷\t۵۳۵\nسرمایهگذاریهای کوتاهمدت\t۰\t۰\t۰\t۰\t۰\nموجودی نقد\t۳۱۱,۵۴۶\t۱۴۸,۴۸۹\t۶۳,۷۳۵\t۱۱۰\t۳۸۹\nمجموع\t۱۱,۱۹۳,۲۶۸\t۵,۸۲۴,۶۹۴\t۳,۰۰۹,۷۵۷\t۹۲\t۲۷۲\nداراییهای نگهداری شده برای فروش\t۰\t۰\t۰\t۰\t۰\nجمع داراییهای جاری\t۱۱,۱۹۳,۲۶۸\t۵,۸۲۴,۶۹۴\t۳,۰۰۹,۷۵۷\t۹۲\t۲۷۲\nجمع داراییها\t۳۴,۱۴۶,۱۵۰\t۲۷,۰۹۰,۸۹۷\t۱۰,۷۶۳,۲۳۹\t۲۶\t۲۱۷\nحقوق مالکانه و بدهیها\t\t\t\t\t\nحقوق مالکانه\t\t\t\t\t\nسرمایه\t۴,۹۹۳,۹۴۰\t۴,۹۹۳,۹۴۰\t۴,۹۹۳,۹۴۰\t۰\t۰\nافزایش سرمایه در جریان\t۰\t۰\t۰\t۰\t۰\nصرف سهام\t۰\t۰\t۰\t۰\t۰\nصرف سهام خزانه\t۰\t۰\t۰\t۰\t۰\nاندوخته قانونی\t۴۹۹,۳۹۴\t۴۹۹,۳۹۴\t۴۰۱,۳۲۳\t۰\t۲۴\nسایر اندوختهها\t۰\t۰\t۰\t۰\t۰\nمازاد تجدیدارزیابی داراییها\t۱۲,۱۳۲,۲۱۶\t۱۲,۱۳۲,۲۱۶\t۰\t۰\t۰\nتفاوت تسعیر ارز عملیات خارجی\t۰\t۰\t۰\t۰\t۰\nسود (زیان) انباشته\t۵,۸۱۹,۳۳۸\t۵,۶۱۲,۴۶۲\t۲,۶۰۳,۳۱۲\t۴\t۱۲۴\nسهام خزانه\t۰\t۰\t۰\t۰\t۰\nجمع حقوق مالکانه\t۲۳,۴۴۴,۸۸۸\t۲۳,۲۳۸,۰۱۲\t۷,۹۹۸,۵۷۵\t۱\t۱۹۳\nبدهیها\t\t\t\t\t\nبدهیهای غیرجاری\t\t\t\t\t\nپرداختنیهای بلندمدت\t۱۷۸,۸۴۸\t۱۷۸,۸۴۸\t۱۷۸,۸۴۸\t۰\t۰\nتسهیلات مالی بلندمدت\t۰\t۰\t۰\t۰\t۰\nذخیره مزایای پایان خدمت کارکنان\t۹۹۴,۲۰۱\t۵۷۷,۹۵۹\t۲۸۳,۶۴۷\t۷۲\t۲۵۱\nجمع بدهیهای غیرجاری\t۱,۱۷۳,۰۴۹\t۷۵۶,۸۰۷\t۴۶۲,۴۹۵\t۵۵\t۱۵۴\nبدهیهای جاری\t\t\t\t\t\nپرداختنیهای تجاری و سایر پرداختنیها\t۳,۷۷۴,۴۴۸\t۲,۱۵۶,۹۲۹\t۱,۶۹۲,۵۱۳\t۷۵\t۱۲۳\nمالیات پرداختنی\t۱۰,۴۷۶\t۸,۴۶۶\t۱۰,۶۰۱\t۲۴\t(۱)\nسود سهام پرداختنی\t۳,۷۳۷,۸۸۵\t۲۲,۱۰۱\t۱۲۵,۹۱۴\t۱۶,۸۱۳\t۲,۸۶۹\nتسهیلات مالی\t۱,۸۵۵,۲۴۰\t۸۷۹,۱۲۶\t۳۶۴,۸۹۸\t۱۱۱\t۴۰۸\nذخایر\t۰\t۰\t۰\t۰\t۰\nپیشدریافتها\t۱۵۰,۱۶۴\t۲۹,۴۵۶\t۱۰۸,۲۴۳\t۴۱۰\t۳۹\nمجموع\t۹,۵۲۸,۲۱۳\t۳,۰۹۶,۰۷۸\t۲,۳۰۲,۱۶۹\t۲۰۸\t۳۱۴\nبدهیهای مرتبط با داراییهای نگهداریشده برای فروش\t۰\t۰\t۰\t۰\t۰\nجمع بدهیهای جاری\t۹,۵۲۸,۲۱۳\t۳,۰۹۶,۰۷۸\t۲,۳۰۲,۱۶۹\t۲۰۸\t۳۱۴\nجمع بدهیها\t۱۰,۷۰۱,۲۶۲\t۳,۸۵۲,۸۸۵\t۲,۷۶۴,۶۶۴\t۱۷۸\t۲۸۷\nجمع حقوق مالکانه و بدهیها\t۳۴,۱۴۶,۱۵۰\t۲۷,۰۹۰,۸۹۷\t۱۰,۷۶۳,۲۳۹\t۲۶\t۲۱۷"
+          "raw": "شرح\tدوره منتهی به ۱۴۰۵/۰۶/۳۱\tتجدید ارائه شده دوره مالی منتهی به ۱۴۰۴/۱۲/۲۹\tتجدید ارائه شده سال مالی منتهی به ۱۴۰۴/۰۱/۰۱\tدرصد تغييرات\nشرح\tحسابرسی نشده\tحسابرسی شده\tحسابرسی شده\tدرصد تغييرات\nدارايي‌ها\t\t\t\t\nدارايي‌هاي غیرجاري\t\t\t\t\nدارایی های زیستی مولد\t۵,۴۵۵,۷۸۴\t۳,۹۱۵,۱۷۹\t۲,۶۲۷,۶۷۹\t۳۹\nدارایی‌های ثابت مشهود\t۱۷,۴۸۹,۱۱۱\t۱۷,۳۴۱,۹۹۲\t۵,۱۲۳,۳۰۵\t۱\nسرمایه‌گذاری در املاک\t۰\t۰\t۰\t۰\nدارایی‌های نامشهود\t۷,۵۹۱\t۸,۶۳۶\t۲,۱۰۲\t(۱۲)\nسرمایه‌گذاری‌های بلندمدت\t۳۹۶\t۳۹۶\t۳۹۶\t۰\nدریافتنی‌های بلندمدت\t۰\t۰\t۰\t۰\nسایر دارایی‌ها\t۰\t۰\t۰\t۰\nجمع دارايي‌هاي غیرجاري\t۲۲,۹۵۲,۸۸۲\t۲۱,۲۶۶,۲۰۳\t۷,۷۵۳,۴۸۲\t۸\nدارايي‌هاي جاري\t\t\t\t\nدارایی زیستی غیرمولد\t۵۳۹,۰۲۲\t۳۲۲,۹۶۱\t۱۶۱,۷۲۳\t۶۷\nسفارشات و پیش‌پرداخت‌ها\t۴۱۱,۹۲۶\t۱۵۰,۳۷۸\t۱۵۳,۹۰۲\t۱۷۴\nموجودی مواد و کالا\t۶,۵۶۵,۹۰۵\t۳,۴۹۳,۱۸۶\t۲,۱۰۰,۱۶۱\t۸۸\nدریافتنی‌های تجاری و سایر دریافتنی‌ها\t۳,۳۶۴,۸۶۹\t۱,۷۰۹,۶۸۰\t۵۳۰,۲۳۶\t۹۷\nسرمایه‌گذاری‌های کوتاه‌مدت\t۰\t۰\t۰\t۰\nموجودی نقد\t۳۱۱,۵۴۶\t۱۴۸,۴۸۹\t۶۳,۷۳۵\t۱۱۰\nمجموع\t۱۱,۱۹۳,۲۶۸\t۵,۸۲۴,۶۹۴\t۳,۰۰۹,۷۵۷\t۹۲\nدارایی‌های نگهداری شده برای فروش\t۰\t۰\t۰\t۰\nجمع دارایی‌های جاری\t۱۱,۱۹۳,۲۶۸\t۵,۸۲۴,۶۹۴\t۳,۰۰۹,۷۵۷\t۹۲\nجمع دارايي‌ها\t۳۴,۱۴۶,۱۵۰\t۲۷,۰۹۰,۸۹۷\t۱۰,۷۶۳,۲۳۹\t۲۶\nحقوق مالکانه و بدهی‌ها\t\t\t\t\nحقوق مالکانه\t\t\t\t\nسرمايه\t۴,۹۹۳,۹۴۰\t۴,۹۹۳,۹۴۰\t۴,۹۹۳,۹۴۰\t۰\nافزایش سرمایه در جریان\t۰\t۰\t۰\t۰\nصرف سهام\t۰\t۰\t۰\t۰\nصرف سهام خزانه\t۰\t۰\t۰\t۰\nاندوخته قانوني\t۴۹۹,۳۹۴\t۴۹۹,۳۹۴\t۴۰۱,۳۲۳\t۰\nساير اندوخته‌ها\t۰\t۰\t۰\t۰\nمازاد تجديدارزيابي دارايي‌ها\t۱۲,۱۳۲,۲۱۶\t۱۲,۱۳۲,۲۱۶\t۰\t۰\nتفاوت تسعیر ارز عملیات خارجی\t۰\t۰\t۰\t۰\nسود (زیان) انباشته\t۵,۸۱۹,۳۳۸\t۵,۶۱۲,۴۶۲\t۲,۶۰۳,۳۱۲\t۴\nسهام خزانه\t۰\t۰\t۰\t۰\nجمع حقوق مالکانه\t۲۳,۴۴۴,۸۸۸\t۲۳,۲۳۸,۰۱۲\t۷,۹۹۸,۵۷۵\t۱\nبدهی‌ها\t\t\t\t\nبدهی‌های غیرجاری\t\t\t\t\nپرداختنی‌های بلندمدت\t۱۷۸,۸۴۸\t۱۷۸,۸۴۸\t۱۷۸,۸۴۸\t۰\nتسهیلات مالی بلندمدت\t۰\t۰\t۰\t۰\nذخیره مزایای پایان خدمت کارکنان\t۹۹۴,۲۰۱\t۵۷۷,۹۵۹\t۲۸۳,۶۴۷\t۷۲\nجمع بدهی‌های غیرجاری\t۱,۱۷۳,۰۴۹\t۷۵۶,۸۰۷\t۴۶۲,۴۹۵\t۵۵\nبدهی‌های جاری\t\t\t\t\nپرداختنی‌های تجاری و سایر پرداختنی‌ها\t۳,۷۷۴,۴۴۸\t۲,۱۵۶,۹۲۹\t۱,۶۹۲,۵۱۳\t۷۵\nمالیات پرداختنی\t۱۰,۴۷۶\t۸,۴۶۶\t۱۰,۶۰۱\t۲۴\nسود سهام پرداختنی\t۳,۷۳۷,۸۸۵\t۲۲,۱۰۱\t۱۲۵,۹۱۴\t۱۶,۸۱۳\nتسهیلات مالی\t۱,۸۵۵,۲۴۰\t۸۷۹,۱۲۶\t۳۶۴,۸۹۸\t۱۱۱\nذخایر\t۰\t۰\t۰\t۰\nپیش‌دریافت‌ها\t۱۵۰,۱۶۴\t۲۹,۴۵۶\t۱۰۸,۲۴۳\t۴۱۰\nمجموع\t۹,۵۲۸,۲۱۳\t۳,۰۹۶,۰۷۸\t۲,۳۰۲,۱۶۹\t۲۰۸\nبدهی‌های ‌مرتبط ‌با دارایی‌های نگهداری‌‌شده برای ‌فروش\t۰\t۰\t۰\t۰\nجمع بدهی‌های جاری\t۹,۵۲۸,۲۱۳\t۳,۰۹۶,۰۷۸\t۲,۳۰۲,۱۶۹\t۲۰۸\nجمع بدهی‌ها\t۱۰,۷۰۱,۲۶۲\t۳,۸۵۲,۸۸۵\t۲,۷۶۴,۶۶۴\t۱۷۸\nجمع حقوق مالکانه و بدهی‌ها\t۳۴,۱۴۶,۱۵۰\t۲۷,۰۹۰,۸۹۷\t۱۰,۷۶۳,۲۳۹\t۲۶"
         },
         "monthlyActivity": {
-          "raw": "نام محصول\tواحد\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۵/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۵/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۵/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۵/۳۱\tاصلاحات\tاصلاحات\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۵/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۵/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۵/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۵/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۶/۳۱\tدوره یک ماهه منتهی به ۱۴۰۵/۰۶/۳۱\tدوره یک ماهه منتهی به ۱۴۰۵/۰۶/۳۱\tدوره یک ماهه منتهی به ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۶/۳۱\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nتفاوت ارزش منصفانه تولیدات با بهای تمام شده انتسابی\tمیلیون ریال\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتولید\nمحصولات زراعی -\tتن\t۲,۷۳۰,۹۹۰\t۰\t۰\t۰\t۰\t۰\t۰\t۲,۷۳۰,۹۹۰\t۰\t۰\t۰\t۲۲,۳۷۰\t۰\t۰\t۰\t۲,۷۵۳,۳۶۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتولید\nگوساله نر\tراس\t۸۴۷\t۷۳۴\t۸۱۳,۳۳۹,۲۳۷\t۵۹۶,۹۹۱\t۰\t۰\t۰\t۸۴۷\t۷۳۴\t۸۱۳,۳۳۹,۲۳۷\t۵۹۶,۹۹۱\t۲۰۴\t۱۷۳\t۱,۰۳۸,۴۹۱,۳۲۹\t۱۷۹,۶۵۹\t۱,۰۵۱\t۹۰۷\t۸۵۶,۲۸۴,۴۵۴\t۷۷۶,۶۵۰\t۱,۰۱۰\t۸۳۷\t۳۸۹,۵۰۵,۳۷۶\t۳۲۶,۰۱۶\tتولید\nشیر خام\tکیلوگرم\t۲۲,۴۰۶,۰۱۱\t۲۱,۶۳۴,۰۱۷\t۵۴۷,۶۵۸\t۱۱,۸۴۸,۰۴۱\t۰\t۰\t۰\t۲۲,۴۰۶,۰۱۱\t۲۱,۶۳۴,۰۱۷\t۵۴۷,۶۵۸\t۱۱,۸۴۸,۰۴۱\t۴,۶۱۱,۹۱۱\t۴,۴۸۴,۸۱۰\t۶۰۵,۰۰۰\t۲,۷۱۳,۳۱۰\t۲۷,۰۱۷,۹۲۲\t۲۶,۱۱۸,۸۲۷\t۵۵۷,۵۰۴\t۱۴,۵۶۱,۳۵۱\t۲۷,۳۲۴,۶۶۵\t۲۶,۵۷۳,۷۷۹\t۲۱۲,۵۷۶\t۵,۶۴۸,۹۴۹\tتولید\nچربی ، پروتئین و تناژ\tمیلیون ریال\t۰\t۰\t۰\t۸۸۵,۷۵۰\t۰\t۰\t۰\t۰\t۰\t۰\t۸۸۵,۷۵۰\t۰\t۰\t۰\t۱۳۹,۴۷۸\t۰\t۰\t۰\t۱,۰۲۵,۲۲۸\t۰\t۰\t۰\t۵۶۶,۸۱۸\tتولید\nکود حیوانی\tمتر مکعب\t۲۱,۲۵۰\t۲۳,۶۰۶\t۱,۶۰۰,۰۱۷\t۳۷,۷۷۰\t۰\t۰\t۰\t۲۱,۲۵۰\t۲۳,۶۰۶\t۱,۶۰۰,۰۱۷\t۳۷,۷۷۰\t۴,۲۵۰\t۴,۲۵۰\t۱,۶۰۰,۰۰۰\t۶,۸۰۰\t۲۵,۵۰۰\t۲۷,۸۵۶\t۱,۶۰۰,۰۱۴\t۴۴,۵۷۰\t۲۵,۵۰۰\t۱۱,۵۲۴\t۳,۵۹۷,۷۰۹\t۴۱,۴۶۰\tتولید\nماهی قزل آلا\tتن\t۱۹,۹۱۷\t۱۷,۶۲۷\t۳,۴۷۸,۳۰۰\t۶۱,۳۱۲\t۰\t۰\t۰\t۱۹,۹۱۷\t۱۷,۶۲۷\t۳,۴۷۸,۳۰۰\t۶۱,۳۱۲\t۰\t۰\t۰\t۰\t۱۹,۹۱۷\t۱۷,۶۲۷\t۳,۴۷۸,۳۰۰\t۶۱,۳۱۲\t۱۴,۳۰۶\t۱۲,۲۶۶\t۲,۰۲۰,۵۴۵\t۲۴,۷۸۴\tتولید\nجمع فروش داخلی\t\t\t\t\t۱۳,۴۲۹,۸۶۴\t\t\t۰\t\t\t\t۱۳,۴۲۹,۸۶۴\t\t\t\t۳,۰۳۹,۲۴۷\t\t\t\t۱۶,۴۶۹,۱۱۱\t\t\t\t۶,۶۰۸,۰۲۷\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع فروش صادراتی\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nارزش منصفانه تولیدات کشاورزی\t\t\t\t\t۱۳,۲۴۲,۴۷۲\t\t\t۰\t\t\t\t۱۳,۲۴۲,۴۷۲\t\t\t\t۲,۹۰۷,۸۱۵\t\t\t\t۱۶,۱۵۰,۲۸۷\t\t\t\t۶,۳۴۱,۵۰۲\t\nخالص افزایش (کاهش) ارزش منصفانه دارائیهای زیستی غیر مولد\t\t\t\t\t۱۰۸,۸۵۳\t\t\t۰\t\t\t\t۱۰۸,۸۵۳\t\t\t\t۳۱,۷۵۷\t\t\t\t۱۴۰,۶۱۰\t\t\t\t۶۹,۹۸۴\t\nبهای تمام شده انتسابی\t\t\t\t\t(۱۱,۹۴۰,۱۵۲)\t\t\t۰\t\t\t\t(۱۱,۹۴۰,۱۵۲)\t\t\t\t(۲,۷۲۰,۱۰۹)\t\t\t\t(۱۴,۶۶۰,۲۶۱)\t\t\t\t(۵,۹۰۱,۰۱۱)\t\nجمع درآمدهای عملیاتی\t\t\t\t\t۱۴,۸۴۱,۰۳۷\t\t\t۰\t\t\t\t۱۴,۸۴۱,۰۳۷\t\t\t\t۳,۲۵۸,۷۱۰\t\t\t\t۱۸,۰۹۹,۷۴۷\t\t\t\t۷,۱۱۸,۵۰۲\t"
+          "raw": "نام محصول\tواحد\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاصلاحات\tاصلاحات\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nتفاوت ارزش منصفانه توليدات با بهاي تمام شده انتسابي\tميليون ريال\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nمحصولات زراعي -\tتن\t۲,۷۵۳,۳۶۰\t۰\t۰\t۰\t۰\t۰\t۰\t۲,۷۵۳,۳۶۰\t۰\t۰\t۰\t۲۶۱,۱۲۰\t۰\t۰\t۰\t۳,۰۱۴,۴۸۰\t۰\t۰\t۰\t۲,۰۴۷,۱۳۳\t۰\t۰\t۰\tتوليد\nگوساله نر\tراس\t۱,۰۵۱\t۹۰۷\t۸۵۶,۲۸۴,۴۵۴\t۷۷۶,۶۵۰\t۰\t۰\t۰\t۱,۰۵۱\t۹۰۷\t۸۵۶,۲۸۴,۴۵۴\t۷۷۶,۶۵۰\t۱۱۸\t۱۲۰\t۱,۲۵۳,۳۹۱,۶۶۷\t۱۵۰,۴۰۷\t۱,۱۶۹\t۱,۰۲۷\t۹۰۲,۶۸۴,۵۱۸\t۹۲۷,۰۵۷\t۱,۱۷۷\t۸۹۱\t۳۹۳,۱۸۷,۴۳۰\t۳۵۰,۳۳۰\tتوليد\nشير خام\tکيلوگرم\t۲۷,۰۱۷,۹۲۲\t۲۶,۱۱۸,۸۲۷\t۵۵۷,۵۰۴\t۱۴,۵۶۱,۳۵۱\t۰\t۰\t۰\t۲۷,۰۱۷,۹۲۲\t۲۶,۱۱۸,۸۲۷\t۵۵۷,۵۰۴\t۱۴,۵۶۱,۳۵۱\t۴,۶۵۹,۰۹۴\t۴,۴۷۹,۶۷۳\t۶۰۵,۰۰۰\t۲,۷۱۰,۲۰۲\t۳۱,۶۷۷,۰۱۶\t۳۰,۵۹۸,۵۰۰\t۵۶۴,۴۵۸\t۱۷,۲۷۱,۵۵۳\t۳۱,۸۴۶,۹۱۳\t۳۰,۹۳۸,۸۴۴\t۲۱۵,۰۳۴\t۶,۶۵۲,۹۱۴\tتوليد\nچربي ، پروتئين و تناژ\tميليون ريال\t۰\t۰\t۰\t۱,۰۲۵,۲۲۸\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۰۲۵,۲۲۸\t۰\t۰\t۰\t۱۴۱,۶۴۱\t۰\t۰\t۰\t۱,۱۶۶,۸۶۹\t۰\t۰\t۰\t۸۰۱,۴۵۰\tتوليد\nکود حيواني\tمتر مکعب\t۲۵,۵۰۰\t۲۷,۸۵۶\t۱,۶۰۰,۰۱۴\t۴۴,۵۷۰\t۰\t۰\t۰\t۲۵,۵۰۰\t۲۷,۸۵۶\t۱,۶۰۰,۰۱۴\t۴۴,۵۷۰\t۴,۲۵۰\t۴,۲۵۰\t۱,۶۰۰,۰۰۰\t۶,۸۰۰\t۲۹,۷۵۰\t۳۲,۱۰۶\t۱,۶۰۰,۰۱۲\t۵۱,۳۷۰\t۲۹,۷۵۰\t۱۴,۲۴۷\t۳,۴۶۳,۸۸۷\t۴۹,۳۵۰\tتوليد\nماهي قزل آلا\tتن\t۱۹,۹۱۷\t۱۷,۶۲۷\t۳,۴۷۸,۳۰۰\t۶۱,۳۱۲\t۰\t۰\t۰\t۱۹,۹۱۷\t۱۷,۶۲۷\t۳,۴۷۸,۳۰۰\t۶۱,۳۱۲\t۰\t۰\t۰\t۰\t۱۹,۹۱۷\t۱۷,۶۲۷\t۳,۴۷۸,۳۰۰\t۶۱,۳۱۲\t۲۵,۳۶۵\t۱۲,۲۶۶\t۲,۰۲۰,۵۴۵\t۲۴,۷۸۴\tتوليد\nجمع فروش داخلی\t\t\t\t\t۱۶,۴۶۹,۱۱۱\t\t\t۰\t\t\t\t۱۶,۴۶۹,۱۱۱\t\t\t\t۳,۰۰۹,۰۵۰\t\t\t\t۱۹,۴۷۸,۱۶۱\t\t\t\t۷,۸۷۸,۸۲۸\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع فروش صادراتی\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nارزش منصفانه تولیدات کشاورزی\t\t\t\t\t۱۶,۱۵۰,۲۸۷\t\t\t۰\t\t\t\t۱۶,۱۵۰,۲۸۷\t\t\t\t۳,۱۷۴,۲۱۸\t\t\t\t۱۹,۳۲۴,۵۰۵\t\t\t\t۷,۴۹۰,۲۵۷\t\nخالص افزایش (کاهش) ارزش منصفانه دارائیهای زیستی غیر مولد\t\t\t\t\t۱۴۰,۶۱۰\t\t\t۰\t\t\t\t۱۴۰,۶۱۰\t\t\t\t(۴۹,۰۴۶)\t\t\t\t۹۱,۵۶۴\t\t\t\t۸۰,۶۶۵\t\nبهای تمام شده انتسابی\t\t\t\t\t(۱۴,۶۶۰,۲۶۱)\t\t\t۰\t\t\t\t(۱۴,۶۶۰,۲۶۱)\t\t\t\t(۲,۷۳۵,۶۲۵)\t\t\t\t(۱۷,۳۹۵,۸۸۶)\t\t\t\t(۷,۰۳۹,۶۴۲)\t\nجمع درآمدهای عملیاتی\t\t\t\t\t۱۸,۰۹۹,۷۴۷\t\t\t۰\t\t\t\t۱۸,۰۹۹,۷۴۷\t\t\t\t۳,۳۹۸,۵۹۷\t\t\t\t۲۱,۴۹۸,۳۴۴\t\t\t\t۸,۴۱۰,۱۰۸"
         },
         "dividendPaste": {
           "raw": "شرح\tسال منتهی به 1404/12/29 (میلیون ريال)\nسود (زیان) خالص\t5,654,130\nسود (زیان) انباشته ابتدای دوره\t2,603,312\nتعدیلات سنواتی\t0\nسود (زیان) انباشته ابتدای دوره تعدیل‌شده\t2,603,312\nسود سهام مصوب (مجمع سال قبل)\t(2,546,909)\nتغییرات سرمایه از محل سود (زیان) انباشته\t0\nسود انباشته ابتدای دوره تخصیص نیافته\t56,403\nانتقال از سایر اقلام حقوق صاحبان سهام\t0\nسود قابل تخصیص\t5,710,533\nانتقال به اندوخته‌ قانونی\t(98,071)\nانتقال به سایر اندوخته‌ها\t0\nسود (زیان) انباشته پايان دوره\t5,612,462\nسود سهام مصوب (مجمع سال جاری)\t(5,543,273)\nسود (زیان) انباشته پایان دوره (با لحاظ نمودن مصوبات مجمع)\t69,189\nسود (زیان) خالص هر سهم- ریال\t1,132\nسود نقدی هر سهم (ریال)\t1,110\nسرمایه\t4,993,940"
@@ -13624,9 +13750,9 @@
           "priorYearYTD": 447.1485
         },
         "1405": {
-          "throughMonth": 6,
-          "currentYTD": 1646.9111,
-          "priorYearYTD": 660.8027000000001
+          "throughMonth": 7,
+          "currentYTD": 2149.8344,
+          "priorYearYTD": 841.0108
         }
       },
       "marginMode": "ytd",
@@ -14511,7 +14637,29 @@
             }
           ]
         }
-      ]
+      ],
+      "historicalMarket": {
+        "1405-6": {
+          "targetJalali": "1405/07/30",
+          "dateBasis": "publication",
+          "letterSerial": "VgSQp0InT1OOObOOO3lKZZVzqUjw==",
+          "publicationSource": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=VgSQp0InT1OOObOOO3lKZZVzqUjw%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=24",
+          "dollar": {
+            "requestedDate": 20261022,
+            "date": 20261022,
+            "jalali": "1405/07/30",
+            "rialPerDollar": 2719050,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F07%2F20&to=1405%2F08%2F10&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/07/20",
+            "filterTo": "1405/08/10",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
+        }
+      }
     },
     "فملی": {
       "symbol": "فملی",
@@ -37591,7 +37739,63 @@
       "commodityType": null,
       "commodityOtherName": "",
       "tsetmcInsCode": "",
-      "productsManual": []
+      "productsManual": [],
+      "historicalMarket": {
+        "1405-6": {
+          "targetJalali": "1405/07/30",
+          "dateBasis": "publication",
+          "dollar": {
+            "requestedDate": 20261022,
+            "date": 20261022,
+            "jalali": "1405/07/30",
+            "rialPerDollar": 2719050,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F07%2F20&to=1405%2F08%2F10&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/07/20",
+            "filterTo": "1405/08/10",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1404-6": {
+          "targetJalali": "1405/07/30",
+          "dateBasis": "publication",
+          "dollar": {
+            "requestedDate": 20261022,
+            "date": 20261022,
+            "jalali": "1405/07/30",
+            "rialPerDollar": 2719050,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F07%2F20&to=1405%2F08%2F10&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/07/20",
+            "filterTo": "1405/08/10",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1403-6": {
+          "targetJalali": "1405/07/30",
+          "dateBasis": "publication",
+          "dollar": {
+            "requestedDate": 20261022,
+            "date": 20261022,
+            "jalali": "1405/07/30",
+            "rialPerDollar": 2719050,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1405%2F07%2F20&to=1405%2F08%2F10&convert_to_ad=1",
+            "historyPage": "https://www.tgju.org/profile/price_dollar_rl/history",
+            "filterFrom": "1405/07/20",
+            "filterTo": "1405/08/10",
+            "pagesChecked": 1,
+            "unit": "rial_per_dollar"
+          }
+        }
+      }
     },
     "کگهر": {
       "symbol": "کگهر",
@@ -65663,203 +65867,29 @@
       "manual": [],
       "rawSheets": [],
       "dividendHistory": []
-    }
-  },
-  "formulas": [
-    {
-      "key": "qMargin",
-      "name": "حاشیه سود فصلی (FIS)",
-      "expression": "(p-j-k)/q",
-      "format": "percent",
-      "decimals": 1,
-      "showInKpi": true,
-      "showInIndustry": true,
-      "builtin": true
     },
-    {
-      "key": "roa",
-      "name": "ROA (بازده دارایی)",
-      "expression": "N/a",
-      "format": "percent",
-      "decimals": 1,
-      "showInKpi": true,
-      "showInIndustry": false,
-      "builtin": true
-    },
-    {
-      "key": "roe",
-      "name": "ROE (بازده حقوق مالکانه)",
-      "expression": "N/e",
-      "format": "percent",
-      "decimals": 1,
-      "showInKpi": true,
-      "showInIndustry": false,
-      "builtin": true
-    },
-    {
-      "key": "roeDupont",
-      "name": "ROE دوپونت (تجزیه‌شده)",
-      "expression": "(N/S)*(S/a)*(a/e)",
-      "format": "percent",
-      "decimals": 1,
-      "showInKpi": true,
-      "showInIndustry": false,
-      "builtin": true
-    },
-    {
-      "key": "netMarginDP",
-      "name": "حاشیه سود خالص (جزء دوپونت)",
-      "expression": "N/S",
-      "format": "percent",
-      "decimals": 1,
-      "showInKpi": false,
-      "showInIndustry": false,
-      "builtin": true
-    },
-    {
-      "key": "assetTurnoverDP",
-      "name": "گردش دارایی (جزء دوپونت)",
-      "expression": "S/a",
-      "format": "ratio",
-      "decimals": 2,
-      "showInKpi": false,
-      "showInIndustry": false,
-      "builtin": true
-    },
-    {
-      "key": "equityMultiplierDP",
-      "name": "ضریب مالکانه (جزء دوپونت)",
-      "expression": "a/e",
-      "format": "ratio",
-      "decimals": 2,
-      "showInKpi": false,
-      "showInIndustry": false,
-      "builtin": true
-    },
-    {
-      "key": "inventoryDays",
-      "name": "دوره گردش کالا",
-      "expression": "365/(Math.abs(c)/i)",
-      "format": "number",
-      "decimals": 0,
-      "unit": " روز",
-      "showInKpi": true,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "receivableDays",
-      "name": "دوره وصول مطالبات",
-      "expression": "365/(s/r)",
-      "format": "number",
-      "decimals": 0,
-      "unit": " روز",
-      "showInKpi": true,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "peF",
-      "name": "P/E F",
-      "expression": "K/(F*M+H)",
-      "format": "ratio",
-      "decimals": 1,
-      "showInKpi": true,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "peRealized",
-      "name": "P/E محقق‌شده (TTM)",
-      "expression": "K/n",
-      "format": "ratio",
-      "decimals": 1,
-      "showInKpi": false,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "pdRatio",
-      "name": "P/D F",
-      "expression": "K/(D*(F*M+H))",
-      "format": "ratio",
-      "decimals": 1,
-      "showInKpi": false,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "psRatio",
-      "name": "P/S F",
-      "expression": "K/F",
-      "format": "ratio",
-      "decimals": 1,
-      "showInKpi": false,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "paRatio",
-      "name": "P/A",
-      "expression": "K/A",
-      "format": "ratio",
-      "decimals": 1,
-      "showInKpi": false,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "pbRatio",
-      "name": "P/B",
-      "expression": "K/E",
-      "format": "ratio",
-      "decimals": 1,
-      "showInKpi": false,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "receivablesRatio",
-      "name": "نسبت مطالبات",
-      "expression": "R/A",
-      "format": "percent",
-      "decimals": 1,
-      "showInKpi": false,
-      "showInIndustry": true,
-      "builtin": true
-    },
-    {
-      "key": "quickRatio",
-      "name": "نسبت آنی",
-      "expression": "(G-P-I)/L",
-      "format": "ratio",
-      "decimals": 2,
-      "showInKpi": true,
-      "showInIndustry": true,
-      "builtin": true
-    }
-  ],
-  "formulaSchemaVersion": 7,
-  "rawMapping": {
-    "pl": {
-      "sales": "درآمدهای عملیاتی",
-      "cogs": "بهای تمام شده درآمدهای عملیاتی",
-      "netIncomeQ": "سود(زیان) خالص عملیات در حال تداوم",
-      "otherIncomeQ": "سایر درآمدها",
-      "otherNonOperatingQ": "سایر درآمدها و هزینه های غیرعملیاتی"
-    },
-    "bs": {
-      "inventory": "موجودی مواد و کالا",
-      "receivables": "دریافتنیهای تجاری و سایر دریافتنیها",
-      "totalAssets": "جمع داراییها",
-      "equity": "جمع حقوق مالکانه",
-      "currentAssets": "جمع داراییهای جاری",
-      "prepaid": "سفارشات و پیشپرداختها",
-      "currentLiabilities": "جمع بدهیهای جاری"
-    },
-    "dividendBatch": {
-      "profit": "ProportionableRetainedEarnings",
-      "approved": "DividedRetainedEarning"
+    "وکغدير": {
+      "symbol": "وکغدير",
+      "periods": [],
+      "monthlySales": {},
+      "monthlySalesSplit": {},
+      "monthlySalesYTD": {},
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": [],
+      "manual": {},
+      "name": "بين المللي توسعه صنايع و معادن غدير",
+      "industry": "هلدینگ و شرکت‌های سرمایه‌گذاری",
+      "isHolding": true,
+      "subIndustries": [],
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 6,
+      "fiscalYearEndDay": 31,
+      "businessType": "holding",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": ""
     }
   },
   "portfolio": [
@@ -66080,6 +66110,40 @@
       "avgBuyPrice": 1986
     }
   ],
+  "portfolioAssets": [
+    {
+      "id": "6nh2ry0f",
+      "type": "copper",
+      "name": "گواهی کاتد مس",
+      "costValue": 24184767,
+      "currentValue": 38956247,
+      "note": ""
+    },
+    {
+      "id": "4q6n0faq",
+      "type": "silver",
+      "name": "گواهی سپرده پیوسته شمش نقره 999.9",
+      "costValue": 151054467,
+      "currentValue": 179161646,
+      "note": ""
+    },
+    {
+      "id": "scl6frmj",
+      "type": "crypto",
+      "name": "ارز دیجیتال",
+      "costValue": 141000000,
+      "currentValue": 141000000,
+      "note": ""
+    },
+    {
+      "id": "9j95gxjf",
+      "type": "fixed_income",
+      "name": "صندوق آتیه مفید",
+      "costValue": 52000000,
+      "currentValue": 52000000,
+      "note": ""
+    }
+  ],
   "goldMarket": {
     "dollarStartOfYear": 150000,
     "avgMonthlyInflation": 6.5,
@@ -66096,7 +66160,7 @@
     "coinToday": 265970000,
     "tetherToday": 269248,
     "silver999GramMarketToday": 497490,
-    "tgjuUpdatedAt": "2026-10-28T11:53:03+01:00",
+    "tgjuUpdatedAt": "2026-10-28T13:48:25+00:00",
     "tgjuSource": "https://www.tgju.org/",
     "tgjuSourceValues": {
       "gold18k": {
@@ -66145,98 +66209,183 @@
     "tgjuManualOverrides": []
   },
   "goldFunds": [],
-  "layout": {
-    "dashboardGaugeOrder": [
-      "peF",
-      "pdF",
-      "margin",
-      "divAvg",
-      "exportRatio",
-      "receivables",
-      "quickRatio"
-    ],
-    "dataAccordionOrder": [
-      "monthly",
-      "other",
-      "raw",
-      "dividend",
-      "pl",
-      "bs"
-    ],
-    "navOrder": [
-      "portfolio",
-      "dashboard",
-      "gold",
-      "data",
-      "industry",
-      "formulas",
-      "manage",
-      "backup"
-    ],
-    "columnVisibility": {
-      "portfolioTable": {
-        "3": false,
-        "4": false,
-        "5": false
-      },
-      "industryTable-پالایش": {
-        "2": false,
-        "3": false,
-        "5": true
-      },
-      "industryTable-مس": [],
-      "industryTable-سیمان": [],
-      "industryTable-روانکار": [],
-      "industryTable-حمل_و_نقل": [],
-      "industryTable-سنگ_آهن": [],
-      "industryTable-فلزات_اساسی": [],
-      "industryTable-زراعت_و_دامی": [],
-      "industryTable-هلدینگ_و_شرکت_های_سرمایه_گذاری": [],
-      "industryTable-شوینده": [],
-      "industryTable-دارویی": [],
-      "industryTable-فلزات_ارزشمند": [],
-      "industryTable-غذایی": [],
-      "industryTable-لاستیک": [],
-      "industryTable-پتروشیمی": [],
-      "industryTable-محصولات_لبنی": [],
-      "industryTable-صنعت_آهن_و_فولاد": [],
-      "industryTable-روغن_خوراکی": [],
-      "industryTable-دوده": [],
-      "industryTable-صنایع_چوب": []
-    }
-  },
-  "settings": {
-    "backupEmail": "jahanbakhsh.engineer@gmail.com"
-  },
   "valueChains": [],
-  "valueChainWeights": {
-    "peF": 60,
-    "pdRatio": 15,
-    "pbRatio": 5,
-    "margin": 5,
-    "salesGrowth": 5,
-    "receivablesRatio": 5,
-    "qMargin": 5,
-    "quickRatio": 5
-  },
-  "valueChainSelectedKeys": [
-    "margin",
-    "salesGrowth",
-    "qMargin",
-    "peF",
-    "pdRatio",
-    "receivablesRatio",
-    "quickRatio"
+  "formulas": [
+    {
+      "key": "qMargin",
+      "name": "حاشیه سود فصلی (FIS)",
+      "expression": "(p-j-k)/q",
+      "format": "percent",
+      "decimals": 1,
+      "showInKpi": true,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "roa",
+      "name": "ROA (بازده دارایی)",
+      "expression": "N/a",
+      "format": "percent",
+      "decimals": 1,
+      "showInKpi": true,
+      "showInIndustry": false,
+      "builtin": true
+    },
+    {
+      "key": "roe",
+      "name": "ROE (بازده حقوق مالکانه)",
+      "expression": "N/e",
+      "format": "percent",
+      "decimals": 1,
+      "showInKpi": true,
+      "showInIndustry": false,
+      "builtin": true
+    },
+    {
+      "key": "roeDupont",
+      "name": "ROE دوپونت (تجزیه‌شده)",
+      "expression": "(N/S)*(S/a)*(a/e)",
+      "format": "percent",
+      "decimals": 1,
+      "showInKpi": true,
+      "showInIndustry": false,
+      "builtin": true
+    },
+    {
+      "key": "netMarginDP",
+      "name": "حاشیه سود خالص (جزء دوپونت)",
+      "expression": "N/S",
+      "format": "percent",
+      "decimals": 1,
+      "showInKpi": false,
+      "showInIndustry": false,
+      "builtin": true
+    },
+    {
+      "key": "assetTurnoverDP",
+      "name": "گردش دارایی (جزء دوپونت)",
+      "expression": "S/a",
+      "format": "ratio",
+      "decimals": 2,
+      "showInKpi": false,
+      "showInIndustry": false,
+      "builtin": true
+    },
+    {
+      "key": "equityMultiplierDP",
+      "name": "ضریب مالکانه (جزء دوپونت)",
+      "expression": "a/e",
+      "format": "ratio",
+      "decimals": 2,
+      "showInKpi": false,
+      "showInIndustry": false,
+      "builtin": true
+    },
+    {
+      "key": "inventoryDays",
+      "name": "دوره گردش کالا",
+      "expression": "365/(Math.abs(c)/i)",
+      "format": "number",
+      "decimals": 0,
+      "unit": " روز",
+      "showInKpi": true,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "receivableDays",
+      "name": "دوره وصول مطالبات",
+      "expression": "365/(s/r)",
+      "format": "number",
+      "decimals": 0,
+      "unit": " روز",
+      "showInKpi": true,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "peF",
+      "name": "P/E F",
+      "expression": "K/(F*M+H)",
+      "format": "ratio",
+      "decimals": 1,
+      "showInKpi": true,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "peRealized",
+      "name": "P/E محقق‌شده (TTM)",
+      "expression": "K/n",
+      "format": "ratio",
+      "decimals": 1,
+      "showInKpi": false,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "pdRatio",
+      "name": "P/D F",
+      "expression": "K/(D*(F*M+H))",
+      "format": "ratio",
+      "decimals": 1,
+      "showInKpi": false,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "psRatio",
+      "name": "P/S F",
+      "expression": "K/F",
+      "format": "ratio",
+      "decimals": 1,
+      "showInKpi": false,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "paRatio",
+      "name": "P/A",
+      "expression": "K/A",
+      "format": "ratio",
+      "decimals": 1,
+      "showInKpi": false,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "pbRatio",
+      "name": "P/B",
+      "expression": "K/E",
+      "format": "ratio",
+      "decimals": 1,
+      "showInKpi": false,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "receivablesRatio",
+      "name": "نسبت مطالبات",
+      "expression": "R/A",
+      "format": "percent",
+      "decimals": 1,
+      "showInKpi": false,
+      "showInIndustry": true,
+      "builtin": true
+    },
+    {
+      "key": "quickRatio",
+      "name": "نسبت آنی",
+      "expression": "(G-P-I)/L",
+      "format": "ratio",
+      "decimals": 2,
+      "showInKpi": true,
+      "showInIndustry": true,
+      "builtin": true
+    }
   ],
-  "valueChainDirections": {
-    "margin": false,
-    "salesGrowth": false,
-    "peF": true,
-    "pdRatio": true,
-    "receivablesRatio": true,
-    "qMargin": false,
-    "quickRatio": false
-  },
+  "settings": [],
+  "formulaSchemaVersion": 7,
   "fundamentalValueConfig": {
     "perIndustry": {
       "سیمان": [
@@ -66523,36 +66672,77 @@
       "payoutMax": null
     }
   },
-  "portfolioAssets": [
-    {
-      "id": "6nh2ry0f",
-      "type": "copper",
-      "name": "گواهی کاتد مس",
-      "costValue": 24184767,
-      "currentValue": 38956247,
-      "note": ""
-    },
-    {
-      "id": "4q6n0faq",
-      "type": "silver",
-      "name": "گواهی سپرده پیوسته شمش نقره 999.9",
-      "costValue": 151054467,
-      "currentValue": 179161646,
-      "note": ""
-    },
-    {
-      "id": "scl6frmj",
-      "type": "crypto",
-      "name": "ارز دیجیتال",
-      "costValue": 141000000,
-      "currentValue": 141000000,
-      "note": ""
-    }
+  "valueChainWeights": {
+    "peF": 60,
+    "pdRatio": 15,
+    "pbRatio": 5,
+    "margin": 5,
+    "salesGrowth": 5,
+    "receivablesRatio": 5,
+    "qMargin": 5,
+    "quickRatio": 5
+  },
+  "valueChainSelectedKeys": [
+    "margin",
+    "salesGrowth",
+    "qMargin",
+    "peF",
+    "pdRatio",
+    "receivablesRatio",
+    "quickRatio"
   ],
+  "valueChainDirections": {
+    "margin": false,
+    "salesGrowth": false,
+    "peF": true,
+    "pdRatio": true,
+    "receivablesRatio": true,
+    "qMargin": false,
+    "quickRatio": false
+  },
   "managerRecommendations": {
     "title": "پیشنهادهای مدیریت",
     "industry": "پالایش",
     "description": "",
-    "stocks": []
+    "stocks": [
+      {
+        "symbol": "فباهنر",
+        "industry": "مس",
+        "note": ""
+      },
+      {
+        "symbol": "شبریز",
+        "industry": "پالایش",
+        "note": ""
+      },
+      {
+        "symbol": "پیزد",
+        "industry": "لاستیک",
+        "note": ""
+      }
+    ]
+  },
+  "layout": {
+    "columnVisibility": {
+      "portfolioTable": {}
+    }
+  },
+  "rawMapping": {
+    "pl": {
+      "sales": "خالص فروش تولیدات کشاورزی و دارایی های زیستی غیر مولد",
+      "cogs": "بهای تمام شده انتسابی",
+      "netIncomeQ": "سود (زیان) خالص عملیات در حال تداوم",
+      "otherIncomeQ": "ساير درآمدهاى عملياتى",
+      "otherNonOperatingQ": "ساير درآمدها و هزينه ‏هاى غیرعملياتى - درآمد سرمایه گذاری ها"
+    },
+    "bs": {
+      "inventory": "موجودی مواد و کالا",
+      "receivables": "دریافتنی‌های بلندمدت",
+      "totalAssets": "جمع دارایی‌های جاری",
+      "equity": "حقوق مالکانه و بدهی‌ها",
+      "currentAssets": "جمع دارایی‌های جاری",
+      "prepaid": "سفارشات و پیش‌پرداخت‌ها",
+      "currentLiabilities": "بدهی‌های جاری"
+    }
   }
 }
