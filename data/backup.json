@@ -3800,7 +3800,9 @@
           "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=cQy1ZqSAVAJ7TFuSyijD3Q%3d%3d&rt=0&let=6&ct=0&ft=-1",
           "source": "codal-n10"
         }
-      }
+      },
+      "chartRangeFrom": 1404,
+      "chartRangeTo": null
     },
     "شپنا": {
       "symbol": "شپنا",
@@ -18682,7 +18684,11 @@
           "equity": 1513.0949,
           "currentAssets": 6745.1145,
           "prepaid": 310.1102,
-          "currentLiabilities": 6144.1286
+          "currentLiabilities": 6144.1286,
+          "publishedAt": "۱۴۰۵/۰۴/۲۸ ۱۵:۵۲:۳۱",
+          "reportDate": "1405/03/31",
+          "codalLetterSerial": "Mr4cRlLjl8hp7wO46vq1bw==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=Mr4cRlLjl8hp7wO46vq1bw%3d%3d&rt=0&let=6&ct=0&ft=-1"
         },
         {
           "id": "7it7qefs",
@@ -18699,7 +18705,11 @@
           "equity": 1621.3087,
           "currentAssets": 2487.1244,
           "prepaid": 149.2598,
-          "currentLiabilities": 1258.9443
+          "currentLiabilities": 1258.9443,
+          "publishedAt": "۱۴۰۴/۰۴/۲۹ ۰۸:۴۸:۰۸",
+          "reportDate": "1404/03/31",
+          "codalLetterSerial": "uFYVb6HynYh1vmjQQQaQQQPtFOTA==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=uFYVb6HynYh1vmjQQQaQQQPtFOTA%3d%3d&rt=0&let=6&ct=0&ft=-1"
         },
         {
           "id": "glglwklo",
@@ -18716,7 +18726,11 @@
           "equity": 3381.9902,
           "currentAssets": 5206.0318,
           "prepaid": 290.2614,
-          "currentLiabilities": 2686.4019
+          "currentLiabilities": 2686.4019,
+          "publishedAt": "۱۴۰۵/۰۳/۰۵ ۱۴:۲۰:۲۶",
+          "reportDate": "1404/12/29",
+          "codalLetterSerial": "InhG0qJRZTnVHGgMF2mgnw==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=InhG0qJRZTnVHGgMF2mgnw%3d%3d&rt=0&let=6&ct=0&ft=-1"
         },
         {
           "id": "na9upjbn",
@@ -18728,7 +18742,11 @@
           "equity": 1621.3087,
           "currentAssets": 2487.1244,
           "prepaid": 149.2598,
-          "currentLiabilities": 1258.9443
+          "currentLiabilities": 1258.9443,
+          "publishedAt": "۱۴۰۴/۰۲/۰۷ ۱۴:۰۱:۵۲",
+          "reportDate": "1403/12/30",
+          "codalLetterSerial": "brqTLrY3Uyda305xZJAYFQ==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=brqTLrY3Uyda305xZJAYFQ%3d%3d&rt=0&let=6&ct=0&ft=-1"
         },
         {
           "id": "q3e2rqa0",
@@ -18759,7 +18777,11 @@
           "cogs": -1023.96,
           "netIncomeQ": 1589.4725,
           "otherIncomeQ": 2.0076,
-          "otherNonOperatingQ": 334.8267
+          "otherNonOperatingQ": 334.8267,
+          "publishedAt": "۱۴۰۴/۰۸/۲۱ ۱۵:۰۳:۵۶",
+          "reportDate": "1404/06/31",
+          "codalLetterSerial": "0zK6rGCr7m8BJO3msZlVVA==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=0zK6rGCr7m8BJO3msZlVVA%3d%3d&rt=0&let=6&ct=0&ft=-1"
         }
       ],
       "monthlySales": {
@@ -18953,6 +18975,250 @@
           "letterSerial": "RMdQbVXf64UWtc2Pee61pg==",
           "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=RMdQbVXf64UWtc2Pee61pg%3d%3d&rt=0&let=6&ct=0&ft=-1",
           "source": "codal-n10"
+        },
+        "1405-3": {
+          "fiscalYear": 1405,
+          "months": 3,
+          "periodEnd": "1405/03/31",
+          "publishedAt": "۱۴۰۵/۰۴/۲۸ ۱۵:۵۲:۳۱",
+          "publishDate": "1405/04/28",
+          "letterSerial": "Mr4cRlLjl8hp7wO46vq1bw==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=Mr4cRlLjl8hp7wO46vq1bw%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "اطلاعات و صورت‌های مالی میاندوره‌ای  دوره ۳ ماهه منتهی به  ۱۴۰۵/۰۳/۳۱ (حسابرسی نشده)",
+          "source": "codal-n10",
+          "consolidated": false
+        },
+        "1404-12": {
+          "fiscalYear": 1404,
+          "months": 12,
+          "periodEnd": "1404/12/29",
+          "publishedAt": "۱۴۰۵/۰۳/۰۵ ۱۴:۲۰:۲۶",
+          "publishDate": "1405/03/05",
+          "letterSerial": "InhG0qJRZTnVHGgMF2mgnw==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=InhG0qJRZTnVHGgMF2mgnw%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "صورت‌های مالی مجموعه سال مالی منتهی به ۱۴۰۴/۱۲/۲۹ (حسابرسی شده)",
+          "source": "codal-n10",
+          "consolidated": false
+        },
+        "1404-6": {
+          "fiscalYear": 1404,
+          "months": 6,
+          "periodEnd": "1404/06/31",
+          "publishedAt": "۱۴۰۴/۰۸/۲۱ ۱۵:۰۳:۵۶",
+          "publishDate": "1404/08/21",
+          "letterSerial": "0zK6rGCr7m8BJO3msZlVVA==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=0zK6rGCr7m8BJO3msZlVVA%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "اطلاعات و صورت‌های مالی میاندوره‌ای  دوره ۶ ماهه منتهی به  ۱۴۰۴/۰۶/۳۱ (حسابرسی شده)",
+          "source": "codal-n10",
+          "consolidated": false
+        },
+        "1404-3": {
+          "fiscalYear": 1404,
+          "months": 3,
+          "periodEnd": "1404/03/31",
+          "publishedAt": "۱۴۰۴/۰۴/۲۹ ۰۸:۴۸:۰۸",
+          "publishDate": "1404/04/29",
+          "letterSerial": "uFYVb6HynYh1vmjQQQaQQQPtFOTA==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=uFYVb6HynYh1vmjQQQaQQQPtFOTA%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "اطلاعات و صورت‌های مالی میاندوره‌ای  دوره ۳ ماهه منتهی به  ۱۴۰۴/۰۳/۳۱ (حسابرسی نشده)",
+          "source": "codal-n10",
+          "consolidated": false
+        },
+        "1403-12": {
+          "fiscalYear": 1403,
+          "months": 12,
+          "periodEnd": "1403/12/30",
+          "publishedAt": "۱۴۰۴/۰۲/۰۷ ۱۴:۰۱:۵۲",
+          "publishDate": "1404/02/07",
+          "letterSerial": "brqTLrY3Uyda305xZJAYFQ==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=brqTLrY3Uyda305xZJAYFQ%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "صورت‌های مالی  سال مالی منتهی به ۱۴۰۳/۱۲/۳۰ (حسابرسی نشده)(اصلاحیه)",
+          "source": "codal-n10",
+          "consolidated": false
+        }
+      },
+      "historicalMarket": {
+        "1405-6": {
+          "targetJalali": "1405/07/30",
+          "dateBasis": "publication",
+          "letterSerial": "RMdQbVXf64UWtc2Pee61pg==",
+          "publicationSource": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=RMdQbVXf64UWtc2Pee61pg%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "market": {
+            "insCode": "13227300125161435",
+            "requestedDate": 20261022,
+            "tradingDate": 20261021,
+            "gapDays": 1,
+            "afterTarget": false,
+            "closeRial": 224200,
+            "sharesOnDate": 1100000000,
+            "marketCapBillionToman": 24662,
+            "dailyTradeValueRial": 661767552800,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/13227300125161435/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/13227300125161435/20261021",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20261022,
+            "date": 20261022,
+            "jalali": "1405/07/30",
+            "rialPerDollar": 2719050,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1404%2F10%2F11&to=1405%2F08%2F11&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1405-3": {
+          "targetJalali": "1405/04/28",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "13227300125161435",
+            "requestedDate": 20260719,
+            "tradingDate": 20260719,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 150600,
+            "sharesOnDate": 1100000000,
+            "marketCapBillionToman": 16566,
+            "dailyTradeValueRial": 621654283600,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/13227300125161435/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/13227300125161435/20260719",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20260719,
+            "date": 20260719,
+            "jalali": "1405/04/28",
+            "rialPerDollar": 1930000,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=3&start=60&length=30&from=1404%2F10%2F11&to=1405%2F08%2F11&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1404-12": {
+          "targetJalali": "1405/03/05",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "13227300125161435",
+            "requestedDate": 20260526,
+            "tradingDate": 20260526,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 150730,
+            "sharesOnDate": 1100000000,
+            "marketCapBillionToman": 16580.3,
+            "dailyTradeValueRial": 377358584200,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/13227300125161435/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/13227300125161435/20260526",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20260526,
+            "date": 20260526,
+            "jalali": "1405/03/05",
+            "rialPerDollar": 1724000,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=5&start=120&length=30&from=1404%2F10%2F11&to=1405%2F08%2F11&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1404-6": {
+          "targetJalali": "1404/08/21",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "13227300125161435",
+            "requestedDate": 20251112,
+            "tradingDate": 20251112,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 132970,
+            "sharesOnDate": 1100000000,
+            "marketCapBillionToman": 14626.7,
+            "dailyTradeValueRial": 595444673520,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/13227300125161435/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/13227300125161435/20251112",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20251112,
+            "date": 20251112,
+            "jalali": "1404/08/21",
+            "rialPerDollar": 1126100,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=100&from=1403%2F10%2F12&to=1404%2F10%2F10&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1404-3": {
+          "targetJalali": "1404/04/29",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "13227300125161435",
+            "requestedDate": 20250720,
+            "tradingDate": 20250720,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 121140,
+            "sharesOnDate": 1100000000,
+            "marketCapBillionToman": 13325.4,
+            "dailyTradeValueRial": 98681128560,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/13227300125161435/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/13227300125161435/20250720",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20250720,
+            "date": 20250720,
+            "jalali": "1404/04/29",
+            "rialPerDollar": 878950,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=2&start=100&length=100&from=1403%2F10%2F12&to=1404%2F10%2F10&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1403-12": {
+          "targetJalali": "1404/02/07",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "13227300125161435",
+            "requestedDate": 20250427,
+            "tradingDate": 20250427,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 120080,
+            "sharesOnDate": 1100000000,
+            "marketCapBillionToman": 13208.8,
+            "dailyTradeValueRial": 226535122800,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/13227300125161435/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/13227300125161435/20250427",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20250427,
+            "date": 20250427,
+            "jalali": "1404/02/07",
+            "rialPerDollar": 812650,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=2&start=100&length=100&from=1403%2F10%2F12&to=1404%2F10%2F10&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
         }
       }
     },
@@ -23956,7 +24222,11 @@
           "equity": 1123.108,
           "currentAssets": 2722.9521,
           "prepaid": 120.8274,
-          "currentLiabilities": 2092.1847
+          "currentLiabilities": 2092.1847,
+          "publishedAt": "۱۴۰۵/۰۵/۱۰ ۱۹:۲۵:۲۸",
+          "reportDate": "1405/03/31",
+          "codalLetterSerial": "XyrYguI7JgwVw4EFOQQQaQQQtX1A==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=XyrYguI7JgwVw4EFOQQQaQQQtX1A%3d%3d&rt=0&let=6&ct=0&ft=-1"
         },
         {
           "id": "3lj9m6ts",
@@ -23973,7 +24243,11 @@
           "equity": 639.9965,
           "currentAssets": 585.0321,
           "prepaid": 16.7395,
-          "currentLiabilities": 451.1162
+          "currentLiabilities": 451.1162,
+          "publishedAt": "۱۴۰۴/۰۵/۲۰ ۱۷:۰۲:۰۰",
+          "reportDate": "1404/03/31",
+          "codalLetterSerial": "1BSL27eDWsInKvKH9PTk4Q==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=1BSL27eDWsInKvKH9PTk4Q%3d%3d&rt=0&let=6&ct=0&ft=-1"
         },
         {
           "id": "xuo666pu",
@@ -23990,7 +24264,11 @@
           "equity": 1601.2536,
           "currentAssets": 1930.1779,
           "prepaid": 91.9565,
-          "currentLiabilities": 820.4256
+          "currentLiabilities": 820.4256,
+          "publishedAt": "۱۴۰۵/۰۳/۱۸ ۱۹:۰۶:۳۶",
+          "reportDate": "1404/12/29",
+          "codalLetterSerial": "hPrgtf2budVdAKlT7blbkQ==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=hPrgtf2budVdAKlT7blbkQ%3d%3d&rt=0&let=6&ct=0&ft=-1"
         },
         {
           "id": "aw07vqao",
@@ -24021,7 +24299,11 @@
           "cogs": -237.5958,
           "netIncomeQ": 401.0843,
           "otherIncomeQ": 0.004,
-          "otherNonOperatingQ": 122.6336
+          "otherNonOperatingQ": 122.6336,
+          "publishedAt": "۱۴۰۴/۰۸/۲۹ ۱۶:۲۵:۳۰",
+          "reportDate": "1404/06/31",
+          "codalLetterSerial": "4u4Mcsm2KvIVYJqKaE7qgg==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=4u4Mcsm2KvIVYJqKaE7qgg%3d%3d&rt=0&let=6&ct=0&ft=-1"
         },
         {
           "id": "vyfw9jph",
@@ -24033,7 +24315,11 @@
           "equity": 639.9965,
           "currentAssets": 585.0321,
           "prepaid": 16.7395,
-          "currentLiabilities": 451.1162
+          "currentLiabilities": 451.1162,
+          "publishedAt": "۱۴۰۴/۰۲/۰۷ ۲۱:۵۱:۵۱",
+          "reportDate": "1403/12/30",
+          "codalLetterSerial": "A25OOObOOOIdIq2g0iMErFAPEzew==",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=A25OOObOOOIdIq2g0iMErFAPEzew%3d%3d&rt=0&let=6&ct=0&ft=-1"
         }
       ],
       "monthlySales": {
@@ -24147,6 +24433,234 @@
           "letterSerial": "MX2MCB2tC9dY8qvJmMhWMg==",
           "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=MX2MCB2tC9dY8qvJmMhWMg%3d%3d&rt=0&let=6&ct=0&ft=-1",
           "source": "codal-n10"
+        },
+        "1405-3": {
+          "fiscalYear": 1405,
+          "months": 3,
+          "periodEnd": "1405/03/31",
+          "publishedAt": "۱۴۰۵/۰۵/۱۰ ۱۹:۲۵:۲۸",
+          "publishDate": "1405/05/10",
+          "letterSerial": "XyrYguI7JgwVw4EFOQQQaQQQtX1A==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=XyrYguI7JgwVw4EFOQQQaQQQtX1A%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "اطلاعات و صورت‌های مالی میاندوره‌ای  دوره ۳ ماهه منتهی به  ۱۴۰۵/۰۳/۳۱ (حسابرسی نشده)(اصلاحیه)",
+          "source": "codal-n10",
+          "consolidated": false
+        },
+        "1404-12": {
+          "fiscalYear": 1404,
+          "months": 12,
+          "periodEnd": "1404/12/29",
+          "publishedAt": "۱۴۰۵/۰۳/۱۸ ۱۹:۰۶:۳۶",
+          "publishDate": "1405/03/18",
+          "letterSerial": "hPrgtf2budVdAKlT7blbkQ==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=hPrgtf2budVdAKlT7blbkQ%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "صورت‌های مالی  سال مالی منتهی به ۱۴۰۴/۱۲/۲۹ (حسابرسی شده)",
+          "source": "codal-n10",
+          "consolidated": false
+        },
+        "1404-6": {
+          "fiscalYear": 1404,
+          "months": 6,
+          "periodEnd": "1404/06/31",
+          "publishedAt": "۱۴۰۴/۰۸/۲۹ ۱۶:۲۵:۳۰",
+          "publishDate": "1404/08/29",
+          "letterSerial": "4u4Mcsm2KvIVYJqKaE7qgg==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=4u4Mcsm2KvIVYJqKaE7qgg%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "اطلاعات و صورت‌های مالی میاندوره‌ای  دوره ۶ ماهه منتهی به  ۱۴۰۴/۰۶/۳۱ (حسابرسی شده)",
+          "source": "codal-n10",
+          "consolidated": false
+        },
+        "1404-3": {
+          "fiscalYear": 1404,
+          "months": 3,
+          "periodEnd": "1404/03/31",
+          "publishedAt": "۱۴۰۴/۰۵/۲۰ ۱۷:۰۲:۰۰",
+          "publishDate": "1404/05/20",
+          "letterSerial": "1BSL27eDWsInKvKH9PTk4Q==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=1BSL27eDWsInKvKH9PTk4Q%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "اطلاعات و صورت‌های مالی میاندوره‌ای  دوره ۳ ماهه منتهی به  ۱۴۰۴/۰۳/۳۱ (حسابرسی نشده)(اصلاحیه)",
+          "source": "codal-n10",
+          "consolidated": false
+        },
+        "1403-12": {
+          "fiscalYear": 1403,
+          "months": 12,
+          "periodEnd": "1403/12/30",
+          "publishedAt": "۱۴۰۴/۰۲/۰۷ ۲۱:۵۱:۵۱",
+          "publishDate": "1404/02/07",
+          "letterSerial": "A25OOObOOOIdIq2g0iMErFAPEzew==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=A25OOObOOOIdIq2g0iMErFAPEzew%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "title": "صورت‌های مالی  سال مالی منتهی به ۱۴۰۳/۱۲/۳۰ (حسابرسی شده)",
+          "source": "codal-n10",
+          "consolidated": false
+        }
+      },
+      "historicalMarket": {
+        "1405-6": {
+          "targetJalali": "1405/07/29",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "60654872678917533",
+            "requestedDate": 20261021,
+            "tradingDate": 20261021,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 39050,
+            "sharesOnDate": 4000000000,
+            "marketCapBillionToman": 15620,
+            "dailyTradeValueRial": 340948040930,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/60654872678917533/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/60654872678917533/20261021",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20261021,
+            "date": 20261021,
+            "jalali": "1405/07/29",
+            "rialPerDollar": 2694000,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=30&from=1404%2F10%2F11&to=1405%2F08%2F11&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1405-3": {
+          "targetJalali": "1405/05/10",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "60654872678917533",
+            "requestedDate": 20260801,
+            "tradingDate": 20260801,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 22240,
+            "sharesOnDate": 4000000000,
+            "marketCapBillionToman": 8896,
+            "dailyTradeValueRial": 349253168670,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/60654872678917533/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/60654872678917533/20260801",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20260801,
+            "date": 20260801,
+            "jalali": "1405/05/10",
+            "rialPerDollar": 1937000,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=3&start=60&length=30&from=1404%2F10%2F11&to=1405%2F08%2F11&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1404-12": {
+          "targetJalali": "1405/03/18",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "60654872678917533",
+            "requestedDate": 20260608,
+            "tradingDate": 20260608,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 15880,
+            "sharesOnDate": 4000000000,
+            "marketCapBillionToman": 6352,
+            "dailyTradeValueRial": 109375659680,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/60654872678917533/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/60654872678917533/20260608",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20260608,
+            "date": 20260608,
+            "jalali": "1405/03/18",
+            "rialPerDollar": 1774000,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=4&start=90&length=30&from=1404%2F10%2F11&to=1405%2F08%2F11&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1404-6": {
+          "targetJalali": "1404/08/29",
+          "dateBasis": "publication",
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20251120,
+            "date": 20251120,
+            "jalali": "1404/08/29",
+            "rialPerDollar": 1135200,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=1&start=0&length=100&from=1403%2F10%2F12&to=1404%2F10%2F10&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1404-3": {
+          "targetJalali": "1404/05/20",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "60654872678917533",
+            "requestedDate": 20250811,
+            "tradingDate": 20250811,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 5500,
+            "sharesOnDate": 4000000000,
+            "marketCapBillionToman": 2200,
+            "dailyTradeValueRial": 1326977860,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/60654872678917533/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/60654872678917533/20250811",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20250811,
+            "date": 20250811,
+            "jalali": "1404/05/20",
+            "rialPerDollar": 932750,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=2&start=100&length=100&from=1403%2F10%2F12&to=1404%2F10%2F10&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
+        },
+        "1403-12": {
+          "targetJalali": "1404/02/07",
+          "dateBasis": "publication",
+          "market": {
+            "insCode": "60654872678917533",
+            "requestedDate": 20250427,
+            "tradingDate": 20250427,
+            "gapDays": 0,
+            "afterTarget": false,
+            "closeRial": 5740,
+            "sharesOnDate": 4000000000,
+            "marketCapBillionToman": 2296,
+            "dailyTradeValueRial": 25040209440,
+            "priceSource": "https://cdn.tsetmc.com/api/ClosingPrice/GetClosingPriceDailyList/60654872678917533/0",
+            "sharesSource": "https://cdn.tsetmc.com/api/Instrument/GetInstrumentHistory/60654872678917533/20250427",
+            "unit": "rial"
+          },
+          "dollar": {
+            "rateType": "price_dollar_rl",
+            "requestedDate": 20250427,
+            "date": 20250427,
+            "jalali": "1404/02/07",
+            "rialPerDollar": 812650,
+            "gapDays": 0,
+            "afterTarget": false,
+            "source": "https://api.tgju.org/v1/market/indicator/summary-table-data/price_dollar_rl?lang=fa&draw=2&start=100&length=100&from=1403%2F10%2F12&to=1404%2F10%2F10&convert_to_ad=1",
+            "sourceType": "cached_TGJU",
+            "unit": "rial_per_dollar"
+          }
         }
       }
     },
@@ -86281,65 +86795,65 @@
     "dollarStartOfYear": 150000,
     "avgMonthlyInflation": 6.5,
     "monthsElapsed": "7",
-    "dollarToday": 271500,
-    "goldOunceToday": 3929.5,
-    "silverOunceToday": 49.71,
+    "dollarToday": 267605,
+    "goldOunceToday": 4070.41,
+    "silverOunceToday": 51.88,
     "goldOunceYearEnd": 5000,
     "silverOunceYearEnd": 80,
     "dollarSamePriorYear": "95",
     "gold18kStartOfYear": null,
     "silverGramStartOfYear": null,
-    "gold18kMarketToday": 25813300,
-    "coinToday": 263225000,
-    "tetherToday": 269387,
-    "silver999GramMarketToday": 473910,
-    "tgjuUpdatedAt": "2026-11-03T07:25:05+00:00",
+    "gold18kMarketToday": 25912100,
+    "coinToday": 263915000,
+    "tetherToday": 268782,
+    "silver999GramMarketToday": 467450,
+    "tgjuUpdatedAt": "2026-11-07T14:33:09+01:00",
     "tgjuSource": "https://www.tgju.org/",
     "tgjuSourceValues": {
       "gold18k": {
-        "rawValue": 258133000,
+        "rawValue": 259121000,
         "rawUnit": "ریال",
         "sourceLabel": "طلا 18",
         "sourceTime": ""
       },
       "coin": {
-        "rawValue": 2632250000,
+        "rawValue": 2639150000,
         "rawUnit": "ریال",
         "sourceLabel": "سکه",
         "sourceTime": ""
       },
       "dollar": {
-        "rawValue": 2715000,
+        "rawValue": 2676050,
         "rawUnit": "ریال",
         "sourceLabel": "دلار",
         "sourceTime": ""
       },
       "tether": {
-        "rawValue": 2693870,
+        "rawValue": 2687820,
         "rawUnit": "ریال",
         "sourceLabel": "تتر",
         "sourceTime": ""
       },
       "goldOunce": {
-        "rawValue": 3929.5,
+        "rawValue": 4070.41,
         "rawUnit": "دلار/انس",
         "sourceLabel": "انس طلا",
         "sourceTime": ""
       },
       "silverOunce": {
-        "rawValue": 49.71,
+        "rawValue": 51.88,
         "rawUnit": "دلار/انس",
         "sourceLabel": "انس نقره",
         "sourceTime": ""
       },
       "silver999": {
-        "rawValue": 4739100,
+        "rawValue": 4674500,
         "rawUnit": "ریال",
         "sourceLabel": "گرم نقره 999",
         "sourceTime": ""
       }
     },
-    "tgjuManualOverrides": []
+    "tgjuManualOverrides": {}
   },
   "goldFunds": [],
   "valueChains": [],
@@ -87006,5 +87520,9 @@
       "approved": "DividedRetainedEarning"
     }
   },
-  "layout": {}
+  "layout": {
+    "columnVisibility": {
+      "portfolioTable": {}
+    }
+  }
 }
