@@ -115175,11 +115175,127 @@
     },
     "سپاها": {
       "symbol": "سپاها",
-      "periods": [],
-      "monthlySales": {},
-      "monthlySalesSplit": {},
-      "monthlySalesYTD": {},
-      "dividendHistory": [],
+      "periods": [
+        {
+          "id": "2taghrhj",
+          "fiscalYear": 1405,
+          "months": 9,
+          "sales": 3301.4445,
+          "cogs": -1676.5072,
+          "netIncomeQ": 1583.1605,
+          "otherIncomeQ": 351.1378,
+          "otherNonOperatingQ": 399.9992,
+          "publishedAt": "۱۴۰۵/۰۴/۲۹ ۱۸:۳۳:۰۰",
+          "reportDate": "1405/03/31",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "codalLetterSerial": "NSAMTOOObOOOtAQOV2yOyqHoGXOQ==",
+          "inventory": 2161.7582,
+          "receivables": 542.0355,
+          "totalAssets": 5134.8698,
+          "equity": 2365.5274,
+          "currentAssets": 3437.5015,
+          "prepaid": 184.6145,
+          "currentLiabilities": 2608.6074
+        },
+        {
+          "id": "dnk7loro",
+          "fiscalYear": 1404,
+          "months": 9,
+          "sales": 2545.9797,
+          "cogs": -1241.7312,
+          "netIncomeQ": 1183.1978,
+          "otherIncomeQ": 58.2239,
+          "otherNonOperatingQ": 260.8768
+        },
+        {
+          "id": "4p4hnkak",
+          "fiscalYear": 1404,
+          "months": 12,
+          "sales": 251.7064,
+          "cogs": -232.0492,
+          "netIncomeQ": 14.4257,
+          "otherIncomeQ": 0.5352,
+          "otherNonOperatingQ": 9.3619,
+          "inventory": 8.913,
+          "receivables": 59.3577,
+          "totalAssets": 137.7851,
+          "equity": 29.5051,
+          "currentAssets": 71.3631,
+          "prepaid": 0.7916,
+          "currentLiabilities": 98.1115
+        },
+        {
+          "id": "5753yass",
+          "fiscalYear": 1405,
+          "months": 12,
+          "sales": 450.264,
+          "cogs": -400.9835,
+          "netIncomeQ": 20.7139,
+          "otherIncomeQ": 0,
+          "otherNonOperatingQ": 0.144,
+          "publishedAt": "۱۴۰۵/۰۷/۱۸ ۱۰:۵۳:۲۲",
+          "reportDate": "1405/05/31",
+          "codalSourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=1JH0osBd2nKxfymMAyReow%3d%3d&rt=5&let=6&ct=0&ft=-1",
+          "codalLetterSerial": "1JH0osBd2nKxfymMAyReow==",
+          "inventory": 10.2257,
+          "receivables": 76.7364,
+          "totalAssets": 201.0025,
+          "equity": 37.247,
+          "currentAssets": 94.3513,
+          "prepaid": 4.6803,
+          "currentLiabilities": 144.015
+        },
+        {
+          "id": "1j3n2wk0",
+          "fiscalYear": 1403,
+          "months": 12,
+          "inventory": 1090.1857,
+          "receivables": 479.4385,
+          "totalAssets": 2413.351,
+          "equity": 1408.8533,
+          "currentAssets": 2022.6672,
+          "prepaid": 190.3237,
+          "currentLiabilities": 933.1226
+        }
+      ],
+      "monthlySales": {
+        "1405-6": 678.9022,
+        "1405-7": 0
+      },
+      "monthlySalesSplit": {
+        "1405-6": {
+          "domestic": 601.4309000000001,
+          "export": 77.4713
+        },
+        "1405-7": {
+          "domestic": 0,
+          "export": 0
+        }
+      },
+      "monthlySalesYTD": {
+        "1405": {
+          "throughMonth": 12,
+          "currentYTD": 5230.7092,
+          "priorYearYTD": 3658.2094
+        },
+        "1406": {
+          "throughMonth": 1,
+          "currentYTD": 0,
+          "priorYearYTD": 643.0706
+        }
+      },
+      "dividendHistory": [
+        {
+          "fiscalYear": 1403,
+          "profitEndOfPeriod": 899.9491,
+          "dividendApproved": 690
+        },
+        {
+          "fiscalYear": 1404,
+          "profitEndOfPeriod": 1426.9789,
+          "dividendApproved": 1174.5
+        }
+      ],
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
@@ -115199,7 +115315,3151 @@
       "businessType": "manufacturing",
       "commodityType": null,
       "commodityOtherName": "",
-      "tsetmcInsCode": ""
+      "tsetmcInsCode": "",
+      "incomeNotesReports": [
+        {
+          "periodEnd": "1405/03/31",
+          "months": 9,
+          "letterSerial": "NSAMTOOObOOOtAQOV2yOyqHoGXOQ==",
+          "consolidated": false,
+          "sourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=22",
+          "sheetId": 22,
+          "sheetIds": [
+            22,
+            24
+          ],
+          "sources": [
+            {
+              "page": 3,
+              "sheetId": 22,
+              "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=22",
+              "tables": 2,
+              "available": true
+            },
+            {
+              "page": 4,
+              "sheetId": 23,
+              "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=23",
+              "tables": 0,
+              "available": true
+            },
+            {
+              "page": 5,
+              "sheetId": 24,
+              "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=24",
+              "tables": 4,
+              "available": true
+            }
+          ],
+          "pageMap": {
+            "3": 22,
+            "4": 23,
+            "5": 24
+          },
+          "warnings": [],
+          "publishedAt": "۱۴۰۵/۰۴/۲۹ ۱۸:۳۳:۰۰",
+          "audited": false,
+          "unit": "million_rial",
+          "sections": [
+            {
+              "title": "برآورد شرکت از تغییرات هزینه های عمومی ، اداری ، تشکیلاتی و خالص سایر درآمدها (هزینه ها)ی عملیاتی",
+              "tableIndex": 1,
+              "rawRows": [
+                [
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "در رابطه با هزینه حقوق و دستمزد و سایر هزینه های عمومی و اداری و تشکیلاتی به طور متوسط 40 درصد افزایش پیش بینی گردیده است."
+                ],
+                [
+                  "برآورد سال مالی منتهی به 1406/06/31",
+                  "در رابطه با هزینه حقوق و دستمزد و سایر هزینه های عمومی و اداری و تشکیلاتی به طور متوسط 40 درصد افزایش پیش بینی گردیده است."
+                ]
+              ],
+              "layout": [
+                [
+                  {
+                    "text": "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "در رابطه با هزینه حقوق و دستمزد و سایر هزینه های عمومی و اداری و تشکیلاتی به طور متوسط 40 درصد افزایش پیش بینی گردیده است.",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "برآورد سال مالی منتهی به 1406/06/31",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "در رابطه با هزینه حقوق و دستمزد و سایر هزینه های عمومی و اداری و تشکیلاتی به طور متوسط 40 درصد افزایش پیش بینی گردیده است.",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ]
+              ],
+              "headerRows": 2,
+              "sheetId": 22,
+              "sourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=22",
+              "unit": "million_rial",
+              "page": 3,
+              "columns": [
+                "برآورد دوره 3 ماهه منتهی به 1405/06/31 | برآورد سال مالی منتهی به 1406/06/31",
+                "در رابطه با هزینه حقوق و دستمزد و سایر هزینه های عمومی و اداری و تشکیلاتی به طور متوسط 40 درصد افزایش پیش بینی گردیده است."
+              ],
+              "columnPaths": [
+                [
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ],
+                [
+                  "در رابطه با هزینه حقوق و دستمزد و سایر هزینه های عمومی و اداری و تشکیلاتی به طور متوسط 40 درصد افزایش پیش بینی گردیده است."
+                ]
+              ],
+              "labelColumn": 0,
+              "rows": []
+            },
+            {
+              "title": "هزینه های سربار و هزینه های عمومی و اداری شرکت",
+              "tableIndex": 6,
+              "rawRows": [
+                [
+                  "شرح",
+                  "هزینه سربار",
+                  "هزینه سربار",
+                  "هزینه سربار",
+                  "هزینه سربار",
+                  "هزینه های اداری، عمومی و فروش",
+                  "هزینه های اداری، عمومی و فروش",
+                  "هزینه های اداری، عمومی و فروش",
+                  "هزینه های اداری، عمومی و فروش"
+                ],
+                [
+                  "شرح",
+                  "سال مالی منتهی به 1404/06/31",
+                  "دوره 9 ماهه منتهی به 1405/03/31",
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "برآورد سال مالی منتهی به 1406/06/31",
+                  "سال مالی منتهی به 1404/06/31",
+                  "دوره 9 ماهه منتهی به 1405/03/31",
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ],
+                [
+                  "هزینه حقوق و دستمزد",
+                  "3906332",
+                  "4088051",
+                  "1528031",
+                  "0",
+                  "1264618",
+                  "799862",
+                  "292710",
+                  "0"
+                ],
+                [
+                  "هزینه استهلاک",
+                  "324783",
+                  "478344",
+                  "305073",
+                  "0",
+                  "36295",
+                  "19689",
+                  "2402",
+                  "0"
+                ],
+                [
+                  "هزینه انرژی (آب، برق، گاز و سوخت)",
+                  "8895465",
+                  "8631231",
+                  "3382085",
+                  "0",
+                  "1500",
+                  "912",
+                  "685",
+                  "0"
+                ],
+                [
+                  "هزینه مواد مصرفی",
+                  "3723675",
+                  "3664051",
+                  "1651224",
+                  "0",
+                  "23236",
+                  "38421",
+                  "6250",
+                  "0"
+                ],
+                [
+                  "هزینه تبلیغات",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "100086",
+                  "37171",
+                  "18661",
+                  "0"
+                ],
+                [
+                  "حق العمل و کمیسیون فروش",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "هزینه خدمات پس از فروش",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "هزینه مطالبات مشکوک الوصول",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "77677",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "هزینه حمل و نقل و انتقال",
+                  "969059",
+                  "1247031",
+                  "336591",
+                  "0",
+                  "2745710",
+                  "4027536",
+                  "4571715",
+                  "0"
+                ],
+                [
+                  "سایر هزینه ها",
+                  "1896141",
+                  "1603817",
+                  "701540",
+                  "0",
+                  "558607",
+                  "511668",
+                  "434325",
+                  "0"
+                ],
+                [
+                  "هزينه هاي  عملياتي و غيرعملياتي",
+                  "0",
+                  "903361",
+                  "10798",
+                  "0",
+                  "778338",
+                  "584361",
+                  "0",
+                  "0"
+                ],
+                [
+                  "",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "جمع",
+                  "19715455",
+                  "20615886",
+                  "7915342",
+                  "0",
+                  "5586067",
+                  "6019620",
+                  "5326748",
+                  "0"
+                ]
+              ],
+              "layout": [
+                [
+                  {
+                    "text": "شرح",
+                    "column": 0,
+                    "rowSpan": 2,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "هزینه سربار",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 4,
+                    "header": true
+                  },
+                  {
+                    "text": "هزینه های اداری، عمومی و فروش",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 4,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "سال مالی منتهی به 1404/06/31",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "دوره 9 ماهه منتهی به 1405/03/31",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد سال مالی منتهی به 1406/06/31",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "سال مالی منتهی به 1404/06/31",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "دوره 9 ماهه منتهی به 1405/03/31",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد سال مالی منتهی به 1406/06/31",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزینه حقوق و دستمزد",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "3906332",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "4088051",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1528031",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1264618",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "799862",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "292710",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزینه استهلاک",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "324783",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "478344",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "305073",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "36295",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "19689",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "2402",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزینه انرژی (آب، برق، گاز و سوخت)",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "8895465",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "8631231",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "3382085",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1500",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "912",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "685",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزینه مواد مصرفی",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "3723675",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "3664051",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1651224",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "23236",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "38421",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "6250",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزینه تبلیغات",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "100086",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "37171",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "18661",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "حق العمل و کمیسیون فروش",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزینه خدمات پس از فروش",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزینه مطالبات مشکوک الوصول",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "77677",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزینه حمل و نقل و انتقال",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "969059",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1247031",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "336591",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "2745710",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "4027536",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "4571715",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "سایر هزینه ها",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1896141",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1603817",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "701540",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "558607",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "511668",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "434325",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزينه هاي  عملياتي و غيرعملياتي",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "903361",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "10798",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "778338",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "584361",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "جمع",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "19715455",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "20615886",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "7915342",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "5586067",
+                    "column": 5,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "6019620",
+                    "column": 6,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "5326748",
+                    "column": 7,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 8,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ]
+              ],
+              "headerRows": 12,
+              "sheetId": 22,
+              "sourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=22",
+              "unit": "million_rial",
+              "page": 3,
+              "columns": [
+                "شرح | هزینه حقوق و دستمزد | هزینه استهلاک | هزینه انرژی (آب، برق، گاز و سوخت) | هزینه مواد مصرفی | هزینه تبلیغات | حق العمل و کمیسیون فروش | هزینه خدمات پس از فروش | هزینه مطالبات مشکوک الوصول | هزینه حمل و نقل و انتقال | سایر هزینه ها",
+                "هزینه سربار | سال مالی منتهی به 1404/06/31 | 3906332 | 324783 | 8895465 | 3723675 | 0 | 969059 | 1896141",
+                "هزینه سربار | دوره 9 ماهه منتهی به 1405/03/31 | 4088051 | 478344 | 8631231 | 3664051 | 0 | 1247031 | 1603817",
+                "هزینه سربار | برآورد دوره 3 ماهه منتهی به 1405/06/31 | 1528031 | 305073 | 3382085 | 1651224 | 0 | 336591 | 701540",
+                "هزینه سربار | برآورد سال مالی منتهی به 1406/06/31 | 0",
+                "هزینه های اداری، عمومی و فروش | سال مالی منتهی به 1404/06/31 | 1264618 | 36295 | 1500 | 23236 | 100086 | 0 | 77677 | 2745710 | 558607",
+                "هزینه های اداری، عمومی و فروش | دوره 9 ماهه منتهی به 1405/03/31 | 799862 | 19689 | 912 | 38421 | 37171 | 0 | 4027536 | 511668",
+                "هزینه های اداری، عمومی و فروش | برآورد دوره 3 ماهه منتهی به 1405/06/31 | 292710 | 2402 | 685 | 6250 | 18661 | 0 | 4571715 | 434325",
+                "هزینه های اداری، عمومی و فروش | برآورد سال مالی منتهی به 1406/06/31 | 0"
+              ],
+              "columnPaths": [
+                [
+                  "شرح",
+                  "هزینه حقوق و دستمزد",
+                  "هزینه استهلاک",
+                  "هزینه انرژی (آب، برق، گاز و سوخت)",
+                  "هزینه مواد مصرفی",
+                  "هزینه تبلیغات",
+                  "حق العمل و کمیسیون فروش",
+                  "هزینه خدمات پس از فروش",
+                  "هزینه مطالبات مشکوک الوصول",
+                  "هزینه حمل و نقل و انتقال",
+                  "سایر هزینه ها"
+                ],
+                [
+                  "هزینه سربار",
+                  "سال مالی منتهی به 1404/06/31",
+                  "3906332",
+                  "324783",
+                  "8895465",
+                  "3723675",
+                  "0",
+                  "969059",
+                  "1896141"
+                ],
+                [
+                  "هزینه سربار",
+                  "دوره 9 ماهه منتهی به 1405/03/31",
+                  "4088051",
+                  "478344",
+                  "8631231",
+                  "3664051",
+                  "0",
+                  "1247031",
+                  "1603817"
+                ],
+                [
+                  "هزینه سربار",
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "1528031",
+                  "305073",
+                  "3382085",
+                  "1651224",
+                  "0",
+                  "336591",
+                  "701540"
+                ],
+                [
+                  "هزینه سربار",
+                  "برآورد سال مالی منتهی به 1406/06/31",
+                  "0"
+                ],
+                [
+                  "هزینه های اداری، عمومی و فروش",
+                  "سال مالی منتهی به 1404/06/31",
+                  "1264618",
+                  "36295",
+                  "1500",
+                  "23236",
+                  "100086",
+                  "0",
+                  "77677",
+                  "2745710",
+                  "558607"
+                ],
+                [
+                  "هزینه های اداری، عمومی و فروش",
+                  "دوره 9 ماهه منتهی به 1405/03/31",
+                  "799862",
+                  "19689",
+                  "912",
+                  "38421",
+                  "37171",
+                  "0",
+                  "4027536",
+                  "511668"
+                ],
+                [
+                  "هزینه های اداری، عمومی و فروش",
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "292710",
+                  "2402",
+                  "685",
+                  "6250",
+                  "18661",
+                  "0",
+                  "4571715",
+                  "434325"
+                ],
+                [
+                  "هزینه های اداری، عمومی و فروش",
+                  "برآورد سال مالی منتهی به 1406/06/31",
+                  "0"
+                ]
+              ],
+              "labelColumn": 0,
+              "rows": [
+                {
+                  "label": "هزينه هاي  عملياتي و غيرعملياتي",
+                  "cells": [
+                    "هزينه هاي  عملياتي و غيرعملياتي",
+                    "0",
+                    "903361",
+                    "10798",
+                    "0",
+                    "778338",
+                    "584361",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    0,
+                    903361,
+                    10798,
+                    0,
+                    778338,
+                    584361,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 12,
+                  "key": "bdbac550b3950d93f048dc3bba82fd997447ecb7a6e0cb9e92bcc92ac5f8f21d",
+                  "legacyKey": "bdbac550b3950d93f048dc3bba82fd997447ecb7a6e0cb9e92bcc92ac5f8f21d",
+                  "semanticKey": "f79b13b765f1adcd388b86d2ec5bb2952e2c3e7631d23097dd6d6a806c9aa778"
+                },
+                {
+                  "label": "",
+                  "cells": [
+                    "",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 13,
+                  "key": "340256a3765a60e463bf0e1c7c90766df293164deaf78125a28ee3a43876ac04",
+                  "legacyKey": "340256a3765a60e463bf0e1c7c90766df293164deaf78125a28ee3a43876ac04",
+                  "semanticKey": "0836f830275647a021dd03cb783c1896a3483bc478d13d3af5ae8a3387c3ac0b"
+                },
+                {
+                  "label": "جمع",
+                  "cells": [
+                    "جمع",
+                    "19715455",
+                    "20615886",
+                    "7915342",
+                    "0",
+                    "5586067",
+                    "6019620",
+                    "5326748",
+                    "0"
+                  ],
+                  "amounts": [
+                    19715455,
+                    20615886,
+                    7915342,
+                    0,
+                    5586067,
+                    6019620,
+                    5326748,
+                    0
+                  ],
+                  "rowIndex": 14,
+                  "key": "0e158d1361178cf0b381cbbf1bd20d0379acc16fd7c6bbf110606e8f125d3579",
+                  "legacyKey": "0e158d1361178cf0b381cbbf1bd20d0379acc16fd7c6bbf110606e8f125d3579",
+                  "semanticKey": "909d1e5c4b51752335bff98f3a38c355bdf07b4edd44bb30e928c03844a73d39"
+                }
+              ]
+            },
+            {
+              "title": "سایر درآمدهای عملیاتی",
+              "tableIndex": 1,
+              "rawRows": [
+                [
+                  "شرح",
+                  "سال مالی منتهی به 1404/06/31",
+                  "دوره 9 ماهه منتهی به 1405/03/31",
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ],
+                [
+                  "درآمد حاصل از ارايه خدمات ، اجاره معادن و اموال",
+                  "64000",
+                  "95421",
+                  "33750",
+                  "0"
+                ],
+                [
+                  "سود و زيان ناشي از تسعير ارز حاصل از صادرات",
+                  "44872",
+                  "3415957",
+                  "1177500",
+                  "0"
+                ],
+                [
+                  "",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "جمع",
+                  "108872",
+                  "3511378",
+                  "1211250",
+                  "0"
+                ]
+              ],
+              "layout": [
+                [
+                  {
+                    "text": "شرح",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "سال مالی منتهی به 1404/06/31",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "دوره 9 ماهه منتهی به 1405/03/31",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد سال مالی منتهی به 1406/06/31",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "درآمد حاصل از ارايه خدمات ، اجاره معادن و اموال",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "64000",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "95421",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "33750",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "سود و زيان ناشي از تسعير ارز حاصل از صادرات",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "44872",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "3415957",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "1177500",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "جمع",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "108872",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "3511378",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1211250",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ]
+              ],
+              "headerRows": 1,
+              "sheetId": 24,
+              "sourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=24",
+              "unit": "million_rial",
+              "page": 5,
+              "columns": [
+                "شرح",
+                "سال مالی منتهی به 1404/06/31",
+                "دوره 9 ماهه منتهی به 1405/03/31",
+                "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                "برآورد سال مالی منتهی به 1406/06/31"
+              ],
+              "columnPaths": [
+                [
+                  "شرح"
+                ],
+                [
+                  "سال مالی منتهی به 1404/06/31"
+                ],
+                [
+                  "دوره 9 ماهه منتهی به 1405/03/31"
+                ],
+                [
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31"
+                ],
+                [
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ]
+              ],
+              "labelColumn": 0,
+              "rows": [
+                {
+                  "label": "درآمد حاصل از ارايه خدمات ، اجاره معادن و اموال",
+                  "cells": [
+                    "درآمد حاصل از ارايه خدمات ، اجاره معادن و اموال",
+                    "64000",
+                    "95421",
+                    "33750",
+                    "0"
+                  ],
+                  "amounts": [
+                    64000,
+                    95421,
+                    33750,
+                    0
+                  ],
+                  "rowIndex": 1,
+                  "key": "74b609d8c3bf75877460734d0e4a7850f0a0fbc3bfdb93ac98a39f3b1635cb8c",
+                  "legacyKey": "74b609d8c3bf75877460734d0e4a7850f0a0fbc3bfdb93ac98a39f3b1635cb8c",
+                  "semanticKey": "6ffe0655f9171e4c4cff2aebb840734162b97e62d527466f9bde739995fab432"
+                },
+                {
+                  "label": "سود و زيان ناشي از تسعير ارز حاصل از صادرات",
+                  "cells": [
+                    "سود و زيان ناشي از تسعير ارز حاصل از صادرات",
+                    "44872",
+                    "3415957",
+                    "1177500",
+                    "0"
+                  ],
+                  "amounts": [
+                    44872,
+                    3415957,
+                    1177500,
+                    0
+                  ],
+                  "rowIndex": 2,
+                  "key": "b48b07c88d239b70cedd8c5bc06d22441f8fee0e2a67e155bada1aef5ffc5d8c",
+                  "legacyKey": "b48b07c88d239b70cedd8c5bc06d22441f8fee0e2a67e155bada1aef5ffc5d8c",
+                  "semanticKey": "67218660632b4a25ff5de8ce540d1d37f2ff836a21078c0f9a14197523259e9c"
+                },
+                {
+                  "label": "",
+                  "cells": [
+                    "",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 3,
+                  "key": "1e3501bb210e37d7d92c485d6f15bb79ff8e43bd6cbaa29ef7613dfb6426969b",
+                  "legacyKey": "1e3501bb210e37d7d92c485d6f15bb79ff8e43bd6cbaa29ef7613dfb6426969b",
+                  "semanticKey": "8f0c8420858e66255ef69d68c2cff344c486bb4e7d9aee122b7fc5bcb657e7fb"
+                },
+                {
+                  "label": "جمع",
+                  "cells": [
+                    "جمع",
+                    "108872",
+                    "3511378",
+                    "1211250",
+                    "0"
+                  ],
+                  "amounts": [
+                    108872,
+                    3511378,
+                    1211250,
+                    0
+                  ],
+                  "rowIndex": 4,
+                  "key": "8eb18307bd3b477358885b1bb96912a8c5a632f7eee577190154076375458d26",
+                  "legacyKey": "8eb18307bd3b477358885b1bb96912a8c5a632f7eee577190154076375458d26",
+                  "semanticKey": "7a978e63b2c7ffd3080531e9339bc61cfd4d2f7932bc7ea842cae17adce6d6fe"
+                }
+              ]
+            },
+            {
+              "title": "سایر هزینه‌های عملیاتی",
+              "tableIndex": 2,
+              "rawRows": [
+                [
+                  "شرح",
+                  "سال مالی منتهی به 1404/06/31",
+                  "دوره 9 ماهه منتهی به 1405/03/31",
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ],
+                [
+                  "هزينه هاي جذب نشده در توليد",
+                  "385130",
+                  "83072",
+                  "68858",
+                  "0"
+                ],
+                [
+                  "",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "جمع",
+                  "385130",
+                  "83072",
+                  "68858",
+                  "0"
+                ]
+              ],
+              "layout": [
+                [
+                  {
+                    "text": "شرح",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "سال مالی منتهی به 1404/06/31",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "دوره 9 ماهه منتهی به 1405/03/31",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد سال مالی منتهی به 1406/06/31",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "هزينه هاي جذب نشده در توليد",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "385130",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "83072",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "68858",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "جمع",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "385130",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "83072",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "68858",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ]
+              ],
+              "headerRows": 1,
+              "sheetId": 24,
+              "sourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=24",
+              "unit": "million_rial",
+              "page": 5,
+              "columns": [
+                "شرح",
+                "سال مالی منتهی به 1404/06/31",
+                "دوره 9 ماهه منتهی به 1405/03/31",
+                "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                "برآورد سال مالی منتهی به 1406/06/31"
+              ],
+              "columnPaths": [
+                [
+                  "شرح"
+                ],
+                [
+                  "سال مالی منتهی به 1404/06/31"
+                ],
+                [
+                  "دوره 9 ماهه منتهی به 1405/03/31"
+                ],
+                [
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31"
+                ],
+                [
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ]
+              ],
+              "labelColumn": 0,
+              "rows": [
+                {
+                  "label": "هزينه هاي جذب نشده در توليد",
+                  "cells": [
+                    "هزينه هاي جذب نشده در توليد",
+                    "385130",
+                    "83072",
+                    "68858",
+                    "0"
+                  ],
+                  "amounts": [
+                    385130,
+                    83072,
+                    68858,
+                    0
+                  ],
+                  "rowIndex": 1,
+                  "key": "5a2e75221113b78a59ed381d4d9e7ba2ad72a895b47160829b90852dd5078162",
+                  "legacyKey": "5a2e75221113b78a59ed381d4d9e7ba2ad72a895b47160829b90852dd5078162",
+                  "semanticKey": "6735e87df2b340761182ee62f709aa4cbec56b1227fa6c557aa831a60aa96349"
+                },
+                {
+                  "label": "",
+                  "cells": [
+                    "",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 2,
+                  "key": "691070d68616dce1244a3f158a522122eb6e3213cce6e19b60d72028ffd6b8be",
+                  "legacyKey": "691070d68616dce1244a3f158a522122eb6e3213cce6e19b60d72028ffd6b8be",
+                  "semanticKey": "2d63368374ea91bb910a9e7a64be2d3b94d0f06ae219cef9b2ee94bd09f7b730"
+                },
+                {
+                  "label": "جمع",
+                  "cells": [
+                    "جمع",
+                    "385130",
+                    "83072",
+                    "68858",
+                    "0"
+                  ],
+                  "amounts": [
+                    385130,
+                    83072,
+                    68858,
+                    0
+                  ],
+                  "rowIndex": 3,
+                  "key": "97dc3df85618551c333302d54d581d3f1cd7e59bb2749a4b6f2fdafc47bc3f26",
+                  "legacyKey": "97dc3df85618551c333302d54d581d3f1cd7e59bb2749a4b6f2fdafc47bc3f26",
+                  "semanticKey": "038fd63af319e5632809622070a5e4d2a1a4f5669974081f436360d271955422"
+                }
+              ]
+            },
+            {
+              "title": "سایر درآمدها و هزینه‌های غیرعملیاتی - درآمد سرمایه‌گذاری‌ها",
+              "tableIndex": 8,
+              "rawRows": [
+                [
+                  "شرح",
+                  "سال مالی منتهی به 1404/06/31",
+                  "دوره 9 ماهه منتهی به 1405/03/31",
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ],
+                [
+                  "سود حاصل از سرمايه گذاري در سهام شرکت ها",
+                  "2015136",
+                  "2378985",
+                  "414064",
+                  "0"
+                ],
+                [
+                  "",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "جمع",
+                  "2015136",
+                  "2378985",
+                  "414064",
+                  "0"
+                ]
+              ],
+              "layout": [
+                [
+                  {
+                    "text": "شرح",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "سال مالی منتهی به 1404/06/31",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "دوره 9 ماهه منتهی به 1405/03/31",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد سال مالی منتهی به 1406/06/31",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "سود حاصل از سرمايه گذاري در سهام شرکت ها",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "2015136",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "2378985",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "414064",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "جمع",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "2015136",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "2378985",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "414064",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ]
+              ],
+              "headerRows": 1,
+              "sheetId": 24,
+              "sourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=24",
+              "unit": "million_rial",
+              "page": 5,
+              "columns": [
+                "شرح",
+                "سال مالی منتهی به 1404/06/31",
+                "دوره 9 ماهه منتهی به 1405/03/31",
+                "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                "برآورد سال مالی منتهی به 1406/06/31"
+              ],
+              "columnPaths": [
+                [
+                  "شرح"
+                ],
+                [
+                  "سال مالی منتهی به 1404/06/31"
+                ],
+                [
+                  "دوره 9 ماهه منتهی به 1405/03/31"
+                ],
+                [
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31"
+                ],
+                [
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ]
+              ],
+              "labelColumn": 0,
+              "rows": [
+                {
+                  "label": "سود حاصل از سرمايه گذاري در سهام شرکت ها",
+                  "cells": [
+                    "سود حاصل از سرمايه گذاري در سهام شرکت ها",
+                    "2015136",
+                    "2378985",
+                    "414064",
+                    "0"
+                  ],
+                  "amounts": [
+                    2015136,
+                    2378985,
+                    414064,
+                    0
+                  ],
+                  "rowIndex": 1,
+                  "key": "2a56219457ae03362d1adc015d0d378a757f010fe1b05435bf3562e220f81b02",
+                  "legacyKey": "2a56219457ae03362d1adc015d0d378a757f010fe1b05435bf3562e220f81b02",
+                  "semanticKey": "8b33b2d34138cf927b37f762feac3b5403b5922596959decc486ae92c8c24629"
+                },
+                {
+                  "label": "",
+                  "cells": [
+                    "",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 2,
+                  "key": "fa08ff0c2a99e713676db9ce486cae15c097a6679b92e45045f27b323247854c",
+                  "legacyKey": "fa08ff0c2a99e713676db9ce486cae15c097a6679b92e45045f27b323247854c",
+                  "semanticKey": "b3ebf6bd2462ab4c3986bcb3f69ae090aa71b96df46f40530600053a317b796b"
+                },
+                {
+                  "label": "جمع",
+                  "cells": [
+                    "جمع",
+                    "2015136",
+                    "2378985",
+                    "414064",
+                    "0"
+                  ],
+                  "amounts": [
+                    2015136,
+                    2378985,
+                    414064,
+                    0
+                  ],
+                  "rowIndex": 3,
+                  "key": "e3835b65fc834d0906c75650d521d40cd696e51092cfabfb6306e7c087d0c040",
+                  "legacyKey": "e3835b65fc834d0906c75650d521d40cd696e51092cfabfb6306e7c087d0c040",
+                  "semanticKey": "2482132218ed3ebaa855c3a8fa113920d12240ccd192c6d8623d916de7603d5e"
+                }
+              ]
+            },
+            {
+              "title": "سایر درآمدها و هزینه‌های غیرعملیاتی - اقلام متفرقه",
+              "tableIndex": 9,
+              "rawRows": [
+                [
+                  "شرح",
+                  "سال مالی منتهی به 1404/06/31",
+                  "دوره 9 ماهه منتهی به 1405/03/31",
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ],
+                [
+                  "ساير اقلام",
+                  "8712",
+                  "8405",
+                  "1875",
+                  "0"
+                ],
+                [
+                  "سود حاصل از سرمايه گذاري در صندوق هاي سرمايه گذاري",
+                  "641136",
+                  "539050",
+                  "369863",
+                  "0"
+                ],
+                [
+                  "سود سپرده هاي بانکي و اوراق مشارکت",
+                  "371704",
+                  "662212",
+                  "8528",
+                  "0"
+                ],
+                [
+                  "خسارات و جرايم دريافتي",
+                  "8022",
+                  "146304",
+                  "0",
+                  "0"
+                ],
+                [
+                  "سود و زيان ناشي از تسعير دارايي و بدهي هاي ارزي",
+                  "9529",
+                  "265036",
+                  "0",
+                  "0"
+                ],
+                [
+                  "سود حاصل از فروش دارايي هاي ثابت مشهود",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "سود ( زيان ) ناشي از فروش سرمايه گذاري هاي بلند مدت",
+                  "0",
+                  "0",
+                  "104654",
+                  "0"
+                ],
+                [
+                  "درآمد فروش ضايعات و موجودي هاي راکد",
+                  "60617",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "جمع",
+                  "1099720",
+                  "1621007",
+                  "484920",
+                  "0"
+                ]
+              ],
+              "layout": [
+                [
+                  {
+                    "text": "شرح",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "سال مالی منتهی به 1404/06/31",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "دوره 9 ماهه منتهی به 1405/03/31",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "برآورد سال مالی منتهی به 1406/06/31",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ],
+                [
+                  {
+                    "text": "ساير اقلام",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "8712",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "8405",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "1875",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "سود حاصل از سرمايه گذاري در صندوق هاي سرمايه گذاري",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "641136",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "539050",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "369863",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "سود سپرده هاي بانکي و اوراق مشارکت",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "371704",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "662212",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "8528",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "خسارات و جرايم دريافتي",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "8022",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "146304",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "سود و زيان ناشي از تسعير دارايي و بدهي هاي ارزي",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "9529",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "265036",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "سود حاصل از فروش دارايي هاي ثابت مشهود",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "سود ( زيان ) ناشي از فروش سرمايه گذاري هاي بلند مدت",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "104654",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "درآمد فروش ضايعات و موجودي هاي راکد",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "60617",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": false
+                  }
+                ],
+                [
+                  {
+                    "text": "جمع",
+                    "column": 0,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1099720",
+                    "column": 1,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "1621007",
+                    "column": 2,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "484920",
+                    "column": 3,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  },
+                  {
+                    "text": "0",
+                    "column": 4,
+                    "rowSpan": 1,
+                    "colSpan": 1,
+                    "header": true
+                  }
+                ]
+              ],
+              "headerRows": 1,
+              "sheetId": 24,
+              "sourceUrl": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3D%3D&rt=0&let=6&ct=0&ft=-1&sheetId=24",
+              "unit": "million_rial",
+              "page": 5,
+              "columns": [
+                "شرح",
+                "سال مالی منتهی به 1404/06/31",
+                "دوره 9 ماهه منتهی به 1405/03/31",
+                "برآورد دوره 3 ماهه منتهی به 1405/06/31",
+                "برآورد سال مالی منتهی به 1406/06/31"
+              ],
+              "columnPaths": [
+                [
+                  "شرح"
+                ],
+                [
+                  "سال مالی منتهی به 1404/06/31"
+                ],
+                [
+                  "دوره 9 ماهه منتهی به 1405/03/31"
+                ],
+                [
+                  "برآورد دوره 3 ماهه منتهی به 1405/06/31"
+                ],
+                [
+                  "برآورد سال مالی منتهی به 1406/06/31"
+                ]
+              ],
+              "labelColumn": 0,
+              "rows": [
+                {
+                  "label": "ساير اقلام",
+                  "cells": [
+                    "ساير اقلام",
+                    "8712",
+                    "8405",
+                    "1875",
+                    "0"
+                  ],
+                  "amounts": [
+                    8712,
+                    8405,
+                    1875,
+                    0
+                  ],
+                  "rowIndex": 1,
+                  "key": "50f0d9b05ea1008eff786e68bde895818677b5426a1ebcf4cbbfd75fd41a9c16",
+                  "legacyKey": "50f0d9b05ea1008eff786e68bde895818677b5426a1ebcf4cbbfd75fd41a9c16",
+                  "semanticKey": "77eb09789456798e106d48a238f5db61876b4f40aeecee7b45278dee54700ddf"
+                },
+                {
+                  "label": "سود حاصل از سرمايه گذاري در صندوق هاي سرمايه گذاري",
+                  "cells": [
+                    "سود حاصل از سرمايه گذاري در صندوق هاي سرمايه گذاري",
+                    "641136",
+                    "539050",
+                    "369863",
+                    "0"
+                  ],
+                  "amounts": [
+                    641136,
+                    539050,
+                    369863,
+                    0
+                  ],
+                  "rowIndex": 2,
+                  "key": "ea636e3de4f35d1ebaceee7e5614e034f13d65ba318a93e83be94aae2fb5e3b9",
+                  "legacyKey": "ea636e3de4f35d1ebaceee7e5614e034f13d65ba318a93e83be94aae2fb5e3b9",
+                  "semanticKey": "691e50c5984290204db30e483b063cca513a8be02d681684f0837b670e76a9bf"
+                },
+                {
+                  "label": "سود سپرده هاي بانکي و اوراق مشارکت",
+                  "cells": [
+                    "سود سپرده هاي بانکي و اوراق مشارکت",
+                    "371704",
+                    "662212",
+                    "8528",
+                    "0"
+                  ],
+                  "amounts": [
+                    371704,
+                    662212,
+                    8528,
+                    0
+                  ],
+                  "rowIndex": 3,
+                  "key": "87bf6bdb6117b53c800a7faa14ef996931a15804ad94c47122026c315146d783",
+                  "legacyKey": "87bf6bdb6117b53c800a7faa14ef996931a15804ad94c47122026c315146d783",
+                  "semanticKey": "c9e8614b3dd53e436aa70296ce8f763ee9696ea92bfa41ca4a8474d1ad52f58f"
+                },
+                {
+                  "label": "خسارات و جرايم دريافتي",
+                  "cells": [
+                    "خسارات و جرايم دريافتي",
+                    "8022",
+                    "146304",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    8022,
+                    146304,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 4,
+                  "key": "b313f24e8aaaa7d84e93666adb7e7f20a562fbc1a9da9a46f1def081f79e950d",
+                  "legacyKey": "b313f24e8aaaa7d84e93666adb7e7f20a562fbc1a9da9a46f1def081f79e950d",
+                  "semanticKey": "a6a4ed50a2d5fb06d36602daa0d799e6bed5d2816861d78d64b27a305121f697"
+                },
+                {
+                  "label": "سود و زيان ناشي از تسعير دارايي و بدهي هاي ارزي",
+                  "cells": [
+                    "سود و زيان ناشي از تسعير دارايي و بدهي هاي ارزي",
+                    "9529",
+                    "265036",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    9529,
+                    265036,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 5,
+                  "key": "a473ab3db58b6eb16732465319d73cfc24b21aafa45246b6db8cd47f4d477f14",
+                  "legacyKey": "a473ab3db58b6eb16732465319d73cfc24b21aafa45246b6db8cd47f4d477f14",
+                  "semanticKey": "28efbdfef5144907a1e5373c04a88247612d76968a915a8272ca81ead6b5b3da"
+                },
+                {
+                  "label": "سود حاصل از فروش دارايي هاي ثابت مشهود",
+                  "cells": [
+                    "سود حاصل از فروش دارايي هاي ثابت مشهود",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 6,
+                  "key": "67c9707c06559f15c3ecdd254158ddcc848bf7fa121be4d37421e13b731fab3b",
+                  "legacyKey": "67c9707c06559f15c3ecdd254158ddcc848bf7fa121be4d37421e13b731fab3b",
+                  "semanticKey": "3e09f00acb8ba370f298cfd1fb4c1878647ba92d507c69c217752b34cf158b45"
+                },
+                {
+                  "label": "سود ( زيان ) ناشي از فروش سرمايه گذاري هاي بلند مدت",
+                  "cells": [
+                    "سود ( زيان ) ناشي از فروش سرمايه گذاري هاي بلند مدت",
+                    "0",
+                    "0",
+                    "104654",
+                    "0"
+                  ],
+                  "amounts": [
+                    0,
+                    0,
+                    104654,
+                    0
+                  ],
+                  "rowIndex": 7,
+                  "key": "5396a883077125a34bf6ddadd99dacda69db77c47e95437583e2216e82312cab",
+                  "legacyKey": "5396a883077125a34bf6ddadd99dacda69db77c47e95437583e2216e82312cab",
+                  "semanticKey": "bc2ea06aec1972068364573a25e2c1aa783b8ff175671513e6062988dddda912"
+                },
+                {
+                  "label": "درآمد فروش ضايعات و موجودي هاي راکد",
+                  "cells": [
+                    "درآمد فروش ضايعات و موجودي هاي راکد",
+                    "60617",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    60617,
+                    0,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 8,
+                  "key": "6c2283993c9a9b1d1ceb834473dc76d7e565dc3708e140057fea8d5343d37ea1",
+                  "legacyKey": "6c2283993c9a9b1d1ceb834473dc76d7e565dc3708e140057fea8d5343d37ea1",
+                  "semanticKey": "a34141e02edb1c29e05066e1e3426365e4f95f2be733cffdcd2fed1f2a55d435"
+                },
+                {
+                  "label": "",
+                  "cells": [
+                    "",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "amounts": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "rowIndex": 9,
+                  "key": "8e7ea5fdbbc1ed1d654882538d0a587729d219b95a594398875ea79dc8a44825",
+                  "legacyKey": "8e7ea5fdbbc1ed1d654882538d0a587729d219b95a594398875ea79dc8a44825",
+                  "semanticKey": "922c489d50021cde0c35b21ac28ed7ee937167bc2537eb2ed1e8166f090a61ba"
+                },
+                {
+                  "label": "جمع",
+                  "cells": [
+                    "جمع",
+                    "1099720",
+                    "1621007",
+                    "484920",
+                    "0"
+                  ],
+                  "amounts": [
+                    1099720,
+                    1621007,
+                    484920,
+                    0
+                  ],
+                  "rowIndex": 10,
+                  "key": "a8fae179be751f28840e9b62a64f747b7579ecf74705ea1fa8e3bb6f3132be85",
+                  "legacyKey": "a8fae179be751f28840e9b62a64f747b7579ecf74705ea1fa8e3bb6f3132be85",
+                  "semanticKey": "9d278cd2bada3ecbe53ab81442ddcd560d29b64605ffb0d8d6b0f22db166abc6"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "productProduction": {
+        "سيمان فله تيپ(2)": {
+          "1405-6": {
+            "production": 62900,
+            "domesticSalesQty": 32337,
+            "exportSalesQty": null,
+            "domesticPrice": 26334849,
+            "exportPrice": null,
+            "salesQty": 32337,
+            "salesRate": 26334849
+          }
+        },
+        "سيمان کيسه تيپ (1)": {
+          "1405-6": {
+            "production": 0,
+            "domesticSalesQty": 31183,
+            "exportSalesQty": null,
+            "domesticPrice": 35184588,
+            "exportPrice": null,
+            "salesQty": 31183,
+            "salesRate": 35184588
+          }
+        },
+        "کلينکر": {
+          "1405-6": {
+            "production": 76100,
+            "domesticSalesQty": 40665,
+            "exportSalesQty": 0,
+            "domesticPrice": 18022132,
+            "exportPrice": 0,
+            "salesQty": 40665,
+            "salesRate": 18022132
+          }
+        },
+        "سيمان فله تيپ (1)": {
+          "1405-6": {
+            "production": 120000,
+            "domesticSalesQty": 101946,
+            "exportSalesQty": null,
+            "domesticPrice": 25577757,
+            "exportPrice": null,
+            "salesQty": 101946,
+            "salesRate": 25577757
+          }
+        },
+        "سيمان کيسه تيپ (2)": {
+          "1405-6": {
+            "production": 0,
+            "domesticSalesQty": 19187,
+            "exportSalesQty": null,
+            "domesticPrice": 37793193,
+            "exportPrice": null,
+            "salesQty": 19187,
+            "salesRate": 37793193
+          }
+        },
+        "سيمان فله سرباره اي": {
+          "1405-6": {
+            "production": 0,
+            "domesticSalesQty": 0,
+            "exportSalesQty": null,
+            "domesticPrice": 0,
+            "exportPrice": null,
+            "salesQty": 0,
+            "salesRate": 0
+          }
+        },
+        "سيمان": {
+          "1405-6": {
+            "production": 0,
+            "domesticSalesQty": null,
+            "exportSalesQty": 15332,
+            "domesticPrice": null,
+            "exportPrice": 50529155,
+            "salesQty": 15332,
+            "salesRate": 50529155
+          }
+        }
+      },
+      "reportPublications": {
+        "1405-9": {
+          "fiscalYear": 1405,
+          "months": 9,
+          "periodEnd": "1405/03/31",
+          "publishedAt": "۱۴۰۵/۰۴/۲۹ ۱۸:۳۳:۰۰",
+          "publishDate": "1405/04/29",
+          "letterSerial": "NSAMTOOObOOOtAQOV2yOyqHoGXOQ==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "source": "codal-n10"
+        },
+        "1405-12": {
+          "fiscalYear": 1405,
+          "months": 12,
+          "periodEnd": "1405/05/31",
+          "publishedAt": "۱۴۰۵/۰۷/۱۸ ۱۰:۵۳:۲۲",
+          "publishDate": "1405/07/18",
+          "letterSerial": "1JH0osBd2nKxfymMAyReow==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=1JH0osBd2nKxfymMAyReow%3d%3d&rt=5&let=6&ct=0&ft=-1",
+          "source": "codal-n10"
+        }
+      },
+      "rawSheets": {
+        "monthlyActivity": {
+          "raw": "شرح\tشرح\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\t\t\t\t\t\t\t\t\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nسيمان فله تيپ(۲)\tتن\t\t\t۰\t۰\t\t\t۰\t۰\t۰\t۰\t۰\t۸۲,۵۰۰\t۵۰,۰۵۳\t۲۸,۲۳۵,۴۹۰\t۱,۴۱۳,۲۷۱\t۸۲,۵۰۰\t۵۰,۰۵۳\t۲۸,۲۳۵,۴۹۰\t۱,۴۱۳,۲۷۱\t۵۷,۰۰۰\t۳۳,۰۷۶\t۲۱,۶۴۷,۰۵۵\t۷۱۵,۹۹۸\tتوليد\nسيمان کيسه تيپ (۱)\tتن\t\t\t۰\t۰\t\t\t۰\t۰\t۰\t۰\t۰\t۰\t۳۲,۲۷۷\t۳۶,۷۴۸,۹۵۴\t۱,۱۸۶,۱۴۶\t۰\t۳۲,۲۷۷\t۳۶,۷۴۸,۹۵۴\t۱,۱۸۶,۱۴۶\t۰\t۲۵,۴۷۲\t۲۱,۸۴۳,۱۶۱\t۵۵۶,۳۸۹\tتوليد\nکلينکر - داخلي\tتن\t\t\t۰\t۰\t\t\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۰۵۱\t۲۰,۰۰۵,۷۰۹\t۲۱,۰۲۶\t۰\t۱,۰۵۱\t۲۰,۰۰۵,۷۰۹\t۲۱,۰۲۶\t۰\t۰\t۰\t۰\tتوليد\nسيمان فله تيپ (۱)\tتن\t\t\t۰\t۰\t\t\t۰\t۰\t۰\t۰\t۰\t۱۳۲,۰۰۰\t۸۵,۵۸۸\t۲۷,۰۰۲,۲۳۲\t۲,۳۱۱,۰۶۷\t۱۳۲,۰۰۰\t۸۵,۵۸۸\t۲۷,۰۰۲,۲۳۲\t۲,۳۱۱,۰۶۷\t۶۷,۰۰۰\t۳۴,۸۹۵\t۲۱,۴۵۵,۹۱۱\t۷۴۸,۷۰۴\tتوليد\nسيمان کيسه تيپ (۲)\tتن\t\t\t۰\t۰\t\t\t۰\t۰\t۰\t۰\t۰\t۰\t۲۳,۱۰۳\t۳۹,۴۷۱,۷۵۷\t۹۱۱,۹۱۶\t۰\t۲۳,۱۰۳\t۳۹,۴۷۱,۷۵۷\t۹۱۱,۹۱۶\t۰\t۱۷,۶۲۶\t۲۴,۲۱۸,۶۵۴\t۴۲۶,۸۷۸\tتوليد\nسيمان فله سرباره اي\tتن\t\t\t۰\t۰\t\t\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجمع فروش داخلی\t\t۰\t۰\t\t۰\t۰\t۰\t۰\t۰\t۰\t\t۰\t۲۱۴,۵۰۰\t۱۹۲,۰۷۲\t\t۵,۸۴۳,۴۲۶\t۲۱۴,۵۰۰\t۱۹۲,۰۷۲\t\t۵,۸۴۳,۴۲۶\t۱۲۴,۰۰۰\t۱۱۱,۰۶۹\t\t۲,۴۴۷,۹۶۹\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nکلينکر\tتن\t\t\t۰\t۰\t\t\t۰\t۰\t۰\t۰\t۰\t۱۸۸,۵۰۰\t۰\t۰\t۰\t۱۸۸,۵۰۰\t۰\t۰\t۰\t۲۳۷,۰۰۰\t۵۰,۰۴۳\t۲۸,۰۸۱,۸۷۰\t۱,۴۰۵,۳۰۱\tتوليد\nسيمان\tتن\t\t\t۰\t۰\t\t\t۰\t۰\t۰\t۰\t۰\t۰\t۱۰,۹۴۶\t۵۳,۶۵۲,۴۷۶\t۵۸۷,۲۸۰\t۰\t۱۰,۹۴۶\t۵۳,۶۵۲,۴۷۶\t۵۸۷,۲۸۰\t۰\t۱,۱۷۱\t۲۵,۱۹۶,۴۱۳\t۲۹,۵۰۵\tتوليد\nجمع فروش صادراتی\t\t۰\t۰\t\t۰\t۰\t۰\t۰\t۰\t۰\t\t۰\t۱۸۸,۵۰۰\t۱۰,۹۴۶\t\t۵۸۷,۲۸۰\t۱۸۸,۵۰۰\t۱۰,۹۴۶\t\t۵۸۷,۲۸۰\t۲۳۷,۰۰۰\t۵۱,۲۱۴\t\t۱,۴۳۴,۸۰۶\t\nدرآمد ارائه خدمات:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nساير درآمد ها و ارائه خدمات\t--\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجمع درآمد ارائه خدمات\t\t۰\t۰\t\t۰\t۰\t۰\t۰\t۰\t۰\t\t۰\t۰\t۰\t\t۰\t۰\t۰\t\t۰\t۰\t۰\t\t۰\t\nبرگشت از فروش:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع برگشت از فروش\t\t\t۰\t\t۰\t\t۰\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\nتخفيفات\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nجمع\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۶,۴۳۰,۷۰۶\t\t\t\t۶,۴۳۰,۷۰۶\t\t\t\t۳,۸۸۲,۷۷۵\t"
+        },
+        "pl": {
+          "raw": "شرح\tدوره منتهي به ۱۴۰۵/۰۵/۳۱\tتجديد ارائه شده دوره منتهي به ۱۴۰۴/۰۵/۳۱\tتجديد ارائه شده دوره منتهي به ۱۴۰۴/۰۵/۳۱\tدرصد تغيير\tدرصد تغيير\nشرح\tحسابرسی شده\t\tحسابرسی شده\tدرصد تغيير\tدرصد تغيير\nعمليات در حال تداوم:\t\t\t\t\t\nدرآمدهاي عملياتي\t۴,۵۰۲,۶۴۰\t۰\t۲,۵۱۷,۰۶۴\t۰\t۷۹\nبهاى تمام شده درآمدهاي عملياتي\t(۴,۰۰۹,۸۳۵)\t۰\t(۲,۳۲۰,۴۹۲)\t--\t(۷۳)\nسود(زيان) ناخالص\t۴۹۲,۸۰۵\t۰\t۱۹۶,۵۷۲\t۰\t۱۵۱\nهزينه‏ هاى فروش، ادارى و عمومى\t(۲۲۵,۱۰۱)\t۰\t(۱۳۲,۲۹۴)\t--\t(۷۰)\nهزينه کاهش ارزش دريافتني‏ ها (هزينه استثنايي)\t۰\t۰\t۰\t۰\t۰\nساير درآمدها\t۰\t۰\t۵,۳۵۲\t۰\t--\nساير هزينه‌ها\t۰\t۰\t۰\t۰\t۰\nسود(زيان) عملياتى\t۲۶۷,۷۰۴\t۰\t۶۹,۶۳۰\t۰\t۲۸۴\nهزينه ‏هاى مالى\t۰\t۰\t۰\t۰\t۰\nساير درآمدها و هزينه ‏هاى غيرعملياتى\t۱,۴۴۰\t۰\t۹۳,۶۱۹\t۰\t(۹۸)\nسود(زيان) عمليات در حال تداوم قبل از ماليات\t۲۶۹,۱۴۴\t۰\t۱۶۳,۲۴۹\t۰\t۶۵\nهزينه ماليات بر درآمد:\t\t\t\t\t\nسال جاري\t(۵۳,۸۱۹)\t۰\t(۱۸,۹۹۲)\t--\t(۱۸۳)\nسال‌هاي قبل\t(۸,۱۸۶)\t۰\t۰\t--\t--\nسود(زيان) خالص عمليات در حال تداوم\t۲۰۷,۱۳۹\t۰\t۱۴۴,۲۵۷\t۰\t۴۴\nعمليات متوقف شده:\t\t\t\t\t\nسود (زيان) خالص عمليات متوقف شده\t۰\t۰\t۰\t۰\t۰\nسود(زيان) خالص\t۲۰۷,۱۳۹\t۰\t۱۴۴,۲۵۷\t۰\t۴۴\nسود(زيان) پايه هر سهم:\t\t\t\t\t\nعملياتي (ريال)\t۰\t۰\t۰\t۰\t۰\nغيرعملياتي (ريال)\t۰\t۰\t۰\t۰\t۰\nناشي از عمليات در حال تداوم\t۰\t۰\t۰\t۰\t۰\nناشي از عمليات متوقف شده\t۰\t۰\t۰\t۰\t۰\nسود(زيان) پايه هر سهم\t۰\t۰\t۰\t۰\t۰\nسود (زيان) خالص هر سهم– ريال\t۱,۷۲۶\t۰\t۱,۲۰۲\t۰\t۴۴\nسرمايه\t۱۲۰,۰۰۰\t۰\t۱۲۰,۰۰۰\t۰\t۰\n۱,۰۰۰\t۱,۰۰۰\t\t\t\t"
+        },
+        "bs": {
+          "raw": "شرح\tبه تاريخ ۱۴۰۵/۰۵/۳۱\tتجديد ارائه شده به تاريخ ۱۴۰۴/۰۵/۳۱\tتجديد ارائه شده به تاريخ ۱۴۰۳/۰۶/۰۱\tدرصد تغيير\tدرصد تغيير\nشرح\tحسابرسی شده\tحسابرسی شده\tحسابرسی نشده\tدرصد تغيير\tدرصد تغيير\nدارايي‌ها\t\t\t\t\t\nدارايي‌هاي غيرجاري\t\t\t\t\t\nدارايي‌هاي ثابت مشهود\t۱,۰۶۳,۰۳۶\t۶۵۷,۲۲۳\t۴۹۱,۴۳۷\t۶۲\t۶۲\nسرمايه‌گذاري در املاک\t۰\t۰\t۰\t۰\t۰\nدارايي‌هاي نامشهود\t۳,۴۷۶\t۶,۹۹۷\t۱۰,۲۵۴\t(۵۰)\t(۵۰)\nسرمايه‌گذاري‌هاي بلندمدت\t۰\t۰\t۰\t۰\t۰\nدريافتني‌هاي بلندمدت\t۰\t۰\t۰\t۰\t۰\nدارايي ماليات انتقالي\t۰\t۰\t۰\t۰\t۰\nساير دارايي‌ها\t۰\t۰\t۰\t۰\t۰\nجمع دارايي‌هاي غيرجاري\t۱,۰۶۶,۵۱۲\t۶۶۴,۲۲۰\t۵۰۱,۶۹۱\t۶۱\t۶۱\nدارايي‌هاي جاري\t\t\t\t\t\nسفارشات و پيش‌پرداخت‌ها\t۴۶,۸۰۳\t۷,۹۱۶\t۱۹,۳۸۷\t۴۹۱\t۴۹۱\nموجودي مواد و کالا\t۱۰۲,۲۵۷\t۸۹,۱۳۰\t۴۹,۸۷۰\t۱۵\t۱۵\nدريافتني‌هاي تجاري و ساير دريافتني‌ها\t۷۶۷,۳۶۴\t۵۹۳,۵۷۷\t۴۳۲,۴۷۷\t۲۹\t۲۹\nسرمايه‌گذاري‌هاي کوتاه‌مدت\t۰\t۰\t۰\t۰\t۰\nموجودي نقد\t۲۷,۰۸۹\t۲۳,۰۰۸\t۱۴,۶۹۵\t۱۸\t۱۸\n\t۹۴۳,۵۱۳\t۷۱۳,۶۳۱\t۵۱۶,۴۲۹\t۳۲\t۳۲\nدارايي‌هاي نگهداري شده براي فروش\t۰\t۰\t۰\t۰\t۰\nجمع دارايي‌هاي جاري\t۹۴۳,۵۱۳\t۷۱۳,۶۳۱\t۵۱۶,۴۲۹\t۳۲\t۳۲\nجمع دارايي‌ها\t۲,۰۱۰,۰۲۵\t۱,۳۷۷,۸۵۱\t۱,۰۱۸,۱۲۰\t۴۶\t۴۶\nحقوق مالکانه و بدهي‌ها\t\t\t\t\t\nحقوق مالکانه\t\t\t\t\t\nسرمايه\t۱۲۰,۰۰۰\t۱۲۰,۰۰۰\t۱۲۰,۰۰۰\t۰\t۰\nافزايش سرمايه در جريان\t۰\t۰\t۰\t۰\t۰\nصرف سهام\t۰\t۰\t۰\t۰\t۰\nصرف سهام خزانه\t۰\t۰\t۰\t۰\t۰\nاندوخته قانوني\t۱۲,۰۰۰\t۱۲,۰۰۰\t۱۲,۰۰۰\t۰\t۰\nساير اندوخته‌ها\t۰\t۰\t۰\t۰\t۰\nمازاد تجديدارزيابي دارايي‌ها\t۰\t۰\t۰\t۰\t۰\nتفاوت تسعير ارز عمليات خارجي\t۰\t۰\t۰\t۰\t۰\nسود(زيان) انباشته\t۲۴۰,۴۷۰\t۱۶۳,۰۵۱\t۱۴۳,۵۹۴\t۴۷\t۴۷\nسهام خزانه\t۰\t۰\t۰\t۰\t۰\nجمع حقوق مالکانه\t۳۷۲,۴۷۰\t۲۹۵,۰۵۱\t۲۷۵,۵۹۴\t۲۶\t۲۶\nبدهي‌ها\t\t\t\t\t\nبدهي‌هاي غيرجاري\t\t\t\t\t\nپرداختني‌هاي بلندمدت\t۳۰,۸۳۳\t۲۰,۲۱۲\t۱۶,۴۵۹\t۵۳\t۵۳\nتسهيلات مالي بلندمدت\t۰\t۰\t۰\t۰\t۰\nبدهي ماليات انتقالي\t۰\t۰\t۰\t۰\t۰\nذخيره مزاياي پايان خدمت کارکنان\t۱۶۶,۵۷۲\t۸۱,۴۷۳\t۴۸,۳۶۱\t۱۰۴\t۱۰۴\nجمع بدهي‌هاي غيرجاري\t۱۹۷,۴۰۵\t۱۰۱,۶۸۵\t۶۴,۸۲۰\t۹۴\t۹۴\nبدهي‌هاي جاري\t\t\t\t\t\nپرداختني‌هاي تجاري و ساير پرداختني‌ها\t۱,۳۶۵,۳۰۳\t۹۵۸,۶۹۸\t۶۲۲,۷۱۸\t۴۲\t۴۲\nماليات پرداختني\t۷۴,۸۴۶\t۲۲,۴۱۷\t۵۱,۷۸۸\t۲۳۴\t۲۳۴\nسود سهام پرداختني\t۱\t۰\t۰\t۰\t۰\nتسهيلات مالي\t۰\t۰\t۰\t۰\t۰\nذخاير\t۰\t۰\t۰\t۰\t۰\nپيش‌دريافت‌ها\t۰\t۰\t۳,۲۰۰\t۰\t۰\n\t۱,۴۴۰,۱۵۰\t۹۸۱,۱۱۵\t۶۷۷,۷۰۶\t۴۷\t۴۷\nبدهي‌هاي ‌مرتبط ‌با دارايي‌هاي نگهداري‌‌شده براي ‌فروش\t۰\t۰\t۰\t۰\t۰\nجمع بدهي‌هاي جاري\t۱,۴۴۰,۱۵۰\t۹۸۱,۱۱۵\t۶۷۷,۷۰۶\t۴۷\t۴۷\nجمع بدهي‌ها\t۱,۶۳۷,۵۵۵\t۱,۰۸۲,۸۰۰\t۷۴۲,۵۲۶\t۵۱\t۵۱\nجمع حقوق مالکانه و بدهي‌ها\t۲,۰۱۰,۰۲۵\t۱,۳۷۷,۸۵۱\t۱,۰۱۸,۱۲۰\t۴۶\t۴۶"
+        },
+        "dividendPaste": {
+          "raw": "شرح\tسال منتهی به 1404/06/31 (میلیون ريال)\nسود (زیان) خالص\t12,425,298\nسود (زیان) انباشته ابتدای دوره\t8,744,491\nتعدیلات سنواتی\t0\nسود (زیان) انباشته ابتدای دوره تعدیل‌شده\t8,744,491\nسود سهام مصوب (مجمع سال قبل)\t(6,900,000)\nتغییرات سرمایه از محل سود (زیان) انباشته\t0\nسود انباشته ابتدای دوره تخصیص نیافته\t1,844,491\nانتقال از سایر اقلام حقوق صاحبان سهام\t0\nسود قابل تخصیص\t14,269,789\nانتقال به اندوخته‌ قانونی\t0\nانتقال به سایر اندوخته‌ها\t0\nسود (زیان) انباشته پايان دوره\t14,269,789\nسود سهام مصوب (مجمع سال جاری)\t(11,745,000)\nسود (زیان) انباشته پایان دوره (با لحاظ نمودن مصوبات مجمع)\t2,524,789\nسود (زیان) خالص هر سهم- ریال\t1,841\nسود نقدی هر سهم (ریال)\t1,740\nسرمایه\t6,750,000"
+        }
+      }
     }
   },
   "formulas": [
@@ -115387,13 +118647,13 @@
       "otherNonOperatingQ": "ساير درآمدها و هزينه ‏هاى غيرعملياتى"
     },
     "bs": {
-      "inventory": "موجودی مواد و کالا",
-      "receivables": "دریافتنی‌های تجاری و سایر دریافتنی‌ها",
-      "totalAssets": "جمع دارایی‌ها",
+      "inventory": "موجودي مواد و کالا",
+      "receivables": "دريافتني‌هاي تجاري و ساير دريافتني‌ها",
+      "totalAssets": "جمع دارايي‌ها",
       "equity": "جمع حقوق مالکانه",
-      "currentAssets": "جمع دارایی‌های جاری",
-      "prepaid": "سفارشات و پیش‌پرداخت‌ها",
-      "currentLiabilities": "جمع بدهی‌های جاری"
+      "currentAssets": "جمع دارايي‌هاي جاري",
+      "prepaid": "سفارشات و پيش‌پرداخت‌ها",
+      "currentLiabilities": "جمع بدهي‌هاي جاري"
     },
     "dividendBatch": {
       "profit": "ProportionableRetainedEarnings",
