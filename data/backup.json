@@ -328,15 +328,15 @@
         "1405-7": 113504.6818
       },
       "manual": {
-        "marketCap": 505622.6918314,
+        "marketCap": 525290.3492122,
         "sharesOutstanding": 409742862100,
-        "currentPrice": 1234,
+        "currentPrice": 1282,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "monthlyPaste": {
@@ -4054,14 +4054,14 @@
         }
       ],
       "manual": {
-        "marketCap": 775261.487268,
-        "currentPrice": 1236,
+        "marketCap": 822931.287456,
+        "currentPrice": 1312,
         "dividendIncome": 1956,
         "bankInterest": 951,
         "otherOperatingIncome": 3,
         "otherNonOperatingIncome": 2358,
         "estimatedAnnualSalesOverride": 1673456,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "sharesOutstanding": 627234213000
       },
       "rawSheets": {
@@ -5694,13 +5694,13 @@
         }
       ],
       "manual": {
-        "marketCap": 206584,
-        "currentPrice": 3689,
+        "marketCap": 204008,
+        "currentPrice": 3643,
         "dividendIncome": 2583,
         "bankInterest": 4,
         "otherOperatingIncome": 662,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "sharesOutstanding": 56000000000,
         "otherNonOperatingIncome": 323
       },
@@ -6592,9 +6592,7 @@
           "floorPriorYear": false,
           "priorColumn": null
         }
-      },
-      "chartRangeFrom": 1404,
-      "chartRangeTo": null
+      }
     },
     "سفانو": {
       "symbol": "سفانو",
@@ -6827,14 +6825,14 @@
         }
       ],
       "manual": {
-        "marketCap": 11513.6,
-        "currentPrice": 7196,
+        "marketCap": 12182.4,
+        "currentPrice": 7614,
         "dividendIncome": 14,
         "bankInterest": 226,
         "otherOperatingIncome": 100,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "sharesOutstanding": 1600000000
       },
       "rawSheets": {
@@ -7388,14 +7386,14 @@
         }
       ],
       "manual": {
-        "marketCap": 111980,
-        "currentPrice": 10180,
+        "marketCap": 116490,
+        "currentPrice": 10590,
         "dividendIncome": 0,
         "bankInterest": 1320,
         "otherOperatingIncome": 363,
         "otherNonOperatingIncome": -480,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "sharesOutstanding": 11000000000
       },
       "rawSheets": {
@@ -8628,14 +8626,14 @@
         }
       ],
       "manual": {
-        "marketCap": 34392.081067886,
-        "currentPrice": 1399,
+        "marketCap": 35424.580999874,
+        "currentPrice": 1441,
         "dividendIncome": 2,
         "bankInterest": 29,
         "otherOperatingIncome": 434,
         "otherNonOperatingIncome": 142,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "sharesOutstanding": 24583331714
       },
       "rawSheets": {
@@ -9632,15 +9630,15 @@
         }
       ],
       "manual": {
-        "marketCap": 167820,
+        "marketCap": 174660,
         "sharesOutstanding": 30000000000,
-        "currentPrice": 5594,
+        "currentPrice": 5822,
         "dividendIncome": 1200,
         "bankInterest": 242,
         "otherOperatingIncome": 10,
         "otherNonOperatingIncome": -1600,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -12195,15 +12193,15 @@
         }
       ],
       "manual": {
-        "marketCap": 22955.541136,
+        "marketCap": 22271.912168,
         "sharesOutstanding": 8995118000,
-        "currentPrice": 2552,
+        "currentPrice": 2476,
         "dividendIncome": 6,
         "bankInterest": 0,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": -10,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -12826,15 +12824,15 @@
         }
       ],
       "manual": {
-        "marketCap": 266585,
+        "marketCap": 269860,
         "sharesOutstanding": 655000000000,
-        "currentPrice": 407,
+        "currentPrice": 412,
         "dividendIncome": null,
         "bankInterest": 23,
         "otherOperatingIncome": 450,
         "otherNonOperatingIncome": 3380,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -13245,15 +13243,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 28760,
+        "marketCap": 28260,
         "sharesOutstanding": 1000000000,
-        "currentPrice": 28760,
+        "currentPrice": 28260,
         "dividendIncome": 15,
         "bankInterest": 317,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -13944,15 +13942,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 965565,
+        "marketCap": 1000395,
         "sharesOutstanding": 1935000000000,
-        "currentPrice": 499,
+        "currentPrice": 517,
         "dividendIncome": 18566,
         "bankInterest": null,
         "otherOperatingIncome": 11530,
         "otherNonOperatingIncome": 3445,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -15330,7 +15328,11 @@
             "unit": "rial_per_dollar"
           }
         }
-      }
+      },
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": ""
     },
     "تلیسه": {
       "symbol": "تلیسه",
@@ -15652,15 +15654,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 6287.37046,
+        "marketCap": 6641.9402,
         "sharesOutstanding": 4993940000,
-        "currentPrice": 1259,
+        "currentPrice": 1330,
         "dividendIncome": null,
         "bankInterest": 18,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -18804,7 +18806,8 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": []
     },
     "شنفت": {
       "symbol": "شنفت",
@@ -19333,15 +19336,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 87102.6,
+        "marketCap": 85311.2,
         "sharesOutstanding": 33800000000,
-        "currentPrice": 2577,
+        "currentPrice": 2524,
         "dividendIncome": 2000,
         "bankInterest": 2,
         "otherOperatingIncome": 15,
         "otherNonOperatingIncome": 45,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -20303,9 +20306,7 @@
           "floorPriorYear": false,
           "priorColumn": null
         }
-      },
-      "chartRangeFrom": 1404,
-      "chartRangeTo": null
+      }
     },
     "فملی": {
       "symbol": "فملی",
@@ -20790,15 +20791,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3987360,
+        "marketCap": 3949920,
         "sharesOutstanding": 1440000000000,
-        "currentPrice": 2769,
+        "currentPrice": 2743,
         "dividendIncome": 33,
         "bankInterest": 843,
         "otherOperatingIncome": -12922,
         "otherNonOperatingIncome": 3934,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -20962,9 +20963,9 @@
       ],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 245670,
-        "marketCapUpdatedAt": 1794637260125,
-        "currentPrice": 431,
+        "marketCap": 251370,
+        "marketCapUpdatedAt": 1794728119280,
+        "currentPrice": 441,
         "portfolioMarketValue": 223829,
         "portfolioBookValue": 32298,
         "sharesOutstanding": 570000000000
@@ -21529,15 +21530,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 30480,
+        "marketCap": 29310,
         "sharesOutstanding": 5000000000,
-        "currentPrice": 6096,
+        "currentPrice": 5862,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -22462,15 +22463,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 22242,
+        "marketCap": 22693,
         "sharesOutstanding": 1100000000,
-        "currentPrice": 20220,
+        "currentPrice": 20630,
         "dividendIncome": 97,
         "bankInterest": 555,
         "otherOperatingIncome": 154,
         "otherNonOperatingIncome": 0,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -23004,15 +23005,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3745.92,
+        "marketCap": 3801.6,
         "sharesOutstanding": 960000000,
-        "currentPrice": 3902,
+        "currentPrice": 3960,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -24332,7 +24333,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -25446,7 +25448,48 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": {
+        "d8f24f4ac129c77611b8ffc6901dc18bb6b096b7a3d5d582afc5c9c9ecbea6d5": {
+          "category": "otherOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        },
+        "ed05c879cb010bef4dd72b0c25ddc08ad74b24c1924a844e0a868fddc5498a84": {
+          "category": "bankInterest",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        },
+        "0eb3a8df345a5bb4a5844d2bd5de915dc1ba4bd7cee868e4c109c7e6452d3382": {
+          "category": "otherNonOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        }
+      }
     },
     "سنیر": {
       "symbol": "سنیر",
@@ -25651,15 +25694,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 2746.555,
+        "marketCap": 2811.06,
         "sharesOutstanding": 3395000000,
-        "currentPrice": 809,
+        "currentPrice": 828,
         "dividendIncome": 1,
         "bankInterest": 1,
         "otherOperatingIncome": 1,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -26274,15 +26317,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 30603.06,
+        "marketCap": 31392.18,
         "sharesOutstanding": 2466000000,
-        "currentPrice": 12410,
+        "currentPrice": 12730,
         "dividendIncome": 8,
         "bankInterest": 184,
         "otherOperatingIncome": 207,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -26655,15 +26698,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3304.62678,
+        "marketCap": 3412.1403225,
         "sharesOutstanding": 18862025000,
-        "currentPrice": 175.2,
+        "currentPrice": 180.9,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 28,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -28851,7 +28894,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -30233,7 +30277,35 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": {
+        "c2dbc189b6db54e8bb4b6c763dfb0a8752a04a668ed90763d3f22e7c20c9086e": {
+          "category": "otherOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        },
+        "98a7f2d31e97bfe64357327f867fb9f1170bb63eedca8d5db74e52e27341bb1f": {
+          "category": "bankInterest",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        }
+      }
     },
     "فزر": {
       "symbol": "فزر",
@@ -30402,15 +30474,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 156978,
+        "marketCap": 159948,
         "sharesOutstanding": 5400000000,
-        "currentPrice": 29070,
+        "currentPrice": 29620,
         "dividendIncome": 17414,
         "bankInterest": null,
         "otherOperatingIncome": 49,
         "otherNonOperatingIncome": 25,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -30781,15 +30853,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 181737,
+        "marketCap": 185166,
         "sharesOutstanding": 571500000000,
-        "currentPrice": 318,
+        "currentPrice": 324,
         "dividendIncome": 235,
         "bankInterest": 28,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": 4000,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -30982,15 +31054,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 117392,
+        "marketCap": 120780,
         "sharesOutstanding": 44000000000,
-        "currentPrice": 2668,
+        "currentPrice": 2745,
         "dividendIncome": 398,
         "bankInterest": 30,
         "otherOperatingIncome": 48,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -31893,10 +31965,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2042,
-        "marketCap": 19184.59,
+        "currentPrice": 2103,
+        "marketCap": 19757.685,
         "sharesOutstanding": 9395000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 50,
         "bankInterest": null,
         "otherOperatingIncome": 20,
@@ -32512,10 +32584,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1491,
-        "marketCap": 8349.6,
+        "currentPrice": 1539,
+        "marketCap": 8618.4,
         "sharesOutstanding": 5600000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 62,
@@ -34860,7 +34932,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -35934,7 +36007,8 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": []
     },
     "سقاين": {
       "symbol": "سقاين",
@@ -36564,10 +36638,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2003,
-        "marketCap": 20030,
+        "currentPrice": 2141,
+        "marketCap": 21410,
         "sharesOutstanding": 10000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 6.2,
@@ -36899,10 +36973,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2892,
-        "marketCap": 3412.56,
+        "currentPrice": 2935,
+        "marketCap": 3463.3,
         "sharesOutstanding": 1180000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 1.5,
@@ -37103,10 +37177,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 636,
-        "marketCap": 414990,
+        "currentPrice": 673,
+        "marketCap": 439132.5,
         "sharesOutstanding": 652500000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 3500,
@@ -38074,10 +38148,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 564,
-        "marketCap": 56005.2,
+        "currentPrice": 580,
+        "marketCap": 57594,
         "sharesOutstanding": 99300000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 588,
         "bankInterest": 8,
         "otherOperatingIncome": -176,
@@ -38611,10 +38685,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1783,
-        "marketCap": 31024.2,
+        "currentPrice": 1840,
+        "marketCap": 32016,
         "sharesOutstanding": 17400000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1404": {
@@ -39066,15 +39140,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 8804,
+        "marketCap": 9462,
         "sharesOutstanding": 2000000000,
-        "currentPrice": 4402,
+        "currentPrice": 4731,
         "dividendIncome": 397,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": 123,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -39914,10 +39988,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1961,
-        "marketCap": 124425.45,
+        "currentPrice": 1919,
+        "marketCap": 121760.55,
         "sharesOutstanding": 63450000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 555,
         "bankInterest": 60,
         "otherOperatingIncome": 20,
@@ -40648,9 +40722,7 @@
           "floorPriorYear": false,
           "priorColumn": null
         }
-      },
-      "chartRangeFrom": 1404,
-      "chartRangeTo": null
+      }
     },
     "شرانل": {
       "symbol": "شرانل",
@@ -41159,10 +41231,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 17530,
-        "marketCap": 105180,
+        "currentPrice": 17240,
+        "marketCap": 103440,
         "sharesOutstanding": 6000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 659,
         "bankInterest": 643,
         "otherOperatingIncome": 137,
@@ -43325,10 +43397,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 7804,
-        "marketCap": 15608,
+        "currentPrice": 7772,
+        "marketCap": 15544,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": 100,
         "otherOperatingIncome": null,
@@ -43554,10 +43626,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 3028,
-        "marketCap": 18773.6,
+        "currentPrice": 3117,
+        "marketCap": 19325.4,
         "sharesOutstanding": 6200000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 953,
         "bankInterest": 132,
         "otherOperatingIncome": 12,
@@ -44011,10 +44083,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1367,
-        "marketCap": 57414,
+        "currentPrice": 1430,
+        "marketCap": 60060,
         "sharesOutstanding": 42000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 9,
         "bankInterest": 90,
         "otherOperatingIncome": 400,
@@ -45666,10 +45738,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1316,
-        "marketCap": 55272,
+        "currentPrice": 1325,
+        "marketCap": 55650,
         "sharesOutstanding": 42000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 462,
         "bankInterest": null,
         "otherOperatingIncome": 1200,
@@ -46437,7 +46509,11 @@
           "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=WyQQQaQQQ4KorumghqAtEIjr5MOOObOOOw%3d%3d&rt=0&let=6&ct=0&ft=-1",
           "source": "codal-n10"
         }
-      }
+      },
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": ""
     },
     "فسبزوار": {
       "symbol": "فسبزوار",
@@ -46798,10 +46874,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 9602,
-        "marketCap": 38408,
+        "currentPrice": 9874,
+        "marketCap": 39496,
         "sharesOutstanding": 4000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": 15,
         "otherOperatingIncome": 6,
@@ -47728,7 +47804,7 @@
         "1403-11": 143.22390000000001,
         "1403-12": 149.3999,
         "1405-6": 499.6301,
-        "1405-7": 477.78180000000003
+        "1405-7": 534.8095000000001
       },
       "monthlySalesSplit": {
         "1404-1": {
@@ -47856,10 +47932,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1232,
-        "marketCap": 8497.20164832,
+        "currentPrice": 1294,
+        "marketCap": 8924.82056244,
         "sharesOutstanding": 6897079260,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1403": {
@@ -47874,13 +47950,15 @@
         },
         "1405": {
           "throughMonth": 7,
-          "currentYTD": 3152.2009000000003,
-          "priorYearYTD": 1268.04
+          "currentYTD": 3280.2582,
+          "priorYearYTD": 1268.04,
+          "domesticYTD": null,
+          "exportYTD": null
         }
       },
       "rawSheets": {
         "monthlyActivity": {
-          "raw": "نام محصول\tواحد\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاصلاحات\tاصلاحات\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nچربي ، پروتئين ، بار ميکروبي و ...\tکيلو گرم\t۰\t۰\t۰\t۱,۱۸۳,۷۸۷\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۱۸۳,۷۸۷\t۰\t۰\t۰\t۲۴۰,۲۴۶\t۰\t۰\t۰\t۱,۴۲۴,۰۳۳\t۰\t۵۱,۱۲۲\t۱۵,۰۷۶,۷۳۸\t۷۷۰,۷۵۳\tتوليد\nشير\tتن\t۴۴,۵۶۶\t۴۳,۰۰۴\t۵۶۰,۱۲۳,۸۲۶\t۲۴,۰۸۷,۵۶۵\t۰\t۰\t۰\t۴۴,۵۶۶\t۴۳,۰۰۴\t۵۶۰,۱۲۳,۸۲۶\t۲۴,۰۸۷,۵۶۵\t۷,۴۴۲\t۷,۰۵۹\t۶۰۵,۰۰۰,۰۰۰\t۴,۲۷۰,۶۹۵\t۵۲,۰۰۸\t۵۰,۰۶۳\t۵۶۶,۴۵۱,۴۷۱\t۲۸,۳۵۸,۲۶۰\t۵۲,۸۰۵\t۵۱,۱۲۲\t۲۱۵,۳۵۹,۵۳۲\t۱۱,۰۰۹,۶۱۰\tتوليد\nيونجه\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجو\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nکلش\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۳۴\t۰\t۰\t۰\tتوليد\nذرت علوفه اي\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۵۶۰\t۰\t۰\t۰\t۱,۵۶۰\t۰\t۰\t۰\t۱,۰۹۷\t۰\t۰\t۰\tتوليد\nقصيل جو\tتن\t۲,۶۳۵\t۰\t۰\t۰\t۰\t۰\t۰\t۲,۶۳۵\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۲,۶۳۵\t۰\t۰\t۰\t۱,۴۲۵\t۰\t۰\t۰\tتوليد\nکلزا\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۶\t۵\t۴۴۹,۲۰۰,۰۰۰\t۲,۲۴۶\tتوليد\nکود حيواني\tتن\t۳۱,۷۴۵\t۳۵,۹۹۷\t۳,۹۲۰,۹۶۶\t۱۴۱,۱۴۳\t۰\t۰\t۰\t۳۱,۷۴۵\t۳۵,۹۹۷\t۳,۹۲۰,۹۶۶\t۱۴۱,۱۴۳\t۴,۵۰۲\t۴,۶۶۹\t۵,۰۰۶,۲۱۱\t۲۳,۳۷۴\t۳۶,۲۴۷\t۴۰,۶۶۶\t۴,۰۴۵,۵۶۶\t۱۶۴,۵۱۷\t۳۳,۳۳۳\t۳۴,۹۴۹\t۳,۱۶۱,۵۷۸\t۱۱۰,۴۹۴\tتوليد\nگوساله نر متولد شده\tراس\t۱,۵۵۸\t۱,۵۸۰\t۸۴۲,۸۴۵,۵۷۰\t۱,۳۳۱,۶۹۶\t۰\t۰\t۰\t۱,۵۵۸\t۱,۵۸۰\t۸۴۲,۸۴۵,۵۷۰\t۱,۳۳۱,۶۹۶\t۲۷۰\t۱۸۱\t۱,۳۴۵,۳۲۰,۴۴۲\t۲۴۳,۵۰۳\t۱,۸۲۸\t۱,۷۶۱\t۸۹۴,۴۹۱,۱۹۸\t۱,۵۷۵,۱۹۹\t۱,۷۹۰\t۱,۸۲۳\t۴۳۱,۸۶۸,۸۹۷\t۷۸۷,۲۹۷\tتوليد\nجمع فروش داخلی\t\t\t\t\t۲۶,۷۴۴,۱۹۱\t\t\t۰\t\t\t\t۲۶,۷۴۴,۱۹۱\t\t\t\t۴,۷۷۷,۸۱۸\t\t\t\t۳۱,۵۲۲,۰۰۹\t\t\t\t۱۲,۶۸۰,۴۰۰\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع فروش صادراتی\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nارزش منصفانه تولیدات کشاورزی\t\t\t\t\t۲۵,۴۸۰,۱۱۶\t\t\t۰\t\t\t\t۲۵,۴۸۰,۱۱۶\t\t\t\t۴,۷۰۸,۷۶۵\t\t\t\t۳۰,۱۸۸,۸۸۱\t\t\t\t۰\t\nخالص افزایش (کاهش) ارزش منصفانه دارائیهای زیستی غیر مولد\t\t\t\t\t۴۸۰,۶۳۱\t\t\t۰\t\t\t\t۴۸۰,۶۳۱\t\t\t\t۳۰۸,۴۱۲\t\t\t\t۷۸۹,۰۴۳\t\t\t\t۰\t\nبهای تمام شده انتسابی\t\t\t\t\t(۲۵,۲۵۰,۴۵۱)\t\t\t۰\t\t\t\t(۲۵,۲۵۰,۴۵۱)\t\t\t\t(۴,۴۴۶,۹۰۰)\t\t\t\t(۲۹,۶۹۷,۳۵۱)\t\t\t\t۰\t\nجمع درآمدهای عملیاتی\t\t\t\t\t۲۷,۴۵۴,۴۸۷\t\t\t۰\t\t\t\t۲۷,۴۵۴,۴۸۷\t\t\t\t۵,۳۴۸,۰۹۵\t\t\t\t۳۲,۸۰۲,۵۸۲\t\t\t\t۱۲,۶۸۰,۴۰۰\t"
+          "raw": "نام محصول\tواحد\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاصلاحات\tاصلاحات\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nچربي ، پروتئين ، بار ميکروبي و ...\tکيلو گرم\t۰\t۰\t۰\t۱,۱۸۳,۷۸۷\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۱۸۳,۷۸۷\t۰\t۰\t۰\t۲۴۰,۲۴۶\t۰\t۰\t۰\t۱,۴۲۴,۰۳۳\t۰\t۵۱,۱۲۲\t۱۵,۰۷۶,۷۳۸\t۷۷۰,۷۵۳\tتوليد\nشير\tتن\t۴۴,۵۶۶\t۴۳,۰۰۴\t۵۶۰,۱۲۳,۸۲۶\t۲۴,۰۸۷,۵۶۵\t۰\t۰\t۰\t۴۴,۵۶۶\t۴۳,۰۰۴\t۵۶۰,۱۲۳,۸۲۶\t۲۴,۰۸۷,۵۶۵\t۷,۴۴۲\t۷,۰۵۹\t۶۰۵,۰۰۰,۰۰۰\t۴,۲۷۰,۶۹۵\t۵۲,۰۰۸\t۵۰,۰۶۳\t۵۶۶,۴۵۱,۴۷۱\t۲۸,۳۵۸,۲۶۰\t۵۲,۸۰۵\t۵۱,۱۲۲\t۲۱۵,۳۵۹,۵۳۲\t۱۱,۰۰۹,۶۱۰\tتوليد\nيونجه\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجو\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nکلش\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۳۴\t۰\t۰\t۰\tتوليد\nذرت علوفه اي\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۵۶۰\t۰\t۰\t۰\t۱,۵۶۰\t۰\t۰\t۰\t۱,۰۹۷\t۰\t۰\t۰\tتوليد\nقصيل جو\tتن\t۲,۶۳۵\t۰\t۰\t۰\t۰\t۰\t۰\t۲,۶۳۵\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۲,۶۳۵\t۰\t۰\t۰\t۱,۴۲۵\t۰\t۰\t۰\tتوليد\nکلزا\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۶\t۵\t۴۴۹,۲۰۰,۰۰۰\t۲,۲۴۶\tتوليد\nکود حيواني\tتن\t۳۱,۷۴۵\t۳۵,۹۹۷\t۳,۹۲۰,۹۶۶\t۱۴۱,۱۴۳\t۰\t۰\t۰\t۳۱,۷۴۵\t۳۵,۹۹۷\t۳,۹۲۰,۹۶۶\t۱۴۱,۱۴۳\t۴,۵۰۲\t۴,۶۶۹\t۵,۰۰۶,۲۱۱\t۲۳,۳۷۴\t۳۶,۲۴۷\t۴۰,۶۶۶\t۴,۰۴۵,۵۶۶\t۱۶۴,۵۱۷\t۳۳,۳۳۳\t۳۴,۹۴۹\t۳,۱۶۱,۵۷۸\t۱۱۰,۴۹۴\tتوليد\nگوساله نر متولد شده\tراس\t۱,۵۵۸\t۱,۵۸۰\t۸۴۲,۸۴۵,۵۷۰\t۱,۳۳۱,۶۹۶\t۰\t۰\t۰\t۱,۵۵۸\t۱,۵۸۰\t۸۴۲,۸۴۵,۵۷۰\t۱,۳۳۱,۶۹۶\t۲۷۰\t۱۸۱\t۱,۳۴۵,۳۲۰,۴۴۲\t۲۴۳,۵۰۳\t۱,۸۲۸\t۱,۷۶۱\t۸۹۴,۴۹۱,۱۹۸\t۱,۵۷۵,۱۹۹\t۱,۷۹۰\t۱,۸۲۳\t۴۳۱,۸۶۸,۸۹۷\t۷۸۷,۲۹۷\tتوليد\nجمع فروش داخلی\t\t\t\t\t۲۶,۷۴۴,۱۹۱\t\t\t۰\t\t\t\t۲۶,۷۴۴,۱۹۱\t\t\t\t۴,۷۷۷,۸۱۸\t\t\t\t۳۱,۵۲۲,۰۰۹\t\t\t\t۱۲,۶۸۰,۴۰۰\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع فروش صادراتی\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nارزش منصفانه تولیدات کشاورزی\t\t\t\t\t۲۵,۴۸۰,۱۱۶\t\t\t۰\t\t\t\t۲۵,۴۸۰,۱۱۶\t\t\t\t۴,۷۰۸,۷۶۵\t\t\t\t۳۰,۱۸۸,۸۸۱\t\t\t\t۰\t\nخالص افزایش (کاهش) ارزش منصفانه دارائیهای زیستی غیر مولد\t\t\t\t\t۴۸۰,۶۳۱\t\t\t۰\t\t\t\t۴۸۰,۶۳۱\t\t\t\t۳۰۸,۴۱۲\t\t\t\t۷۸۹,۰۴۳\t\t\t\t۰\t\nبهای تمام شده انتسابی\t\t\t\t\t(۲۵,۲۵۰,۴۵۱)\t\t\t۰\t\t\t\t(۲۵,۲۵۰,۴۵۱)\t\t\t\t(۴,۴۴۶,۹۰۰)\t\t\t\t(۲۹,۶۹۷,۳۵۱)\t\t\t\t۰\t\nجمع درآمدهای عملیاتی\t\t\t\t\t۲۷,۴۵۴,۴۸۷\t\t\t۰\t\t\t\t۲۷,۴۵۴,۴۸۷\t\t\t\t۵,۳۴۸,۰۹۵\t\t\t\t۳۲,۸۰۲,۵۸۲\t\t\t\t۱۲,۶۸۰,۴۰۰"
         },
         "pl": {
           "raw": "شرح\tدوره منتهی به ۱۴۰۵/۰۶/۳۱\tتجدید ارائه شده دوره مالی منتهی به ۱۴۰۴/۰۶/۳۱\tتجدید ارائه شده سال مالی منتهی به ۱۴۰۴/۱۲/۲۹\tدرصد تغییرات\tدرصد تغییرات\nشرح\tحسابرسی نشده\tحسابرسی شده\tحسابرسی شده\tدرصد تغییرات\tدرصد تغییرات\nعملیات در حال تداوم:\t\t\t\t\t\nارزش منصفانه تولیدات کشاورزی\t۲۵,۴۸۰,۱۱۶\t۹,۹۰۴,۶۹۰\t۲۵,۴۶۲,۷۲۲\t۱۵۷\t۰\nخالص افزایش (کاهش) ارزش منصفانه دارایی های زیستی غیر مولد\t۶۶۶,۳۳۸\t۲۲۷,۸۹۰\t۶۵۵,۱۹۶\t۱۹۲\t۲\nمجموع\t۲۶,۱۴۶,۴۵۴\t۱۰,۱۳۲,۵۸۰\t۲۶,۱۱۷,۹۱۸\t۱۵۸\t۰\nخالص فروش تولیدات کشاورزی و دارایی های زیستی غیر مولد\t۲۶,۷۴۴,۶۵۴\t۱۰,۶۱۷,۱۶۹\t۲۷,۴۶۴,۱۷۷\t۱۵۲\t(۳)\nبهای تمام شده انتسابی\t(۲۵,۲۵۰,۴۵۱)\t(۹,۹۳۱,۴۵۹)\t(۲۵,۳۵۹,۳۴۶)\t(۱۵۴)\t۰\nمجموع\t۱,۴۹۴,۲۰۳\t۶۸۵,۷۱۰\t۲,۱۰۴,۸۳۱\t۱۱۸\t(۲۹)\nدرآمدهای عملیاتی\t۲۷,۶۴۰,۶۵۷\t۱۰,۸۱۸,۲۹۰\t۲۸,۲۲۲,۷۴۹\t۱۵۵\t(۲)\nهزینه های تولید\t(۲۲,۹۳۴,۳۰۶)\t(۸,۵۷۴,۴۱۲)\t(۲۱,۵۵۱,۴۷۲)\t(۱۶۷)\t(۶)\nهزینه های فروش، اداری و عمومی\t(۵۱۸,۱۴۶)\t(۲۵۴,۲۰۱)\t(۶۰۷,۲۹۰)\t(۱۰۴)\t۱۵\nساير درآمدهاى عملياتى\t۳۵۵\t۱,۵۴۴\t۱۰,۴۰۰\t(۷۷)\t(۹۷)\nساير هزينه ‏هاى عملياتى\t(۲۰۰,۵۱۷)\t(۹۴,۱۸۸)\t(۲۷۳,۰۷۷)\t(۱۱۳)\t۲۷\nسود (زیان) عملیاتی\t۳,۹۸۸,۰۴۳\t۱,۸۹۷,۰۳۳\t۵,۸۰۱,۳۱۰\t۱۱۰\t(۳۱)\nسود (زیان) فروش دارایی زیستی مولد\t۲,۶۰۶,۸۵۸\t۱,۰۵۱,۱۲۲\t۲,۷۲۲,۸۵۴\t۱۴۸\t(۴)\nساير درآمدها و هزينه ‏هاى غیرعملياتى - درآمد سرمایه گذاری ها\t۱۲,۲۰۹\t۲۹۷\t۵۲۵\t۴,۰۱۱\t۲,۲۲۶\nساير درآمدها و هزينه‏ هاى غیرعملياتى - اقلام متفرقه\t۵۷,۳۵۸\t۱۶,۶۴۹\t۹,۸۱۶\t۲۴۵\t۴۸۴\nهزینه های مالی\t(۱۷۰,۷۷۸)\t(۱۳۰,۲۵۲)\t(۲۶۱,۷۶۸)\t(۳۱)\t۳۵\nمجموع\t۲,۵۰۵,۶۴۷\t۹۳۷,۸۱۶\t۲,۴۷۱,۴۲۷\t۱۶۷\t۱\nسود (زیان) عملیات در حال تداوم قبل از مالیات\t۶,۴۹۳,۶۹۰\t۲,۸۳۴,۸۴۹\t۸,۲۷۲,۷۳۷\t۱۲۹\t(۲۲)\nهزینه مالیات بر درآمد:\t\t\t\t\t\nسال جاری\t(۱۰,۳۶۴)\t(۲,۹۱۴)\t(۳,۷۱۰)\t(۲۵۶)\t(۱۷۹)\nسال‌های قبل\t۰\t۰\t۰\t۰\t۰\nسود (زیان) خالص عملیات در حال تداوم\t۶,۴۸۳,۳۲۶\t۲,۸۳۱,۹۳۵\t۸,۲۶۹,۰۲۷\t۱۲۹\t(۲۲)\nعملیات متوقف شده:\t\t\t\t\t\nسود (زیان) خالص عملیات متوقف شده\t۰\t۰\t۰\t۰\t۰\nسود (زیان) خالص\t۶,۴۸۳,۳۲۶\t۲,۸۳۱,۹۳۵\t۸,۲۶۹,۰۲۷\t۱۲۹\t(۲۲)\nسود (زیان) پایه هر سهم:\t\t\t\t\t\nعملیاتی (ریال)\t۵۷۸\t۲۷۵\t۸۴۱\t۱۱۰\t(۳۱)\nغیرعملیاتی (ریال)\t۳۶۲\t۱۳۶\t۳۵۸\t۱۶۶\t۱\nناشی از عملیات در حال تداوم\t۹۴۰\t۴۱۱\t۱,۱۹۹\t۱۲۹\t(۲۲)\nناشی از عملیات متوقف شده\t۰\t۰\t۰\t۰\t۰\nسود (زیان) پایه هر سهم\t۹۴۰\t۴۱۱\t۱,۱۹۹\t۱۲۹\t(۲۲)\nسود (زیان) خالص هر سهم– ریال\t۹۴۰\t۴۱۱\t۱,۱۹۹\t۱۲۹\t(۲۲)\nسرمایه\t۶,۸۹۷,۰۷۹\t۶,۸۹۷,۰۷۹\t۶,۸۹۷,۰۷۹\t۰\t۰"
@@ -49196,7 +49274,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -50488,7 +50567,82 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": {
+        "0f2502f82df93a88e2039b15d3405cfc36fdac7fe54bfd459631b5778fb17cc2": {
+          "category": "otherNonOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        }
+      },
+      "monthlyRowLinks": {
+        "چربیپروتئینبارمیکروبیو#1": "none",
+        "شیر#1": "none",
+        "یونجه#1": "none",
+        "جو#1": "none",
+        "کلش#1": "none",
+        "ذرتعلوفهای#1": "none",
+        "قصیلجو#1": "none",
+        "کلزا#1": "none",
+        "کودحیوانی#1": "none",
+        "گوسالهنرمتولدشده#1": "none",
+        "جمعفروشداخلی#1": "domestic",
+        "فروشصادراتی#1": "none",
+        "جمعفروشصادراتی#1": "export",
+        "ارزشمنصفانهتولیداتکشاورزی#1": "none",
+        "خالصافزایشکاهشارزشمنصفانهدارائیهایزیستیغیرمولد#1": "none",
+        "بهایتمامشدهانتسابی#1": "none",
+        "جمعدرآمدهایعملیاتی#1": "total"
+      },
+      "monthlyRowHistory": {
+        "1405-7": {
+          "calendarYear": 1405,
+          "calendarMonth": 7,
+          "sourceRow": "جمع درآمدهای عملیاتی",
+          "sourceRowNumber": 19,
+          "amountColumn": 16,
+          "fallback": false,
+          "otherOperating": null,
+          "otherNonOperating": null,
+          "lines": [
+            {
+              "id": "جمعفروشداخلی#1",
+              "index": 13,
+              "label": "جمع فروش داخلی",
+              "role": "domestic",
+              "month": 477.78180000000003,
+              "ytd": 3152.2009000000003
+            },
+            {
+              "id": "جمعفروشصادراتی#1",
+              "index": 15,
+              "label": "جمع فروش صادراتی",
+              "role": "export",
+              "month": 0,
+              "ytd": 0
+            },
+            {
+              "id": "جمعدرآمدهایعملیاتی#1",
+              "index": 19,
+              "label": "جمع درآمدهای عملیاتی",
+              "role": "total",
+              "month": 534.8095000000001,
+              "ytd": 3280.2582
+            }
+          ]
+        }
+      },
+      "monthlyRawTables": {
+        "1405-7": "نام محصول\tواحد\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاصلاحات\tاصلاحات\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nچربي ، پروتئين ، بار ميکروبي و ...\tکيلو گرم\t۰\t۰\t۰\t۱,۱۸۳,۷۸۷\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۱۸۳,۷۸۷\t۰\t۰\t۰\t۲۴۰,۲۴۶\t۰\t۰\t۰\t۱,۴۲۴,۰۳۳\t۰\t۵۱,۱۲۲\t۱۵,۰۷۶,۷۳۸\t۷۷۰,۷۵۳\tتوليد\nشير\tتن\t۴۴,۵۶۶\t۴۳,۰۰۴\t۵۶۰,۱۲۳,۸۲۶\t۲۴,۰۸۷,۵۶۵\t۰\t۰\t۰\t۴۴,۵۶۶\t۴۳,۰۰۴\t۵۶۰,۱۲۳,۸۲۶\t۲۴,۰۸۷,۵۶۵\t۷,۴۴۲\t۷,۰۵۹\t۶۰۵,۰۰۰,۰۰۰\t۴,۲۷۰,۶۹۵\t۵۲,۰۰۸\t۵۰,۰۶۳\t۵۶۶,۴۵۱,۴۷۱\t۲۸,۳۵۸,۲۶۰\t۵۲,۸۰۵\t۵۱,۱۲۲\t۲۱۵,۳۵۹,۵۳۲\t۱۱,۰۰۹,۶۱۰\tتوليد\nيونجه\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجو\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nکلش\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۳۴\t۰\t۰\t۰\tتوليد\nذرت علوفه اي\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۱,۵۶۰\t۰\t۰\t۰\t۱,۵۶۰\t۰\t۰\t۰\t۱,۰۹۷\t۰\t۰\t۰\tتوليد\nقصيل جو\tتن\t۲,۶۳۵\t۰\t۰\t۰\t۰\t۰\t۰\t۲,۶۳۵\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۲,۶۳۵\t۰\t۰\t۰\t۱,۴۲۵\t۰\t۰\t۰\tتوليد\nکلزا\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۶\t۵\t۴۴۹,۲۰۰,۰۰۰\t۲,۲۴۶\tتوليد\nکود حيواني\tتن\t۳۱,۷۴۵\t۳۵,۹۹۷\t۳,۹۲۰,۹۶۶\t۱۴۱,۱۴۳\t۰\t۰\t۰\t۳۱,۷۴۵\t۳۵,۹۹۷\t۳,۹۲۰,۹۶۶\t۱۴۱,۱۴۳\t۴,۵۰۲\t۴,۶۶۹\t۵,۰۰۶,۲۱۱\t۲۳,۳۷۴\t۳۶,۲۴۷\t۴۰,۶۶۶\t۴,۰۴۵,۵۶۶\t۱۶۴,۵۱۷\t۳۳,۳۳۳\t۳۴,۹۴۹\t۳,۱۶۱,۵۷۸\t۱۱۰,۴۹۴\tتوليد\nگوساله نر متولد شده\tراس\t۱,۵۵۸\t۱,۵۸۰\t۸۴۲,۸۴۵,۵۷۰\t۱,۳۳۱,۶۹۶\t۰\t۰\t۰\t۱,۵۵۸\t۱,۵۸۰\t۸۴۲,۸۴۵,۵۷۰\t۱,۳۳۱,۶۹۶\t۲۷۰\t۱۸۱\t۱,۳۴۵,۳۲۰,۴۴۲\t۲۴۳,۵۰۳\t۱,۸۲۸\t۱,۷۶۱\t۸۹۴,۴۹۱,۱۹۸\t۱,۵۷۵,۱۹۹\t۱,۷۹۰\t۱,۸۲۳\t۴۳۱,۸۶۸,۸۹۷\t۷۸۷,۲۹۷\tتوليد\nجمع فروش داخلی\t\t\t\t\t۲۶,۷۴۴,۱۹۱\t\t\t۰\t\t\t\t۲۶,۷۴۴,۱۹۱\t\t\t\t۴,۷۷۷,۸۱۸\t\t\t\t۳۱,۵۲۲,۰۰۹\t\t\t\t۱۲,۶۸۰,۴۰۰\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع فروش صادراتی\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nارزش منصفانه تولیدات کشاورزی\t\t\t\t\t۲۵,۴۸۰,۱۱۶\t\t\t۰\t\t\t\t۲۵,۴۸۰,۱۱۶\t\t\t\t۴,۷۰۸,۷۶۵\t\t\t\t۳۰,۱۸۸,۸۸۱\t\t\t\t۰\t\nخالص افزایش (کاهش) ارزش منصفانه دارائیهای زیستی غیر مولد\t\t\t\t\t۴۸۰,۶۳۱\t\t\t۰\t\t\t\t۴۸۰,۶۳۱\t\t\t\t۳۰۸,۴۱۲\t\t\t\t۷۸۹,۰۴۳\t\t\t\t۰\t\nبهای تمام شده انتسابی\t\t\t\t\t(۲۵,۲۵۰,۴۵۱)\t\t\t۰\t\t\t\t(۲۵,۲۵۰,۴۵۱)\t\t\t\t(۴,۴۴۶,۹۰۰)\t\t\t\t(۲۹,۶۹۷,۳۵۱)\t\t\t\t۰\t\nجمع درآمدهای عملیاتی\t\t\t\t\t۲۷,۴۵۴,۴۸۷\t\t\t۰\t\t\t\t۲۷,۴۵۴,۴۸۷\t\t\t\t۵,۳۴۸,۰۹۵\t\t\t\t۳۲,۸۰۲,۵۸۲\t\t\t\t۱۲,۶۸۰,۴۰۰"
+      }
     },
     "زمگسا": {
       "symbol": "زمگسا",
@@ -50938,10 +51092,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 11850,
-        "marketCap": 3555,
+        "currentPrice": 12180,
+        "marketCap": 3654,
         "sharesOutstanding": 300000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1403": {
@@ -52396,7 +52550,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -53730,7 +53885,35 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": {
+        "760b3c5b672deb1a1c9738dc68705e0975cb472b868a7f1bb30f7ff857a482b9": {
+          "category": "otherNonOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        },
+        "13ac73241f4e3304373e0d3efa8e0220cdabe110c34e443210bc80053b87aba4": {
+          "category": "bankInterest",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        }
+      }
     },
     "زشریف": {
       "symbol": "زشریف",
@@ -54175,10 +54358,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1790,
-        "marketCap": 4304.56873,
+        "currentPrice": 1898,
+        "marketCap": 4564.285726,
         "sharesOutstanding": 2404787000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1403": {
@@ -55751,7 +55934,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -57129,7 +57313,8 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": []
     },
     "زبینا": {
       "symbol": "زبینا",
@@ -57579,10 +57764,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1809,
-        "marketCap": 6584.816077191,
+        "currentPrice": 1885,
+        "marketCap": 6861.458433115,
         "sharesOutstanding": 3640030999,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 8,
         "bankInterest": null,
         "otherOperatingIncome": null,
@@ -59206,7 +59391,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -60670,7 +60856,35 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": {
+        "45e18f61c97426af0cab4bae8276fa3fe711705f0f0a426de47bbbd41871f177": {
+          "category": "otherOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        },
+        "a590de61a8a67e5c3d16e2f8cc8b7cbcdb2e04d6e01b4b0341c422d8253b5f2e": {
+          "category": "otherNonOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        }
+      }
     },
     "زفکا": {
       "symbol": "زفکا",
@@ -61120,10 +61334,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 803,
-        "marketCap": 9748.549283,
+        "currentPrice": 859,
+        "marketCap": 10428.398299,
         "sharesOutstanding": 12140161000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "dividendPaste": {
@@ -62683,7 +62897,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -64153,7 +64368,48 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": {
+        "d44770b0fc0a7698a435dff836872c3f49ac1cf52b69a66778e47227bbcf5757": {
+          "category": "otherOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        },
+        "31e056b3916b0b4bf82187b74d5a908a200ef81c587e08bae68b3dab7c854e39": {
+          "category": "otherNonOperatingIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        },
+        "918278051bd751e00f3e1d8f5321dba1907c35612e1e35c3d91d4fd379b749ee": {
+          "category": "bankInterest",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "priorColumn": null
+        }
+      }
     },
     "پاسا": {
       "symbol": "پاسا",
@@ -64519,10 +64775,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1423,
-        "marketCap": 6118.9,
+        "currentPrice": 1453,
+        "marketCap": 6247.9,
         "sharesOutstanding": 4300000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1403": {
@@ -64556,8 +64812,8 @@
         }
       },
       "subIndustries": [],
-      "marginMode": "latest",
-      "useTTMMargin": false,
+      "marginMode": "ytd",
+      "useTTMMargin": true,
       "productProduction": {
         "تاير": {
           "1405-6": {
@@ -65130,10 +65386,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1254,
-        "marketCap": 24695.022,
+        "currentPrice": 1291,
+        "marketCap": 25423.663,
         "sharesOutstanding": 19693000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 507,
         "bankInterest": 1,
         "otherOperatingIncome": -148,
@@ -65689,10 +65945,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 451,
-        "marketCap": 15184.641428,
+        "currentPrice": 464,
+        "marketCap": 15622.336192,
         "sharesOutstanding": 33668828000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 3,
         "bankInterest": 16,
         "otherOperatingIncome": 244,
@@ -66024,10 +66280,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 4008,
-        "marketCap": 31823.52,
+        "currentPrice": 4233,
+        "marketCap": 33610.02,
         "sharesOutstanding": 7940000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": 2,
         "otherOperatingIncome": null,
@@ -67616,10 +67872,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1828,
-        "marketCap": 18280,
+        "currentPrice": 1854,
+        "marketCap": 18540,
         "sharesOutstanding": 10000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": 100,
         "otherOperatingIncome": 7,
@@ -68701,10 +68957,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1037,
-        "marketCap": 217770,
+        "currentPrice": 1015,
+        "marketCap": 213150,
         "sharesOutstanding": 210000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": 203,
         "otherOperatingIncome": 500,
@@ -68816,10 +69072,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 3180,
-        "marketCap": 63600,
+        "currentPrice": 3287,
+        "marketCap": 65740,
         "sharesOutstanding": 20000000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "subIndustries": [],
       "rawSheets": {
@@ -69325,10 +69581,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2444,
-        "marketCap": 4189.352411712,
+        "currentPrice": 2502,
+        "marketCap": 4288.772395296,
         "sharesOutstanding": 1714137648,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1404": {
@@ -69676,10 +69932,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 3071,
-        "marketCap": 6589.01476,
+        "currentPrice": 3083,
+        "marketCap": 6614.76148,
         "sharesOutstanding": 2145560000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 60,
@@ -70037,10 +70293,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1868,
-        "marketCap": 2082.82,
+        "currentPrice": 1936,
+        "marketCap": 2158.64,
         "sharesOutstanding": 1115000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1404": {
@@ -70386,10 +70642,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 584,
-        "marketCap": 5289.74638452,
+        "currentPrice": 567,
+        "marketCap": 5135.764041135,
         "sharesOutstanding": 9057784905,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1404": {
@@ -70750,10 +71006,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 424,
-        "marketCap": 59190.4,
+        "currentPrice": 417,
+        "marketCap": 58213.2,
         "sharesOutstanding": 139600000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1404": {
@@ -71897,10 +72153,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 687,
-        "marketCap": 41907,
+        "currentPrice": 704,
+        "marketCap": 42944,
         "sharesOutstanding": 61000000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1404": {
@@ -72690,7 +72946,11 @@
           "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=XG7CRuvtFPzMW5LOE8fUrw%3d%3d&rt=0&let=6&ct=0&ft=-1",
           "source": "codal-n10"
         }
-      }
+      },
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": ""
     },
     "سیسکو": {
       "symbol": "سیسکو",
@@ -73093,10 +73353,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 622,
-        "marketCap": 77750,
+        "currentPrice": 636,
+        "marketCap": 79500,
         "sharesOutstanding": 125000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 1070,
         "bankInterest": 70,
         "otherOperatingIncome": 179,
@@ -74184,10 +74444,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1373,
-        "marketCap": 7414.2,
+        "currentPrice": 1409,
+        "marketCap": 7608.6,
         "sharesOutstanding": 5400000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1404": {
@@ -75341,10 +75601,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1006,
-        "marketCap": 5627.061,
+        "currentPrice": 1023,
+        "marketCap": 5722.1505,
         "sharesOutstanding": 5593500000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1403": {
@@ -75671,10 +75931,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1801,
-        "marketCap": 3602,
+        "currentPrice": 1862,
+        "marketCap": 3724,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1404": {
@@ -76046,10 +76306,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1138,
-        "marketCap": 7266.275664,
+        "currentPrice": 1175,
+        "marketCap": 7502.5254,
         "sharesOutstanding": 6385128000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 356,
         "bankInterest": null,
         "otherOperatingIncome": 58,
@@ -76640,10 +76900,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1058,
-        "marketCap": 23276,
+        "currentPrice": 1026,
+        "marketCap": 22572,
         "sharesOutstanding": 22000000000,
-        "marketCapUpdatedAt": 1794298637166,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": 560,
         "bankInterest": null,
         "otherOperatingIncome": null,
@@ -77176,10 +77436,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2299,
-        "marketCap": 4368.1,
+        "currentPrice": 2364,
+        "marketCap": 4491.6,
         "sharesOutstanding": 1900000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": 25,
         "otherOperatingIncome": null,
@@ -77757,10 +78017,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1211,
-        "marketCap": 18165,
+        "currentPrice": 1253,
+        "marketCap": 18795,
         "sharesOutstanding": 15000000000,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 20,
@@ -78332,10 +78592,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 456,
-        "marketCap": 56772,
+        "currentPrice": 471,
+        "marketCap": 58639.5,
         "sharesOutstanding": 124500000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1403": {
@@ -79143,7 +79403,11 @@
           "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=PM72difOUrlEF9hcRQBlJg%3d%3d&rt=0&let=6&ct=0&ft=-1",
           "source": "codal-n10"
         }
-      }
+      },
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": ""
     },
     "غدانه": {
       "symbol": "غدانه",
@@ -79472,10 +79736,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1568,
-        "marketCap": 3136,
+        "currentPrice": 1608,
+        "marketCap": 3216,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1403": {
@@ -79963,10 +80227,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 28130,
-        "marketCap": 5626,
+        "currentPrice": 28430,
+        "marketCap": 5686,
         "sharesOutstanding": 200000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "monthlySalesYTD": {
         "1403": {
@@ -80126,10 +80390,10 @@
       "monthlySales": [],
       "dividendHistory": [],
       "manual": {
-        "currentPrice": 1490,
-        "marketCap": 3576,
+        "currentPrice": 1536,
+        "marketCap": 3686.4,
         "sharesOutstanding": 2400000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -80139,7 +80403,7 @@
           "raw": "شرح\tدوره منتهی به ۱۴۰۵/۰۶/۳۱\tتجدید ارائه شده دوره مالی منتهی به ۱۴۰۴/۱۲/۲۹\tتجدید ارائه شده سال مالی منتهی به ۱۴۰۴/۰۱/۰۱\tدرصد تغييرات\tدرصد تغييرات\nشرح\tحسابرسی نشده\tحسابرسی شده\tحسابرسی شده\tدرصد تغييرات\tدرصد تغييرات\nدارايي‌ها\t\t\t\t\t\nدارايي‌هاي غیرجاري\t\t\t\t\t\nدارایی های زیستی مولد\t۳,۶۹۹,۶۲۵\t۲,۸۳۳,۹۷۴\t۲,۰۱۷,۱۷۷\t۳۱\t۸۳\nدارایی‌های ثابت مشهود\t۲,۰۱۹,۱۸۱\t۱,۵۸۲,۱۰۷\t۱,۱۹۳,۶۰۸\t۲۸\t۶۹\nسرمایه‌گذاری در املاک\t۰\t۰\t۰\t۰\t۰\nدارایی‌های نامشهود\t۱۵,۷۲۷\t۱۹,۵۵۳\t۳,۹۰۰\t(۲۰)\t۳۰۳\nسرمایه‌گذاری‌های بلندمدت\t۱,۵۳۲\t۱,۵۳۲\t۱,۵۳۲\t۰\t۰\nدریافتنی‌های بلندمدت\t۰\t۰\t۰\t۰\t۰\nسایر دارایی‌ها\t۰\t۰\t۰\t۰\t۰\nجمع دارايي‌هاي غیرجاري\t۵,۷۳۶,۰۶۵\t۴,۴۳۷,۱۶۶\t۳,۲۱۶,۲۱۷\t۲۹\t۷۸\nدارايي‌هاي جاري\t\t\t\t\t\nدارایی زیستی غیرمولد\t۳۰۰,۰۰۲\t۹۰,۴۷۱\t۶۱,۸۰۶\t۲۳۲\t۳۸۵\nسفارشات و پیش‌پرداخت‌ها\t۷۳,۶۴۴\t۲۵۹,۱۰۵\t۴۴,۰۱۰\t(۷۲)\t۶۷\nموجودی مواد و کالا\t۳,۷۵۲,۳۳۸\t۲,۲۱۳,۰۲۰\t۱,۲۲۲,۴۰۵\t۷۰\t۲۰۷\nدریافتنی‌های تجاری و سایر دریافتنی‌ها\t۲,۴۵۹,۸۶۱\t۱,۱۰۹,۹۵۰\t۷۶۴,۵۷۳\t۱۲۲\t۲۲۲\nسرمایه‌گذاری‌های کوتاه‌مدت\t۳۲۰,۰۰۰\t۰\t۰\t۰\t۰\nموجودی نقد\t۸۷۷,۸۳۵\t۵۶۷,۷۸۰\t۳۲۸,۳۳۷\t۵۵\t۱۶۷\nمجموع\t۷,۷۸۳,۶۸۰\t۴,۲۴۰,۳۲۶\t۲,۴۲۱,۱۳۱\t۸۴\t۲۲۱\nدارایی‌های نگهداری شده برای فروش\t۰\t۰\t۰\t۰\t۰\nجمع دارایی‌های جاری\t۷,۷۸۳,۶۸۰\t۴,۲۴۰,۳۲۶\t۲,۴۲۱,۱۳۱\t۸۴\t۲۲۱\nجمع دارايي‌ها\t۱۳,۵۱۹,۷۴۵\t۸,۶۷۷,۴۹۲\t۵,۶۳۷,۳۴۸\t۵۶\t۱۴۰\nحقوق مالکانه و بدهی‌ها\t\t\t\t\t\nحقوق مالکانه\t\t\t\t\t\nسرمايه\t۱,۵۰۰,۰۰۰\t۱,۵۰۰,۰۰۰\t۶۰۰,۰۰۰\t۰\t۱۵۰\nافزایش سرمایه در جریان\t۹۰۰,۰۰۰\t۰\t۰\t۰\t۰\nصرف سهام\t۰\t۰\t۰\t۰\t۰\nصرف سهام خزانه\t۱۱۹,۸۸۷\t۹۳,۹۸۵\t۹۳,۱۶۶\t۲۸\t۲۹\nاندوخته قانوني\t۱۵۰,۰۰۰\t۱۵۰,۰۰۰\t۶۰,۰۰۰\t۰\t۱۵۰\nساير اندوخته‌ها\t۰\t۰\t۰\t۰\t۰\nمازاد تجديدارزيابي دارايي‌ها\t۰\t۰\t۰\t۰\t۰\nتفاوت تسعیر ارز عملیات خارجی\t۰\t۰\t۰\t۰\t۰\nسود (زیان) انباشته\t۶,۲۹۶,۰۹۷\t۵,۳۲۹,۴۱۱\t۲,۷۹۱,۲۲۱\t۱۸\t۱۲۶\nسهام خزانه\t(۱۷۲,۹۹۳)\t(۱۳۹,۰۳۷)\t(۱۴۰,۱۹۷)\t(۲۴)\t(۲۳)\nجمع حقوق مالکانه\t۸,۷۹۲,۹۹۱\t۶,۹۳۴,۳۵۹\t۳,۴۰۴,۱۹۰\t۲۷\t۱۵۸\nبدهی‌ها\t\t\t\t\t\nبدهی‌های غیرجاری\t\t\t\t\t\nپرداختنی‌های بلندمدت\t۰\t۰\t۲,۲۴۱\t۰\t--\nتسهیلات مالی بلندمدت\t۰\t۰\t۰\t۰\t۰\nذخیره مزایای پایان خدمت کارکنان\t۰\t۰\t۰\t۰\t۰\nجمع بدهی‌های غیرجاری\t۰\t۰\t۲,۲۴۱\t۰\t--\nبدهی‌های جاری\t\t\t\t\t\nپرداختنی‌های تجاری و سایر پرداختنی‌ها\t۲,۴۶۰,۲۷۶\t۹۰۲,۴۷۸\t۱,۰۴۲,۲۴۶\t۱۷۳\t۱۳۶\nمالیات پرداختنی\t۶,۹۶۸\t۶,۹۶۸\t۵,۷۸۸\t۰\t۲۰\nسود سهام پرداختنی\t۱,۴۹۴,۵۴۵\t۲۶۴,۸۵۰\t۷۳۳,۲۱۵\t۴۶۴\t۱۰۴\nتسهیلات مالی\t۶۴۳,۲۹۰\t۳۲۸,۹۱۱\t۳۱۲,۷۹۲\t۹۶\t۱۰۶\nذخایر\t۰\t۰\t۰\t۰\t۰\nپیش‌دریافت‌ها\t۱۲۱,۶۷۵\t۲۳۹,۹۲۶\t۱۳۶,۸۷۶\t(۴۹)\t(۱۱)\nمجموع\t۴,۷۲۶,۷۵۴\t۱,۷۴۳,۱۳۳\t۲,۲۳۰,۹۱۷\t۱۷۱\t۱۱۲\nبدهی‌های ‌مرتبط ‌با دارایی‌های نگهداری‌‌شده برای ‌فروش\t۰\t۰\t۰\t۰\t۰\nجمع بدهی‌های جاری\t۴,۷۲۶,۷۵۴\t۱,۷۴۳,۱۳۳\t۲,۲۳۰,۹۱۷\t۱۷۱\t۱۱۲\nجمع بدهی‌ها\t۴,۷۲۶,۷۵۴\t۱,۷۴۳,۱۳۳\t۲,۲۳۳,۱۵۸\t۱۷۱\t۱۱۲\nجمع حقوق مالکانه و بدهی‌ها\t۱۳,۵۱۹,۷۴۵\t۸,۶۷۷,۴۹۲\t۵,۶۳۷,۳۴۸\t۵۶\t۱۴۰"
         },
         "monthlyActivity": {
-          "raw": "نام محصول\tواحد\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاصلاحات\tاصلاحات\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nمحصولات زراعي\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nشير\tتن\t۱۹,۸۶۶\t۱۹,۲۳۱\t۵۵۵,۷۱۴,۹۹۱\t۱۰,۶۸۶,۹۵۵\t۰\t۰\t۰\t۱۹,۸۶۶\t۱۹,۲۳۱\t۵۵۵,۷۱۴,۹۹۱\t۱۰,۶۸۶,۹۵۵\t۳,۲۱۷\t۳,۱۰۵\t۶۰۵,۰۰۰,۰۰۰\t۱,۸۷۸,۵۲۵\t۲۳,۰۸۳\t۲۲,۳۳۶\t۵۶۲,۵۶۶,۲۶۱\t۱۲,۵۶۵,۴۸۰\t۲۳,۵۴۴\t۲۲,۹۷۰\t۲۱۴,۹۶۵,۱۷۲\t۴,۹۳۷,۷۵۰\tتوليد\nگوساله نر\tراس\t۷۶۵\t۶۵۱\t۸۵۱,۴۱۰,۱۳۸\t۵۵۴,۲۶۸\t۰\t۰\t۰\t۷۶۵\t۶۵۱\t۸۵۱,۴۱۰,۱۳۸\t۵۵۴,۲۶۸\t۱۴۴\t۱۱۸\t۱,۱۱۵,۱۹۴,۹۱۵\t۱۳۱,۵۹۳\t۹۰۹\t۷۶۹\t۸۹۱,۸۸۶,۸۶۶\t۶۸۵,۸۶۱\t۹۱۶\t۸۸۵\t۳۶۸,۲۳۹,۵۴۸\t۳۲۵,۸۹۲\tتوليد\nچربي، پروتئين، بار ميکروبي و ...\tکيلوگرم\t۰\t۰\t۰\t۶۸۹,۱۰۴\t۰\t۰\t۰\t۰\t۰\t۰\t۶۸۹,۱۰۴\t۰\t۰\t۰\t۱۴۶,۸۷۸\t۰\t۰\t۰\t۸۳۵,۹۸۲\t۰\t۰\t۰\t۵۵۰,۷۱۴\tتوليد\nجمع فروش داخلی\t\t\t\t\t۱۱,۹۳۰,۳۲۷\t\t\t۰\t\t\t\t۱۱,۹۳۰,۳۲۷\t\t\t\t۲,۱۵۶,۹۹۶\t\t\t\t۱۴,۰۸۷,۳۲۳\t\t\t\t۵,۸۱۴,۳۵۶\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع فروش صادراتی\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nارزش منصفانه تولیدات کشاورزی\t\t\t\t\t۱۱,۰۰۴,۲۶۲\t\t\t۰\t\t\t\t۱۱,۰۰۴,۲۶۲\t\t\t\t۱,۹۴۶,۵۳۴\t\t\t\t۱۲,۹۵۰,۷۹۶\t\t\t\t۵,۲۷۷,۱۶۴\t\nخالص افزایش (کاهش) ارزش منصفانه دارائیهای زیستی غیر مولد\t\t\t\t\t۳۷۸,۶۳۶\t\t\t۰\t\t\t\t۳۷۸,۶۳۶\t\t\t\t۸۱,۶۳۷\t\t\t\t۴۶۰,۲۷۳\t\t\t\t۲۲۹,۷۸۰\t\nبهای تمام شده انتسابی\t\t\t\t\t(۱۰,۹۳۷,۲۴۹)\t\t\t۰\t\t\t\t(۱۰,۹۳۷,۲۴۹)\t\t\t\t(۱,۹۴۲,۴۰۹)\t\t\t\t(۱۲,۸۷۹,۶۵۸)\t\t\t\t(۵,۳۰۹,۹۷۳)\t\nجمع درآمدهای عملیاتی\t\t\t\t\t۱۲,۳۷۵,۹۷۶\t\t\t۰\t\t\t\t۱۲,۳۷۵,۹۷۶\t\t\t\t۲,۲۴۲,۷۵۸\t\t\t\t۱۴,۶۱۸,۷۳۴\t\t\t\t۶,۰۱۱,۳۲۷\t"
+          "raw": "نام محصول\tواحد\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاصلاحات\tاصلاحات\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nمحصولات زراعي\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nشير\tتن\t۱۹,۸۶۶\t۱۹,۲۳۱\t۵۵۵,۷۱۴,۹۹۱\t۱۰,۶۸۶,۹۵۵\t۰\t۰\t۰\t۱۹,۸۶۶\t۱۹,۲۳۱\t۵۵۵,۷۱۴,۹۹۱\t۱۰,۶۸۶,۹۵۵\t۳,۲۱۷\t۳,۱۰۵\t۶۰۵,۰۰۰,۰۰۰\t۱,۸۷۸,۵۲۵\t۲۳,۰۸۳\t۲۲,۳۳۶\t۵۶۲,۵۶۶,۲۶۱\t۱۲,۵۶۵,۴۸۰\t۲۳,۵۴۴\t۲۲,۹۷۰\t۲۱۴,۹۶۵,۱۷۲\t۴,۹۳۷,۷۵۰\tتوليد\nگوساله نر\tراس\t۷۶۵\t۶۵۱\t۸۵۱,۴۱۰,۱۳۸\t۵۵۴,۲۶۸\t۰\t۰\t۰\t۷۶۵\t۶۵۱\t۸۵۱,۴۱۰,۱۳۸\t۵۵۴,۲۶۸\t۱۴۴\t۱۱۸\t۱,۱۱۵,۱۹۴,۹۱۵\t۱۳۱,۵۹۳\t۹۰۹\t۷۶۹\t۸۹۱,۸۸۶,۸۶۶\t۶۸۵,۸۶۱\t۹۱۶\t۸۸۵\t۳۶۸,۲۳۹,۵۴۸\t۳۲۵,۸۹۲\tتوليد\nچربي، پروتئين، بار ميکروبي و ...\tکيلوگرم\t۰\t۰\t۰\t۶۸۹,۱۰۴\t۰\t۰\t۰\t۰\t۰\t۰\t۶۸۹,۱۰۴\t۰\t۰\t۰\t۱۴۶,۸۷۸\t۰\t۰\t۰\t۸۳۵,۹۸۲\t۰\t۰\t۰\t۵۵۰,۷۱۴\tتوليد\nجمع فروش داخلی\t\t\t\t\t۱۱,۹۳۰,۳۲۷\t\t\t۰\t\t\t\t۱۱,۹۳۰,۳۲۷\t\t\t\t۲,۱۵۶,۹۹۶\t\t\t\t۱۴,۰۸۷,۳۲۳\t\t\t\t۵,۸۱۴,۳۵۶\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع فروش صادراتی\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nارزش منصفانه تولیدات کشاورزی\t\t\t\t\t۱۱,۰۰۴,۲۶۲\t\t\t۰\t\t\t\t۱۱,۰۰۴,۲۶۲\t\t\t\t۱,۹۴۶,۵۳۴\t\t\t\t۱۲,۹۵۰,۷۹۶\t\t\t\t۵,۲۷۷,۱۶۴\t\nخالص افزایش (کاهش) ارزش منصفانه دارائیهای زیستی غیر مولد\t\t\t\t\t۳۷۸,۶۳۶\t\t\t۰\t\t\t\t۳۷۸,۶۳۶\t\t\t\t۸۱,۶۳۷\t\t\t\t۴۶۰,۲۷۳\t\t\t\t۲۲۹,۷۸۰\t\nبهای تمام شده انتسابی\t\t\t\t\t(۱۰,۹۳۷,۲۴۹)\t\t\t۰\t\t\t\t(۱۰,۹۳۷,۲۴۹)\t\t\t\t(۱,۹۴۲,۴۰۹)\t\t\t\t(۱۲,۸۷۹,۶۵۸)\t\t\t\t(۵,۳۰۹,۹۷۳)\t\nجمع درآمدهای عملیاتی\t\t\t\t\t۱۲,۳۷۵,۹۷۶\t\t\t۰\t\t\t\t۱۲,۳۷۵,۹۷۶\t\t\t\t۲,۲۴۲,۷۵۸\t\t\t\t۱۴,۶۱۸,۷۳۴\t\t\t\t۶,۰۱۱,۳۲۷"
         }
       },
       "monthlySalesSplit": {
@@ -80164,8 +80428,10 @@
         },
         "1405": {
           "throughMonth": 7,
-          "currentYTD": 1408.7323000000001,
-          "priorYearYTD": 581.4356
+          "currentYTD": 1461.8734000000002,
+          "priorYearYTD": 601.1327,
+          "domesticYTD": null,
+          "exportYTD": null
         }
       },
       "reportPublications": {
@@ -81077,7 +81343,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         },
         {
           "periodEnd": "1405/03/31",
@@ -81975,7 +82242,62 @@
             }
           ]
         }
-      ]
+      ],
+      "incomeNotesRules": [],
+      "monthlyRowLinks": {
+        "محصولاتزراعی#1": "none",
+        "شیر#1": "none",
+        "گوسالهنر#1": "none",
+        "چربیپروتئینبارمیکروبیو#1": "none",
+        "جمعفروشداخلی#1": "domestic",
+        "فروشصادراتی#1": "none",
+        "جمعفروشصادراتی#1": "export",
+        "ارزشمنصفانهتولیداتکشاورزی#1": "none",
+        "خالصافزایشکاهشارزشمنصفانهدارائیهایزیستیغیرمولد#1": "none",
+        "بهایتمامشدهانتسابی#1": "none",
+        "جمعدرآمدهایعملیاتی#1": "total"
+      },
+      "monthlyRowHistory": {
+        "1405-7": {
+          "calendarYear": 1405,
+          "calendarMonth": 7,
+          "sourceRow": "جمع درآمدهای عملیاتی",
+          "sourceRowNumber": 13,
+          "amountColumn": 16,
+          "fallback": false,
+          "otherOperating": null,
+          "otherNonOperating": null,
+          "lines": [
+            {
+              "id": "جمعفروشداخلی#1",
+              "index": 7,
+              "label": "جمع فروش داخلی",
+              "role": "domestic",
+              "month": 215.6996,
+              "ytd": 1408.7323000000001
+            },
+            {
+              "id": "جمعفروشصادراتی#1",
+              "index": 9,
+              "label": "جمع فروش صادراتی",
+              "role": "export",
+              "month": 0,
+              "ytd": 0
+            },
+            {
+              "id": "جمعدرآمدهایعملیاتی#1",
+              "index": 13,
+              "label": "جمع درآمدهای عملیاتی",
+              "role": "total",
+              "month": 224.2758,
+              "ytd": 1461.8734000000002
+            }
+          ]
+        }
+      },
+      "monthlyRawTables": {
+        "1405-7": "نام محصول\tواحد\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱\tاصلاحات\tاصلاحات\tاصلاحات\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۶/۳۱ (اصلاح شده)\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nمحصولات زراعي\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nشير\tتن\t۱۹,۸۶۶\t۱۹,۲۳۱\t۵۵۵,۷۱۴,۹۹۱\t۱۰,۶۸۶,۹۵۵\t۰\t۰\t۰\t۱۹,۸۶۶\t۱۹,۲۳۱\t۵۵۵,۷۱۴,۹۹۱\t۱۰,۶۸۶,۹۵۵\t۳,۲۱۷\t۳,۱۰۵\t۶۰۵,۰۰۰,۰۰۰\t۱,۸۷۸,۵۲۵\t۲۳,۰۸۳\t۲۲,۳۳۶\t۵۶۲,۵۶۶,۲۶۱\t۱۲,۵۶۵,۴۸۰\t۲۳,۵۴۴\t۲۲,۹۷۰\t۲۱۴,۹۶۵,۱۷۲\t۴,۹۳۷,۷۵۰\tتوليد\nگوساله نر\tراس\t۷۶۵\t۶۵۱\t۸۵۱,۴۱۰,۱۳۸\t۵۵۴,۲۶۸\t۰\t۰\t۰\t۷۶۵\t۶۵۱\t۸۵۱,۴۱۰,۱۳۸\t۵۵۴,۲۶۸\t۱۴۴\t۱۱۸\t۱,۱۱۵,۱۹۴,۹۱۵\t۱۳۱,۵۹۳\t۹۰۹\t۷۶۹\t۸۹۱,۸۸۶,۸۶۶\t۶۸۵,۸۶۱\t۹۱۶\t۸۸۵\t۳۶۸,۲۳۹,۵۴۸\t۳۲۵,۸۹۲\tتوليد\nچربي، پروتئين، بار ميکروبي و ...\tکيلوگرم\t۰\t۰\t۰\t۶۸۹,۱۰۴\t۰\t۰\t۰\t۰\t۰\t۰\t۶۸۹,۱۰۴\t۰\t۰\t۰\t۱۴۶,۸۷۸\t۰\t۰\t۰\t۸۳۵,۹۸۲\t۰\t۰\t۰\t۵۵۰,۷۱۴\tتوليد\nجمع فروش داخلی\t\t\t\t\t۱۱,۹۳۰,۳۲۷\t\t\t۰\t\t\t\t۱۱,۹۳۰,۳۲۷\t\t\t\t۲,۱۵۶,۹۹۶\t\t\t\t۱۴,۰۸۷,۳۲۳\t\t\t\t۵,۸۱۴,۳۵۶\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع فروش صادراتی\t\t\t\t\t۰\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nارزش منصفانه تولیدات کشاورزی\t\t\t\t\t۱۱,۰۰۴,۲۶۲\t\t\t۰\t\t\t\t۱۱,۰۰۴,۲۶۲\t\t\t\t۱,۹۴۶,۵۳۴\t\t\t\t۱۲,۹۵۰,۷۹۶\t\t\t\t۵,۲۷۷,۱۶۴\t\nخالص افزایش (کاهش) ارزش منصفانه دارائیهای زیستی غیر مولد\t\t\t\t\t۳۷۸,۶۳۶\t\t\t۰\t\t\t\t۳۷۸,۶۳۶\t\t\t\t۸۱,۶۳۷\t\t\t\t۴۶۰,۲۷۳\t\t\t\t۲۲۹,۷۸۰\t\nبهای تمام شده انتسابی\t\t\t\t\t(۱۰,۹۳۷,۲۴۹)\t\t\t۰\t\t\t\t(۱۰,۹۳۷,۲۴۹)\t\t\t\t(۱,۹۴۲,۴۰۹)\t\t\t\t(۱۲,۸۷۹,۶۵۸)\t\t\t\t(۵,۳۰۹,۹۷۳)\t\nجمع درآمدهای عملیاتی\t\t\t\t\t۱۲,۳۷۵,۹۷۶\t\t\t۰\t\t\t\t۱۲,۳۷۵,۹۷۶\t\t\t\t۲,۲۴۲,۷۵۸\t\t\t\t۱۴,۶۱۸,۷۳۴\t\t\t\t۶,۰۱۱,۳۲۷"
+      }
     },
     "سهگمت": {
       "symbol": "سهگمت",
@@ -82109,7 +82431,7 @@
         "currentPrice": 16700,
         "marketCap": 12170.7763,
         "sharesOutstanding": 728789000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "pl": {
@@ -87331,10 +87653,10 @@
         }
       },
       "manual": {
-        "currentPrice": 2444,
-        "marketCap": 23462.54381718,
+        "currentPrice": 2508,
+        "marketCap": 24076.94758326,
         "sharesOutstanding": 9600058845,
-        "marketCapUpdatedAt": 1794637260125,
+        "marketCapUpdatedAt": 1794728119280,
         "dividendIncome": null,
         "bankInterest": 664,
         "otherOperatingIncome": 5,
@@ -88278,10 +88600,10 @@
         }
       },
       "manual": {
-        "currentPrice": 43980,
-        "marketCap": 26388,
+        "currentPrice": 44030,
+        "marketCap": 26418,
         "sharesOutstanding": 600000000,
-        "marketCapUpdatedAt": 1794637260125
+        "marketCapUpdatedAt": 1794728119280
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -144638,6 +144960,19 @@
     },
     "سپاها": {
       "symbol": "سپاها",
+      "name": "",
+      "industry": "سیمان",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 6,
+      "fiscalYearEndDay": 31,
+      "fyChange": null,
       "periods": [
         {
           "id": "2taghrhj",
@@ -144765,6 +145100,26 @@
           "exportYTD": null
         }
       },
+      "manual": {
+        "currentPrice": 2076,
+        "marketCap": 14013,
+        "sharesOutstanding": 6750000000,
+        "marketCapUpdatedAt": 1794728119280
+      },
+      "rawSheets": {
+        "monthlyActivity": {
+          "raw": "شرح\tشرح\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nسيمان فله تيپ(۲)\tتن\t۸۲,۵۰۰\t۵۰,۰۵۳\t۲۸,۲۳۵,۴۹۰\t۱,۴۱۳,۲۷۱\t۸۲,۵۰۰\t۵۰,۰۵۳\t۲۸,۲۳۵,۴۹۰\t۱,۴۱۳,۲۷۱\t۵۷,۰۰۰\t۳۳,۰۷۶\t۲۱,۶۴۷,۰۵۵\t۷۱۵,۹۹۸\tتوليد\nسيمان کيسه تيپ (۱)\tتن\t۰\t۳۲,۲۷۷\t۳۶,۷۴۸,۹۵۴\t۱,۱۸۶,۱۴۶\t۰\t۳۲,۲۷۷\t۳۶,۷۴۸,۹۵۴\t۱,۱۸۶,۱۴۶\t۰\t۲۵,۴۷۲\t۲۱,۸۴۳,۱۶۱\t۵۵۶,۳۸۹\tتوليد\nکلينکر - داخلي\tتن\t۰\t۱,۰۵۱\t۲۰,۰۰۵,۷۰۹\t۲۱,۰۲۶\t۰\t۱,۰۵۱\t۲۰,۰۰۵,۷۰۹\t۲۱,۰۲۶\t۰\t۰\t۰\t۰\tتوليد\nسيمان فله تيپ (۱)\tتن\t۱۳۲,۰۰۰\t۸۵,۵۸۸\t۲۷,۰۰۲,۲۳۲\t۲,۳۱۱,۰۶۷\t۱۳۲,۰۰۰\t۸۵,۵۸۸\t۲۷,۰۰۲,۲۳۲\t۲,۳۱۱,۰۶۷\t۶۷,۰۰۰\t۳۴,۸۹۵\t۲۱,۴۵۵,۹۱۱\t۷۴۸,۷۰۴\tتوليد\nسيمان کيسه تيپ (۲)\tتن\t۰\t۲۳,۱۰۳\t۳۹,۴۷۱,۷۵۷\t۹۱۱,۹۱۶\t۰\t۲۳,۱۰۳\t۳۹,۴۷۱,۷۵۷\t۹۱۱,۹۱۶\t۰\t۱۷,۶۲۶\t۲۴,۲۱۸,۶۵۴\t۴۲۶,۸۷۸\tتوليد\nسيمان فله سرباره اي\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجمع فروش داخلی\t\t۲۱۴,۵۰۰\t۱۹۲,۰۷۲\t\t۵,۸۴۳,۴۲۶\t۲۱۴,۵۰۰\t۱۹۲,۰۷۲\t\t۵,۸۴۳,۴۲۶\t۱۲۴,۰۰۰\t۱۱۱,۰۶۹\t\t۲,۴۴۷,۹۶۹\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nکلينکر\tتن\t۱۸۸,۵۰۰\t۰\t۰\t۰\t۱۸۸,۵۰۰\t۰\t۰\t۰\t۲۳۷,۰۰۰\t۵۰,۰۴۳\t۲۸,۰۸۱,۸۷۰\t۱,۴۰۵,۳۰۱\tتوليد\nسيمان\tتن\t۰\t۱۰,۹۴۶\t۵۳,۶۵۲,۴۷۶\t۵۸۷,۲۸۰\t۰\t۱۰,۹۴۶\t۵۳,۶۵۲,۴۷۶\t۵۸۷,۲۸۰\t۰\t۱,۱۷۱\t۲۵,۱۹۶,۴۱۳\t۲۹,۵۰۵\tتوليد\nجمع فروش صادراتی\t\t۱۸۸,۵۰۰\t۱۰,۹۴۶\t\t۵۸۷,۲۸۰\t۱۸۸,۵۰۰\t۱۰,۹۴۶\t\t۵۸۷,۲۸۰\t۲۳۷,۰۰۰\t۵۱,۲۱۴\t\t۱,۴۳۴,۸۰۶\t\nدرآمد ارائه خدمات:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nساير درآمد ها و ارائه خدمات\t--\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجمع درآمد ارائه خدمات\t\t۰\t۰\t\t۰\t۰\t۰\t\t۰\t۰\t۰\t\t۰\t\nبرگشت از فروش:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع برگشت از فروش\t\t\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\nتخفيفات\t\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nجمع\t\t\t\t\t۶,۴۳۰,۷۰۶\t\t\t\t۶,۴۳۰,۷۰۶\t\t\t\t۳,۸۸۲,۷۷۵"
+        },
+        "pl": {
+          "raw": "شرح\tدوره منتهي به ۱۴۰۵/۰۶/۳۱\tتجديد ارائه شده دوره منتهي به ۱۴۰۴/۰۶/۳۱\tدرصد تغيير\nشرح\tحسابرسی نشده\tحسابرسی شده\tدرصد تغيير\nعمليات در حال تداوم:\t\t\t\nدرآمدهاي عملياتي\t۵۲,۳۰۷,۰۹۳\t۳۶,۵۸۲,۰۹۴\t۴۳\nبهاى تمام شده درآمدهاي عملياتي\t(۳۰,۶۱۴,۴۸۱)\t(۱۹,۶۲۶,۴۱۰)\t(۵۶)\nسود(زيان) ناخالص\t۲۱,۶۹۲,۶۱۲\t۱۶,۹۵۵,۶۸۴\t۲۸\nهزينه‏ هاى فروش، ادارى و عمومى\t(۸,۶۳۸,۹۷۳)\t(۵,۵۸۶,۰۶۷)\t(۵۵)\nهزينه کاهش ارزش دريافتني‏ ها (هزينه استثنايي)\t۰\t۰\t۰\nساير درآمدها\t۵,۲۹۶,۹۰۱\t۱۰۸,۸۷۲\t۴,۷۶۵\nساير هزينه‌ها\t(۸۳,۰۷۲)\t(۳۸۵,۱۳۰)\t۷۸\nسود(زيان) عملياتى\t۱۸,۲۶۷,۴۶۸\t۱۱,۰۹۳,۳۵۹\t۶۵\nهزينه‏ هاى مالى\t(۲,۰۵۰,۴۶۸)\t(۵۴۷,۱۳۲)\t(۲۷۵)\nساير درآمدها و هزينه ‏هاى غيرعملياتى\t۴,۶۳۲,۹۶۲\t۳,۱۱۴,۸۵۶\t۴۹\nسود(زيان) عمليات در حال تداوم قبل از ماليات\t۲۰,۸۴۹,۹۶۲\t۱۳,۶۶۱,۰۸۳\t۵۳\nهزينه ماليات بر درآمد:\t\t\t\nسال جاري\t(۱,۵۹۷,۵۶۸)\t(۱,۲۳۵,۷۸۵)\t(۲۹)\nسال‌هاي قبل\t۰\t۰\t۰\nسود(زيان) خالص عمليات در حال تداوم\t۱۹,۲۵۲,۳۹۴\t۱۲,۴۲۵,۲۹۸\t۵۵\nعمليات متوقف شده:\t\t\t\nسود (زيان) خالص عمليات متوقف شده\t۰\t۰\t۰\nسود(زيان) خالص\t۱۹,۲۵۲,۳۹۴\t۱۲,۴۲۵,۲۹۸\t۵۵\nسود(زيان) پايه هر سهم:\t\t\t\nعملياتي (ريال)\t۲,۲۳۳\t۱,۴۴۸\t۵۴\nغيرعملياتي (ريال)\t۶۱۹\t۳۹۹\t۵۵\nناشي از عمليات در حال تداوم\t۲,۸۵۲\t۱,۸۴۷\t۵۴\nناشي از عمليات متوقف شده\t۰\t۰\t۰\nسود(زيان) پايه هر سهم\t۲,۸۵۲\t۱,۸۴۷\t۵۴\nسود (زيان) خالص هر سهم – ريال\t۲,۸۵۲\t۱,۸۴۱\t۵۵\nسرمايه\t۶,۷۵۰,۰۰۰\t۶,۷۵۰,۰۰۰\t۰"
+        },
+        "bs": {
+          "raw": "شرح\tبه تاريخ ۱۴۰۵/۰۶/۳۱\tتجديد ارائه شده به تاريخ ۱۴۰۴/۰۶/۳۱\tتجديد ارائه شده به تاريخ ۱۴۰۳/۰۷/۰۱\tدرصد تغيير\nشرح\tحسابرسی نشده\tحسابرسی شده\tحسابرسی شده\tدرصد تغيير\nدارايي‌ها\t\t\t\t\nدارايي‌هاي غيرجاري\t\t\t\t\nدارايي‌هاي ثابت مشهود\t۴,۴۰۳,۸۱۱\t۴,۷۳۴,۱۱۹\t۱,۹۶۱,۶۶۴\t(۷)\nسرمايه‌گذاري در املاک\t۰\t۰\t۰\t۰\nدارايي‌هاي نامشهود\t۸۴۸,۸۱۸\t۶۸,۴۰۴\t۷۴,۴۵۹\t۱,۱۴۱\nسرمايه‌گذاري‌هاي بلندمدت\t۲,۲۶۸,۲۷۵\t۲,۲۶۸,۲۷۵\t۱,۵۷۰,۴۲۵\t۰\nدريافتني‌هاي بلندمدت\t۰\t۰\t۰\t۰\nدارايي ماليات انتقالي\t۰\t۰\t۰\t۰\nساير دارايي‌ها\t۷۴۲,۱۵۹\t۴۶۵,۷۰۵\t۳۰۰,۲۹۰\t۵۹\nجمع دارايي‌هاي غيرجاري\t۸,۲۶۳,۰۶۳\t۷,۵۳۶,۵۰۳\t۳,۹۰۶,۸۳۸\t۱۰\nدارايي‌هاي جاري\t\t\t\t\nسفارشات و پيش‌پرداخت‌ها\t۱,۶۱۵,۴۳۱\t۱,۰۴۵,۹۱۶\t۱,۹۰۳,۲۳۷\t۵۴\nموجودي مواد و کالا\t۲۰,۵۳۷,۸۶۴\t۱۳,۸۶۰,۳۰۰\t۱۰,۹۰۱,۸۵۷\t۴۸\nدريافتني‌هاي تجاري و ساير دريافتني‌ها\t۱۷,۱۸۸,۴۱۱\t۴,۷۵۶,۶۵۱\t۴,۷۹۴,۳۸۵\t۲۶۱\nسرمايه‌گذاري‌هاي کوتاه‌مدت\t۹,۲۶۵,۱۸۲\t۶,۰۱۵,۱۸۱\t۱,۵۱۵,۱۸۲\t۵۴\nموجودي نقد\t۱۲,۳۹۴,۱۹۷\t۵,۵۴۳,۷۰۹\t۱,۱۱۲,۰۱۱\t۱۲۴\n\t۶۱,۰۰۱,۰۸۵\t۳۱,۲۲۱,۷۵۷\t۲۰,۲۲۶,۶۷۲\t۹۵\nدارايي‌هاي نگهداري شده براي فروش\t۰\t۰\t۰\t۰\nجمع دارايي‌هاي جاري\t۶۱,۰۰۱,۰۸۵\t۳۱,۲۲۱,۷۵۷\t۲۰,۲۲۶,۶۷۲\t۹۵\nجمع دارايي‌ها\t۶۹,۲۶۴,۱۴۸\t۳۸,۷۵۸,۲۶۰\t۲۴,۱۳۳,۵۱۰\t۷۹\nحقوق مالکانه و بدهي‌ها\t\t\t\t\nحقوق مالکانه\t\t\t\t\nسرمايه\t۶,۷۵۰,۰۰۰\t۵,۰۰۰,۰۰۰\t۵,۰۰۰,۰۰۰\t۳۵\nافزايش سرمايه در جريان\t۰\t۰\t۰\t۰\nصرف سهام\t۰\t۰\t۰\t۰\nصرف سهام خزانه\t۳۴۷,۲۸۹\t۱۵۴,۵۵۹\t۹۴,۸۵۸\t۱۲۵\nاندوخته قانوني\t۶۷۵,۰۰۰\t۵۰۰,۰۰۰\t۵۰۰,۰۰۰\t۳۵\nساير اندوخته‌ها\t۰\t۰\t۰\t۰\nمازاد تجديدارزيابي دارايي‌ها\t۰\t۰\t۰\t۰\nتفاوت تسعير ارز عمليات خارجي\t۰\t۰\t۰\t۰\nسود(زيان) انباشته\t۱۹,۸۵۲,۱۸۳\t۱۴,۲۶۹,۷۸۹\t۸,۷۴۴,۴۹۱\t۳۹\nسهام خزانه\t(۱۹۷,۷۵۰)\t(۱۷۹,۶۳۵)\t(۲۵۰,۸۱۶)\t(۱۰)\nجمع حقوق مالکانه\t۲۷,۴۲۶,۷۲۲\t۱۹,۷۴۴,۷۱۳\t۱۴,۰۸۸,۵۳۳\t۳۹\nبدهي‌ها\t\t\t\t\nبدهي‌هاي غيرجاري\t\t\t\t\nپرداختني‌هاي بلندمدت\t۰\t۰\t۰\t۰\nتسهيلات مالي بلندمدت\t۰\t۰\t۰\t۰\nبدهي ماليات انتقالي\t۰\t۰\t۰\t۰\nذخيره مزاياي پايان خدمت کارکنان\t۲,۰۹۲,۸۶۱\t۱,۰۶۸,۴۲۰\t۷۱۳,۷۵۱\t۹۶\nجمع بدهي‌هاي غيرجاري\t۲,۰۹۲,۸۶۱\t۱,۰۶۸,۴۲۰\t۷۱۳,۷۵۱\t۹۶\nبدهي‌هاي جاري\t\t\t\t\nپرداختني‌هاي تجاري و ساير پرداختني‌ها\t۱۴,۹۴۰,۵۳۲\t۹,۸۵۹,۲۵۹\t۵,۰۴۹,۶۴۵\t۵۲\nماليات پرداختني\t۲,۱۹۱,۲۵۲\t۱,۷۰۲,۸۵۸\t۱,۶۶۴,۰۷۱\t۲۹\nسود سهام پرداختني\t۱۷۶,۰۱۶\t۱۲۸,۲۲۲\t۲۲۰,۰۰۹\t۳۷\nتسهيلات مالي\t۱۹,۲۸۷,۲۱۲\t۳,۷۷۳,۴۷۰\t۱,۸۴۲,۸۶۵\t۴۱۱\nذخاير\t۰\t۰\t۰\t۰\nپيش‌دريافت‌ها\t۳,۱۴۹,۵۵۳\t۲,۴۸۱,۳۱۸\t۵۵۴,۶۳۶\t۲۷\n\t۳۹,۷۴۴,۵۶۵\t۱۷,۹۴۵,۱۲۷\t۹,۳۳۱,۲۲۶\t۱۲۱\nبدهي‌هاي ‌مرتبط ‌با دارايي‌هاي نگهداري‌‌شده براي ‌فروش\t۰\t۰\t۰\t۰\nجمع بدهي‌هاي جاري\t۳۹,۷۴۴,۵۶۵\t۱۷,۹۴۵,۱۲۷\t۹,۳۳۱,۲۲۶\t۱۲۱\nجمع بدهي‌ها\t۴۱,۸۳۷,۴۲۶\t۱۹,۰۱۳,۵۴۷\t۱۰,۰۴۴,۹۷۷\t۱۲۰\nجمع حقوق مالکانه و بدهي‌ها\t۶۹,۲۶۴,۱۴۸\t۳۸,۷۵۸,۲۶۰\t۲۴,۱۳۳,۵۱۰\t۷۹"
+        },
+        "dividendPaste": {
+          "raw": "شرح\tسال منتهی به 1404/06/31 (میلیون ريال)\nسود (زیان) خالص\t12,425,298\nسود (زیان) انباشته ابتدای دوره\t8,744,491\nتعدیلات سنواتی\t0\nسود (زیان) انباشته ابتدای دوره تعدیل‌شده\t8,744,491\nسود سهام مصوب (مجمع سال قبل)\t(6,900,000)\nتغییرات سرمایه از محل سود (زیان) انباشته\t0\nسود انباشته ابتدای دوره تخصیص نیافته\t1,844,491\nانتقال از سایر اقلام حقوق صاحبان سهام\t0\nسود قابل تخصیص\t14,269,789\nانتقال به اندوخته‌ قانونی\t0\nانتقال به سایر اندوخته‌ها\t0\nسود (زیان) انباشته پايان دوره\t14,269,789\nسود سهام مصوب (مجمع سال جاری)\t(11,745,000)\nسود (زیان) انباشته پایان دوره (با لحاظ نمودن مصوبات مجمع)\t2,524,789\nسود (زیان) خالص هر سهم- ریال\t1,841\nسود نقدی هر سهم (ریال)\t1,740\nسرمایه\t6,750,000"
+        }
+      },
       "dividendHistory": [
         {
           "fiscalYear": 1403,
@@ -144777,26 +145132,6 @@
           "dividendApproved": 1174.5
         }
       ],
-      "subsidiaries": [],
-      "unlistedHoldings": [],
-      "manual": {
-        "currentPrice": 2140,
-        "marketCap": 14445,
-        "sharesOutstanding": 6750000000,
-        "marketCapUpdatedAt": 1794637260125
-      },
-      "name": "",
-      "industry": "سیمان",
-      "isHolding": false,
-      "subIndustries": [],
-      "productsManual": [],
-      "fiscalYear": 1405,
-      "fiscalYearEndMonth": 6,
-      "fiscalYearEndDay": 31,
-      "businessType": "manufacturing",
-      "commodityType": null,
-      "commodityOtherName": "",
-      "tsetmcInsCode": "",
       "incomeNotesReports": [
         {
           "periodEnd": "1405/03/31",
@@ -147827,6 +148162,28 @@
           "unitOverride": "million_rial"
         }
       ],
+      "reportPublications": {
+        "1405-9": {
+          "fiscalYear": 1405,
+          "months": 9,
+          "periodEnd": "1405/03/31",
+          "publishedAt": "۱۴۰۵/۰۴/۲۹ ۱۸:۳۳:۰۰",
+          "publishDate": "1405/04/29",
+          "letterSerial": "NSAMTOOObOOOtAQOV2yOyqHoGXOQ==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3d%3d&rt=0&let=6&ct=0&ft=-1",
+          "source": "codal-n10"
+        },
+        "1405-12": {
+          "fiscalYear": 1405,
+          "months": 12,
+          "periodEnd": "1405/05/31",
+          "publishedAt": "۱۴۰۵/۰۷/۱۸ ۱۰:۵۳:۲۲",
+          "publishDate": "1405/07/18",
+          "letterSerial": "1JH0osBd2nKxfymMAyReow==",
+          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=1JH0osBd2nKxfymMAyReow%3d%3d&rt=5&let=6&ct=0&ft=-1",
+          "source": "codal-n10"
+        }
+      },
       "productProduction": {
         "سيمان فله تيپ(2)": {
           "1405-6": {
@@ -147906,42 +148263,8 @@
           }
         }
       },
-      "reportPublications": {
-        "1405-9": {
-          "fiscalYear": 1405,
-          "months": 9,
-          "periodEnd": "1405/03/31",
-          "publishedAt": "۱۴۰۵/۰۴/۲۹ ۱۸:۳۳:۰۰",
-          "publishDate": "1405/04/29",
-          "letterSerial": "NSAMTOOObOOOtAQOV2yOyqHoGXOQ==",
-          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=NSAMTOOObOOOtAQOV2yOyqHoGXOQ%3d%3d&rt=0&let=6&ct=0&ft=-1",
-          "source": "codal-n10"
-        },
-        "1405-12": {
-          "fiscalYear": 1405,
-          "months": 12,
-          "periodEnd": "1405/05/31",
-          "publishedAt": "۱۴۰۵/۰۷/۱۸ ۱۰:۵۳:۲۲",
-          "publishDate": "1405/07/18",
-          "letterSerial": "1JH0osBd2nKxfymMAyReow==",
-          "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=1JH0osBd2nKxfymMAyReow%3d%3d&rt=5&let=6&ct=0&ft=-1",
-          "source": "codal-n10"
-        }
-      },
-      "rawSheets": {
-        "monthlyActivity": {
-          "raw": "شرح\tشرح\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tدوره یک ماهه منتهی به ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۵/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tاز ابتدای سال مالی تا تاریخ ۱۴۰۴/۰۷/۳۰\tوضعیت محصول-واحد\nنام محصول\tواحد\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tتعداد تولید\tتعداد فروش\tنرخ فروش (ریال)\tمبلغ فروش (میلیون ریال)\tوضعیت محصول-واحد\nفروش داخلی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nسيمان فله تيپ(۲)\tتن\t۸۲,۵۰۰\t۵۰,۰۵۳\t۲۸,۲۳۵,۴۹۰\t۱,۴۱۳,۲۷۱\t۸۲,۵۰۰\t۵۰,۰۵۳\t۲۸,۲۳۵,۴۹۰\t۱,۴۱۳,۲۷۱\t۵۷,۰۰۰\t۳۳,۰۷۶\t۲۱,۶۴۷,۰۵۵\t۷۱۵,۹۹۸\tتوليد\nسيمان کيسه تيپ (۱)\tتن\t۰\t۳۲,۲۷۷\t۳۶,۷۴۸,۹۵۴\t۱,۱۸۶,۱۴۶\t۰\t۳۲,۲۷۷\t۳۶,۷۴۸,۹۵۴\t۱,۱۸۶,۱۴۶\t۰\t۲۵,۴۷۲\t۲۱,۸۴۳,۱۶۱\t۵۵۶,۳۸۹\tتوليد\nکلينکر - داخلي\tتن\t۰\t۱,۰۵۱\t۲۰,۰۰۵,۷۰۹\t۲۱,۰۲۶\t۰\t۱,۰۵۱\t۲۰,۰۰۵,۷۰۹\t۲۱,۰۲۶\t۰\t۰\t۰\t۰\tتوليد\nسيمان فله تيپ (۱)\tتن\t۱۳۲,۰۰۰\t۸۵,۵۸۸\t۲۷,۰۰۲,۲۳۲\t۲,۳۱۱,۰۶۷\t۱۳۲,۰۰۰\t۸۵,۵۸۸\t۲۷,۰۰۲,۲۳۲\t۲,۳۱۱,۰۶۷\t۶۷,۰۰۰\t۳۴,۸۹۵\t۲۱,۴۵۵,۹۱۱\t۷۴۸,۷۰۴\tتوليد\nسيمان کيسه تيپ (۲)\tتن\t۰\t۲۳,۱۰۳\t۳۹,۴۷۱,۷۵۷\t۹۱۱,۹۱۶\t۰\t۲۳,۱۰۳\t۳۹,۴۷۱,۷۵۷\t۹۱۱,۹۱۶\t۰\t۱۷,۶۲۶\t۲۴,۲۱۸,۶۵۴\t۴۲۶,۸۷۸\tتوليد\nسيمان فله سرباره اي\tتن\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجمع فروش داخلی\t\t۲۱۴,۵۰۰\t۱۹۲,۰۷۲\t\t۵,۸۴۳,۴۲۶\t۲۱۴,۵۰۰\t۱۹۲,۰۷۲\t\t۵,۸۴۳,۴۲۶\t۱۲۴,۰۰۰\t۱۱۱,۰۶۹\t\t۲,۴۴۷,۹۶۹\t\nفروش صادراتی:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nکلينکر\tتن\t۱۸۸,۵۰۰\t۰\t۰\t۰\t۱۸۸,۵۰۰\t۰\t۰\t۰\t۲۳۷,۰۰۰\t۵۰,۰۴۳\t۲۸,۰۸۱,۸۷۰\t۱,۴۰۵,۳۰۱\tتوليد\nسيمان\tتن\t۰\t۱۰,۹۴۶\t۵۳,۶۵۲,۴۷۶\t۵۸۷,۲۸۰\t۰\t۱۰,۹۴۶\t۵۳,۶۵۲,۴۷۶\t۵۸۷,۲۸۰\t۰\t۱,۱۷۱\t۲۵,۱۹۶,۴۱۳\t۲۹,۵۰۵\tتوليد\nجمع فروش صادراتی\t\t۱۸۸,۵۰۰\t۱۰,۹۴۶\t\t۵۸۷,۲۸۰\t۱۸۸,۵۰۰\t۱۰,۹۴۶\t\t۵۸۷,۲۸۰\t۲۳۷,۰۰۰\t۵۱,۲۱۴\t\t۱,۴۳۴,۸۰۶\t\nدرآمد ارائه خدمات:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nساير درآمد ها و ارائه خدمات\t--\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\t۰\tتوليد\nجمع درآمد ارائه خدمات\t\t۰\t۰\t\t۰\t۰\t۰\t\t۰\t۰\t۰\t\t۰\t\nبرگشت از فروش:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nجمع برگشت از فروش\t\t\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\t۰\t\nتخفيفات\t\t\t\t\t۰\t\t\t\t۰\t\t\t\t۰\t\nجمع\t\t\t\t\t۶,۴۳۰,۷۰۶\t\t\t\t۶,۴۳۰,۷۰۶\t\t\t\t۳,۸۸۲,۷۷۵"
-        },
-        "pl": {
-          "raw": "شرح\tدوره منتهي به ۱۴۰۵/۰۶/۳۱\tتجديد ارائه شده دوره منتهي به ۱۴۰۴/۰۶/۳۱\tدرصد تغيير\nشرح\tحسابرسی نشده\tحسابرسی شده\tدرصد تغيير\nعمليات در حال تداوم:\t\t\t\nدرآمدهاي عملياتي\t۵۲,۳۰۷,۰۹۳\t۳۶,۵۸۲,۰۹۴\t۴۳\nبهاى تمام شده درآمدهاي عملياتي\t(۳۰,۶۱۴,۴۸۱)\t(۱۹,۶۲۶,۴۱۰)\t(۵۶)\nسود(زيان) ناخالص\t۲۱,۶۹۲,۶۱۲\t۱۶,۹۵۵,۶۸۴\t۲۸\nهزينه‏ هاى فروش، ادارى و عمومى\t(۸,۶۳۸,۹۷۳)\t(۵,۵۸۶,۰۶۷)\t(۵۵)\nهزينه کاهش ارزش دريافتني‏ ها (هزينه استثنايي)\t۰\t۰\t۰\nساير درآمدها\t۵,۲۹۶,۹۰۱\t۱۰۸,۸۷۲\t۴,۷۶۵\nساير هزينه‌ها\t(۸۳,۰۷۲)\t(۳۸۵,۱۳۰)\t۷۸\nسود(زيان) عملياتى\t۱۸,۲۶۷,۴۶۸\t۱۱,۰۹۳,۳۵۹\t۶۵\nهزينه‏ هاى مالى\t(۲,۰۵۰,۴۶۸)\t(۵۴۷,۱۳۲)\t(۲۷۵)\nساير درآمدها و هزينه ‏هاى غيرعملياتى\t۴,۶۳۲,۹۶۲\t۳,۱۱۴,۸۵۶\t۴۹\nسود(زيان) عمليات در حال تداوم قبل از ماليات\t۲۰,۸۴۹,۹۶۲\t۱۳,۶۶۱,۰۸۳\t۵۳\nهزينه ماليات بر درآمد:\t\t\t\nسال جاري\t(۱,۵۹۷,۵۶۸)\t(۱,۲۳۵,۷۸۵)\t(۲۹)\nسال‌هاي قبل\t۰\t۰\t۰\nسود(زيان) خالص عمليات در حال تداوم\t۱۹,۲۵۲,۳۹۴\t۱۲,۴۲۵,۲۹۸\t۵۵\nعمليات متوقف شده:\t\t\t\nسود (زيان) خالص عمليات متوقف شده\t۰\t۰\t۰\nسود(زيان) خالص\t۱۹,۲۵۲,۳۹۴\t۱۲,۴۲۵,۲۹۸\t۵۵\nسود(زيان) پايه هر سهم:\t\t\t\nعملياتي (ريال)\t۲,۲۳۳\t۱,۴۴۸\t۵۴\nغيرعملياتي (ريال)\t۶۱۹\t۳۹۹\t۵۵\nناشي از عمليات در حال تداوم\t۲,۸۵۲\t۱,۸۴۷\t۵۴\nناشي از عمليات متوقف شده\t۰\t۰\t۰\nسود(زيان) پايه هر سهم\t۲,۸۵۲\t۱,۸۴۷\t۵۴\nسود (زيان) خالص هر سهم – ريال\t۲,۸۵۲\t۱,۸۴۱\t۵۵\nسرمايه\t۶,۷۵۰,۰۰۰\t۶,۷۵۰,۰۰۰\t۰"
-        },
-        "bs": {
-          "raw": "شرح\tبه تاريخ ۱۴۰۵/۰۶/۳۱\tتجديد ارائه شده به تاريخ ۱۴۰۴/۰۶/۳۱\tتجديد ارائه شده به تاريخ ۱۴۰۳/۰۷/۰۱\tدرصد تغيير\nشرح\tحسابرسی نشده\tحسابرسی شده\tحسابرسی شده\tدرصد تغيير\nدارايي‌ها\t\t\t\t\nدارايي‌هاي غيرجاري\t\t\t\t\nدارايي‌هاي ثابت مشهود\t۴,۴۰۳,۸۱۱\t۴,۷۳۴,۱۱۹\t۱,۹۶۱,۶۶۴\t(۷)\nسرمايه‌گذاري در املاک\t۰\t۰\t۰\t۰\nدارايي‌هاي نامشهود\t۸۴۸,۸۱۸\t۶۸,۴۰۴\t۷۴,۴۵۹\t۱,۱۴۱\nسرمايه‌گذاري‌هاي بلندمدت\t۲,۲۶۸,۲۷۵\t۲,۲۶۸,۲۷۵\t۱,۵۷۰,۴۲۵\t۰\nدريافتني‌هاي بلندمدت\t۰\t۰\t۰\t۰\nدارايي ماليات انتقالي\t۰\t۰\t۰\t۰\nساير دارايي‌ها\t۷۴۲,۱۵۹\t۴۶۵,۷۰۵\t۳۰۰,۲۹۰\t۵۹\nجمع دارايي‌هاي غيرجاري\t۸,۲۶۳,۰۶۳\t۷,۵۳۶,۵۰۳\t۳,۹۰۶,۸۳۸\t۱۰\nدارايي‌هاي جاري\t\t\t\t\nسفارشات و پيش‌پرداخت‌ها\t۱,۶۱۵,۴۳۱\t۱,۰۴۵,۹۱۶\t۱,۹۰۳,۲۳۷\t۵۴\nموجودي مواد و کالا\t۲۰,۵۳۷,۸۶۴\t۱۳,۸۶۰,۳۰۰\t۱۰,۹۰۱,۸۵۷\t۴۸\nدريافتني‌هاي تجاري و ساير دريافتني‌ها\t۱۷,۱۸۸,۴۱۱\t۴,۷۵۶,۶۵۱\t۴,۷۹۴,۳۸۵\t۲۶۱\nسرمايه‌گذاري‌هاي کوتاه‌مدت\t۹,۲۶۵,۱۸۲\t۶,۰۱۵,۱۸۱\t۱,۵۱۵,۱۸۲\t۵۴\nموجودي نقد\t۱۲,۳۹۴,۱۹۷\t۵,۵۴۳,۷۰۹\t۱,۱۱۲,۰۱۱\t۱۲۴\n\t۶۱,۰۰۱,۰۸۵\t۳۱,۲۲۱,۷۵۷\t۲۰,۲۲۶,۶۷۲\t۹۵\nدارايي‌هاي نگهداري شده براي فروش\t۰\t۰\t۰\t۰\nجمع دارايي‌هاي جاري\t۶۱,۰۰۱,۰۸۵\t۳۱,۲۲۱,۷۵۷\t۲۰,۲۲۶,۶۷۲\t۹۵\nجمع دارايي‌ها\t۶۹,۲۶۴,۱۴۸\t۳۸,۷۵۸,۲۶۰\t۲۴,۱۳۳,۵۱۰\t۷۹\nحقوق مالکانه و بدهي‌ها\t\t\t\t\nحقوق مالکانه\t\t\t\t\nسرمايه\t۶,۷۵۰,۰۰۰\t۵,۰۰۰,۰۰۰\t۵,۰۰۰,۰۰۰\t۳۵\nافزايش سرمايه در جريان\t۰\t۰\t۰\t۰\nصرف سهام\t۰\t۰\t۰\t۰\nصرف سهام خزانه\t۳۴۷,۲۸۹\t۱۵۴,۵۵۹\t۹۴,۸۵۸\t۱۲۵\nاندوخته قانوني\t۶۷۵,۰۰۰\t۵۰۰,۰۰۰\t۵۰۰,۰۰۰\t۳۵\nساير اندوخته‌ها\t۰\t۰\t۰\t۰\nمازاد تجديدارزيابي دارايي‌ها\t۰\t۰\t۰\t۰\nتفاوت تسعير ارز عمليات خارجي\t۰\t۰\t۰\t۰\nسود(زيان) انباشته\t۱۹,۸۵۲,۱۸۳\t۱۴,۲۶۹,۷۸۹\t۸,۷۴۴,۴۹۱\t۳۹\nسهام خزانه\t(۱۹۷,۷۵۰)\t(۱۷۹,۶۳۵)\t(۲۵۰,۸۱۶)\t(۱۰)\nجمع حقوق مالکانه\t۲۷,۴۲۶,۷۲۲\t۱۹,۷۴۴,۷۱۳\t۱۴,۰۸۸,۵۳۳\t۳۹\nبدهي‌ها\t\t\t\t\nبدهي‌هاي غيرجاري\t\t\t\t\nپرداختني‌هاي بلندمدت\t۰\t۰\t۰\t۰\nتسهيلات مالي بلندمدت\t۰\t۰\t۰\t۰\nبدهي ماليات انتقالي\t۰\t۰\t۰\t۰\nذخيره مزاياي پايان خدمت کارکنان\t۲,۰۹۲,۸۶۱\t۱,۰۶۸,۴۲۰\t۷۱۳,۷۵۱\t۹۶\nجمع بدهي‌هاي غيرجاري\t۲,۰۹۲,۸۶۱\t۱,۰۶۸,۴۲۰\t۷۱۳,۷۵۱\t۹۶\nبدهي‌هاي جاري\t\t\t\t\nپرداختني‌هاي تجاري و ساير پرداختني‌ها\t۱۴,۹۴۰,۵۳۲\t۹,۸۵۹,۲۵۹\t۵,۰۴۹,۶۴۵\t۵۲\nماليات پرداختني\t۲,۱۹۱,۲۵۲\t۱,۷۰۲,۸۵۸\t۱,۶۶۴,۰۷۱\t۲۹\nسود سهام پرداختني\t۱۷۶,۰۱۶\t۱۲۸,۲۲۲\t۲۲۰,۰۰۹\t۳۷\nتسهيلات مالي\t۱۹,۲۸۷,۲۱۲\t۳,۷۷۳,۴۷۰\t۱,۸۴۲,۸۶۵\t۴۱۱\nذخاير\t۰\t۰\t۰\t۰\nپيش‌دريافت‌ها\t۳,۱۴۹,۵۵۳\t۲,۴۸۱,۳۱۸\t۵۵۴,۶۳۶\t۲۷\n\t۳۹,۷۴۴,۵۶۵\t۱۷,۹۴۵,۱۲۷\t۹,۳۳۱,۲۲۶\t۱۲۱\nبدهي‌هاي ‌مرتبط ‌با دارايي‌هاي نگهداري‌‌شده براي ‌فروش\t۰\t۰\t۰\t۰\nجمع بدهي‌هاي جاري\t۳۹,۷۴۴,۵۶۵\t۱۷,۹۴۵,۱۲۷\t۹,۳۳۱,۲۲۶\t۱۲۱\nجمع بدهي‌ها\t۴۱,۸۳۷,۴۲۶\t۱۹,۰۱۳,۵۴۷\t۱۰,۰۴۴,۹۷۷\t۱۲۰\nجمع حقوق مالکانه و بدهي‌ها\t۶۹,۲۶۴,۱۴۸\t۳۸,۷۵۸,۲۶۰\t۲۴,۱۳۳,۵۱۰\t۷۹"
-        },
-        "dividendPaste": {
-          "raw": "شرح\tسال منتهی به 1404/06/31 (میلیون ريال)\nسود (زیان) خالص\t12,425,298\nسود (زیان) انباشته ابتدای دوره\t8,744,491\nتعدیلات سنواتی\t0\nسود (زیان) انباشته ابتدای دوره تعدیل‌شده\t8,744,491\nسود سهام مصوب (مجمع سال قبل)\t(6,900,000)\nتغییرات سرمایه از محل سود (زیان) انباشته\t0\nسود انباشته ابتدای دوره تخصیص نیافته\t1,844,491\nانتقال از سایر اقلام حقوق صاحبان سهام\t0\nسود قابل تخصیص\t14,269,789\nانتقال به اندوخته‌ قانونی\t0\nانتقال به سایر اندوخته‌ها\t0\nسود (زیان) انباشته پايان دوره\t14,269,789\nسود سهام مصوب (مجمع سال جاری)\t(11,745,000)\nسود (زیان) انباشته پایان دوره (با لحاظ نمودن مصوبات مجمع)\t2,524,789\nسود (زیان) خالص هر سهم- ریال\t1,841\nسود نقدی هر سهم (ریال)\t1,740\nسرمایه\t6,750,000"
-        }
-      },
+      "subsidiaries": [],
+      "unlistedHoldings": [],
       "monthlyRowLinks": {
         "تن#1": "none",
         "تن#2": "none",
@@ -148144,6 +148467,231 @@
           "priorColumn": null
         }
       }
+    },
+    "فسازان": {
+      "symbol": "فسازان",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
+    },
+    "فوکا": {
+      "symbol": "فوکا",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
+    },
+    "فجر": {
+      "symbol": "فجر",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
+    },
+    "فساپ": {
+      "symbol": "فساپ",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
+    },
+    "فسپا": {
+      "symbol": "فسپا",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
+    },
+    "فنورد": {
+      "symbol": "فنورد",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
+    },
+    "فروس": {
+      "symbol": "فروس",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
+    },
+    "فصبا": {
+      "symbol": "فصبا",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 9,
+      "fiscalYearEndDay": 30,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
+    },
+    "فخوز": {
+      "symbol": "فخوز",
+      "name": "",
+      "industry": "صنعت آهن و فولاد",
+      "subIndustries": [],
+      "isHolding": false,
+      "businessType": "manufacturing",
+      "commodityType": null,
+      "commodityOtherName": "",
+      "tsetmcInsCode": "",
+      "productsManual": [],
+      "fiscalYear": 1405,
+      "fiscalYearEndMonth": 12,
+      "fiscalYearEndDay": 29,
+      "fyChange": null,
+      "periods": [],
+      "monthlySales": [],
+      "monthlySalesSplit": [],
+      "monthlySalesYTD": [],
+      "manual": [],
+      "rawSheets": [],
+      "dividendHistory": [],
+      "subsidiaries": [],
+      "unlistedHoldings": []
     }
   },
   "formulas": [
@@ -148643,8 +149191,7 @@
       "raw",
       "dividend",
       "pl",
-      "bs",
-      "incomeNotes"
+      "bs"
     ],
     "navOrder": [
       "portfolio",
