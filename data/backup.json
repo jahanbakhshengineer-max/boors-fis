@@ -328,15 +328,15 @@
         "1405-7": 113504.6818
       },
       "manual": {
-        "marketCap": 553972.3495592,
+        "marketCap": 538811.8636615,
         "sharesOutstanding": 409742862100,
-        "currentPrice": 1352,
+        "currentPrice": 1315,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyPaste": {
@@ -4054,14 +4054,14 @@
         }
       ],
       "manual": {
-        "marketCap": 868092.150792,
-        "currentPrice": 1384,
+        "marketCap": 844257.250698,
+        "currentPrice": 1346,
         "dividendIncome": 1956,
         "bankInterest": 951,
         "otherOperatingIncome": 3,
         "otherNonOperatingIncome": 2358,
         "estimatedAnnualSalesOverride": 1673456,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "sharesOutstanding": 627234213000
       },
       "rawSheets": {
@@ -5694,13 +5694,13 @@
         }
       ],
       "manual": {
-        "marketCap": 193144,
-        "currentPrice": 3449,
+        "marketCap": 197904,
+        "currentPrice": 3534,
         "dividendIncome": 2583,
         "bankInterest": 4,
         "otherOperatingIncome": 662,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "sharesOutstanding": 56000000000,
         "otherNonOperatingIncome": 323
       },
@@ -6893,14 +6893,14 @@
         }
       ],
       "manual": {
-        "marketCap": 11939.2,
-        "currentPrice": 7462,
+        "marketCap": 11563.2,
+        "currentPrice": 7227,
         "dividendIncome": 14,
         "bankInterest": 226,
         "otherOperatingIncome": 100,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "sharesOutstanding": 1600000000
       },
       "rawSheets": {
@@ -7454,14 +7454,14 @@
         }
       ],
       "manual": {
-        "marketCap": 122540,
-        "currentPrice": 11140,
+        "marketCap": 118690,
+        "currentPrice": 10790,
         "dividendIncome": 0,
         "bankInterest": 1320,
         "otherOperatingIncome": 363,
         "otherNonOperatingIncome": -480,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "sharesOutstanding": 11000000000
       },
       "rawSheets": {
@@ -8694,14 +8694,14 @@
         }
       ],
       "manual": {
-        "marketCap": 35498.330995016,
-        "currentPrice": 1444,
+        "marketCap": 36137.49761958,
+        "currentPrice": 1470,
         "dividendIncome": 2,
         "bankInterest": 29,
         "otherOperatingIncome": 434,
         "otherNonOperatingIncome": 142,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "sharesOutstanding": 24583331714
       },
       "rawSheets": {
@@ -9698,15 +9698,15 @@
         }
       ],
       "manual": {
-        "marketCap": 181710,
+        "marketCap": 176040,
         "sharesOutstanding": 30000000000,
-        "currentPrice": 6057,
+        "currentPrice": 5868,
         "dividendIncome": 1200,
         "bankInterest": 242,
         "otherOperatingIncome": 10,
         "otherNonOperatingIncome": -1600,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -12261,15 +12261,15 @@
         }
       ],
       "manual": {
-        "marketCap": 21453.35643,
+        "marketCap": 20805.707934,
         "sharesOutstanding": 8995118000,
-        "currentPrice": 2385,
+        "currentPrice": 2313,
         "dividendIncome": 6,
         "bankInterest": 0,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": -10,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -12892,15 +12892,15 @@
         }
       ],
       "manual": {
-        "marketCap": 266585,
+        "marketCap": 265275,
         "sharesOutstanding": 655000000000,
-        "currentPrice": 407,
+        "currentPrice": 405,
         "dividendIncome": null,
         "bankInterest": 23,
         "otherOperatingIncome": 450,
         "otherNonOperatingIncome": 3380,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -13311,15 +13311,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 28420,
+        "marketCap": 28890,
         "sharesOutstanding": 1000000000,
-        "currentPrice": 28420,
+        "currentPrice": 28890,
         "dividendIncome": 15,
         "bankInterest": 317,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794817080634
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -14010,15 +14010,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 996525,
+        "marketCap": 967500,
         "sharesOutstanding": 1935000000000,
-        "currentPrice": 515,
+        "currentPrice": 500,
         "dividendIncome": 18566,
         "bankInterest": null,
         "otherOperatingIncome": 11530,
         "otherNonOperatingIncome": 3445,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -15722,15 +15722,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 6961.55236,
+        "marketCap": 7096.38874,
         "sharesOutstanding": 4993940000,
-        "currentPrice": 1394,
+        "currentPrice": 1421,
         "dividendIncome": null,
         "bankInterest": 18,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -19404,15 +19404,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 80342.6,
+        "marketCap": 82573.4,
         "sharesOutstanding": 33800000000,
-        "currentPrice": 2377,
+        "currentPrice": 2443,
         "dividendIncome": 2000,
         "bankInterest": 2,
         "otherOperatingIncome": 15,
         "otherNonOperatingIncome": 45,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -20859,15 +20859,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3970080,
+        "marketCap": 3883680,
         "sharesOutstanding": 1440000000000,
-        "currentPrice": 2757,
+        "currentPrice": 2697,
         "dividendIncome": 33,
         "bankInterest": 843,
         "otherOperatingIncome": -12922,
         "otherNonOperatingIncome": 3934,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -21031,9 +21031,9 @@
       ],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 256500,
-        "marketCapUpdatedAt": 1794903482932,
-        "currentPrice": 450,
+        "marketCap": 249090,
+        "marketCapUpdatedAt": 1795005264286,
+        "currentPrice": 437,
         "portfolioMarketValue": 223829,
         "portfolioBookValue": 32298,
         "sharesOutstanding": 570000000000
@@ -21598,15 +21598,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 29280,
+        "marketCap": 30155,
         "sharesOutstanding": 5000000000,
-        "currentPrice": 5856,
+        "currentPrice": 6031,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -22531,15 +22531,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 21604,
+        "marketCap": 21439,
         "sharesOutstanding": 1100000000,
-        "currentPrice": 19640,
+        "currentPrice": 19490,
         "dividendIncome": 97,
         "bankInterest": 555,
         "otherOperatingIncome": 154,
         "otherNonOperatingIncome": 0,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -23075,15 +23075,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3936.96,
+        "marketCap": 3816.96,
         "sharesOutstanding": 960000000,
-        "currentPrice": 4101,
+        "currentPrice": 3976,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -25764,15 +25764,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 2794.085,
+        "marketCap": 2716,
         "sharesOutstanding": 3395000000,
-        "currentPrice": 823,
+        "currentPrice": 800,
         "dividendIncome": 1,
         "bankInterest": 1,
         "otherOperatingIncome": 1,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -26387,15 +26387,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 31638.78,
+        "marketCap": 30677.04,
         "sharesOutstanding": 2466000000,
-        "currentPrice": 12830,
+        "currentPrice": 12440,
         "dividendIncome": 8,
         "bankInterest": 184,
         "otherOperatingIncome": 207,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -26768,15 +26768,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 3513.9952575,
+        "marketCap": 3389.5058925,
         "sharesOutstanding": 18862025000,
-        "currentPrice": 186.3,
+        "currentPrice": 179.7,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 28,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -30544,15 +30544,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 169560,
+        "marketCap": 165024,
         "sharesOutstanding": 5400000000,
-        "currentPrice": 31400,
+        "currentPrice": 30560,
         "dividendIncome": 17414,
         "bankInterest": null,
         "otherOperatingIncome": 49,
         "otherNonOperatingIncome": 25,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -30923,15 +30923,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 184023,
+        "marketCap": 188023.5,
         "sharesOutstanding": 571500000000,
-        "currentPrice": 322,
+        "currentPrice": 329,
         "dividendIncome": 235,
         "bankInterest": 28,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": 4000,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -31124,15 +31124,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 115368,
+        "marketCap": 112552,
         "sharesOutstanding": 44000000000,
-        "currentPrice": 2622,
+        "currentPrice": 2558,
         "dividendIncome": 398,
         "bankInterest": 30,
         "otherOperatingIncome": 48,
         "otherNonOperatingIncome": null,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -32035,10 +32035,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2230,
-        "marketCap": 20950.85,
+        "currentPrice": 2286,
+        "marketCap": 21476.97,
         "sharesOutstanding": 9395000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 50,
         "bankInterest": null,
         "otherOperatingIncome": 20,
@@ -32654,10 +32654,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1630,
-        "marketCap": 9128,
+        "currentPrice": 1662,
+        "marketCap": 9307.2,
         "sharesOutstanding": 5600000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 62,
@@ -36764,10 +36764,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2271,
-        "marketCap": 22710,
+        "currentPrice": 2339,
+        "marketCap": 23390,
         "sharesOutstanding": 10000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 6.2,
@@ -37099,10 +37099,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2907,
-        "marketCap": 3430.26,
+        "currentPrice": 2833,
+        "marketCap": 3342.94,
         "sharesOutstanding": 1180000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 1.5,
@@ -37303,10 +37303,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 713,
-        "marketCap": 465232.5,
+        "currentPrice": 730,
+        "marketCap": 476325,
         "sharesOutstanding": 652500000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 3500,
@@ -38274,10 +38274,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 549,
-        "marketCap": 54515.7,
+        "currentPrice": 534,
+        "marketCap": 53026.2,
         "sharesOutstanding": 99300000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 588,
         "bankInterest": 8,
         "otherOperatingIncome": -176,
@@ -38811,10 +38811,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1944,
-        "marketCap": 33825.6,
+        "currentPrice": 1991,
+        "marketCap": 34643.4,
         "sharesOutstanding": 17400000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1404": {
@@ -39266,15 +39266,15 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "marketCap": 10026,
+        "marketCap": 10318,
         "sharesOutstanding": 2000000000,
-        "currentPrice": 5013,
+        "currentPrice": 5159,
         "dividendIncome": 397,
         "bankInterest": null,
         "otherOperatingIncome": null,
         "otherNonOperatingIncome": 123,
         "estimatedAnnualSalesOverride": null,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -41359,10 +41359,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 16860,
-        "marketCap": 101160,
+        "currentPrice": 17310,
+        "marketCap": 103860,
         "sharesOutstanding": 6000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 659,
         "bankInterest": 643,
         "otherOperatingIncome": 137,
@@ -43525,10 +43525,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 8117,
-        "marketCap": 16234,
+        "currentPrice": 8326,
+        "marketCap": 16652,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": 100,
         "otherOperatingIncome": null,
@@ -43754,10 +43754,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 3118,
-        "marketCap": 19331.6,
+        "currentPrice": 3133,
+        "marketCap": 19424.6,
         "sharesOutstanding": 6200000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 953,
         "bankInterest": 132,
         "otherOperatingIncome": 12,
@@ -44211,10 +44211,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1512,
-        "marketCap": 63504,
+        "currentPrice": 1551,
+        "marketCap": 65142,
         "sharesOutstanding": 42000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 9,
         "bankInterest": 90,
         "otherOperatingIncome": 400,
@@ -45866,10 +45866,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1408,
-        "marketCap": 59136,
+        "currentPrice": 1371,
+        "marketCap": 57582,
         "sharesOutstanding": 42000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 462,
         "bankInterest": null,
         "otherOperatingIncome": 1200,
@@ -47002,10 +47002,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 10483,
-        "marketCap": 41932,
+        "currentPrice": 10797,
+        "marketCap": 43188,
         "sharesOutstanding": 4000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": 15,
         "otherOperatingIncome": 6,
@@ -48060,10 +48060,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1239,
-        "marketCap": 8545.48120314,
+        "currentPrice": 1210,
+        "marketCap": 8345.4659046,
         "sharesOutstanding": 6897079260,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1403": {
@@ -51220,10 +51220,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 12220,
-        "marketCap": 3666,
+        "currentPrice": 12470,
+        "marketCap": 3741,
         "sharesOutstanding": 300000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1403": {
@@ -54486,10 +54486,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1928,
-        "marketCap": 4636.429336,
+        "currentPrice": 1929,
+        "marketCap": 4638.834123,
         "sharesOutstanding": 2404787000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1403": {
@@ -57892,10 +57892,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1939,
-        "marketCap": 7058.020107061,
+        "currentPrice": 1930,
+        "marketCap": 7025.25982807,
         "sharesOutstanding": 3640030999,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 8,
         "bankInterest": null,
         "otherOperatingIncome": null,
@@ -61462,10 +61462,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 886,
-        "marketCap": 10756.182646,
+        "currentPrice": 862,
+        "marketCap": 10464.818782,
         "sharesOutstanding": 12140161000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "dividendPaste": {
@@ -64903,10 +64903,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1468,
-        "marketCap": 6312.4,
+        "currentPrice": 1522,
+        "marketCap": 6544.6,
         "sharesOutstanding": 4300000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1403": {
@@ -66073,10 +66073,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 491,
-        "marketCap": 16531.394548,
+        "currentPrice": 505,
+        "marketCap": 17002.75814,
         "sharesOutstanding": 33668828000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 3,
         "bankInterest": 16,
         "otherOperatingIncome": 244,
@@ -70752,10 +70752,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 4305,
-        "marketCap": 34181.7,
+        "currentPrice": 4228,
+        "marketCap": 33570.32,
         "sharesOutstanding": 7940000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": 2,
         "otherOperatingIncome": null,
@@ -72344,10 +72344,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1874,
-        "marketCap": 18740,
+        "currentPrice": 1897,
+        "marketCap": 18970,
         "sharesOutstanding": 10000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": 100,
         "otherOperatingIncome": 7,
@@ -73429,10 +73429,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 988,
-        "marketCap": 207480,
+        "currentPrice": 1011,
+        "marketCap": 212310,
         "sharesOutstanding": 210000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": 203,
         "otherOperatingIncome": 500,
@@ -73544,10 +73544,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 3276,
-        "marketCap": 65520,
+        "currentPrice": 3197,
+        "marketCap": 63940,
         "sharesOutstanding": 20000000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "subIndustries": [],
       "rawSheets": {
@@ -74053,10 +74053,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2576,
-        "marketCap": 4415.618581248,
+        "currentPrice": 2534,
+        "marketCap": 4343.624800032,
         "sharesOutstanding": 1714137648,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1404": {
@@ -74404,10 +74404,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 3091,
-        "marketCap": 6631.92596,
+        "currentPrice": 3073,
+        "marketCap": 6593.30588,
         "sharesOutstanding": 2145560000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 60,
@@ -74765,10 +74765,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2049,
-        "marketCap": 2284.635,
+        "currentPrice": 2108,
+        "marketCap": 2350.42,
         "sharesOutstanding": 1115000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1404": {
@@ -75114,10 +75114,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 599,
-        "marketCap": 5425.613158095,
+        "currentPrice": 617,
+        "marketCap": 5588.653286385,
         "sharesOutstanding": 9057784905,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1404": {
@@ -75478,10 +75478,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 414,
-        "marketCap": 57794.4,
+        "currentPrice": 410,
+        "marketCap": 57236,
         "sharesOutstanding": 139600000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1404": {
@@ -76625,10 +76625,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 732,
-        "marketCap": 44652,
+        "currentPrice": 713,
+        "marketCap": 43493,
         "sharesOutstanding": 61000000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1404": {
@@ -77825,10 +77825,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 615,
-        "marketCap": 76875,
+        "currentPrice": 598,
+        "marketCap": 74750,
         "sharesOutstanding": 125000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 1070,
         "bankInterest": 70,
         "otherOperatingIncome": 179,
@@ -78916,10 +78916,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1469,
-        "marketCap": 7932.6,
+        "currentPrice": 1509,
+        "marketCap": 8148.6,
         "sharesOutstanding": 5400000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1404": {
@@ -80073,10 +80073,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 990,
-        "marketCap": 5537.565,
+        "currentPrice": 1020,
+        "marketCap": 5705.37,
         "sharesOutstanding": 5593500000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1403": {
@@ -80403,10 +80403,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1863,
-        "marketCap": 3726,
+        "currentPrice": 1807,
+        "marketCap": 3614,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1404": {
@@ -80778,10 +80778,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1130,
-        "marketCap": 7215.19464,
+        "currentPrice": 1104,
+        "marketCap": 7049.181312,
         "sharesOutstanding": 6385128000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 356,
         "bankInterest": null,
         "otherOperatingIncome": 58,
@@ -81372,10 +81372,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 967,
-        "marketCap": 21274,
+        "currentPrice": 938,
+        "marketCap": 20636,
         "sharesOutstanding": 22000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": 560,
         "bankInterest": null,
         "otherOperatingIncome": null,
@@ -81908,10 +81908,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 2500,
-        "marketCap": 4750,
+        "currentPrice": 2444,
+        "marketCap": 4643.6,
         "sharesOutstanding": 1900000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": 25,
         "otherOperatingIncome": null,
@@ -82489,10 +82489,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1326,
-        "marketCap": 19890,
+        "currentPrice": 1347,
+        "marketCap": 20205,
         "sharesOutstanding": 15000000000,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": null,
         "otherOperatingIncome": 20,
@@ -83064,10 +83064,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 498,
-        "marketCap": 62001,
+        "currentPrice": 512,
+        "marketCap": 63744,
         "sharesOutstanding": 124500000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1403": {
@@ -84208,10 +84208,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 1699,
-        "marketCap": 3398,
+        "currentPrice": 1741,
+        "marketCap": 3482,
         "sharesOutstanding": 2000000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1403": {
@@ -84699,10 +84699,10 @@
       "subsidiaries": [],
       "unlistedHoldings": [],
       "manual": {
-        "currentPrice": 28510,
-        "marketCap": 5702,
+        "currentPrice": 29570,
+        "marketCap": 5914,
         "sharesOutstanding": 200000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "monthlySalesYTD": {
         "1403": {
@@ -84862,10 +84862,10 @@
       "monthlySales": [],
       "dividendHistory": [],
       "manual": {
-        "currentPrice": 1625,
-        "marketCap": 3900,
+        "currentPrice": 1665,
+        "marketCap": 3996,
         "sharesOutstanding": 2400000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -86900,10 +86900,10 @@
         }
       ],
       "manual": {
-        "currentPrice": 17110,
-        "marketCap": 12469.57979,
+        "currentPrice": 16670,
+        "marketCap": 12148.91263,
         "sharesOutstanding": 728789000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -95304,10 +95304,10 @@
         }
       },
       "manual": {
-        "currentPrice": 2485,
-        "marketCap": 23856.146229825,
+        "currentPrice": 2495,
+        "marketCap": 23952.146818275,
         "sharesOutstanding": 9600058845,
-        "marketCapUpdatedAt": 1794903482932,
+        "marketCapUpdatedAt": 1795005264286,
         "dividendIncome": null,
         "bankInterest": 664,
         "otherOperatingIncome": 5,
@@ -96251,10 +96251,10 @@
         }
       },
       "manual": {
-        "currentPrice": 41790,
-        "marketCap": 25074,
+        "currentPrice": 41390,
+        "marketCap": 24834,
         "sharesOutstanding": 600000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -150563,10 +150563,10 @@
         }
       },
       "manual": {
-        "currentPrice": 2103,
-        "marketCap": 14195.25,
+        "currentPrice": 2051,
+        "marketCap": 13844.25,
         "sharesOutstanding": 6750000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -154390,10 +154390,10 @@
         }
       },
       "manual": {
-        "currentPrice": 9555,
-        "marketCap": 12421.5,
+        "currentPrice": 9803,
+        "marketCap": 12743.9,
         "sharesOutstanding": 1300000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -157301,10 +157301,10 @@
       "monthlySalesSplit": [],
       "monthlySalesYTD": [],
       "manual": {
-        "currentPrice": 7205,
-        "marketCap": 60522,
+        "currentPrice": 7304,
+        "marketCap": 61353.6,
         "sharesOutstanding": 8400000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "pl": {
@@ -157735,10 +157735,10 @@
         }
       },
       "manual": {
-        "currentPrice": 835,
-        "marketCap": 25843.25,
+        "currentPrice": 816,
+        "marketCap": 25255.2,
         "sharesOutstanding": 30950000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -157827,10 +157827,10 @@
       "monthlySalesSplit": [],
       "monthlySalesYTD": [],
       "manual": {
-        "currentPrice": 14380,
-        "marketCap": 86280,
+        "currentPrice": 13960,
+        "marketCap": 83760,
         "sharesOutstanding": 6000000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": [],
       "dividendHistory": [],
@@ -157872,10 +157872,10 @@
         }
       },
       "manual": {
-        "currentPrice": 7258,
-        "marketCap": 87096,
+        "currentPrice": 7041,
+        "marketCap": 84492,
         "sharesOutstanding": 12000000000,
-        "marketCapUpdatedAt": 1794903482932
+        "marketCapUpdatedAt": 1795005264286
       },
       "rawSheets": {
         "monthlyActivity": {
@@ -158057,7 +158057,12 @@
       ],
       "subsidiaries": [],
       "unlistedHoldings": [],
-      "manual": {},
+      "manual": {
+        "currentPrice": 2151,
+        "marketCap": 10755,
+        "sharesOutstanding": 5000000000,
+        "marketCapUpdatedAt": 1795005264286
+      },
       "name": "",
       "industry": "سیمان",
       "isHolding": false,
@@ -163848,7 +163853,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "unitOverride": "million_rial"
         }
       ],
       "reportPublications": {
@@ -163861,6 +163867,1166 @@
           "letterSerial": "hn7GTz6dDvz6YQQQaQQQvfdQQQaQQQv1RQ==",
           "url": "https://www.codal.ir/Reports/Decision.aspx?LetterSerial=hn7GTz6dDvz6YQQQaQQQvfdQQQaQQQv1RQ%3d%3d&rt=0&let=6&ct=0&ft=-1",
           "source": "codal-n10"
+        }
+      },
+      "incomeNotesRules": {
+        "90f90086f030b154af62b1b035067e68c16366868a6fdf9d14de5d1bf9e97743": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "2ff6b1114fe1a71c1675b80dfded82e1ad3dca98a27550b25b9ff2e1ea285591": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|حقالزحمهوحقالمشاوره": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "5124d774802311493b684fcd40b724d61fa2f07bf48f75fa54ccefc2810640c0": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "1bdda7e315418860e6fb493b8fd8ec2be2ac4f53c22e772362e85b04598df72e": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|حقالزحمهحسابرسی": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "4b09a50aaa1b4208e90be412ea5986419ee107555d1856c7db79ff1476cddba8": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "b74b5e6828c68885fccc054824efe7c945a0327555f6debdbca7b041a6d43e96": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|هزینهجرائمتامیناجتماعی": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "1423e25c75661a8de7e68fdd8f2b7683c97af6e8f74b705afd32199399086e68": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "45a200c1f5a2cd91baf2540af460cf43bd084269b887f879d683afbd307a9463": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|حقحضوردرجلسات": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "307bbc5a75c14adbc9896ebdda161e0fddfa1c11519f969f2b2ecfc92dcb8ad7": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "0ffdbcab58ed4c352d6681f1b8b583d7abe2d2ceba3a70be2d990893597740f4": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|هزینهحقوقودستمزدپرسنلشرکتی": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "54ba70d7e11abee069745129e81810e134c89b6e0c000c6afa71852810867d94": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "c9701d8790e5c916a47674c94aa73f65663d2a99182779a9abdc6c051f9ae7b8": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|مزایایپایانخدمتکارکنان": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "ce6b251bf5afa1d022a45613e5d40d755d78d038c51d631b28a34081e44c6cca": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "36d46e422dec5457fda422805e51b98f0ff97befe6b53ca7f24fb262b34422df": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|حقالزحمهپیمانکارانداخلیتامیننیرو": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "777bd11c777922dd7c0afa0ae23066c1f86fd9f76ca232730c8529b59495599c": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "ecec543fa1357f3917ea049f098c6d4e16dbef3140a34401821ad70260d18082": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|غذایمصرفیکارکنان": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "08da5655e1091f1b3e9d7e2b397c6f379bc281a7a126877130181244de3144c9": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "76fbe3f925d36ffaca44dc401035439cdd7649565bdcc265f5982a1af368efd1": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|عیدیوپاداش": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "4014a1b8c6dbddcfa9080ac3e0e11b3021ec6a75d6be6c70c7822713c8e2f781": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "3fc5d3f8506b6f5bc1af2510699a8d532069f43d05080935a2f703d2327e4026": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|تسهیمهزینههایعمومیواداریازدوایرخدماتی": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "5338347880162be783f1b384f11c3335d597cf8b88fb2e1c107fc7e0617ecb65": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "04ab7fe2fe3d5bb095b231fd9c8a60d0ff680f581dbcbd7b8c6c3e012afcab3f": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|حقبیمهسهمکارفرما": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "7ab9af22ed03fc5853471da044a860d7714127b83af99ce641e79d8bde7cc6e1": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "6fb2565247d83fd26209ffb0e74bb0183836643c0dd1ae1c6b4f722cff38cbc4": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|کمکهایغیرنقدی": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "0de45fb43e9d19cbcb4aafb0e787a92001b8ce212a6a3a92077ad1a1ae5b65db": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "656dad5bc64e834332a07751fb4d827efa18953a9f63018e37905f55e476495a": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|پاداشبهرهوریوتولید": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "ba27b4b29f8ce8e9412b11f8843add3dcbc88c0035db6102aee2b756d3dd7ac8": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "3387e649a15d0cec8c2a9461743dcd81b88f16e43e142d81fffc8f1dccb75a21": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|ایابوذهابکارکنان": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "97f54a443c13cdebd8ec22841060323574476c29703a4dc535e1d19b0142c44d": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "4e135f8f3def1905e0f1db3aecec398f100b7b074243d894a2752451c4cd90e8": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|پاداشهیاتمدیره": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "ead14b01df484b88c9de282a76695e6a0b5700256fc3acec8f919e1332b177a7": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "0f2b27ebee4f6532afad7250da0f46ea1b46c288c694bb414e43ed02a35f6643": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|هزینهتعمیرونگهداریاموال": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "7ee8eb71676aa74a3bd1c921d086c17b3c318800b7731d427974349ec3487a5e": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "5974dc25a42699b91c610bc85fd1177c592277986f26e175d40895cf1870831e": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|حقعضویت": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "6831be3d68a5b254023e460ff4fb34f906e2d20119e40f92326349c32d1455f7": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "a91c00064b80354195873264b636af87b2af513b801c96170cb0a5c02f07bf8f": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|هزینهحقوقیوثبتی": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "85a01e54b36bf4c4a719c7f4e6e7782653b4981398041571e3a9aa1fbf70e0c7": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "f0a7175a2192f85aa26049ebc3db20bff18eeca7b70abdcb985460c475228bc9": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|کمکهایبلاعوض": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "7ee7e31dd861780733e298cf8d7c3f3b82ce48b6160fe78a1cf4f3aeb7f8777a": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "97be85f95b67daa343fa76d2eba2211f26d7416db9b032146e5ff1a8ace32773": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|هزینهپشتیبانینرمافزار": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "d5be3c881a1be89e81ddab19fbbd7a7068bc37095191bba12975cb563e5c97ab": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "3ce8416f1a53387966030e392187cbf84bfab38a2576d4611820b9cf898a0e15": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|هزینهبرگزاریجشنهاومراسم": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "447c8fc3310dc64f8eba1525c8c66e7b46a58759d92f868372e377b69982207f": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "07ae3b091091413866d557b62894c15ad32f31b48a99b3e0fefce444a320e15e": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|هزینهپذیراییوکانتین": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "3b7639bbe5434c9fa8308f4eed8d57d5c0e0ee6ffb8fd4b76c51e4926299487a": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "9e9e3e0f8e4b5f14431c58b86f86d11a278e9a88810c187d8c1909678e71b019": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|سایراداریعمومیفروش": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "caf0e0d0a972612e66c2dcb783c83d12e88d0904079c4c9f272eea1a92ea2e7f": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "845c101bac6a086f7b7870ebb6d896d21e3a0bae92a2e246942b73cb764aecab": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|حقوقوعوارضدولتیپرداختعوارضبهدولتجهتبرداشتازمعادن": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "10e715bbd89abd29075b6829db7f67266718036567ff261d11e47ad2e1cfcd4a": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "9fcdb87c42f0f6ec9bd4746e05492e1d9ca3f249e01845a01440bd4dec6a3339": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|پاکت": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "8a234f2a0692b9bc1e55266fa2a4da254b49f63dd11c6d1216d246434ca864e7": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "0836f830275647a021dd03cb783c1896a3483bc478d13d3af5ae8a3387c3ac0b": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "c3b661e05e0ffe751ec007db87dd3e314ec353f9bf10b1df08cb56848f823384": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "909d1e5c4b51752335bff98f3a38c355bdf07b4edd44bb30e928c03844a73d39": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:هزینههایسرباروهزینههایعمومیواداریشرکت|جمع": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "463e69f53df57699dcfc6641ffaa9e2e78ab2519e0cc63d90ef0ead14d5e5eed": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "ffbc05d69bb6d823130039a558de1c06705074e70f1e76da934b934278b3cf7e": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهایعملیاتی|درامدفروشضایعات": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "029ef49c7b8e0e682c621806105b1142575dc3cb06e5e45f842541844aca2f81": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "0928ee32a8fdf5dc63906a2e83d5ddca2603cde98c6d9d957c3161c2f6b13c11": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهایعملیاتی|خالصکسریواضافاتانبار": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "12b3be828188e129d825b34dd40d16d703319e021dcb04910e03aa28b4f6b891": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "8f0c8420858e66255ef69d68c2cff344c486bb4e7d9aee122b7fc5bcb657e7fb": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهایعملیاتی|": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "7a2d85834cda27db01c3390d9522ff36203750472577498ad7ab45bdf2aa8b66": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "7a978e63b2c7ffd3080531e9339bc61cfd4d2f7932bc7ea842cae17adce6d6fe": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهایعملیاتی|جمع": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "355b43ba124413b24cd67760fc118d4571b4f9c3d75ed4f584c18abb120309fe": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "c7fc9c327033d33178381d76e10a54964e9029ac7833f7c5df0c860035a9f1bb": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایرهزینههایعملیاتی|هزینههایمتحملشدهجهتخطتولیدکلینکرسفید": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "6c9dfd114b8a5affabb5dedbea51f3a225ffa743c967edcc39e931f0a3a677c8": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "ccc0bb2f4ea2a7f7b6075a6cc1683cdcb0009a6d64aa48343d4733372f7fd445": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایرهزینههایعملیاتی|خالصکسریواضافهانبار": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "e88524b67255229fe2179ff54bf9530c0f5b0bd15dd7dbfcba8a56c6eee80645": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "a7852815f40dc6b36702b8e69237a14e5da3b228b0aad3523722d98404d54649": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایرهزینههایعملیاتی|ضایعاتغیرعادی": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "3370a841d750d420b2e8e2d56bf3ba7141d97ec6ada49a50d556164066edb192": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "72fc18cae6a44c4b0e2bb0cb16e1daf1920510f2a69087f03ee336bea8bedc42": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایرهزینههایعملیاتی|هزینهمالیاتبرارزشافزودهوماده169قمم": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "7ce96b7f3e47c8f63e48a1e979746062cb0973cd4e497139889daca1c6e1cf37": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "2d63368374ea91bb910a9e7a64be2d3b94d0f06ae219cef9b2ee94bd09f7b730": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایرهزینههایعملیاتی|": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "453bf8473af0a60d16879279b77296b913370e7572de5387eda818cc64ca9fda": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "038fd63af319e5632809622070a5e4d2a1a4f5669974081f436360d271955422": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایرهزینههایعملیاتی|جمع": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "51132ac014aee8f0821f2c3d42cb04f2bc60b06b113b77676a48f7dfb9d2d810": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "b3ebf6bd2462ab4c3986bcb3f69ae090aa71b96df46f40530600053a317b796b": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیدرامدسرمایهگذاریها|": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "ba6ee4b8af76bed702878223a779938720fb997b5c1a3c88cd03509c8457f76c": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "2482132218ed3ebaa855c3a8fa113920d12240ccd192c6d8623d916de7603d5e": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیدرامدسرمایهگذاریها|جمع": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "94d6b275d40f162a21a800854e720e16ec3126ddbfc01d5f9cb09ef2c9b46a7e": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "6bf62e4a61f4b2013026aada54ae255faef84bcf44983d8942fa611a4d5b3edd": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیاقلاممتفرقه|سودزیانتسعیرداراییهایغیرمرتبطباعملیات": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "20a6765d557000079d7b1de241eeee4f2e4458b9b2df448b21612165e738b8d6": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "d765130691b18af53aa9baebdfa26d8b98337351bef9ac3a1093a2de0d810c9c": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیاقلاممتفرقه|فروشاموالوضایعات": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "4d86f8270c71ed09cd9b8a71be034948c2b32bb4295acc743c5de47a73804fbf": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "74621268452b5030189f95e89d1501b85fce37034550f6419481cf6596dcf46b": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیاقلاممتفرقه|سایر": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "31abd8dd000eee7025c36ea26e4f94500a723af143e705cb33ab0ae07d579526": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "9e66ee3b78b13ae608321146c07df78912f57aa0bc24201dd5612e934f09447a": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیاقلاممتفرقه|تسعیرارز": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "3acb61b9e78db678f33b10869f426b9c139a32c922336e151dd636e7129cb50c": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "b147a743922a7dd3d8f0c1953135bf96a3a24d6b95a880a505d47598dcac2e8b": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیاقلاممتفرقه|سودحاصلازفروشداراییهایثابتبهاشخاصوابسته": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "c73719e0c5be3db8fa3ad6c54f494ee7b5c2f6983d5e907015614161b1e79317": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "922c489d50021cde0c35b21ac28ed7ee937167bc2537eb2ed1e8166f090a61ba": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیاقلاممتفرقه|": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "968e59edf2d306480960e6607d91bc313baddc357669696e96f122b95b222b3e": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "9d278cd2bada3ecbe53ab81442ddcd560d29b64605ffb0d8d6b0f22db166abc6": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیاقلاممتفرقه|جمع": {
+          "category": "",
+          "recurring": false,
+          "disabled": true,
+          "terms": [],
+          "source": "manual"
+        },
+        "674773c8b632661d5ffff097f3119b0adb4a966122bd61bd01b348af3eef7f83": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "c67bd689ba0ddc981d7e8702b6ceb6d1c9fd536d75d8ac761e1689a8842dfc79": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "label:سایردرامدهایعملیاتی|سودسهامسرمایهگذاریهایبلندمدت": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "7197b4708e5b64dd0c2cdb3957670461b8507f46d031eee3fd2b1851d7b88286": {
+          "category": "bankInterest",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "8d5a1e048e123606ec0c02ea65d49ffb663a69e53e8e2842a5c98266c233d81a": {
+          "category": "bankInterest",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیدرامدسرمایهگذاریها|سودسپردهبانکی": {
+          "category": "bankInterest",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "5d6695998830c92d1304c2fce4070b80bc57dc9cf8102f177330e05e1f4c2039": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "faeb67c0e90316d23d2e1dc593caee845d55d0b01c9b43d3318b8ac9107d0e7a": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیدرامدسرمایهگذاریها|سودحاصلازسرمایهگذاریدرصندوقهایسرمایهگذاری": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "b07f9958d551e8b19955f1f5dd87ad7d6f5ae33eaafef6eac71263d8e29ae0a4": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            },
+            {
+              "column": 2,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "ba223e513439965b7d9341f04a760f797996b3f821aa75afced5973a6d1c9f7f": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            },
+            {
+              "column": 2,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
+        },
+        "label:سایردرامدهاوهزینههایغیرعملیاتیدرامدسرمایهگذاریها|سودسهامشرکتهایسرمایهپذیر": {
+          "category": "dividendIncome",
+          "recurring": true,
+          "sign": 1,
+          "terms": [
+            {
+              "column": 1,
+              "op": "add"
+            },
+            {
+              "column": 2,
+              "op": "add"
+            }
+          ],
+          "floorPriorYear": false,
+          "zeroFallbackPrior": true,
+          "priorColumn": 0,
+          "source": "manual"
         }
       }
     }
